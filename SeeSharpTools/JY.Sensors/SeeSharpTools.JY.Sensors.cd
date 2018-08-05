@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SeeSharpTools.JY.Sensors.CustomScaling">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomScaling\CustomScaling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.DisplacementSensor">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Displacement sensor\DisplacementSensor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.LoadCell">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LoadCell\LoadCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.RTD">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAYAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RTD\RTD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.Thermistor">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thermistor\Thermistor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.TC_TypeB" Collapsed="true">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAQAAAAAAAAAAAACAAAAAgQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thermocouple\TC_TypeB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.TC_TypeE" Collapsed="true">
+    <Position X="9.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAQAAAAAAAAAAAACAAAAAgQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thermocouple\TC_TypeE.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.TC_TypeJ" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAQAAAAAAAAAAAACAAAAAgQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thermocouple\TC_TypeJ.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.TC_TypeK" Collapsed="true">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAQAAAAAAAAAAAACAAAAAgQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thermocouple\TC_TypeK.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.TC_TypeN" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAQAAAAAAAAAAAACAAAAAgQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thermocouple\TC_TypeN.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.TC_TypeR" Collapsed="true">
+    <Position X="10.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAQAAAAAAAAAAAACAAAAAgQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thermocouple\TC_TypeR.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.TC_TypeS" Collapsed="true">
+    <Position X="10.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAQAAAAAAAAAAAACAAAAAgQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thermocouple\TC_TypeS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.TC_TypeT">
+    <Position X="10.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAQAAAAAAAAAAAACAAAAAgQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thermocouple\TC_TypeT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.Sensors.Thermocouple">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thermocouple\Thermocouple.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="SeeSharpTools.JY.Sensors.ThermocoupleParameter" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAgAAAAAAACAAgAAA=</HashCode>
+      <FileName>Thermocouple\Thermocouple.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="SeeSharpTools.JY.Sensors.ThermocoupleType" Collapsed="true">
+    <Position X="12.75" Y="1.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAABACAAAAAAgBAABAAgAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Thermocouple\Thermocouple.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

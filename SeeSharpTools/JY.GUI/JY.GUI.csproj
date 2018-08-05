@@ -1,0 +1,631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{32E3B3E9-24A7-43A7-80CF-AFCE6A2F7FC1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SeeSharpTools.JY.GUI</RootNamespace>
+    <AssemblyName>SeeSharpTools.JY.GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SeeSharpTools.JY.GUI.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\SeeSharpTools Installer\Resources\System.Windows.Forms.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AquaGauge\AquaGaugeDesigner.cs" />
+    <Compile Include="ButtonSwitch\ButtonSwitch.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ButtonSwitch\ButtonSwitchDesigner.cs" />
+    <Compile Include="ButtonSwitch\GraphicsExtensionMethods.cs" />
+    <Compile Include="ButtonSwitch\ImageHelper.cs" />
+    <Compile Include="ButtonSwitch\Renderers\ToggleSwitchAndroidRenderer.cs" />
+    <Compile Include="ButtonSwitch\Renderers\ToggleSwitchBrushedMetalRenderer.cs" />
+    <Compile Include="ButtonSwitch\Renderers\ToggleSwitchCarbonRenderer.cs" />
+    <Compile Include="ButtonSwitch\Renderers\ToggleSwitchFancyRenderer.cs" />
+    <Compile Include="ButtonSwitch\Renderers\ToggleSwitchIOS5Renderer.cs" />
+    <Compile Include="ButtonSwitch\Renderers\ToggleSwitchIphoneRenderer.cs" />
+    <Compile Include="ButtonSwitch\Renderers\ToggleSwitchMetroRenderer.cs" />
+    <Compile Include="ButtonSwitch\Renderers\ToggleSwitchModernRenderer.cs" />
+    <Compile Include="ButtonSwitch\Renderers\ToggleSwitchOSXRenderer.cs" />
+    <Compile Include="ButtonSwitch\Renderers\ToggleSwitchRendererBase.cs" />
+    <Compile Include="EasyButton\EasyButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EasyButton\EasyButton.designer.cs">
+      <DependentUpon>EasyButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyButton\EasyButtonProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EasyButton\EasyButtonProperty.Designer.cs">
+      <DependentUpon>EasyButtonProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyButton\EasyButtunDesigner.cs" />
+    <Compile Include="EasyChartX\EasyChartXData\PlotBufferBase.cs" />
+    <Compile Include="EasyChartX\EasyChartXData\XDataType.cs" />
+    <Compile Include="EasyChartX\EasyChartXEditor\EasyChartXLineSeries.cs" />
+    <Compile Include="EasyChartX\EasyChartXData\ShallowPlotBuffer.cs" />
+    <Compile Include="EasyChartX\EasyChartXEvents\TabCursorEventArgs.cs" />
+    <Compile Include="EasyChartX\TabCursorUtility\TabCursorInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EasyChartX\TabCursorUtility\TabCursorInfoForm.Designer.cs">
+      <DependentUpon>TabCursorInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyChartX\TabCursorUtility\TabCursor.cs" />
+    <Compile Include="EasyChartX\TabCursorUtility\TabCursorCollection.cs" />
+    <Compile Include="EasyChartX\TabCursorUtility\TabCursorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EasyChartX\TabCursorUtility\TabCursorControl.Designer.cs">
+      <DependentUpon>TabCursorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyChartX\TabCursorUtility\PositionAdapter.cs" />
+    <Compile Include="EasyChartX\EasyChartXRangeYConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EasyChartX\EasyChartXRangeYConfigForm.Designer.cs">
+      <DependentUpon>EasyChartXRangeYConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyChartX\EasyChartXUtility\AxisSynchronizer.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\Constants.cs" />
+    <Compile Include="EasyChartX\EasyChartXData\DataEntityInfo.cs" />
+    <Compile Include="EasyChartX\EasyChartXData\PlotBuffer.cs" />
+    <Compile Include="EasyChartX\EasyChartX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EasyChartX\EasyChartX.Designer.cs">
+      <DependentUpon>EasyChartX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyChartX\EasyChartXData\DataEntity.cs" />
+    <Compile Include="EasyChartX\EasyChartXData\XDataInputType.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\ChartViewManager.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\DataCheckParameters.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\DataConvertor.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\EasyChartXAxis.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\EasyChartXCursor.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\EasyChartXSeriesCollection.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\EasyChartXPlotArea.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\EasyChartXPlotAreaCollection.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\PlotManager.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\EasyChartXSortDirection.cs" />
+    <Compile Include="EasyChartX\EasyChartXDesigner.cs" />
+    <Compile Include="EasyChartX\EasyChartXEvents\EasyChartXCursorEventArgs.cs" />
+    <Compile Include="EasyChartX\EasyChartXEvents\EasyChartXViewEventArgs.cs" />
+    <Compile Include="EasyChartX\EasyChartXPropertyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EasyChartX\EasyChartXPropertyForm.Designer.cs">
+      <DependentUpon>EasyChartXPropertyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyChartX\EasyChartXUtility\EasyChartXSeries.cs" />
+    <Compile Include="EasyChartX\EasyChartXEditor\EasyChartXLineSeriesEditor.cs" />
+    <Compile Include="AquaGauge\AquaGauge.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AquaGauge\AquaGauge.Designer.cs">
+      <DependentUpon>AquaGauge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyChartX\EasyChartXUtility\ParallelHandler.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\Utility.cs" />
+    <Compile Include="EasyChart\EasyChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EasyChart\EasyChart.Designer.cs">
+      <DependentUpon>EasyChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyChart\EasyChartAxis.cs" />
+    <Compile Include="EasyChart\EasyChartComponents\DataEntity.cs" />
+    <Compile Include="EasyChart\EasyChartComponents\SeriesCollection.cs" />
+    <Compile Include="EasyChart\EasyChartComponents\XDataInputType.cs" />
+    <Compile Include="EasyChart\EasyChartCursor.cs" />
+    <Compile Include="EasyChart\EasyChartDeisgner.cs" />
+    <Compile Include="EasyChart\EasyChartEditor\EasyChartSeriesEditor.cs" />
+    <Compile Include="EasyChart\EasyChartEvents\EasyChartCursorEventArgs.cs" />
+    <Compile Include="EasyChart\EasyChartEvents\EasyChartViewEventArgs.cs" />
+    <Compile Include="EasyChart\EasyChartProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EasyChart\EasyChartProperty.Designer.cs">
+      <DependentUpon>EasyChartProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyChart\EasyChartSeries.cs" />
+    <Compile Include="EasyChart\EasyChartSeriesCollection.cs" />
+    <Compile Include="EasyChart\Set YAxis Range.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EasyChart\Set YAxis Range.Designer.cs">
+      <DependentUpon>Set YAxis Range.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GaugeLinear\GaugeLinear.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GaugeLinear\GaugeLinear.designer.cs">
+      <DependentUpon>GaugeLinear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIUtility\ControlFactory.cs" />
+    <Compile Include="IndustryLedBright\IndustryLedBright.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndustryLedBright\IndustryLedBright.designer.cs">
+      <DependentUpon>IndustryLedBright.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndustryLedBright\LedBrightDesigner.cs" />
+    <Compile Include="IndustryLed\LedDesigner.cs" />
+    <Compile Include="IndustrySwitch\IndustySwitchDesigner.cs" />
+    <Compile Include="JYArray\JYArray.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JYArray\JYArray.Designer.cs">
+      <DependentUpon>JYArray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KnobControl\KnobDesigner.cs" />
+    <Compile Include="KnobControl\KnobProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KnobControl\KnobProperty.Designer.cs">
+      <DependentUpon>KnobProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LEDArray\LEDArray.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LEDArray\LEDArray.Designer.cs">
+      <DependentUpon>LEDArray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LEDArray\LEDArrayDesigner.cs" />
+    <Compile Include="LedArrow\LedArrow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LedArrow\LedArrow.designer.cs">
+      <DependentUpon>LedArrow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LedArrow\LedArrowDesigner.cs" />
+    <Compile Include="PathControl\PathControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PathControl\PathControl.designer.cs" />
+    <Compile Include="PathControl\PathControlDesigner.cs" />
+    <Compile Include="PressureGauge\PressureGauge.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PressureGauge\PressureGaugeDesigner.cs" />
+    <Compile Include="SegmentBright\SevenSegmentBrightDesigner.cs" />
+    <Compile Include="Segment\SevenSegmentDesigner.cs" />
+    <Compile Include="Slide\SlideDesigner.cs" />
+    <Compile Include="Slide\SlideProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Slide\SlideProperty.Designer.cs">
+      <DependentUpon>SlideProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StripChart\StripChartUtility\AxisViewAdapter.cs" />
+    <Compile Include="StripChart\Plotter\BindStripPlotter.cs" />
+    <Compile Include="StripChart\Plotter\OverLapWrapBuffer.cs" />
+    <Compile Include="StripChart\Plotter\CommonStripPlotter.cs" />
+    <Compile Include="StripChart\Plotter\PlotAction.cs" />
+    <Compile Include="StripChart\Set_StripChart_YAxis_Range.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StripChart\Set_StripChart_YAxis_Range.Designer.cs">
+      <DependentUpon>Set_StripChart_YAxis_Range.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StripChart\StripChartDeisgner.cs" />
+    <Compile Include="StripChart\StripChartProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StripChart\StripChartProperty.Designer.cs">
+      <DependentUpon>StripChartProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StripChart\StripChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StripChart\StripChart.Designer.cs">
+      <DependentUpon>StripChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StripChart\StripChartUtility\Constants.cs" />
+    <Compile Include="StripChart\StripChartUtility\ParallelHandler.cs" />
+    <Compile Include="StripChart\StripChartUtility\Utility.cs" />
+    <Compile Include="StripChart\StripPlotter.cs" />
+    <Compile Include="SwitchArray\SwitchArray.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SwitchArray\SwitchArray.Designer.cs">
+      <DependentUpon>SwitchArray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SwitchArray\SwitchArrayDesigner.cs" />
+    <Compile Include="Tank\Tank.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tank\TankDesigner.cs" />
+    <Compile Include="Tank\TankProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tank\TankProperty.Designer.cs">
+      <DependentUpon>TankProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Thermometer\Thermometer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndustryLed\IndustryLED.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndustryLed\IndustryLED.Designer.cs">
+      <DependentUpon>IndustryLED.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndustrySwitch\IndustrySwitch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndustrySwitch\IndustrySwitch.Designer.cs">
+      <DependentUpon>IndustrySwitch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KnobControl\KnobControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LedMatrixControl\LedMatrixControl.cs" />
+    <Compile Include="LedMatrixControl\LedMatrixControl.Designer.cs">
+      <DependentUpon>LedMatrixControl.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ScrollingText\ScrollingText.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SegmentBright\SegmentBright.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Segment\SevenSegment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Segment\SevenSegment.Designer.cs">
+      <DependentUpon>SevenSegment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Slide\JYColorHelper.cs" />
+    <Compile Include="Slide\JYDrawStyleHelper.cs" />
+    <Compile Include="Slide\JYSlides.Designer.cs" />
+    <Compile Include="Slide\Slide.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Thermometer\Thermometer.Designer.cs">
+      <DependentUpon>Thermometer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Thermometer\ThermometerDesigner.cs" />
+    <Compile Include="Thermometer\ThermometerPorperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Thermometer\ThermometerPorperty.Designer.cs">
+      <DependentUpon>ThermometerPorperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\BorderSimple.cs" />
+    <Compile Include="Utility\ColorSection.cs" />
+    <Compile Include="Utility\HSLColor.cs" />
+    <Compile Include="Utility\iColors.cs" />
+    <Compile Include="Utility\TickMajor.cs" />
+    <Compile Include="Utility\TickMinor.cs" />
+    <Compile Include="ViewController\ControlElements\ViewControlElement.cs" />
+    <Compile Include="ViewController\StateOperationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewController\StateOperationDialog.Designer.cs">
+      <DependentUpon>StateOperationDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\ViewControllerDesigner.cs" />
+    <Compile Include="ViewController\ViewController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewController\ViewControllerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewController\ViewControllerDialog.Designer.cs">
+      <DependentUpon>ViewControllerDialog.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EasyButton\EasyButton.resx">
+      <DependentUpon>EasyButton.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EasyButton\EasyButtonProperty.resx">
+      <DependentUpon>EasyButtonProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EasyChartX\EasyChartX.resx">
+      <DependentUpon>EasyChartX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EasyChartX\TabCursorUtility\TabCursorInfoForm.resx">
+      <DependentUpon>TabCursorInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EasyChartX\TabCursorUtility\TabCursorControl.resx">
+      <DependentUpon>TabCursorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EasyChartX\EasyChartXPropertyForm.resx">
+      <DependentUpon>EasyChartXPropertyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AquaGauge\AquaGauge.resx">
+      <DependentUpon>AquaGauge.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EasyChartX\EasyChartXRangeYConfigForm.resx">
+      <DependentUpon>EasyChartXRangeYConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EasyChart\EasyChart.resx">
+      <DependentUpon>EasyChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EasyChart\EasyChartProperty.resx">
+      <DependentUpon>EasyChartProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EasyChart\Set YAxis Range.resx">
+      <DependentUpon>Set YAxis Range.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JYArray\JYArray.resx">
+      <DependentUpon>JYArray.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KnobControl\KnobControl.resx">
+      <DependentUpon>KnobControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KnobControl\KnobProperty.resx">
+      <DependentUpon>KnobProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LEDArray\LEDArray.resx">
+      <DependentUpon>LEDArray.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LedMatrixControl\LedMatrixControl.resx">
+      <DependentUpon>LedMatrixControl.cs</DependentUpon>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LedMatrixControl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PathControl\PathControl.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PressureGauge\PressureGauge.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScrollingText\JYScrollingText.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Slide\SlideProperty.resx">
+      <DependentUpon>SlideProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StripChart\Set_StripChart_YAxis_Range.resx">
+      <DependentUpon>Set_StripChart_YAxis_Range.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StripChart\StripChartProperty.resx">
+      <DependentUpon>StripChartProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StripChart\StripChart.resx">
+      <DependentUpon>StripChart.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SwitchArray\SwitchArray.resx">
+      <DependentUpon>SwitchArray.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tank\TankProperty.resx">
+      <DependentUpon>TankProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Thermometer\ThermometerPorperty.resx">
+      <DependentUpon>ThermometerPorperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewController\StateOperationDialog.resx">
+      <DependentUpon>StateOperationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewController\ViewController.resx">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewController\ViewControllerDialog.resx">
+      <DependentUpon>ViewControllerDialog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\calculator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\document_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\document_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\document_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\folder_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EasyButton\web.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ViewController\ViewController.bmp" />
+    <EmbeddedResource Include="SwitchArray\SwitchArray.bmp" />
+    <EmbeddedResource Include="StripChart\StripChart.bmp" />
+    <EmbeddedResource Include="Thermometer\Thermometer.bmp" />
+    <EmbeddedResource Include="KnobControl\KnobControl.bmp" />
+    <EmbeddedResource Include="Tank\Tank.bmp" />
+    <None Include="Resources\开关1.png" />
+    <None Include="Resources\开关2.png" />
+    <None Include="Resources\钮1.png" />
+    <None Include="Resources\钮2.png" />
+    <None Include="Resources\左钮.png" />
+    <None Include="Resources\右钮.png" />
+    <EmbeddedResource Include="LedMatrixControl\LedMatrixControl.bmp" />
+    <EmbeddedResource Include="ScrollingText\ScorollingText.bmp" />
+    <EmbeddedResource Include="SegmentBright\SegmentBright.bmp" />
+    <EmbeddedResource Include="Segment\SevenSegment.bmp" />
+    <EmbeddedResource Include="Slide\Slide.bmp" />
+    <EmbeddedResource Include="ButtonSwitch\ButtonSwitch.PNG" />
+    <EmbeddedResource Include="EasyButton\EasyButton.PNG" />
+    <EmbeddedResource Include="AquaGauge\Industry1AquaGauge.PNG" />
+    <EmbeddedResource Include="PressureGauge\PressureGauge.bmp" />
+    <EmbeddedResource Include="IndustrySwitch\IndustrySwitch.bmp" />
+    <EmbeddedResource Include="IndustryLed\IndustryLED.bmp" />
+    <EmbeddedResource Include="JYArray\JYArray.bmp" />
+    <EmbeddedResource Include="PathControl\PathControl.bmp" />
+    <EmbeddedResource Include="IndustryLedBright\IndustryLedBright.PNG" />
+    <EmbeddedResource Include="LEDArray\LEDArray.bmp" />
+    <EmbeddedResource Include="EasyChartX\EasyChartX.bmp" />
+    <EmbeddedResource Include="EasyChart\EasyChart.bmp" />
+    <EmbeddedResource Include="GaugeLinear\GaugeLinear.bmp" />
+    <EmbeddedResource Include="LedArrow\LedArrow.bmp" />
+    <Content Include="Resources\IndustryAquaGauge2\Reflection.jpg" />
+    <Content Include="Resources\IndustrySwitch\垂直关.png" />
+    <Content Include="Resources\IndustrySwitch\垂直关1.png" />
+    <Content Include="Resources\IndustrySwitch\垂直开.png" />
+    <Content Include="Resources\IndustrySwitch\垂直开2.png" />
+    <Content Include="Resources\IndustrySwitch\按钮关.png" />
+    <Content Include="Resources\IndustrySwitch\按钮开.png" />
+    <Content Include="Resources\IndustrySwitch\水平关.png" />
+    <Content Include="Resources\IndustrySwitch\水平开.png" />
+    <Content Include="Resources\Tank\JYTank.png" />
+    <EmbeddedResource Include="Resources\LedMatrixSymbolFile.xml" />
+    <None Include="Resources\LedMatrixControl\LedMatrixSymbolFile.xml" />
+    <EmbeddedResource Include="Resources\IndustryLed\ledred.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

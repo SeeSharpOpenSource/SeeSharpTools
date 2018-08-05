@@ -1,0 +1,965 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LedMatrixSymbolFile Comments="No comments">
+	<LedMatrixSymbolFont FontName="Default">
+		<LedMatrixSymbol SymbolCode="32" Description="Space">
+			<LedLine LineNumber="0" LineLedOn="__"/>
+		    <LedLine LineNumber="1" LineLedOn="__"/>
+		    <LedLine LineNumber="2" LineLedOn="__"/>
+		    <LedLine LineNumber="3" LineLedOn="__"/>
+		    <LedLine LineNumber="4" LineLedOn="__"/>
+			<LedLine LineNumber="5" LineLedOn="__"/>
+			<LedLine LineNumber="6" LineLedOn="__"/>
+			<LedLine LineNumber="7" LineLedOn="__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="33" Description="!">
+			<LedLine LineNumber="0" LineLedOn="___"/>
+		    <LedLine LineNumber="1" LineLedOn="_#_"/>
+		    <LedLine LineNumber="2" LineLedOn="_#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_#_"/>
+		    <LedLine LineNumber="4" LineLedOn="_#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#_"/>
+			<LedLine LineNumber="6" LineLedOn="___"/>
+			<LedLine LineNumber="7" LineLedOn="_#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="34" Description="DblCte">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="__#__#_"/>
+		    <LedLine LineNumber="2" LineLedOn="_#__#__"/>
+		    <LedLine LineNumber="3" LineLedOn="_#__#__"/>
+		    <LedLine LineNumber="4" LineLedOn="_______"/>
+			<LedLine LineNumber="5" LineLedOn="_______"/>
+			<LedLine LineNumber="6" LineLedOn="_______"/>
+			<LedLine LineNumber="7" LineLedOn="_______"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="35" Description="#">
+			<LedLine LineNumber="0" LineLedOn="________"/>
+		    <LedLine LineNumber="1" LineLedOn="___#_#__"/>
+		    <LedLine LineNumber="2" LineLedOn="__#####_"/>
+		    <LedLine LineNumber="3" LineLedOn="___#_#__"/>
+		    <LedLine LineNumber="4" LineLedOn="__#_#___"/>
+			<LedLine LineNumber="5" LineLedOn="_######_"/>
+			<LedLine LineNumber="6" LineLedOn="__#_#___"/>
+			<LedLine LineNumber="7" LineLedOn="________"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="36" Description="$">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="___#___"/>
+		    <LedLine LineNumber="2" LineLedOn="_#####_"/>
+		    <LedLine LineNumber="3" LineLedOn="_#_____"/>
+		    <LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="_____#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#####_"/>
+			<LedLine LineNumber="7" LineLedOn="___#___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="37" Description="%">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_##____"/>
+		    <LedLine LineNumber="2" LineLedOn="_##___#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_____#__"/>
+		    <LedLine LineNumber="4" LineLedOn="____#___"/>
+			<LedLine LineNumber="5" LineLedOn="___#____"/>
+			<LedLine LineNumber="6" LineLedOn="__#__##_"/>
+			<LedLine LineNumber="7" LineLedOn="_____##_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="38" Description="Et">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+		    <LedLine LineNumber="2" LineLedOn="___##__"/>
+		    <LedLine LineNumber="3" LineLedOn="__#____"/>
+		    <LedLine LineNumber="4" LineLedOn="__#____"/>
+		    <LedLine LineNumber="5" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#__#__"/>
+			<LedLine LineNumber="7" LineLedOn="__##_#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="39" Description="'">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+		    <LedLine LineNumber="1" LineLedOn="__#__"/>
+		    <LedLine LineNumber="2" LineLedOn="__#__"/>
+		    <LedLine LineNumber="3" LineLedOn="__#__"/>
+		    <LedLine LineNumber="4" LineLedOn="_____"/>
+			<LedLine LineNumber="5" LineLedOn="_____"/>
+			<LedLine LineNumber="6" LineLedOn="_____"/>
+			<LedLine LineNumber="7" LineLedOn="_____"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="40" Description="(">
+			<LedLine LineNumber="0" LineLedOn="____"/>
+		    <LedLine LineNumber="1" LineLedOn="__#_"/>
+		    <LedLine LineNumber="2" LineLedOn="_#__"/>
+		    <LedLine LineNumber="3" LineLedOn="_#__"/>
+		    <LedLine LineNumber="4" LineLedOn="_#__"/>
+			<LedLine LineNumber="5" LineLedOn="_#__"/>
+			<LedLine LineNumber="6" LineLedOn="_#__"/>
+			<LedLine LineNumber="7" LineLedOn="__#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="41" Description=")">
+			<LedLine LineNumber="0" LineLedOn="____"/>
+		    <LedLine LineNumber="1" LineLedOn="_#__"/>
+		    <LedLine LineNumber="2" LineLedOn="__#_"/>
+		    <LedLine LineNumber="3" LineLedOn="__#_"/>
+		    <LedLine LineNumber="4" LineLedOn="__#_"/>
+			<LedLine LineNumber="5" LineLedOn="__#_"/>
+			<LedLine LineNumber="6" LineLedOn="__#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="42" Description="*">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="___#___"/>
+		    <LedLine LineNumber="2" LineLedOn="_#####_"/>
+		    <LedLine LineNumber="3" LineLedOn="___#___"/>
+		    <LedLine LineNumber="4" LineLedOn="__#_#__"/>
+		    <LedLine LineNumber="5" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="6" LineLedOn="_______"/>
+			<LedLine LineNumber="7" LineLedOn="_______"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="43" Description="+">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_______"/>
+		    <LedLine LineNumber="2" LineLedOn="___#___"/>
+		    <LedLine LineNumber="3" LineLedOn="___#___"/>
+		    <LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="___#___"/>
+			<LedLine LineNumber="6" LineLedOn="___#___"/>
+			<LedLine LineNumber="7" LineLedOn="_______"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="44" Description="'">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+		    <LedLine LineNumber="1" LineLedOn="___#_"/>
+		    <LedLine LineNumber="2" LineLedOn="__#__"/>
+		    <LedLine LineNumber="3" LineLedOn="__#__"/>
+		    <LedLine LineNumber="4" LineLedOn="_____"/>
+			<LedLine LineNumber="5" LineLedOn="_____"/>
+			<LedLine LineNumber="6" LineLedOn="_____"/>
+			<LedLine LineNumber="7" LineLedOn="_____"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="45" Description="-">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_______"/>
+		    <LedLine LineNumber="2" LineLedOn="_______"/>
+		    <LedLine LineNumber="3" LineLedOn="_______"/>
+		    <LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="_______"/>
+			<LedLine LineNumber="6" LineLedOn="_______"/>
+			<LedLine LineNumber="7" LineLedOn="_______"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="46" Description=".">
+			<LedLine LineNumber="0" LineLedOn="___"/>
+		    <LedLine LineNumber="1" LineLedOn="___"/>
+		    <LedLine LineNumber="2" LineLedOn="___"/>
+		    <LedLine LineNumber="3" LineLedOn="___"/>
+		    <LedLine LineNumber="4" LineLedOn="___"/>
+			<LedLine LineNumber="5" LineLedOn="___"/>
+			<LedLine LineNumber="6" LineLedOn="___"/>
+			<LedLine LineNumber="7" LineLedOn="_#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="47" Description="/">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_______"/>
+		    <LedLine LineNumber="2" LineLedOn="_____#_"/>
+		    <LedLine LineNumber="3" LineLedOn="____#__"/>
+		    <LedLine LineNumber="4" LineLedOn="___#___"/>
+			<LedLine LineNumber="5" LineLedOn="__#____"/>
+			<LedLine LineNumber="6" LineLedOn="_#_____"/>
+			<LedLine LineNumber="7" LineLedOn="_______"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="48" Description="0">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_#####_"/>
+		    <LedLine LineNumber="2" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="49" Description="1">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="___#___"/>
+		    <LedLine LineNumber="2" LineLedOn="__##___"/>
+		    <LedLine LineNumber="3" LineLedOn="___#___"/>
+		    <LedLine LineNumber="4" LineLedOn="___#___"/>
+			<LedLine LineNumber="5" LineLedOn="___#___"/>
+			<LedLine LineNumber="6" LineLedOn="___#___"/>
+			<LedLine LineNumber="7" LineLedOn="___#___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="50" Description="2">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_#####_"/>
+		    <LedLine LineNumber="2" LineLedOn="_____#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_____#_"/>
+		    <LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="_#_____"/>
+			<LedLine LineNumber="6" LineLedOn="_#_____"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="51" Description="3">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_#####_"/>
+		    <LedLine LineNumber="2" LineLedOn="_____#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_____#_"/>
+		    <LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="_____#_"/>
+			<LedLine LineNumber="6" LineLedOn="_____#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="52" Description="4">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="2" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="_____#_"/>
+			<LedLine LineNumber="6" LineLedOn="_____#_"/>
+			<LedLine LineNumber="7" LineLedOn="_____#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="53" Description="5">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_#####_"/>
+		    <LedLine LineNumber="2" LineLedOn="_#_____"/>
+		    <LedLine LineNumber="3" LineLedOn="_#_____"/>
+		    <LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="_____#_"/>
+			<LedLine LineNumber="6" LineLedOn="_____#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="54" Description="6">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_#####_"/>
+		    <LedLine LineNumber="2" LineLedOn="_#_____"/>
+		    <LedLine LineNumber="3" LineLedOn="_#_____"/>
+		    <LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="55" Description="7">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_#####_"/>
+		    <LedLine LineNumber="2" LineLedOn="_____#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_____#_"/>
+		    <LedLine LineNumber="4" LineLedOn="____#__"/>
+			<LedLine LineNumber="5" LineLedOn="___#___"/>
+			<LedLine LineNumber="6" LineLedOn="___#___"/>
+			<LedLine LineNumber="7" LineLedOn="___#___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="56" Description="8">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_#####_"/>
+		    <LedLine LineNumber="2" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="57" Description="9">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_#####_"/>
+		    <LedLine LineNumber="2" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="_____#_"/>
+			<LedLine LineNumber="6" LineLedOn="_____#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="58" Description=":">
+			<LedLine LineNumber="0" LineLedOn="___"/>
+		    <LedLine LineNumber="1" LineLedOn="___"/>
+		    <LedLine LineNumber="2" LineLedOn="___"/>
+		    <LedLine LineNumber="3" LineLedOn="_#_"/>
+		    <LedLine LineNumber="4" LineLedOn="_#_"/>
+			<LedLine LineNumber="5" LineLedOn="___"/>
+			<LedLine LineNumber="6" LineLedOn="_#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="59" Description=";">
+			<LedLine LineNumber="0" LineLedOn="____"/>
+		    <LedLine LineNumber="1" LineLedOn="____"/>
+		    <LedLine LineNumber="2" LineLedOn="__#_"/>
+		    <LedLine LineNumber="3" LineLedOn="__#_"/>
+		    <LedLine LineNumber="4" LineLedOn="____"/>
+			<LedLine LineNumber="5" LineLedOn="__#_"/>
+			<LedLine LineNumber="6" LineLedOn="_##_"/>
+			<LedLine LineNumber="7" LineLedOn="_#__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="60" Description="Inf">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+		    <LedLine LineNumber="1" LineLedOn="_____"/>
+		    <LedLine LineNumber="2" LineLedOn="_____"/>
+		    <LedLine LineNumber="3" LineLedOn="___#_"/>
+		    <LedLine LineNumber="4" LineLedOn="__#__"/>
+			<LedLine LineNumber="5" LineLedOn="_#___"/>
+			<LedLine LineNumber="6" LineLedOn="__#__"/>
+			<LedLine LineNumber="7" LineLedOn="___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="61" Description="=">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="_______"/>
+		    <LedLine LineNumber="2" LineLedOn="_______"/>
+		    <LedLine LineNumber="3" LineLedOn="_______"/>
+		    <LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="_______"/>
+			<LedLine LineNumber="6" LineLedOn="_#####_"/>
+			<LedLine LineNumber="7" LineLedOn="_______"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="62" Description=">">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+		    <LedLine LineNumber="1" LineLedOn="_____"/>
+		    <LedLine LineNumber="2" LineLedOn="_____"/>
+		    <LedLine LineNumber="3" LineLedOn="_#___"/>
+		    <LedLine LineNumber="4" LineLedOn="__#__"/>
+			<LedLine LineNumber="5" LineLedOn="___#_"/>
+			<LedLine LineNumber="6" LineLedOn="__#__"/>
+			<LedLine LineNumber="7" LineLedOn="_#___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="63" Description="?">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="__###__"/>
+		    <LedLine LineNumber="2" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_____#_"/>
+		    <LedLine LineNumber="4" LineLedOn="____#__"/>
+			<LedLine LineNumber="5" LineLedOn="___#___"/>
+			<LedLine LineNumber="6" LineLedOn="_______"/>
+			<LedLine LineNumber="7" LineLedOn="___#___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="64" Description="@">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="__###__"/>
+		    <LedLine LineNumber="2" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_#_###_"/>
+		    <LedLine LineNumber="4" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#_###_"/>
+			<LedLine LineNumber="6" LineLedOn="_#_____"/>
+			<LedLine LineNumber="7" LineLedOn="__###__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="65" Description="A">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+		    <LedLine LineNumber="1" LineLedOn="__###__"/>
+		    <LedLine LineNumber="2" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="3" LineLedOn="_#___#_"/>
+		    <LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#####_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="66" Description="B">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_####__"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_####__"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_####__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="67" Description="C">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="__###__"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#_____"/>
+			<LedLine LineNumber="4" LineLedOn="_#_____"/>
+			<LedLine LineNumber="5" LineLedOn="_#_____"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="__###__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="68" Description="D">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_####__"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_####__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="69" Description="E">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#####_"/>
+			<LedLine LineNumber="2" LineLedOn="_#_____"/>
+			<LedLine LineNumber="3" LineLedOn="_#_____"/>
+			<LedLine LineNumber="4" LineLedOn="_####__"/>
+			<LedLine LineNumber="5" LineLedOn="_#_____"/>
+			<LedLine LineNumber="6" LineLedOn="_#_____"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="70" Description="F">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#####_"/>
+			<LedLine LineNumber="2" LineLedOn="_#_____"/>
+			<LedLine LineNumber="3" LineLedOn="_#_____"/>
+			<LedLine LineNumber="4" LineLedOn="_####__"/>
+			<LedLine LineNumber="5" LineLedOn="_#_____"/>
+			<LedLine LineNumber="6" LineLedOn="_#_____"/>
+			<LedLine LineNumber="7" LineLedOn="_#_____"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="71" Description="G">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="__###__"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#_____"/>
+			<LedLine LineNumber="4" LineLedOn="_#_____"/>
+			<LedLine LineNumber="5" LineLedOn="_#__##_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="__###__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="72" Description="H">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#####_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="73" Description="I">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="__###__"/>
+			<LedLine LineNumber="2" LineLedOn="___#___"/>
+			<LedLine LineNumber="3" LineLedOn="___#___"/>
+			<LedLine LineNumber="4" LineLedOn="___#___"/>
+			<LedLine LineNumber="5" LineLedOn="___#___"/>
+			<LedLine LineNumber="6" LineLedOn="___#___"/>
+			<LedLine LineNumber="7" LineLedOn="__###__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="74" Description="J">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_____#_"/>
+			<LedLine LineNumber="2" LineLedOn="_____#_"/>
+			<LedLine LineNumber="3" LineLedOn="_____#_"/>
+			<LedLine LineNumber="4" LineLedOn="_____#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="__###__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="75" Description="K">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="2" LineLedOn="_#__#__"/>
+			<LedLine LineNumber="3" LineLedOn="_#_#___"/>
+			<LedLine LineNumber="4" LineLedOn="_##____"/>
+			<LedLine LineNumber="5" LineLedOn="_#_#___"/>
+			<LedLine LineNumber="6" LineLedOn="_#__#__"/>
+			<LedLine LineNumber="7" LineLedOn="_#___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="76" Description="L">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#_____"/>
+			<LedLine LineNumber="2" LineLedOn="_#_____"/>
+			<LedLine LineNumber="3" LineLedOn="_#_____"/>
+			<LedLine LineNumber="4" LineLedOn="_#_____"/>
+			<LedLine LineNumber="5" LineLedOn="_#_____"/>
+			<LedLine LineNumber="6" LineLedOn="_#_____"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="77" Description="M">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="2" LineLedOn="_##_##_"/>
+			<LedLine LineNumber="3" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="78" Description="N">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_##__#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#__##_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="79" Description="O">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="__###__"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="__###__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="80" Description="P">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_####__"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_####__"/>
+			<LedLine LineNumber="6" LineLedOn="_#_____"/>
+			<LedLine LineNumber="7" LineLedOn="_#_____"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="81" Description="Q">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="__###__"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#__##_"/>
+			<LedLine LineNumber="7" LineLedOn="__####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="82" Description="R">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_####__"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_####__"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="83" Description="S">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="__###__"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#_____"/>
+			<LedLine LineNumber="4" LineLedOn="__###__"/>
+			<LedLine LineNumber="5" LineLedOn="_____#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="__###__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="84" Description="T">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#####_"/>
+			<LedLine LineNumber="2" LineLedOn="___#___"/>
+			<LedLine LineNumber="3" LineLedOn="___#___"/>
+			<LedLine LineNumber="4" LineLedOn="___#___"/>
+			<LedLine LineNumber="5" LineLedOn="___#___"/>
+			<LedLine LineNumber="6" LineLedOn="___#___"/>
+			<LedLine LineNumber="7" LineLedOn="___#___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="85" Description="U">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="__###__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="86" Description="V">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="7" LineLedOn="___#___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="87" Description="W">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="6" LineLedOn="_##_##_"/>
+			<LedLine LineNumber="7" LineLedOn="_#___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="88" Description="X">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="4" LineLedOn="___#___"/>
+			<LedLine LineNumber="5" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="89" Description="Y">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="5" LineLedOn="___#___"/>
+			<LedLine LineNumber="6" LineLedOn="___#___"/>
+			<LedLine LineNumber="7" LineLedOn="___#___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="90" Description="Z">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#####_"/>
+			<LedLine LineNumber="2" LineLedOn="_____#_"/>
+			<LedLine LineNumber="3" LineLedOn="____#__"/>
+			<LedLine LineNumber="4" LineLedOn="___#___"/>
+			<LedLine LineNumber="5" LineLedOn="__#____"/>
+			<LedLine LineNumber="6" LineLedOn="_#_____"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="91" Description="[">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+			<LedLine LineNumber="1" LineLedOn="_###_"/>
+			<LedLine LineNumber="2" LineLedOn="_#___"/>
+			<LedLine LineNumber="3" LineLedOn="_#___"/>
+			<LedLine LineNumber="4" LineLedOn="_#___"/>
+			<LedLine LineNumber="5" LineLedOn="_#___"/>
+			<LedLine LineNumber="6" LineLedOn="_#___"/>
+			<LedLine LineNumber="7" LineLedOn="_###_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="92" Description="\">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+			<LedLine LineNumber="1" LineLedOn="_#___"/>
+			<LedLine LineNumber="2" LineLedOn="_#___"/>
+			<LedLine LineNumber="3" LineLedOn="__#__"/>
+			<LedLine LineNumber="4" LineLedOn="__#__"/>
+			<LedLine LineNumber="5" LineLedOn="__#__"/>
+			<LedLine LineNumber="6" LineLedOn="___#_"/>
+			<LedLine LineNumber="7" LineLedOn="___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="93" Description="]">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+			<LedLine LineNumber="1" LineLedOn="_###_"/>
+			<LedLine LineNumber="2" LineLedOn="___#_"/>
+			<LedLine LineNumber="3" LineLedOn="___#_"/>
+			<LedLine LineNumber="4" LineLedOn="___#_"/>
+			<LedLine LineNumber="5" LineLedOn="___#_"/>
+			<LedLine LineNumber="6" LineLedOn="___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_###_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="94" Description="^">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+			<LedLine LineNumber="1" LineLedOn="__#__"/>
+			<LedLine LineNumber="2" LineLedOn="_#_#_"/>
+			<LedLine LineNumber="3" LineLedOn="_____"/>
+			<LedLine LineNumber="4" LineLedOn="_____"/>
+			<LedLine LineNumber="5" LineLedOn="_____"/>
+			<LedLine LineNumber="6" LineLedOn="_____"/>
+			<LedLine LineNumber="7" LineLedOn="_____"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="95" Description="_">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_______"/>
+			<LedLine LineNumber="3" LineLedOn="_______"/>
+			<LedLine LineNumber="4" LineLedOn="_______"/>
+			<LedLine LineNumber="5" LineLedOn="_______"/>
+			<LedLine LineNumber="6" LineLedOn="_______"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="96" Description="`">
+			<LedLine LineNumber="0" LineLedOn="___"/>
+			<LedLine LineNumber="1" LineLedOn="_#__"/>
+			<LedLine LineNumber="2" LineLedOn="__#_"/>
+			<LedLine LineNumber="3" LineLedOn="____"/>
+			<LedLine LineNumber="4" LineLedOn="____"/>
+			<LedLine LineNumber="5" LineLedOn="____"/>
+			<LedLine LineNumber="6" LineLedOn="____"/>
+			<LedLine LineNumber="7" LineLedOn="____"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="97" Description="a">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="__##___"/>
+			<LedLine LineNumber="3" LineLedOn="_#__#__"/>
+			<LedLine LineNumber="4" LineLedOn="__###__"/>
+			<LedLine LineNumber="5" LineLedOn="_#__#__"/>
+			<LedLine LineNumber="6" LineLedOn="_#__#__"/>
+			<LedLine LineNumber="7" LineLedOn="__##_#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="98" Description="b">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#_____"/>
+			<LedLine LineNumber="2" LineLedOn="_#_____"/>
+			<LedLine LineNumber="3" LineLedOn="_#_##__"/>
+			<LedLine LineNumber="4" LineLedOn="_##__#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_##__#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#_##__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="99" Description="c">
+			<LedLine LineNumber="0" LineLedOn="______"/>
+			<LedLine LineNumber="1" LineLedOn="______"/>
+			<LedLine LineNumber="2" LineLedOn="______"/>
+			<LedLine LineNumber="3" LineLedOn="__##__"/>
+			<LedLine LineNumber="4" LineLedOn="_#__#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#____"/>
+			<LedLine LineNumber="6" LineLedOn="_#__#_"/>
+			<LedLine LineNumber="7" LineLedOn="__##__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="100" Description="d">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_____#_"/>
+			<LedLine LineNumber="2" LineLedOn="_____#_"/>
+			<LedLine LineNumber="3" LineLedOn="__##_#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#__##_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#__##_"/>
+			<LedLine LineNumber="7" LineLedOn="__##_#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="101" Description="e">
+			<LedLine LineNumber="0" LineLedOn="______"/>
+			<LedLine LineNumber="1" LineLedOn="______"/>
+			<LedLine LineNumber="2" LineLedOn="______"/>
+			<LedLine LineNumber="3" LineLedOn="__##__"/>
+			<LedLine LineNumber="4" LineLedOn="_#__#_"/>
+			<LedLine LineNumber="5" LineLedOn="_####_"/>
+			<LedLine LineNumber="6" LineLedOn="_#____"/>
+			<LedLine LineNumber="7" LineLedOn="__###_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="102" Description="f">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="___###_"/>
+			<LedLine LineNumber="2" LineLedOn="__#____"/>
+			<LedLine LineNumber="3" LineLedOn="_####__"/>
+			<LedLine LineNumber="4" LineLedOn="__#____"/>
+			<LedLine LineNumber="5" LineLedOn="__#____"/>
+			<LedLine LineNumber="6" LineLedOn="__#____"/>
+			<LedLine LineNumber="7" LineLedOn="_###___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="103" Description="g">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="__##_#_"/>
+			<LedLine LineNumber="2" LineLedOn="_#__##_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#__##_"/>
+			<LedLine LineNumber="5" LineLedOn="__##_#_"/>
+			<LedLine LineNumber="6" LineLedOn="_____#_"/>
+			<LedLine LineNumber="7" LineLedOn="__###__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="104" Description="h">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#_____"/>
+			<LedLine LineNumber="2" LineLedOn="_#_____"/>
+			<LedLine LineNumber="3" LineLedOn="_#_##__"/>
+			<LedLine LineNumber="4" LineLedOn="_##__#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="105" Description="i">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+			<LedLine LineNumber="1" LineLedOn="_____"/>
+			<LedLine LineNumber="2" LineLedOn="__#__"/>
+			<LedLine LineNumber="3" LineLedOn="_____"/>
+			<LedLine LineNumber="4" LineLedOn="__#__"/>
+			<LedLine LineNumber="5" LineLedOn="__#__"/>
+			<LedLine LineNumber="6" LineLedOn="__#__"/>
+			<LedLine LineNumber="7" LineLedOn="_###_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="106" Description="j">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+			<LedLine LineNumber="1" LineLedOn="___#_"/>
+			<LedLine LineNumber="2" LineLedOn="_____"/>
+			<LedLine LineNumber="3" LineLedOn="__##_"/>
+			<LedLine LineNumber="4" LineLedOn="___#_"/>
+			<LedLine LineNumber="5" LineLedOn="___#"/>
+			<LedLine LineNumber="6" LineLedOn="___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_##__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="107" Description="k">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#_____"/>
+			<LedLine LineNumber="2" LineLedOn="_#_____"/>
+			<LedLine LineNumber="3" LineLedOn="_#_###_"/>
+			<LedLine LineNumber="4" LineLedOn="_#__#__"/>
+			<LedLine LineNumber="5" LineLedOn="_###___"/>
+			<LedLine LineNumber="6" LineLedOn="_#_#___"/>
+			<LedLine LineNumber="7" LineLedOn="_#__##_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="108" Description="l">
+			<LedLine LineNumber="0" LineLedOn="______"/>
+			<LedLine LineNumber="1" LineLedOn="_##___"/>
+			<LedLine LineNumber="2" LineLedOn="__#___"/>
+			<LedLine LineNumber="3" LineLedOn="__#___"/>
+			<LedLine LineNumber="4" LineLedOn="__#___"/>
+			<LedLine LineNumber="5" LineLedOn="__#___"/>
+			<LedLine LineNumber="6" LineLedOn="__#___"/>
+			<LedLine LineNumber="7" LineLedOn="_####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="109" Description="m">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_______"/>
+			<LedLine LineNumber="3" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="4" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#_#_#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="110" Description="n">
+			<LedLine LineNumber="0" LineLedOn="______"/>
+			<LedLine LineNumber="1" LineLedOn="______"/>
+			<LedLine LineNumber="2" LineLedOn="______"/>
+			<LedLine LineNumber="3" LineLedOn="_#_#__"/>
+			<LedLine LineNumber="4" LineLedOn="_##_#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#__#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#__#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#__#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="111" Description="o">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_______"/>
+			<LedLine LineNumber="3" LineLedOn="__###__"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="__###__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="112" Description="p">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_#_##__"/>
+			<LedLine LineNumber="2" LineLedOn="_##__#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_####__"/>
+			<LedLine LineNumber="6" LineLedOn="_#_____"/>
+			<LedLine LineNumber="7" LineLedOn="_#_____"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="113" Description="q">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="__##_#_"/>
+			<LedLine LineNumber="2" LineLedOn="_#__##_"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="__####_"/>
+			<LedLine LineNumber="6" LineLedOn="_____#_"/>
+			<LedLine LineNumber="7" LineLedOn="_____#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="114" Description="r">
+			<LedLine LineNumber="0" LineLedOn="______"/>
+			<LedLine LineNumber="1" LineLedOn="______"/>
+			<LedLine LineNumber="2" LineLedOn="______"/>
+			<LedLine LineNumber="3" LineLedOn="_#_##_"/>
+			<LedLine LineNumber="4" LineLedOn="_##___"/>
+			<LedLine LineNumber="5" LineLedOn="_#____"/>
+			<LedLine LineNumber="6" LineLedOn="_#____"/>
+			<LedLine LineNumber="7" LineLedOn="_#____"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="115" Description="s">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_______"/>
+			<LedLine LineNumber="3" LineLedOn="__####_"/>
+			<LedLine LineNumber="4" LineLedOn="_#_____"/>
+			<LedLine LineNumber="5" LineLedOn="__###__"/>
+			<LedLine LineNumber="6" LineLedOn="_____#_"/>
+			<LedLine LineNumber="7" LineLedOn="_####__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="116" Description="t">
+			<LedLine LineNumber="0" LineLedOn="______"/>
+			<LedLine LineNumber="1" LineLedOn="_#____"/>
+			<LedLine LineNumber="2" LineLedOn="_###__"/>
+			<LedLine LineNumber="3" LineLedOn="_#____"/>
+			<LedLine LineNumber="4" LineLedOn="_#____"/>
+			<LedLine LineNumber="5" LineLedOn="_#____"/>
+			<LedLine LineNumber="6" LineLedOn="_#____"/>
+			<LedLine LineNumber="7" LineLedOn="__###_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="117" Description="u">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_______"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#__##_"/>
+			<LedLine LineNumber="7" LineLedOn="__##_#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="118" Description="v">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_______"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="5" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="6" LineLedOn="___#___"/>
+			<LedLine LineNumber="7" LineLedOn="___#___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="119" Description="w">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_______"/>
+			<LedLine LineNumber="3" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#_#_#_"/>
+			<LedLine LineNumber="7" LineLedOn="__#_#__"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="120" Description="x">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_______"/>
+			<LedLine LineNumber="3" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="4" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="5" LineLedOn="___#___"/>
+			<LedLine LineNumber="6" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="7" LineLedOn="_#___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="121" Description="y">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="3" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="4" LineLedOn="__#_#__"/>
+			<LedLine LineNumber="5" LineLedOn="___#___"/>
+			<LedLine LineNumber="6" LineLedOn="___#___"/>
+			<LedLine LineNumber="7" LineLedOn="_###___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="122" Description="z">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_#####_"/>
+			<LedLine LineNumber="3" LineLedOn="_#__#__"/>
+			<LedLine LineNumber="4" LineLedOn="___#___"/>
+			<LedLine LineNumber="5" LineLedOn="__#____"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="123" Description="{">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+			<LedLine LineNumber="1" LineLedOn="___#_"/>
+			<LedLine LineNumber="2" LineLedOn="__#__"/>
+			<LedLine LineNumber="3" LineLedOn="__#__"/>
+			<LedLine LineNumber="4" LineLedOn="_#___"/>
+			<LedLine LineNumber="5" LineLedOn="__#__"/>
+			<LedLine LineNumber="6" LineLedOn="__#__"/>
+			<LedLine LineNumber="7" LineLedOn="___#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="124" Description="|">
+			<LedLine LineNumber="0" LineLedOn="___"/>
+			<LedLine LineNumber="1" LineLedOn="_#_"/>
+			<LedLine LineNumber="2" LineLedOn="_#_"/>
+			<LedLine LineNumber="3" LineLedOn="_#_"/>
+			<LedLine LineNumber="4" LineLedOn="_#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#_"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="125" Description="}">
+			<LedLine LineNumber="0" LineLedOn="_____"/>
+			<LedLine LineNumber="1" LineLedOn="_#___"/>
+			<LedLine LineNumber="2" LineLedOn="__#__"/>
+			<LedLine LineNumber="3" LineLedOn="__#__"/>
+			<LedLine LineNumber="4" LineLedOn="___#_"/>
+			<LedLine LineNumber="5" LineLedOn="__#__"/>
+			<LedLine LineNumber="6" LineLedOn="__#__"/>
+			<LedLine LineNumber="7" LineLedOn="_#___"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="126" Description="~">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_______"/>
+			<LedLine LineNumber="3" LineLedOn="_______"/>
+			<LedLine LineNumber="4" LineLedOn="__##_#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#__#__"/>
+			<LedLine LineNumber="6" LineLedOn="_______"/>
+			<LedLine LineNumber="7" LineLedOn="_______"/>
+		</LedMatrixSymbol>
+		<LedMatrixSymbol SymbolCode="127" Description="square">
+			<LedLine LineNumber="0" LineLedOn="_______"/>
+			<LedLine LineNumber="1" LineLedOn="_______"/>
+			<LedLine LineNumber="2" LineLedOn="_______"/>
+			<LedLine LineNumber="3" LineLedOn="_#####_"/>
+			<LedLine LineNumber="4" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="5" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="6" LineLedOn="_#___#_"/>
+			<LedLine LineNumber="7" LineLedOn="_#####_"/>
+		</LedMatrixSymbol>
+	</LedMatrixSymbolFont>
+</LedMatrixSymbolFile>

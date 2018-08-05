@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E9A78956-52E1-4A71-94FF-FEFA7B2155A5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SeeSharpTools.JY.File</RootNamespace>
+    <AssemblyName>SeeSharpTools.JY.File</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SeeSharpTools.JY.File.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SeeSharpTools.JY.File.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\i18n\I18nEntity.cs" />
+    <Compile Include="Common\i18n\I18nLocalWrapper.cs" />
+    <Compile Include="Common\SeeSharpFileErrorCode.cs" />
+    <Compile Include="Common\SeeSharpFileException.cs" />
+    <Compile Include="Convertor\FloatConvertor.cs" />
+    <Compile Include="Convertor\DoubleConvertor.cs" />
+    <Compile Include="Convertor\IConvertor.cs" />
+    <Compile Include="Convertor\IntConvertor.cs" />
+    <Compile Include="Convertor\ShortConvertor.cs" />
+    <Compile Include="Convertor\StringConvertor.cs" />
+    <Compile Include="Convertor\UIntConvertor.cs" />
+    <Compile Include="Convertor\UShortConvertor.cs" />
+    <Compile Include="File\AnalogWaveformFile.cs" />
+    <Compile Include="File\BinHandler.cs" />
+    <Compile Include="File\CsvHandler.cs" />
+    <Compile Include="File\FileUtil.cs" />
+    <Compile Include="File\IniFileParser\FileIniParser.cs" />
+    <Compile Include="File\IniFileParser\Model\Configuration\ConcatenateDuplicatedKeysIniParserConfiguration.cs" />
+    <Compile Include="File\IniFileParser\Model\Configuration\IniParserConfiguration.cs" />
+    <Compile Include="File\IniFileParser\Model\Formatting\DefaultIniDataFormatter.cs" />
+    <Compile Include="File\IniFileParser\Model\Formatting\IIniDataFormatter.cs" />
+    <Compile Include="File\IniFileParser\Model\IniData.cs" />
+    <Compile Include="File\IniFileParser\Model\IniDataCaseInsensitive.cs" />
+    <Compile Include="File\IniFileParser\Model\KeyData.cs" />
+    <Compile Include="File\IniFileParser\Model\KeyDataCollection.cs" />
+    <Compile Include="File\IniFileParser\Model\SectionData.cs" />
+    <Compile Include="File\IniFileParser\Model\SectionDataCollection.cs" />
+    <Compile Include="File\IniFileParser\Parser\ConcatenateDuplicatedKeysIniDataParser.cs" />
+    <Compile Include="File\IniFileParser\Parser\IniDataParser.cs" />
+    <Compile Include="File\IniFileParser\StreamIniDataParser.cs" />
+    <Compile Include="File\IniFileParser\StringIniParser.cs" />
+    <Compile Include="File\IniHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\locale\i18n_File_CN.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\locale\i18n_File_EN.properties" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

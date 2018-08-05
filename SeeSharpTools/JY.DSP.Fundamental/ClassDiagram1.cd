@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SeeSharpTools.JY.DSP.Fundamental.Spectrum">
+    <Position X="1.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Method Name="AdvanceRealFFT" Hidden="true" />
+      <Field Name="MaxSpectralLine" Hidden="true" />
+      <Field Name="Sqrt2" Hidden="true" />
+      <Method Name="UnitConversion" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAEAAAABAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Spectrum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.DSP.Fundamental.BasicFFT">
+    <Position X="4.5" Y="1.5" Width="2" />
+    <Members>
+      <Method Name="BasicFFT" Hidden="true" />
+      <Field Name="DftiDescMgr" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAACEAAAAAAAAAAAEBAAAAAA=</HashCode>
+      <FileName>SpectrumAux\BasicFFT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeeSharpTools.JY.DSP.Fundamental.Window">
+    <Position X="6.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAQAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>SpectrumAux\Window.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>
