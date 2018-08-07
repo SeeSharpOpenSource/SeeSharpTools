@@ -43,12 +43,19 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DSPMatlab">
-      <HintPath>Source\DSPMatlab.dll</HintPath>
-    </Reference>
-    <Reference Include="MWArray, Version=2.13.0.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=MSIL">
+    <Reference Include="DSPMatlab, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Source\MWArray.dll</HintPath>
+      <HintPath>..\SeeSharpTools Installer\Resources\DSPMatlab.dll</HintPath>
+    </Reference>
+    <Reference Include="DSPMatlab_X64">
+      <HintPath>..\SeeSharpTools Installer\Resources\DSPMatlab_X64.dll</HintPath>
+    </Reference>
+    <Reference Include="DSPMatlab_X86">
+      <HintPath>..\SeeSharpTools Installer\Resources\DSPMatlab_X86.dll</HintPath>
+    </Reference>
+    <Reference Include="MWArray, Version=2.14.0.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SeeSharpTools Installer\Resources\MWArray.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

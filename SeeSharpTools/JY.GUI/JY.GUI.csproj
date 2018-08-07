@@ -240,7 +240,9 @@
     <Compile Include="PathControl\PathControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PathControl\PathControl.designer.cs" />
+    <Compile Include="PathControl\PathControl.designer.cs" >
+	  <DependentUpon>PathControl.cs</DependentUpon>
+	</Compile>
     <Compile Include="PathControl\PathControlDesigner.cs" />
     <Compile Include="PressureGauge\PressureGauge.cs">
       <SubType>UserControl</SubType>

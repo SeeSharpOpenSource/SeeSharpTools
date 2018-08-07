@@ -33,14 +33,17 @@
     <DocumentationFile>bin\Release\SeeSharpTools.JY.Graph3D.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ILNumerics.Drawing">
-      <HintPath>Resource\ILNumerics.Drawing.dll</HintPath>
+    <Reference Include="ILNumerics.Drawing, Version=0.13.3.951, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SeeSharpTools Installer\Resources\ILNumerics.Drawing.dll</HintPath>
     </Reference>
-    <Reference Include="ILNumerics.Net">
-      <HintPath>Resource\ILNumerics.Net.dll</HintPath>
+    <Reference Include="ILNumerics.Net, Version=1.4.11.936, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SeeSharpTools Installer\Resources\ILNumerics.Net.dll</HintPath>
     </Reference>
-    <Reference Include="OpenTK">
-      <HintPath>Resource\OpenTK.dll</HintPath>
+    <Reference Include="OpenTK, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SeeSharpTools Installer\Resources\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -71,9 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SurfaceGraph\SurfaceGraph.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SurfaceGraph.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
