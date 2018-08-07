@@ -513,7 +513,7 @@ namespace SeeSharpTools.JY.GUI
             eventArgs.IsScaleViewChanged = isScaleViewChanged;
             eventArgs.IsRaisedByMouseEvent = isRaiseByMouseEvent;
             eventArgs.ParentChart = this;
-            AxisViewChanged(axis, eventArgs);
+            AxisViewChanged(this, eventArgs);
         }
 
         /// <summary>
