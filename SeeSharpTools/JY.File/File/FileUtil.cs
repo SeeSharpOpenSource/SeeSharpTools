@@ -256,11 +256,10 @@ namespace SeeSharpTools.JY.File
             return stream.Length;
         }
 
-        public static void InitBinWriteStream(ref FileStream stream, ref BinaryWriter writer, string filePath, WriteMode writeMode)
+        public static void InitBinWriteStream(ref FileStream stream, string filePath, WriteMode writeMode)
         {
             FileMode mode = (WriteMode.Append == writeMode) ? FileMode.Append : FileMode.Create;
             stream = new FileStream(filePath, mode);
-            writer = new BinaryWriter(stream);
         }
 
         internal static void ReleaseResource(IDisposable resource)
@@ -269,9 +268,9 @@ namespace SeeSharpTools.JY.File
             {
                 resource?.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, ex.Message, ex);
             }
         }
 
@@ -446,7 +445,7 @@ namespace SeeSharpTools.JY.File
             }
         }
 
-        private const int BlockSize = 1000000;
+        private const int BlockSize = 10000000;
         internal static TDataType[] StreamReadFromBinFile<TDataType>(BinaryReader reader, long byteSize, long offset)
         {
             int typeSize = Marshal.SizeOf(typeof (TDataType));
@@ -556,10 +555,10 @@ namespace SeeSharpTools.JY.File
             return strIndex;
         }
 
-        public static void StreamwriteDataToFile(BinaryWriter writer, Array data, long byteSize, long offset)
+        public static void StreamwriteDataToFile(FileStream writer, Array data, long byteSize, long offset)
         {
             int writeOffset = 0;
-            writer.BaseStream.Position = offset;
+            writer.Position = offset;
             long blockCount = byteSize/BlockSize;
             byte[] tmpBuf = null;
             if (blockCount > 0)
@@ -569,14 +568,14 @@ namespace SeeSharpTools.JY.File
             while (blockCount-- > 0)
             {
                 Buffer.BlockCopy(data, writeOffset, tmpBuf, 0, BlockSize);
-                writer.Write(tmpBuf);
+                writer.Write(tmpBuf, 0, tmpBuf.Length);
                 writeOffset += BlockSize;
             }
             if (0 != byteSize%BlockSize)
             {
                 tmpBuf = new byte[byteSize % BlockSize];
                 Buffer.BlockCopy(data, writeOffset, tmpBuf, 0, (int) (byteSize % BlockSize));
-                writer.Write(tmpBuf);
+                writer.Write(tmpBuf, 0, tmpBuf.Length);
             }
         }
     }

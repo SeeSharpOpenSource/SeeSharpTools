@@ -1056,12 +1056,10 @@ namespace SeeSharpTools.JY.File
         private static void StreamWriteData(string filePath, Array data, long byteSize, WriteMode writeMode)
         {
             FileStream stream = null;
-            BinaryWriter writer = null;
-
             try
             {
-                FileUtil.InitBinWriteStream(ref stream, ref writer, filePath, writeMode);
-                FileUtil.StreamwriteDataToFile(writer, data, byteSize, 0);
+                FileUtil.InitBinWriteStream(ref stream, filePath, writeMode);
+                FileUtil.StreamwriteDataToFile(stream, data, byteSize, 0);
             }
             catch (SeeSharpFileException)
             {
@@ -1074,7 +1072,6 @@ namespace SeeSharpTools.JY.File
             }
             finally
             {
-                FileUtil.ReleaseResource(writer);
                 FileUtil.ReleaseResource(stream);
             }
         }
