@@ -1,4 +1,4 @@
-&ensp;&ensp;++*This open source repository is developed and maintained by the JYTEK company, Shanghai, China, for the purpose of facilitating the development of the test and measurement using C# programming language. The project follows the GNU GPL V3.0 license and provides many commonly used T&M GUIs, utilities, data manipulations, and algorithms.*++
+&ensp;&ensp;***This open source repository is developed and maintained by the JYTEK company, Shanghai, China, for the purpose of facilitating the development of the test and measurement using C# programming language. The project follows the GNU GPL V3.0 license and provides many commonly used T&M GUIs, utilities, data manipulations, and algorithms.***
 
 # SeeSharpTools Introduction
 
@@ -60,7 +60,7 @@ This library provides some audio analyze algorithms. Some of these algorithms ar
 
 - **HarmonicAnalyzer:** *[static class]* Provides THD and Fundmental Frequency calculation algorithm.
 
-###SeeSharpTools.JY.DSP.Utility
+### SeeSharpTools.JY.DSP.Utility
 This library provides some useful DSP algorithms. Some of these algorithms are based on 'SeeSharpTools.JY.DSP.Fundamental'. The classes in this library is listed below:
 
 - **HarmonicAnalysis:** *[static calss]* Provides harmonic related parameters calculation including THD, THD+N, SNR, SNRAD, NoiseFloor, ENOB and etc.
