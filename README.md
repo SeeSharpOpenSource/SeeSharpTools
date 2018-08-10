@@ -1,6 +1,6 @@
 &ensp;&ensp;++*This open source repository is developed and maintained by the JYTEK company, Shanghai, China, for the purpose of facilitating the development of the test and measurement using C# programming language. The project follows the GNU GPL V3.0 license and provides many commonly used T&M GUIs, utilities, data manipulations, and algorithms.*++
 
-#SeeSharpTools Introduction#
+# SeeSharpTools Introduction
 
 &ensp;&ensp;SeeSharpTools is a collection of open source .NET libraries provided by JYTEK. It helps developers build Measurement and Test application in an easier and efficient way. These libraries are distributed in seventeen **dll** files(dynamic link library). The library package information is listed below:
 
@@ -27,23 +27,27 @@
 &ensp;&ensp;Detailed introduction of these libraries is maintained by "SeeSharpTools User Mannual". This document is located at repository gitpage: [https://seesharpopensource.github.io/SeeSharpTools/](https://seesharpopensource.github.io/SeeSharpTools/). Developers can get the latest release of SeeSharpTools and other software dependencies from JYTEK weibsite: [http://www.jytek.com/seesharptools](http://www.jytek.com/seesharptools).
 
 ***
-#Library Introductions
+# Library Introductions
 ---
-###SeeSharpTools.JY.ArrayUtility
+### SeeSharpTools.JY.ArrayUtility
+
+
 This library contains some useful functions in array calculation and array manipulation. The classes in this library is listed below:
 
 - **ArrayCalculation:** *[static class]* provides array calculation algorithms including: array add/substract/multiply, array offset calculation, basic statistic algorithms like rms/average/sum/abs.
 - **ArrayManipulation:** *[static class]* provides array manipulation utilities including: get array subset, two dimentional-array transpose and etc.
 
 ---
-###SeeSharpTools.JY.DSP.Fundamental
+### SeeSharpTools.JY.DSP.Fundamental
+
+
 This library provides waveform generation function and basic DSP algorithms. The classes in this library is listed below:
 
 - **Generation:** *[static class]* Provides waveform data generation function including: sine wave generation, square wave generation, uniform white noise generation and ramp wave generation.
 - **Spectrum:** *[static class]* Provides spectrum calculation algorithm.*This algorithm is based on MKL. MKL should be installed before using Spectrum function. Developers can get the mkl installer from [JYTEK website](http://www.jytek.com/seesharptools).*
 
 ---
-###SeeSharpTools.JY.DSP.FilterMCR
+### SeeSharpTools.JY.DSP.FilterMCR
 This library provides common filter functions. The algorithm is base on MCR(Matlab compiler runtime). Developer need to install **'MCR(Matlab compiler runtime R2017a)'** before using this library. The classes in this library is listed below:
 
 - **IIRFilter:** Provides IIR(Infinite Impulse Response) Filter functions including: Low-pass filter, High-pass filter, Band-pass filter, Band-stop filter.
@@ -51,7 +55,7 @@ This library provides common filter functions. The algorithm is base on MCR(Matl
 - **JYSpectrum:** *[static class]* Provides Spectrum calculation algorithm.
 
 ---
-###SeeSharpTools.JY.DSP.SoundVibration
+### SeeSharpTools.JY.DSP.SoundVibration
 This library provides some audio analyze algorithms. Some of these algorithms are based on 'SeeSharpTools.JY.DSP.Fundamental'. The classes in this library is listed below:
 
 - **HarmonicAnalyzer:** *[static class]* Provides THD and Fundmental Frequency calculation algorithm.
@@ -67,19 +71,19 @@ This library provides some useful DSP algorithms. Some of these algorithms are b
 - **Synchronizer:** *[static class]* Provides synchronize function for Asynchronize data acquisition.
 
 ---
-###SeeSharpTools.JY.DSP.Utility.Fundamental
+### SeeSharpTools.JY.DSP.Utility.Fundamental
 This library provides some cross-platform DSP algorithms. The classes in this library is listed below:
 
 - **Spectrum:** *[static class]* Provides cross-platform Spectrum calculation algorithms.
 
 ---
-###SeeSharpTools.JY.Statistics
+### SeeSharpTools.JY.Statistics
 This library provides some statistic algorithms. The classes in this library is listed below:
 
 - **Statistics:** *[static class]* Provides common statistic algorithms including: Maximum, Minimum, Mean, RMS, StandardDeviation, Variance, Skewness, Kurtosis, Histogram.
 
 ---
-###SeeSharpTools.JY.GUI
+### SeeSharpTools.JY.GUI
 This library provides some useful winform GUI controls for measurement and test industries. These GUI controls can be used in Windows and Linux environment. The picture below shows the appearance of some controls. The display effect of all the controls are shown in "SeeSharpTools User Mannual".
 ![avatar](media/jytek_controls.png)
 The classes in this library is listed below:
