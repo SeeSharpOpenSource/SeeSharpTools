@@ -110,3 +110,5 @@ The classes in this library is listed below:
 - **PathControl:** Directory selection or input control.
 - **ScrollingText:** Text display control with special scrolling effect.
 - **ViewController** Control for GUI control linkage. The control can switch property "Enable" and "Visible" for now.
+=======
+This repository is created for SeeSharpTools development. SeeSharpTools is an open source project maintained by jytek. It provides some basic functions in Measurement and Test fields including common DSP algorithms, Statistic algorithms, Data persistence, Array utilities, GUI controls for winform and etc.
