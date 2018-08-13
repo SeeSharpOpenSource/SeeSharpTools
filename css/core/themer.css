@@ -1,0 +1,135 @@
+div#mws-themer
+{
+	position:fixed;
+	width:auto;
+	bottom:0;
+	right:0;
+	font-size:12px;
+	z-index:3;
+	height:48px;
+}
+
+.colorpicker
+{
+	z-index:4;
+}
+
+div#mws-themer #mws-themer-hide
+{
+	width:32px;
+	height:100%;
+	float:right;
+	cursor:pointer;
+	background:#323232 url(../icons/24/bended-arrow-left.png) no-repeat center center;
+
+}
+
+div#mws-themer #mws-themer-hide.opened
+{
+	background-image:url(../icons/24/bended-arrow-right.png);
+}
+
+div#mws-themer #mws-themer-css-dialog
+{
+	display:none;
+}
+
+#mws-themer-css-dialog textarea
+{
+	height:20em !important;
+	font-family:"Courier New", Courier, monospace;
+}
+
+div#mws-themer #mws-themer-content
+{
+	display:none;
+	float:right;
+	position:relative;
+	border:1px solid #666666;
+	background:url(../../images/core/mws-dark-bg.png);
+	height:48px;
+	
+	/* CSS 3 */
+	
+	-webkit-border-radius:4px 0 0 0;
+	-moz-border-radius:4px 0 0 0;
+	-o-border-radius:4px 0 0 0;
+	-khtml-border-radius:4px 0 0 0;
+	border-radius:4px 0 0 0;
+}
+
+div#mws-themer #mws-themer-content button
+{
+	margin-top:-3px;
+}
+
+div#mws-themer #mws-themer-content .mws-themer-separator
+{
+	height:100%;
+	border-left:1px solid #323232;
+	border-right:1px solid #666666;
+}
+
+div#mws-themer #mws-themer-content .mws-themer-section
+{
+	float:left;
+	margin-top:15px;
+	padding:0 12px;
+}
+
+div#mws-themer #mws-themer-content ul, 
+div#mws-themer #mws-themer-content ul li
+{
+	margin:0;
+	list-style:none;
+}
+
+div#mws-themer #mws-themer-content ul, 
+div#mws-themer #mws-themer-content .mws-themer-separator, 
+div#mws-themer #mws-themer-content button
+{
+	float:left;
+}
+
+div#mws-themer #mws-themer-content ul li
+{
+	float:left;
+	margin:2px 8px 2px 8px;
+	color:#ffffff;
+}
+
+div#mws-themer #mws-themer-content ul li span, 
+div#mws-themer #mws-themer-content ul li .mws-cp-trigger, 
+div#mws-themer #mws-themer-content ul li #mws-textglow-op, 
+div#mws-themer #mws-themer-content ul li #mws-theme-presets
+{
+	float:left;
+}
+
+div#mws-themer #mws-themer-content label
+{
+	color:#ffffff;
+}
+
+div#mws-themer #mws-themer-content #mws-theme-presets
+{
+	margin-left:8px;
+}
+
+div#mws-themer #mws-themer-content ul li #mws-textglow-op
+{
+	width:100px;
+	margin-top:6px;
+	margin-left:16px;
+}
+
+div#mws-themer #mws-themer-content ul li .mws-cp-trigger
+{
+	width:14px;
+	height:14px;
+	border:2px solid #323232;
+	display:block;
+	margin-left:8px;
+	background:#c5d52b;
+	cursor:pointer;
+}

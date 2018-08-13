@@ -1,0 +1,344 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;}
+h3
+	{mso-style-link:"标题 3 Char";
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	line-height:173%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Calibri",sans-serif;}
+span.3Char
+	{mso-style-name:"标题 3 Char";
+	mso-style-link:"标题 3";
+	font-weight:bold;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	layout-grid:15.6pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=ZH-CN style='text-justify-trim:punctuation'>
+
+<div class=WordSection1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US
+style='font-family:"Arial",sans-serif'>SeeSharpTools.JY.Sensors</span><span
+style='font-family:宋体'>类库包含</span><span lang=EN-US style='font-family:"Arial",sans-serif'>6</span><span
+style='font-family:宋体'>种传感器计算类型，能够将采集到的值转换成传感器的物理量。</span></p>
+
+<h3 style='margin-left:63.0pt;text-indent:-63.0pt'><a name="_Toc521426577"><span
+lang=EN-US style='font-family:"Arial",sans-serif'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>1.1.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>CustomScaling</span></a><span
+lang=ZH-TW style='font-family:宋体'>类</span></h3>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse'>
+ <tr style='height:.05pt'>
+  <td width=561 colspan=2 valign=top style='width:420.7pt;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>CustomScaling</span></b><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>方法名</span></b></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能描述</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Convert</span></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>自定义</span><span lang=EN-US style='font-size:
+  9.0pt;line-height:125%;font-family:"Arial",sans-serif'>Func&lt;double,double&gt;</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>函数</span></p>
+  </td>
+ </tr>
+</table>
+
+<h3 style='margin-left:63.0pt;text-indent:-63.0pt'><a name="_Toc521426578"><span
+lang=EN-US style='font-family:"Arial",sans-serif'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>1.1.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>DisplacementSensor</span></a><span
+lang=ZH-TW style='font-family:宋体'>类</span></h3>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse'>
+ <tr style='height:.05pt'>
+  <td width=561 colspan=2 valign=top style='width:420.7pt;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>DisplacementSensor</span></b><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>方法名</span></b></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能描述</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Convert</span></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>电阻式位移传感器</span></p>
+  </td>
+ </tr>
+</table>
+
+<h3 style='margin-left:63.0pt;text-indent:-63.0pt'><a name="_Toc521426579"><span
+lang=EN-US style='font-family:"Arial",sans-serif'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>1.1.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>LoadCell</span></a><span
+lang=ZH-TW style='font-family:宋体'>类</span></h3>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse'>
+ <tr style='height:.05pt'>
+  <td width=561 colspan=2 valign=top style='width:420.7pt;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>LoadCell</span></b><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>方法名</span></b></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能描述</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Convert</span></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>荷重元传感器</span></p>
+  </td>
+ </tr>
+</table>
+
+<h3 style='margin-left:63.0pt;text-indent:-63.0pt'><a name="_Toc521426580"><span
+lang=EN-US style='font-family:"Arial",sans-serif'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>1.1.4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>RTD</span></a><span
+lang=ZH-TW style='font-family:宋体'>类</span></h3>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse'>
+ <tr style='height:.05pt'>
+  <td width=561 colspan=2 valign=top style='width:420.7pt;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>RTD</span></b><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>方法名</span></b></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能描述</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Convert</span></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>RTD</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>温度传感器</span></p>
+  </td>
+ </tr>
+</table>
+
+<h3 style='margin-left:63.0pt;text-indent:-63.0pt'><a name="_Toc521426581"><span
+lang=EN-US style='font-family:"Arial",sans-serif'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>1.1.5<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Thermistor</span></a><span
+lang=ZH-TW style='font-family:宋体'>类</span></h3>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse'>
+ <tr style='height:.05pt'>
+  <td width=561 colspan=2 valign=top style='width:420.7pt;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Thermistor</span></b><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>方法名</span></b></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能描述</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Convert</span></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>热敏电阻传感器</span></p>
+  </td>
+ </tr>
+</table>
+
+<h3 style='margin-left:63.0pt;text-indent:-63.0pt'><a name="_Toc521426582"><span
+lang=EN-US style='font-family:"Arial",sans-serif'><span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>1.1.6<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Thermocouple</span></a><span
+lang=ZH-TW style='font-family:宋体'>类</span></h3>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse'>
+ <tr style='height:.05pt'>
+  <td width=561 colspan=2 valign=top style='width:420.7pt;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Thermocouple</span></b><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>方法名</span></b></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能描述</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=180 valign=top style='width:134.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Convert</span></p>
+  </td>
+  <td width=381 valign=top style='width:286.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>热电偶温度传感器（支持</span><span lang=EN-US
+  style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>B,E,J,K,N,R,S,T</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>型）</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

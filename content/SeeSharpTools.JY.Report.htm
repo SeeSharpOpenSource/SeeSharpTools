@@ -1,0 +1,1325 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;}
+h3
+	{mso-style-link:"标题 3 Char";
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	line-height:173%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Calibri",sans-serif;}
+span.3Char
+	{mso-style-name:"标题 3 Char";
+	mso-style-link:"标题 3";
+	font-weight:bold;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	layout-grid:15.6pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=ZH-CN style='text-justify-trim:punctuation'>
+
+<div class=WordSection1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+text-indent:21.0pt;line-height:125%'><span lang=EN-US style='font-size:10.5pt;
+line-height:125%;font-family:"Arial",sans-serif'>JY.DSP.Report</span><span
+style='font-size:10.5pt;line-height:125%;font-family:宋体'>包含</span><span
+lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>2</span><span
+style='font-size:10.5pt;line-height:125%;font-family:宋体'>个类：</span><span
+lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>WordReport</span><span
+style='font-size:10.5pt;line-height:125%;font-family:宋体'>，</span><span
+lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>ExcelReport</span><span
+style='font-size:10.5pt;line-height:125%;font-family:宋体'>和</span><span
+lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Logger</span><span
+style='font-size:10.5pt;line-height:125%;font-family:宋体'>，分别提供</span><span
+lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Word</span><span
+style='font-size:10.5pt;line-height:125%;font-family:宋体'>报表创建，</span><span
+lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Excel</span><span
+style='font-size:10.5pt;line-height:125%;font-family:宋体'>报表生成和日志功能：</span></p>
+
+<h3><a name="_Toc521426570"><span lang=EN-US style='font-family:"Arial",sans-serif'>WordReport</span></a><span
+style='font-family:宋体'>类</span></h3>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse'>
+ <tr style='height:.05pt'>
+  <td width=580 colspan=2 valign=top style='width:420.7pt;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>W</span></b><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>ordReport</span></b><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=ZH-TW style='font-size:10.5pt;line-height:125%;font-family:宋体'>属性名</span></b></p>
+  </td>
+  <td width=407 valign=top style='width:305.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=ZH-TW style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>DefaultFont</span></p>
+  </td>
+  <td width=407 valign=top style='width:305.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:10.5pt;line-height:125%;font-family:
+  宋体'>默认配置的</span><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Word</span><span style='font-size:10.5pt;
+  line-height:125%;font-family:宋体'>文字格式，包含字型、颜色、粗体、斜体、底线</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=ZH-TW style='font-size:10.5pt;line-height:125%;font-family:宋体'>方法名</span></b></p>
+  </td>
+  <td width=407 valign=top style='width:305.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=ZH-TW style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Close</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>关闭</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Word</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>引擎</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>SaveAs</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>另存档案</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Show</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>显示</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Word</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>程序</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Hide</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>隐藏</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Word</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>程序在背景执行</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>WriteTextToDoc</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>写入文字</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>WriteTableToDoc</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>写入</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Table</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>表格</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>InsertGraph</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>写入图表</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>InsertPicture</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>写入图片</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>ExecuteMacroFromScript</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>运行宏</span></p>
+  </td>
+ </tr>
+</table>
+
+<h3 style='margin-left:63.0pt'><a name="_Toc521426571"><span lang=EN-US
+style='font-family:"Arial",sans-serif'>ExcelReport</span></a><span
+style='font-family:宋体'>类</span></h3>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse'>
+ <tr style='height:.05pt'>
+  <td width=580 colspan=2 valign=top style='width:420.7pt;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>ExcelReport</span></b><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=ZH-TW style='font-size:10.5pt;line-height:125%;font-family:宋体'>属性名</span></b></p>
+  </td>
+  <td width=407 valign=top style='width:305.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=ZH-TW style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>DefaultFont</span></p>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
+  </td>
+  <td width=407 valign=top style='width:305.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:10.5pt;line-height:125%;font-family:
+  宋体'>默认配置的</span><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Excel</span><span style='font-size:10.5pt;
+  line-height:125%;font-family:宋体'>文字格式，</span><span style='font-size:10.5pt;
+  line-height:125%;font-family:"Arial",sans-serif'> </span><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>包含字型、颜色、粗体、斜体、底线</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=ZH-TW style='font-size:10.5pt;line-height:125%;font-family:宋体'>方法名</span></b></p>
+  </td>
+  <td width=407 valign=top style='width:305.0pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=ZH-TW style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Hide</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>隐藏</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Excel</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>程序在背景执行</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Show</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>显示</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Excel</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>程序</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>SaveAs</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>另存档案</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Close</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>关闭</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Excel</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>引擎</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>RCToString</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>将</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Excel</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>中行列数字转换成行列字符串</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>StringToRC</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>将</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Excel</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>中行列字符串转换成行列数字</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>LetterToInt</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>字符串转换成</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Excel</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>数字</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>IntToLetter</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>数字转换成</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Excel</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>字符串</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>WriteTextToReport</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>写入文字</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>WriteTableToReport</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>写入表格</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>WriteListToReport</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>写入清单</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>InsertGraph</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>写入图表</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>WriteArrayToReport</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>写入数组</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>AppendRow</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>接续行写入</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>AppendColumn</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>接续列写入</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>ReadSingleCell</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>读取单一</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>cell</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>单元</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>ReadConsecutiveCells</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>读取连续</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>cell</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>单元</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>ReadRegionCells</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>读取指定区间的</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>cell</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>单元</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>ReadCurrentSheet</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>读取当前工作分页</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>ReadSheet</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>读取指定工作分页</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>ReadAllSheets</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>读取所有工作分页</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=173 valign=top style='width:115.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>ExecuteMacroFromScript</span></p>
+  </td>
+  <td width=407 style='width:305.0pt;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>运行宏</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<h3><a name="_Toc521426572"><span lang=EN-US style='font-family:"Arial",sans-serif'>Logger</span></a><span
+style='font-family:宋体'>类</span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US
+style='font-family:"Arial",sans-serif'>Logger</span><span style='font-family:
+宋体'>类是一个线程安全的静态日志类，当前版本支持记录日志到单个文件或者到某个目录下。</span><span lang=EN-US
+style='font-family:"Arial",sans-serif'>Logger</span><span style='font-family:
+宋体'>类的方法和属性如下：</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:5.4pt;border-collapse:collapse'>
+ <tr style='height:.05pt'>
+  <td width=567 colspan=4 valign=top style='width:420.7pt;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Logger</span></b><b><span
+  lang=ZH-TW style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>静态属性名</span></b></p>
+  </td>
+  <td width=392 colspan=2 valign=top style='width:293.75pt;border-top:none;
+  border-left:none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能说明</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif'>LogLevel</span></p>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif'>(LogLevel</span><span style='font-size:10.5pt;
+  line-height:125%;font-family:宋体'>枚举</span><span lang=EN-US style='font-size:
+  10.5pt;line-height:125%;font-family:"Arial",sans-serif'>)</span></p>
+  </td>
+  <td width=392 colspan=2 valign=top style='width:293.75pt;border-top:none;
+  border-left:none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:10.5pt;line-height:125%;font-family:
+  宋体'>配置和获取当前日志的记录级别，包括</span><span lang=EN-US style='font-size:10.5pt;
+  line-height:125%;font-family:"Arial",sans-serif'>Trace/ Debug/ Info/ Warn/
+  Error/ Fatal</span><span style='font-size:10.5pt;line-height:125%;font-family:
+  宋体'>，日志级别依次升高。记录时低于</span><span lang=EN-US style='font-size:10.5pt;
+  line-height:125%;font-family:"Arial",sans-serif'>LogLevel</span><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>级别的日志信息不会被记录到日志中。</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif'>LogConfig</span></p>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif'>(LogConfig</span><span style='font-size:10.5pt;
+  line-height:125%;font-family:宋体'>类</span><span lang=EN-US style='font-size:
+  10.5pt;line-height:125%;font-family:"Arial",sans-serif'>)</span></p>
+  </td>
+  <td width=392 colspan=2 valign=top style='width:293.75pt;border-top:none;
+  border-left:none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif'>LogConfig</span><span style='font-size:10.5pt;
+  line-height:125%;font-family:宋体'>类类型，保存</span><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Logger</span><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>的配置数据。</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Enabled(bool)</span></p>
+  </td>
+  <td width=392 colspan=2 valign=top style='width:293.75pt;border-top:none;
+  border-left:none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:10.5pt;line-height:125%;font-family:
+  宋体'>配置是否启用日志记录功能。</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>静态</span></b><b><span
+  lang=ZH-TW style='font-size:10.5pt;line-height:125%;font-family:宋体'>方法名</span></b></p>
+  </td>
+  <td width=392 colspan=2 valign=top style='width:293.75pt;border-top:none;
+  border-left:none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=ZH-TW style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Initialize</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>初始化日志，可以入参日志文件路径</span><span lang=EN-US style='font-size:9.0pt;
+  line-height:125%;font-family:"Arial",sans-serif'>(</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>单文件日志</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>)</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>和配置类</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>LogConfig</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Print</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>以指定的日志级别打印日志，包含多个重载</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Trace</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>以</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Trace</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>级别写入日志</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Debug</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>以</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Debug</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>级别写入日志</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Info</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>以</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Info</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>级别写入日志</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Warn</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>以</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Warn</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>级别写入日志</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Error</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>以</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Error</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>级别写入日志</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Fatal</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>以</span><span lang=EN-US style='font-size:9.0pt;line-height:125%;
+  font-family:"Arial",sans-serif'>Fatal</span><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>级别写入日志</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>StackTrace</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>以指定级别写入当前的堆栈信息，默认为</span><span lang=EN-US style='font-size:9.0pt;
+  line-height:125%;font-family:"Arial",sans-serif'>Debug</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>ThreadInfo</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>以指定级别写入当前的线程信息，默认为</span><span lang=EN-US style='font-size:9.0pt;
+  line-height:125%;font-family:"Arial",sans-serif'>Debug</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Close</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>关闭当前日志记录会话。</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=567 colspan=4 valign=top style='width:420.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>LogConfig</span></b><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体;color:black'>属性名</span></b></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能说明</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Type(LogType</span><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体;color:black'>枚举</span><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif;
+  color:black'>)</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>日志类型，目前只支持</span><span lang=EN-US style='font-size:9.0pt;line-height:
+  125%;font-family:"Arial",sans-serif'>FileLog</span><span style='font-size:
+  9.0pt;line-height:125%;font-family:宋体'>，即文件日志</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>FileLog</span></p>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>(FileLogConfig</span><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体;color:black'>类</span><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif;
+  color:black'>)</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span style='font-size:9.0pt;line-height:125%;font-family:
+  宋体'>文件日志类型的配置类</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>LogFormat(string)</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>日志打印的</span><span lang=EN-US
+  style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>format</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>，</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>{0}</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>为日志级别、</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>{1}</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>为时间戳、</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>{2}</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>为日志信息，默认为</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>”</span><span
+  lang=EN-US style='font-size:9.5pt;line-height:125%;font-family:"Arial",sans-serif;
+  color:#A31515'>[{0}] [{1}] {2}</span><span lang=EN-US style='font-size:9.0pt;
+  line-height:125%;font-family:"Arial",sans-serif'>”</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>，打印效果如：</span><span
+  lang=EN-US style='font-family:"Arial",sans-serif'><img width=353 height=15
+  id="图片 12" src="SeeSharpTools.JY.Report.files/image001.jpg"></span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>ExceptionFormat(string)</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>日志打印的异常信息的</span><span lang=EN-US
+  style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>format</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>，</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>{0}</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>为日志级别、</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>{1}</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>为时间戳、</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>{2}</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>为异常类型、</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>{3}</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>为异常信息。</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>StackTraceFormat(string)</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>日志打印时堆栈信息的</span><span lang=EN-US
+  style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>format</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>，</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>{0}</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>是打印信息</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>ThreadInfoFormat(string)</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>日志打印时线程信息的</span><span lang=EN-US
+  style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>format</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>，</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>{0}</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>是线程</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>ID</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>、</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>{1}</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>是线程名称</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>TimeStampFormat(string)</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>时间戳格式，默认为：</span><span lang=EN-US
+  style='font-size:9.5pt;line-height:125%;font-family:"Arial",sans-serif;
+  color:#A31515'>yyyy-MM-dd hh:mm:ss:fff</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=175 colspan=2 valign=top style='width:126.95pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
+  line-height:125%'><span lang=EN-US style='font-size:10.5pt;line-height:125%;
+  font-family:"Arial",sans-serif;color:black'>Header(string)</span></p>
+  </td>
+  <td width=392 colspan=2 style='width:293.75pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>日志头</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=567 colspan=4 valign=top style='width:420.7pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>FileLogConfig</span></b><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=166 valign=top style='width:120.5pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>属性名</span></b></p>
+  </td>
+  <td width=400 colspan=3 valign=top style='width:300.2pt;border-top:none;
+  border-left:none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:125%'><b><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>功能说明</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=204 colspan=3 valign=top style='width:148.85pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Extension<span
+  style='color:black'>(string)</span></span></p>
+  </td>
+  <td width=362 valign=top style='width:271.85pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>文件扩展名，默认为</span><span lang=EN-US
+  style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>log</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=204 colspan=3 valign=top style='width:148.85pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>LogMode(FileLogMode</span><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>枚举</span><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>)</span></p>
+  </td>
+  <td width=362 valign=top style='width:271.85pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>日志模式，包括单文件日志和目录日志</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=204 colspan=3 valign=top style='width:148.85pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Path(string)</span></p>
+  </td>
+  <td width=362 valign=top style='width:271.85pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>日志文件路径或文件目录</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=204 colspan=3 valign=top style='width:148.85pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>LogNameFormat(string)</span></p>
+  </td>
+  <td width=362 valign=top style='width:271.85pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>目录日志模式时日志文件名时间的</span><span lang=EN-US
+  style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>format</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>，默认为：</span></p>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:9.5pt;line-height:125%;font-family:"Arial",sans-serif;
+  color:#A31515'>yyyy-MM-dd hh-mm-ss</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=204 colspan=3 valign=top style='width:148.85pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>MaxLogSize(long)</span></p>
+  </td>
+  <td width=362 valign=top style='width:271.85pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>文件的最长字节数，默认为</span><span lang=EN-US
+  style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>100M</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>，超过该值后：单文件日志清空文件写入；目录日志新建日志文件写入</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=204 colspan=3 valign=top style='width:148.85pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Encode(Encoding</span><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>类</span><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>)</span></p>
+  </td>
+  <td width=362 valign=top style='width:271.85pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>编码格式，默认为</span><span lang=EN-US
+  style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>Unicode</span></p>
+  </td>
+ </tr>
+ <tr style='height:.05pt'>
+  <td width=204 colspan=3 valign=top style='width:148.85pt;border:solid #4F81BD 1.0pt;
+  border-top:none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span lang=EN-US
+  style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>Flush(FlushType</span><span
+  style='font-size:10.5pt;line-height:125%;font-family:宋体'>枚举</span><span
+  lang=EN-US style='font-size:10.5pt;line-height:125%;font-family:"Arial",sans-serif'>)</span></p>
+  </td>
+  <td width=362 valign=top style='width:271.85pt;border-top:none;border-left:
+  none;border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm .5pt 0cm .5pt;height:.05pt'>
+  <p class=MsoNormal style='line-height:125%'><span style='font-size:9.0pt;
+  line-height:125%;font-family:宋体'>文件刷新模式：</span><span lang=EN-US
+  style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>SyncFlush(</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>同步刷新</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>)</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>、</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>AsyncFlush(</span><span
+  style='font-size:9.0pt;line-height:125%;font-family:宋体'>异步刷新</span><span
+  lang=EN-US style='font-size:9.0pt;line-height:125%;font-family:"Arial",sans-serif'>)</span></p>
+  </td>
+ </tr>
+ <tr height=0>
+  <td width=166 style='border:none'></td>
+  <td width=9 style='border:none'></td>
+  <td width=29 style='border:none'></td>
+  <td width=362 style='border:none'></td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

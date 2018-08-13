@@ -1,0 +1,69 @@
+.ui-spinner { position:relative; width:150px; }
+.ui-spinner-disabled { }
+.ui-spinner input.ui-spinner-box {  }
+
+.ui-spinner-up, .ui-spinner-down {
+	background:url(../../images/jui/ui-icons.png);
+	height:15px;
+	z-index: 100;
+	width:15px;
+	position: absolute; right: -2px;
+	cursor: default; border: none; 
+}
+
+.ui-spinner-up { top:0; background-position: -1px -17px; }
+.ui-spinner-down { bottom:0; background-position: -66px -16px; }
+.ui-spinner-pressed {  }
+.ui-spinner-list, .ui-spinner-listitem { margin: 0; padding: 0; font-size: 11px; }
+.ui-spinner ul li, .ui-spinner-data { line-height: 25px; height: 25px; }
+
+
+.ui-spinner-up, .ui-spinner-down {
+	overflow: hidden;
+	outline:none;
+	cursor:pointer;
+	
+	background-color:#e0e0e0;
+	color:#666666;
+	border:1px solid #ababab;	
+	
+	/* CSS 3 */
+	
+	-webkit-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.3);
+	-moz-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.3);
+	-o-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.3);
+	box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.ui-spinner-up:active, 
+.ui-spinner-down:active
+{
+	-webkit-box-shadow:0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 4px rgba(0, 0, 0, 0.1) !important;
+	-moz-box-shadow:0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 4px rgba(0, 0, 0, 0.1) !important;
+	-o-box-shadow:0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 4px rgba(0, 0, 0, 0.1) !important;
+	box-shadow:0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.ui-spinner-up
+{
+	/* CSS 3 */
+	
+	-webkit-border-radius:0 3px 0 0;
+	-moz-border-radius:0 3px 0 0;
+	-o-border-radius:0 3px 0 0;
+	border-radius:0 3px 0 0;
+}
+
+.ui-spinner-down
+{
+	border-top:0;
+	padding-top:1px;
+	
+	/* CSS 3 */
+	
+	-webkit-border-radius:0 0 3px 0;
+	-moz-border-radius:0 0 3px 0;
+	-o-border-radius:0 0 3px 0;
+	border-radius:0 0 3px 0;
+}
+

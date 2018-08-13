@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+/*******************************************************/
+/* Sourcerer Code Viewer CSS v.1.1
+/* Author: Anson Airoldi
+/* Email:  greatunknown@andbeyonddesign.com
+/* Site:   http://www.andbeyonddesign.com
+/*******************************************************/
+
+
+.SRC_Wrap{
+	height:auto;
+	color:#000;
+	margin:20px 0;
+	border:2px solid #999;
+	font-size:12px;
+}
+
+.SRC_Title{
+  text-align:center;
+	color:#555;
+	border-bottom:2px solid #999;
+	font-size:14px;
+	font-family:Verdana, Geneva, sans-serif;
+	padding:5px;
+	font-weight:700;
+}
+.SRC_Line{
+	width:100%;
+	background-color:#FFF;
+	min-height:18px;	
+}
+.SRC_Line:nth-child(odd){
+	background-color:#F4F4F4;		
+}
+
+.SRC_NumBox{
+	width:5%;
+	float:left;		
+}
+.SRC_Num{
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	text-align:right;
+	color:#555;
+	font-weight:500;	
+	padding-right:2px;
+	width:100%;
+	height:auto;
+	min-height:18px;
+	line-height:18px;
+}
+.SRC_CodeContent {
+	white-space: pre-wrap;
+	border-left:1px solid #000;
+	font-size:12px;
+	padding-left:6px;
+	font-family:"Courier New", Courier, monospace;
+	margin:0px;
+	min-height:18px;
+	line-height:18px;
+}
+.SRC_NumContent{
+	text-align:right;
+	margin-right:4px;
+	color:#555;
+}
+.SRC_CodeBox{
+	float:left;
+	width:95%;
+}
+
+
+/*************************************************/
+/* HIGHLIGHT COLORS:                             
+/* These speak for themselves, change each color 
+/* according to your personal preference         
+/*************************************************/
+.SC_blue{color:blue;}
+.SC_grey{color:grey;}
+.SC_navy{color:navy;}
+.SC_green{color:green;}
+.SC_orange{color:#930;}
+.SC_red{color:#F00;}
+.SC_teal{color:teal;}
+.SC_gold{color:#FC0;}
+.SC_pink{color:#ff68a4;}
+.SC_bold{font-weight:700;}
+
+
+

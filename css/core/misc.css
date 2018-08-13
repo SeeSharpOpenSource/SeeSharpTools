@@ -1,0 +1,256 @@
+/* Pagination */
+
+.mws-pagination
+{
+	text-align:center;
+	margin:auto;
+}
+
+.mws-pagination.left
+{
+	text-align:left;
+}
+
+.mws-pagination.right
+{
+	text-align:right;
+}
+
+.mws-pagination ul li
+{
+	margin:0;
+	display:inline;
+	list-style:none;
+}
+
+.mws-pagination ul li .mws-paging-button
+{
+	text-align:center;
+	padding:3px 9px;
+	margin:4px 1px;
+	border:1px solid #cccccc;
+	text-decoration:none;
+	color:#545454;
+	background:#f0f0f0;
+	
+	/* CSS 3 */
+	
+	-webkit-border-radius:4px;
+	-o-border-radius:4px;
+	-moz-border-radius:4px;
+	-khtml-border-radius:4px;
+	border-radius:4px;
+}
+
+.mws-pagination ul li .mws-paging-button.current
+{
+	border-color:#323232;
+	color:#ffffff;
+	background-color:#323232;
+}
+
+.mws-pagination ul li .mws-paging-button.disabled
+{
+	color:#d0d0d0;
+	cursor:default;
+}
+
+/* Wizard Navigation */
+
+.mws-wizard ul
+{
+	margin:0;
+	padding:0;
+	float:left;
+}
+
+.mws-wizard
+{
+	background:#f5f5f5 url(../../images/core/mws-wizard-bg.png) repeat-x left center;
+	border-bottom:1px solid #dddddd;
+}
+
+.mws-wizard ul li
+{
+	float:left;
+	list-style:none;
+	margin:0; padding:0;
+	padding:0 25px;
+	margin-right:-25px;
+	margin-bottom:-1px;
+	border-right:1px solid #d6d6d6;
+	background:url(../../images/core/mws-wizard.png) no-repeat left -50px;
+	
+	display:block;
+	max-width:250px;
+	max-height:50px;
+	overflow:hidden;
+}
+
+.mws-wizard ul li.current a, 
+.mws-wizard ul li.current span
+{
+	color:#555555;
+}
+
+.mws-wizard ul li a.mws-i-24, 
+.mws-wizard ul li a.mws-ic-16, 
+.mws-wizard ul li span.mws-i-24, 
+.mws-wizard ul li span.mws-ic-16
+{
+	background-position:12px center;
+	padding-left:40px;
+}
+
+.mws-wizard ul li:first-child
+{
+	background-position:-25px -50px;
+	padding-left:0;
+}
+
+.mws-wizard ul li:first-child.current
+{
+	background-position:-25px top;
+}
+
+.mws-wizard ul li:first-child:hover
+{
+	background-position:-25px -100px;
+}
+
+.mws-wizard ul li.current, 
+.mws-wizard ul li.current:hover
+{
+	background-position:left top;
+}
+
+.mws-wizard ul li:hover
+{
+	background-position:left -100px;
+}
+
+
+.mws-wizard ul li a, 
+.mws-wizard ul li span
+{
+	display:block;
+	line-height:50px;
+	text-decoration:none;
+	padding:0 16px;
+	color:#999999;
+}
+
+/* Summary */
+
+ul.mws-summary
+{
+	margin:0; 
+	padding:0;
+}
+
+ul.mws-summary li
+{
+	padding:0; margin:0;
+	list-style-type:none;
+	font-size:14px;
+	color:#666666;
+	padding:2px 4px;
+	border-bottom:1px dotted #ababab;
+	
+	overflow:hidden;
+	display:block;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+ul.mws-summary li span
+{
+	font-size:26px;
+	text-align:right;
+	margin-right:3px;
+	width:80px;
+	color:#444444;
+	display:inline-block;
+}
+
+/* Toolbar */
+
+div.mws-panel-toolbar
+{
+	border-bottom:1px solid #dddddd;
+	background:#f5f5f5 url(../../images/core/mws-toolbar.png) repeat-x;
+}
+
+div.mws-panel-toolbar.bottom
+{
+	border-top:1px solid #dddddd;
+}
+
+div.mws-panel-toolbar ul, 
+div.mws-panel-toolbar ul li
+{
+	list-style:none;
+	padding:0; margin:0;
+}
+
+div.mws-panel-toolbar.right ul
+{
+	float:right;
+}
+
+div.mws-panel-toolbar ul
+{
+	float:left;
+}
+
+div.mws-panel-toolbar.right ul li
+{
+	border-right:0;
+	border-left:1px solid #d0d0d0;
+}
+
+div.mws-panel-toolbar ul li
+{
+	display:block;
+	float:left;
+	border-right:1px solid #d0d0d0;
+}
+
+div.mws-panel-toolbar ul li a, 
+div.mws-panel-toolbar ul li span
+{
+	text-decoration:none;
+	color:#666666;
+	padding:8px 12px;
+	display:block;
+	cursor:pointer;
+	
+	/* CSS 3 */
+	
+	-webkit-box-shadow:inset 1px 0px 0px rgba(255, 255, 255, 0.75), inset 0px 1px 0px #ffffff;
+	-moz-box-shadow:inset 1px 0px 0px rgba(255, 255, 255, 0.75), inset 0px 1px 0px #ffffff;
+	-o-box-shadow:inset 1px 0px 0px rgba(255, 255, 255, 0.75), inset 0px 1px 0px #ffffff;
+	-khtml-box-shadow:inset 1px 0px 0px rgba(255, 255, 255, 0.75), inset 0px 1px 0px #ffffff;
+	box-shadow:inset 1px 0px 0px rgba(255, 255, 255, 0.75), inset 0px 1px 0px #ffffff;
+}
+
+div.mws-panel-toolbar ul li a.mws-ic-16, 
+div.mws-panel-toolbar ul li span.mws-ic-16
+{
+	padding-left:32px;
+	background-position:12px center;
+}
+
+div.mws-panel-toolbar ul li a:active, 
+div.mws-panel-toolbar ul li span:active
+{
+	background-color:#efefef;
+	
+	/* CSS 3 */
+	
+	-webkit-box-shadow:inset 0px 0px 8px rgba(0, 0, 0, 0.1) !important;
+	-moz-box-shadow:inset 0px 0px 8px rgba(0, 0, 0, 0.1) !important;
+	-o-box-shadow:inset 0px 0px 8px rgba(0, 0, 0, 0.1) !important;
+	-khtml-box-shadow:inset 0px 0px 8px rgba(0, 0, 0, 0.1) !important;
+	box-shadow:inset 0px 0px 8px rgba(0, 0, 0, 0.1) !important;
+}

@@ -1,0 +1,58 @@
+ul#mws-gallery li
+{
+	margin:0;
+	list-style:none;
+}
+
+ul#mws-gallery li
+{
+	float:left;
+	width:100px;
+	height:100px;
+	overflow:hidden;
+	margin:4px;
+	position:relative;
+	cursor:pointer;
+	border:1px solid #999999;
+	background:#ffffff;
+}
+
+ul#mws-gallery li img
+{
+	max-width:100%;
+}
+
+ul#mws-gallery li:hover .mws-gallery-overlay
+{
+	display:block;
+}
+
+ul#mws-gallery li .mws-gallery-overlay
+{
+	position:absolute;
+	top:0; bottom:0;
+	left:0; right:0;
+	display:none;
+	background:url(../../images/core/mws-gallery-overlay.png);
+}
+
+ul#mws-gallery li .mws-gallery-overlay .mws-gallery-zoom
+{
+	width:32px;
+	height:32px;
+	display:block;
+	position:absolute;
+	top:50%; left:50%;
+	margin-left:-16px;
+	margin-top:-16px;
+	
+	background:#323232 url(../icons/24/magnifying-glass-2.png) no-repeat center center;
+	
+	/* CSS 3 */
+	
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	-o-border-radius:4px;
+	-khtml-border-radius:4px;	
+	border-radius:4px;		
+}

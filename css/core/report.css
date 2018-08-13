@@ -1,0 +1,96 @@
+/* Report Buttons */
+
+.mws-report-container
+{
+	width:100%;
+	margin-bottom:24px;
+}
+
+.mws-report
+{
+	width:18% !important;
+	min-width:170px;
+	margin:8px 1%;
+	height:80px;
+	float:left;
+	cursor:pointer;
+	display:block;
+	text-decoration:none;
+	color:#323232;
+	
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	
+	background:#ffffff url(../../images/core/mws-report-bg.png) repeat-x;
+	border:1px solid #cccccc;
+	
+	/* CSS 3 */
+	
+	-webkit-border-radius:6px;
+	-o-border-radius:6px;
+	-moz-border-radius:6px;
+	-khtml-border-radius:6px;
+	border-radius:6px;
+}
+
+.mws-report:hover
+{
+	background-color:#fafafa;
+}
+
+.mws-report:active
+{
+	background-image:none;
+	
+	
+	/* CSS 3 */
+	
+	-webkit-box-shadow:0px 1px 0px rgba(255, 255, 255, 0.5);
+	-o-box-shadow:0px 1px 0px rgba(255, 255, 255, 0.5);
+	-moz-box-shadow:0px 1px 0px rgba(255, 255, 255, 0.5);
+	-khtml-box-shadow:0px 1px 0px rgba(255, 255, 255, 0.5);	
+	box-shadow:0px 1px 0px rgba(255, 255, 255, 0.5);	
+}
+
+.mws-report .mws-report-icon
+{
+	width:48px;
+	height:100%;
+	float:left;
+	display:block;
+	border-right:1px solid #cccccc;
+	
+	background-position:center center;
+}
+
+.mws-report .mws-report-content
+{
+	margin-left:49px;
+	display:block;
+	padding:8px 10px;
+}
+
+.mws-report .mws-report-content .mws-report-title
+{
+	white-space:nowrap;
+}
+
+.mws-report .mws-report-content .mws-report-value
+{
+	font-size:32px;
+	font-weight:bold;
+	display:inline-block;
+}
+
+.mws-report .mws-report-content .mws-report-value.up
+{
+	background:url(../../images/core/report-up.png) no-repeat right center;
+	padding-right:24px;
+}
+
+.mws-report .mws-report-content .mws-report-value.down
+{
+	background:url(../../images/core/report-down.png) no-repeat right center;
+	padding-right:24px;
+}
