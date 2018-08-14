@@ -167,7 +167,7 @@ This library provides the data transfer function through ethernet. The classes i
 ### SeeSharpTools.JY.Database
 This library provides common manipulation function for mainstream Database including: Mysql, SQL server, Access and etc. The classes in this library is listed below:
 
-- ** DbOperation:** Provides common manipulation function like Add, Deletion, Modification for mainstream DataBase.
+- **DbOperation:** Provides common manipulation function like Add, Deletion, Modification for mainstream DataBase.
 
 ---
 ### SeeSharpTools.JY.Audio
