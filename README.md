@@ -4,7 +4,7 @@
 
 &ensp;&ensp;SeeSharpTools is a collection of open source .NET libraries provided by JYTEK. It helps developers build Measurement and Test application in an easier and efficient way. These libraries are distributed in seventeen **dll** files(dynamic link library). The library package information is listed below:
 
-| Namespce                | Introduction                                                             |
+| Library                | Introduction                                                             |
 |-------------------------|--------------------------------------------------------------------------|
 | SeeSharpTools.JY.ArrayUtility       | Array calculation and Array Manipulation functions                |
 | SeeSharpTools.JY.DSP.Fundamental    | Common waveform generation and spectrum algorithms                |
@@ -98,7 +98,7 @@ The classes in this library is listed below:
 - **IndustrySwitch:** Industry switch control for boolean value input. This control support multiple display style.
 - **EasyButton:** Button control with preset images that more intuitive than original winform button. The preset images is configurable.
 - **EasyChart:** Data Visualization control based on MS Chart. Easy to use and capable of showing substantial data. Abandoned and no longer maintained.
-- **EasyChartX:** Evolving version of Data visualization control(EasyChart). The improvment including: Higher efficiency, Optimized interface, More custimization parameters, More functions.
+- **EasyChartX:** Evolving version of Data visualization control(EasyChart). The improvments including: Higher efficiency, Optimized interface, More custimization parameters, More functions.
 - **StripChart:** Data logger graph with scroll style.
 - **Slide:** Slide control used for analog value input.
 - **GaugeLinear:** Slide control with adaptive scale and better appearance.
@@ -110,3 +110,65 @@ The classes in this library is listed below:
 - **PathControl:** Directory selection or input control.
 - **ScrollingText:** Text display control with special scrolling effect.
 - **ViewController** Control for GUI control linkage. The control can switch property "Enable" and "Visible" for now.
+
+---
+### SeeSharpTools.JY.Graph3D
+This library provides some 3D data visualization winform controls. The classes in this library is listed below:
+
+- **SurfaceGraph:** 3D graph for matrix data visualization. Support 3D mode and intensity graph mode.
+
+---
+### SeeSharpTools.JY.Localization
+This library provides GUI localization functions. The classes in this library is listed below:
+
+- **Localization:** Provides localization functions for the controls in winform application.
+
+---
+### SeeSharpTools.JY.File
+This library provides data persistance function for array datas. The classes in this library is listed below:
+
+- **AnalogWaveformFile:** Provides data persistance function with *.wvf files. WVF file is a customized file type that can save multiple parameters of waveform data including: SampleRate, ChannelCount, Card Name and etc.
+- **CsvHandler:** Provides data persistance function with csv file. This class can help developers manipulate csv in a easier ways: It takes only one line of code to implement the data write and read with csv file.
+- **BinHandler:** Provides data persistance function with binary file. This class can help developers manipulate binary file in a easier ways: It takes only one line of code to implement the data write and read with binary file.
+- **IniHandler:** Provides ini file read and write functions.
+
+### SeeSharpTools.JY.Report
+This library provides common report components. The classes in this library is listed below:
+
+- **ExcelReport:** Provides report function by xlsx/xls file type.
+- **WordReport:** Provides report function by docx/doc file type.
+- **Logger:** *[static class]* Provides common log functions.
+
+---
+### SeeSharpTools.JY.ThreadSafeQueue
+This library provides Thread-safe queue containers. The classes in this library is listed below:
+
+- **ThreadSafeQueue:** Queue that store *reference* of object. All the elements are saved as object type. Developers need to convert the dequeue element to its true type before using.
+- **CircularQueue:** Queue that store the value type data. Datas added to the queue will be fully copied. This is an template container that can support any value type except string. An exception will be raised when the datas to added exceed the capacity of the queue.
+
+---
+### SeeSharpTools.JY.Sensors
+This library provides the data convert function for common sensors. The classes in this library is listed below:
+
+- **DisplacementSensor:** Provides the data convert function for linear displacement transducer.
+- **LoadCell:** Provides the data convert function for loadCell.
+- **RTD:** Provides the data convert function for RTD.
+- **Thermistor:** Provides the data convert function for Thermistor.
+- **Thermocouple:** Provides the data convert function for Thermocouple.
+
+---
+### SeeSharpTools.JY.TCP
+This library provides the data transfer function through ethernet. The classes in this library is listed below:
+
+- **JYTCPServer:** TCP server manipulation classes for data transfer.
+- **JYTCPClient:** TCP client manipulation classes for data transfer.
+
+---
+### SeeSharpTools.JY.Database
+This library provides common manipulation function for mainstream Database including: Mysql, SQL server, Access and etc. The classes in this library is listed below:
+
+- ** DbOperation:** Provides common manipulation function like Add, Deletion, Modification for mainstream DataBase.
+
+---
+### SeeSharpTools.JY.Audio
+This library provides some audio test related functions like: Audio test waveform generation, Audio system performance evaluate algorithms and etc. *This is a beta version library as the unmanaged library referenced by this library alway crisis unexpectedly.*
