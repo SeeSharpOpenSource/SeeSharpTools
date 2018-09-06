@@ -22,14 +22,14 @@ namespace SeeSharpTools.JY.Statistics
             {
                 switch (Engine.Provider)
                 {
-                    case ProviderEngine.MathNet:
-                        return ArrayStatistics.Maximum(data);
+                    case ProviderEngine.MathNet:                        
+                        return data.Maximum();
 
                     case ProviderEngine.IntelIPP:
                         return IPP.Statistics.FindMaxValue(data);
 
                     default:
-                        return ArrayStatistics.Maximum(data);
+                        return data.Maximum();
                 }
             }
             catch (Exception ex)
@@ -39,7 +39,7 @@ namespace SeeSharpTools.JY.Statistics
         }
 
         /// <summary>
-        /// Find the Minimum value from the double array
+        /// Find the Minimum value from the double array(supported platforms: MathNet, Intel IPP)
         /// </summary>
         /// <param name="data">input data</param>
         /// <returns></returns>
@@ -50,13 +50,13 @@ namespace SeeSharpTools.JY.Statistics
                 switch (Engine.Provider)
                 {
                     case ProviderEngine.MathNet:
-                        return ArrayStatistics.Minimum(data);
+                        return data.Minimum();
 
                     case ProviderEngine.IntelIPP:
                         return IPP.Statistics.FindMinValue(data);
 
                     default:
-                        return ArrayStatistics.Minimum(data);
+                        return data.Minimum();
                 }
             }
             catch (Exception ex)
@@ -77,13 +77,13 @@ namespace SeeSharpTools.JY.Statistics
                 switch (Engine.Provider)
                 {
                     case ProviderEngine.MathNet:
-                        return ArrayStatistics.Mean(data);
+                        return data.Mean();
 
                     case ProviderEngine.IntelIPP:
                         return IPP.Statistics.Mean(data);
 
                     default:
-                        return ArrayStatistics.Mean(data);
+                        return data.Mean();
                 }
             }
             catch (Exception ex)
@@ -105,10 +105,10 @@ namespace SeeSharpTools.JY.Statistics
                 switch (Engine.Provider)
                 {
                     case ProviderEngine.MathNet:
-                        return ArrayStatistics.RootMeanSquare(data);
+                        return data.RootMeanSquare();
 
                     default:
-                        return ArrayStatistics.RootMeanSquare(data);
+                        return data.RootMeanSquare();
                 }
             }
             catch (Exception ex)
@@ -129,13 +129,13 @@ namespace SeeSharpTools.JY.Statistics
                 switch (Engine.Provider)
                 {
                     case ProviderEngine.MathNet:
-                        return ArrayStatistics.StandardDeviation(data);
+                        return data.StandardDeviation();
 
                     case ProviderEngine.IntelIPP:
                         return IPP.Statistics.StdDev(data);
 
                     default:
-                        return ArrayStatistics.StandardDeviation(data);
+                        return data.StandardDeviation();
                 }
             }
             catch (Exception ex)
@@ -145,7 +145,7 @@ namespace SeeSharpTools.JY.Statistics
         }
 
         /// <summary>
-        /// Find the variance from the double array (supported platforms: MathNet)
+        /// Find the variance from the double array (supported platforms: MathNet, Intel IPP)
         /// </summary>
         /// <param name="data">input data</param>
         /// <returns>variance value</returns>
@@ -157,14 +157,14 @@ namespace SeeSharpTools.JY.Statistics
                 switch (Engine.Provider)
                 {
                     case ProviderEngine.MathNet:
-                        return ArrayStatistics.Variance(data);
+                        return data.Variance();
 
                     case ProviderEngine.IntelIPP:
                         var stddev = IPP.Statistics.StdDev(data);
                         return Math.Pow(stddev, 2);
 
                     default:
-                        return ArrayStatistics.Variance(data);
+                        return data.Variance();
                 }
             }
             catch (Exception ex)
@@ -186,12 +186,10 @@ namespace SeeSharpTools.JY.Statistics
                 switch (Engine.Provider)
                 {
                     case ProviderEngine.MathNet:
-                        var stat = new DescriptiveStatistics(data);
-                        return stat.Skewness;
+                        return data.Skewness();
 
                     default:
-                        var stats = new DescriptiveStatistics(data);
-                        return stats.Skewness;
+                        return data.Skewness();
                 }
             }
             catch (Exception ex)
@@ -213,12 +211,9 @@ namespace SeeSharpTools.JY.Statistics
                 switch (Engine.Provider)
                 {
                     case ProviderEngine.MathNet:
-                        var stat = new DescriptiveStatistics(data);
-                        return stat.Kurtosis;
-
+                        return data.Kurtosis();
                     default:
-                        var stats = new DescriptiveStatistics(data);
-                        return stats.Kurtosis;
+                        return data.Kurtosis();
                 }
             }
             catch (Exception ex)
@@ -228,7 +223,7 @@ namespace SeeSharpTools.JY.Statistics
         }
 
         /// <summary>
-        /// Get the histogram based on the given double array ((supported platforms: MathNet)
+        /// Get the histogram based on the given double array (supported platforms: MathNet). auto bin if max<=min
         /// </summary>
         /// <param name="data">input data</param>
         /// <param name="binSize">number of the bin</param>
