@@ -144,15 +144,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional double array</para>
         ///         <para>Chinese Simplified:读取后的二维double数组</para>
         ///     </returns>
         /// </summary>
-        public static double[,] ReadDoubleData(uint startRow = 0, uint startColumn = 0)
+        public static double[,] ReadDoubleData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadDoubleData(filePath, startRow, startColumn);
+            return ReadDoubleData(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -166,15 +170,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional double array</para>
         ///         <para>Chinese Simplified:读取后的二维double数组</para>
         ///     </returns>
         /// </summary>
-        public static double[,] ReadDoubleData(uint startRow, uint[] columns)
+        public static double[,] ReadDoubleData(uint startRow, uint[] columns, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadDoubleData(filePath, startRow, columns);
+            return ReadDoubleData(filePath, startRow, columns, rowCount);
         }
 
         /// <summary>
@@ -192,15 +200,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional double array</para>
         ///         <para>Chinese Simplified:读取后的二维double数组</para>
         ///     </returns>
         /// </summary>
-        public static double[,] ReadDoubleData(string filePath, uint startRow = 0, uint startColumn = 0)
+        public static double[,] ReadDoubleData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<double>(filePath, startRow, startColumn);
+            return StreamReadData<double>(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -218,15 +230,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional double array</para>
         ///         <para>Chinese Simplified:读取后的二维double数组</para>
         ///     </returns>
         /// </summary>
-        public static double[,] ReadDoubleData(string filePath, uint startRow, uint[] columns)
+        public static double[,] ReadDoubleData(string filePath, uint startRow, uint[] columns, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<double>(filePath, startRow, columns);
+            return StreamReadData<double>(filePath, startRow, columns, rowCount);
         }
 
         /// <summary>
@@ -1281,12 +1297,15 @@ namespace SeeSharpTools.JY.File
 
         #region 私有方法
 
-        private static TDataType[,] StreamReadData<TDataType>(string filePath, uint startRow, uint startColumn)
+        private static TDataType[,] StreamReadData<TDataType>(string filePath, uint startRow, uint startColumn, uint lineCount = 0)
         {
             StreamReader reader = null;
             try
             {
-                int lineCount = FileUtil.GetFileLineNum(filePath);
+                if (0 == lineCount)
+                {
+                    lineCount = FileUtil.GetFileLineNum(filePath) - startRow;
+                }
                 FileUtil.InitReadStream(ref reader, filePath);
                 return FileUtil.StreamReadFromStrFile<TDataType>(reader, lineCount, Delims, startRow, startColumn);
             }
@@ -1294,7 +1313,7 @@ namespace SeeSharpTools.JY.File
             {
                 throw;
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, 
                     i18n.GetFStr("Runtime.ReadFail", ex.Message), ex);
@@ -1305,12 +1324,15 @@ namespace SeeSharpTools.JY.File
             }
         }
 
-        private static TDataType[,] StreamReadData<TDataType>(string filePath, uint startRow, uint[] columns)
+        private static TDataType[,] StreamReadData<TDataType>(string filePath, uint startRow, uint[] columns, uint lineCount = 0)
         {
             StreamReader reader = null;
             try
             {
-                int lineCount = FileUtil.GetFileLineNum(filePath);
+                if (0 == lineCount)
+                {
+                    lineCount = FileUtil.GetFileLineNum(filePath) - startRow;
+                }
                 FileUtil.InitReadStream(ref reader, filePath);
                 return FileUtil.StreamReadFromStrFile<TDataType>(reader, lineCount, Delims, startRow, columns);
             }
@@ -1318,7 +1340,7 @@ namespace SeeSharpTools.JY.File
             {
                 throw;
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError,
                     i18n.GetFStr("Runtime.ReadFail", ex.Message), ex);

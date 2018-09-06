@@ -274,7 +274,7 @@ namespace SeeSharpTools.JY.File
             }
         }
 
-        public static TDataType[,] StreamReadFromStrFile<TDataType>(StreamReader reader, int lineCount, string delims, 
+        public static TDataType[,] StreamReadFromStrFile<TDataType>(StreamReader reader, uint lineCount, string delims, 
             uint startRow, uint startColumn)
         {
             string lineData = null;
@@ -283,7 +283,11 @@ namespace SeeSharpTools.JY.File
             {
                 lineData = reader.ReadLine();
             } while (skipRowIndex-- > 0 && null != lineData);
-
+            // 读取到startRow的下一行，如果为空，则返回null
+            if (null == lineData)
+            {
+                return null;
+            }
             IConvertor convertor = GetConvertor<TDataType>();
             char[] delimArray = delims.ToCharArray();
             string[] lineElems = lineData.Split(delimArray);
@@ -294,7 +298,7 @@ namespace SeeSharpTools.JY.File
                     i18n.GetStr("ParamCheck.InvalidColIndex"));
             }
             
-            TDataType[,] readDatas = new TDataType[lineCount - startRow, colCount - startColumn];
+            TDataType[,] readDatas = new TDataType[lineCount, colCount - startColumn];
             int rowIndex = 0;
             uint[] columns = new uint[colCount - startColumn];
             for (int i = 0; i < columns.Length; i++)
@@ -302,15 +306,22 @@ namespace SeeSharpTools.JY.File
                 columns[i] = startColumn++;
             }
             CopyStrToDst(lineElems, readDatas, convertor, rowIndex++, columns);
-            while (null != (lineData = reader.ReadLine()))
+            lineCount--;
+            while (null != (lineData = reader.ReadLine()) && lineCount > 0)
             {
                 lineElems = lineData.Split(delimArray);
                 CopyStrToDst(lineElems, readDatas, convertor, rowIndex++, columns);
+                lineCount--;
+            }
+
+            if (lineCount != 0)
+            {
+                FitArrayRowCountToData(ref readDatas, (int) (readDatas.GetLength(0) - lineCount));
             }
             return readDatas;
         }
 
-        public static TDataType[,] StreamReadFromStrFile<TDataType>(StreamReader reader, int lineCount, string delims,
+        public static TDataType[,] StreamReadFromStrFile<TDataType>(StreamReader reader, uint lineCount, string delims,
             uint startRow, uint[] columns)
         {
             string lineData = null;
@@ -319,7 +330,7 @@ namespace SeeSharpTools.JY.File
             {
                 lineData = reader.ReadLine();
             } while (skipRowIndex-- > 0 && null != lineData);
-
+            // 读取到startRow的下一行，如果为空，则返回null
             if (null == lineData)
             {
                 return null;
@@ -333,47 +344,79 @@ namespace SeeSharpTools.JY.File
                     i18n.GetStr("ParamCheck.InvalidColIndex"));
             }
 
-            TDataType[,] readDatas = new TDataType[lineCount - startRow, columns.Length];
+            TDataType[,] readDatas = new TDataType[lineCount, columns.Length];
             int rowIndex = 0;
             CopyStrToDst(lineElems, readDatas, convertor, rowIndex++, columns);
-            while (null != (lineData = reader.ReadLine()))
+            lineCount--;
+            while (null != (lineData = reader.ReadLine()) && lineCount > 0)
             {
                 lineElems = lineData.Split(delimArray);
                 CopyStrToDst(lineElems, readDatas, convertor, rowIndex++, columns);
+                lineCount--;
             }
+            if (lineCount != 0)
+            {
+                FitArrayRowCountToData(ref readDatas, (int) (readDatas.GetLength(0) - lineCount));
+            }
+
             return readDatas;
+        }
+
+        private static void FitArrayRowCountToData<TDataType>(ref TDataType[,] readDatas, int rowCount)
+        {
+            int columnCount = readDatas.GetLength(1);
+            TDataType[,] dataAfterFit = new TDataType[rowCount, columnCount];
+            // 对于string类型，不能直接拷贝，需要逐个赋值
+            if (ReferenceEquals(typeof (string), typeof (TDataType)))
+            {
+                for (int i = 0; i < rowCount; i++)
+                {
+                    for (int j = 0; j < columnCount; j++)
+                    {
+                        dataAfterFit[i, j] = readDatas[i, j];
+                    }
+                }
+            }
+            else
+            {
+                Buffer.BlockCopy(readDatas, 0, dataAfterFit, 0, Marshal.SizeOf(typeof (TDataType))*rowCount*columnCount);
+            }
+            readDatas = dataAfterFit;
         }
 
         private static IConvertor GetConvertor<TDataType>()
         {
-            if (ReferenceEquals(typeof (double), typeof (TDataType)))
+            Type dataType = typeof(TDataType);
+            if (ReferenceEquals(typeof (double), dataType))
             {
                 return new DoubleConvertor();
             }
-            else if (ReferenceEquals(typeof(float), typeof(TDataType)))
+            else if (ReferenceEquals(typeof(float), dataType))
             {
                 return new FloatConvertor();
             }
-            else if (ReferenceEquals(typeof (int), typeof (TDataType)))
+            else if (ReferenceEquals(typeof (int), dataType))
             {
                 return new IntConvertor();
             }
-            else if (ReferenceEquals(typeof (uint), typeof (TDataType)))
+            else if (ReferenceEquals(typeof (uint), dataType))
             {
                 return new UIntConvertor();
             }
-            else if (ReferenceEquals(typeof (short), typeof (TDataType)))
+            else if (ReferenceEquals(typeof (short), dataType))
             {
                 return new ShortConvertor();                
             }
-            else if (ReferenceEquals(typeof(ushort), typeof(TDataType)))
+            else if (ReferenceEquals(typeof(ushort), dataType))
             {
                 return new UShortConvertor();
             }
-            else
+            else if (ReferenceEquals(typeof(string), dataType))
             {
                 return new StringConvertor();
             }
+            throw new SeeSharpFileException(SeeSharpFileErrorCode.UnsupportedDataType, 
+                i18n.GetFStr("ParamCheck.UnsupportedType", dataType.Name));
         }
 
         private static void CopyStrToDst<TDataType>(string[] srcStrs, TDataType[,] dstStrs, IConvertor convertor, 
@@ -423,13 +466,13 @@ namespace SeeSharpTools.JY.File
         }
 
 
-        internal static int GetFileLineNum(string filePath)
+        internal static uint GetFileLineNum(string filePath)
         {
             FileStream stream = null;
             StreamReader reader = null;
             try
             {
-                int lineCount = 0;
+                uint lineCount = 0;
                 stream = new FileStream(filePath, FileMode.Open);
                 reader = new StreamReader(stream);
                 while (null != reader.ReadLine())

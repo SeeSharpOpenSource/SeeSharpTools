@@ -5,7 +5,7 @@ namespace SeeSharpTools.JY.File
     /// <summary>
     /// File operation exception class
     /// </summary>
-    public class SeeSharpFileException : Exception
+    public class SeeSharpFileException : ApplicationException
     {
         /// <summary>
         /// Error Code

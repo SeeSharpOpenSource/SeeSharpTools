@@ -21,9 +21,15 @@ namespace SeeSharpTools.JY.File.Common
         /// File format error
         /// </summary>
         public const int FileFormatError = -102;
+
         /// <summary>
         /// File format error
         /// </summary>
         public const int FileDataError = -103;
+
+        /// <summary>
+        /// Unsupported data type
+        /// </summary>
+        public const int UnsupportedDataType = -104;
     }
 }
