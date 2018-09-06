@@ -17,6 +17,9 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
         private bool _isInternalOperation;
         private readonly EasyChartX _parentChart;
 
+        /// <summary>
+        /// TabCursor infomation form
+        /// </summary>
         public TabCursorInfoForm(EasyChartX parentChart)
         {
             InitializeComponent();
@@ -28,7 +31,14 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
             this.Text = string.Format(formNameFormat, parentChart.Name);
             this._isInternalOperation = false;
 
+            RefreshSeriesNames();
             this._parentChart.TabCursorChanged += RefreshCursorValue;
+            this._parentChart.AfterPlot += RefreshCursorYValue;
+            // RunTimeEditable为false时，tabCursor的添加删除按钮不使能
+            if (!parentChart.TabCursors.RunTimeEditable)
+            {
+                tableLayoutPanel_buttonPanel.Enabled = false;
+            }
         }
 
         private void SetFormLocation(EasyChartX parentChart)
@@ -68,8 +78,11 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
         const int CursorEnableIndex = 0;
         const int CursorColorIndex = 1;
         const int CursorNameIndex = 2;
-        const int CursorValueIndex = 3;
+        const int CursorSeriesIndex = 3;
+        const int CursorValueIndex = 4;
+        const int CursorYValueIndex = 5;
         const string ColorButtonText = "Select";
+        const string NoSeriesName = "";
 
         private void button_add_Click(object sender, EventArgs e)
         {
@@ -105,7 +118,13 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
             dataGridView_cursorInfo.Rows.Clear();
             foreach (TabCursor cursor in _cursors)
             {
-                dataGridView_cursorInfo.Rows.Add(cursor.Enabled, ColorButtonText, cursor.Name, cursor.Value);
+                // 第0个是None，其他的随着Index增加而增加
+                string seriesName = (cursor.SeriesIndex < 0 || cursor.SeriesIndex > _parentChart.SeriesCount)
+                    ? NoSeriesName
+                    : _parentChart.Series[cursor.SeriesIndex].Name;
+                double yValue = cursor.YValue;
+                string yValueStr = double.IsNaN(yValue) ? string.Empty : yValue.ToString();
+                dataGridView_cursorInfo.Rows.Add(cursor.Enabled, ColorButtonText, cursor.Name, seriesName, cursor.Value, yValueStr);
                 DataGridViewRow row = dataGridView_cursorInfo.Rows[dataGridView_cursorInfo.Rows.Count-1];
                 row.Cells[CursorColorIndex].Style.BackColor = cursor.Color;
                 row.Cells[CursorColorIndex].Style.SelectionBackColor = cursor.Color;
@@ -118,16 +137,26 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
             if (eventArgs.Operation == TabCursorOperation.ValueChanged)
             {
                 int index = _cursors.IndexOf(eventArgs.Cursor);
+                double yValue = _cursors[index].YValue;
                 dataGridView_cursorInfo.Rows[index].Cells[CursorEnableIndex].Value = _cursors[index].Enabled;
                 dataGridView_cursorInfo.Rows[index].Cells[CursorColorIndex].Style.BackColor = _cursors[index].Color;
                 dataGridView_cursorInfo.Rows[index].Cells[CursorNameIndex].Value = _cursors[index].Name;
                 dataGridView_cursorInfo.Rows[index].Cells[CursorValueIndex].Value = _cursors[index].Value;
+                dataGridView_cursorInfo.Rows[index].Cells[CursorYValueIndex].Value = double.IsNaN(yValue) ? string.Empty : yValue.ToString();
             }
             else
             {
                 RefreshCursorInfo();
             }
-            
+        }
+
+        private void RefreshCursorYValue(object sender, EventArgs e)
+        {
+            for (int i = 0; i < _cursors.Count; i++)
+            {
+                double yValue = _cursors[i].YValue;
+                dataGridView_cursorInfo.Rows[i].Cells[CursorYValueIndex].Value = double.IsNaN(yValue) ? string.Empty : yValue.ToString();
+            }
         }
 
         private void button_clear_Click(object sender, EventArgs e)
@@ -158,6 +187,13 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
                         changeCursor.Name = changedValue.ToString();
                     }
                     dataGridView_cursorInfo.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = changeCursor.Name;
+                    break;
+                case CursorSeriesIndex:
+                    string seriesName = dataGridView_cursorInfo.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                    int index = SeriesIndex.Items.IndexOf(seriesName);
+                    _cursors[e.RowIndex].SeriesIndex = index - 1;
+                    double yValue = _cursors[e.RowIndex].YValue;
+                    dataGridView_cursorInfo.Rows[e.RowIndex].Cells[CursorYValueIndex].Value = double.IsNaN(yValue) ? string.Empty : yValue.ToString();
                     break;
                 case CursorValueIndex:
                     double xValue;
@@ -218,6 +254,31 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
         private void DynamicCursorInfoForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this._parentChart.TabCursorChanged -= RefreshCursorValue;
+            this._parentChart.AfterPlot -= RefreshCursorYValue;
+        }
+
+
+        private void RefreshSeriesNames()
+        {
+            if (SeriesIndex.Items.Count != _parentChart.SeriesCount + 1)
+            {
+                SeriesIndex.Items.Clear();
+                SeriesIndex.Items.Add(NoSeriesName);
+                for (int i = 0; i < _parentChart.SeriesCount; i++)
+                {
+                    SeriesIndex.Items.Add(_parentChart.Series[i].Name);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < _parentChart.SeriesCount; i++)
+                {
+                    if (!SeriesIndex.Items[i + 1].Equals(_parentChart.Series[i].Name))
+                    {
+                        SeriesIndex.Items[i + 1] = _parentChart.Series[i].Name;
+                    }
+                }
+            }
         }
     }
 }

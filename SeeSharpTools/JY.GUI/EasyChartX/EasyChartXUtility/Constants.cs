@@ -2,6 +2,7 @@
 {
     internal static class Constants
     {
+        
         // 小数点位数或者小数点以上位数大于该值后使用数学计数法显示
         public const int MinDecimalOfScientificNotition = 6;
         // 用来配置Y轴范围舍进比率的常数
@@ -9,7 +10,7 @@
         // Clear时坐标轴默认的LabelFormat
         public const string DefaultLabelFormat = "0.##";
         // Show value模式数值显示的字符串format
-        public const string DataValueFormat = "X Val: {0}{2}Y Val: {1}";
+        public const string DataValueFormat = "X: {0}{2}Y: {1}";
         // 主X坐标轴的名称
         public const string PrimaryXAxisName = "X axis";
         // 副X轴坐标轴名称
@@ -38,7 +39,7 @@
         // Double类型的最小接受值范围
         public const double MinDoubleValue = 1E-50;
         // Y轴配置范围时根据最大值最小值向上向下的扩展系数
-        public const double YAutoExpandRatio = 0.02;
+        public const double YAutoExpandRatio = 0.05;
         // 最小接受的游标缩放尺度
         public const double MinLegalInterval = 1E-40;
         // 导出CSV时每行默认的字符容量
@@ -63,5 +64,14 @@
         public const double MaxDiffToKeepYScaleview = 5;
         // 最小的float差
         public const float MinFloatDiff = (float) 1E-20;
+        // 默认的Y轴最大最小值
+        public const double DefaultYMax = 3.5;
+        public const double DefaultYMin = 0.5;
+        // 默认的X轴最大最小值
+        public const double DefaultXMax = 1000;
+        public const double DefaultXMin = 0;
+        // 分区视图时X轴和Y轴的边界比例(百分比)
+        public const float XBoundRatio = 5f;
+        public const float YBoundRatio = 5f;
     }
 }

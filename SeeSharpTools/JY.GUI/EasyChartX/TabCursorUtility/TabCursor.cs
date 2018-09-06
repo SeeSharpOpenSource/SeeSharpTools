@@ -27,6 +27,8 @@ namespace SeeSharpTools.JY.GUI
             this._value = 0;
             this.Color = Color.Red;
             this._enabled = true;
+
+            this.SeriesIndex = -1;
         }
 
         internal void Initialize(TabCursorCollection collection)
@@ -72,7 +74,7 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(true),
             Category("Data"),
-            Description("Set or get the value of cursor.")
+            Description("Set or get the X value of cursor.")
         ]
         public double Value
         {
@@ -91,7 +93,41 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
-        public string ValueString => string.IsNullOrEmpty(_collection?.CursorValueFormat)
+        /// <summary>
+        /// Set or get the Y value of cursor.
+        /// </summary>
+        [
+            Browsable(true),
+            Category("Data"),
+            Description("Set or get the Y value of cursor.")
+        ]
+        public double YValue
+        {
+            get
+            {
+                double xAfterAlign = _value;
+                double yValue = _collection.GetYValue(ref xAfterAlign, SeriesIndex);
+                // 更新对齐后的X值
+                Value = xAfterAlign;
+                return yValue;
+            }
+            
+        }
+
+        /// <summary>
+        /// Specify the index of series which the tabcursor will be attached to.
+        /// </summary>
+        [
+            Browsable(true),
+            Category("Behavior"),
+            Description("Specify the index of series which the tabcursor will be attached to.")
+        ]
+        public int SeriesIndex { get; set; }
+
+        /// <summary>
+        /// Get the formated value string
+        /// </summary>
+        internal string ValueString => string.IsNullOrEmpty(_collection?.CursorValueFormat)
             ? _value.ToString()
             : _value.ToString(_collection.CursorValueFormat);
 

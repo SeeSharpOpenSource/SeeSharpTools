@@ -471,7 +471,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         public int FindeNearestIndex(ref double xValue, ref double yValue, int seriesIndex)
         {
-            if (double.IsNaN(xValue) || double.IsNaN(yValue))
+            if (double.IsNaN(xValue))
             {
                 return -1;
             }
@@ -481,9 +481,10 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                 case XDataInputType.Increment:
                     nearIndexes = FindIncrementNearIndex(ref xValue, ref yValue, seriesIndex);
                     break;
-
                 case XDataInputType.Array:
-                    nearIndexes = FindArrayNearIndex(ref xValue, ref yValue, seriesIndex);
+                    nearIndexes = double.IsNaN(yValue) ? 
+                        FindArrayNearIndexByXValue(ref xValue, out yValue, seriesIndex) : 
+                        FindArrayNearIndex(ref xValue, ref yValue, seriesIndex);
                     break;
                 default:
                     nearIndexes = 0;
@@ -508,9 +509,31 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             return nearIndex;
         }
 
+        private int FindArrayNearIndexByXValue(ref double xValue, out double yValue, int seriesIndex)
+        {
+            yValue = double.NaN;
+            int nearestIndex = -1;
+            double minDValue = double.MaxValue;
+            for (int i = 0; i < DataInfo.Size; i++)
+            {
+                double diff = Math.Abs(XData[i] - xValue);
+                if (diff < minDValue)
+                {
+                    nearestIndex = i;
+                    minDValue = diff;
+                }
+            }
+            if (nearestIndex >= 0)
+            {
+                xValue = GetXData(nearestIndex);
+                yValue = GetYData(seriesIndex, nearestIndex);
+            }
+            return nearestIndex;
+        }
+
         private int FindArrayNearIndex(ref double xValue, ref double yValue, int seriesIndex)
         {
-            double minDiff = XMinInterval*2;
+            double minDiff = XMinInterval*4;
             List<int> nearestIndexes = new List<int>(5);
             double minDValue = double.MaxValue;
             for (int i = 0; i < DataInfo.Size; i++)
@@ -520,7 +543,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                 {
                     continue;
                 }
-                if (minDValue - diff > minDValue)
+                // 如果最小的差值小于当前差值的一半，则原来的临近点全部清除
+                if (diff > 2*minDValue)
                 {
                     nearestIndexes.Clear();
                 }
@@ -567,7 +591,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             return buffer;
         }
         
-        public void GetMaxAndMinYValue(out double maxYValue, out double minYValue, int lineIndex = -1)
+        public void GetMaxAndMinYValue(out double maxYValue, out double minYValue, int lineIndex)
         {
             if (lineIndex <= -1)
             {

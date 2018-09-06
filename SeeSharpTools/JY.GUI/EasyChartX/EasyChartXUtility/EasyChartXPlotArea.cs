@@ -29,16 +29,16 @@ namespace SeeSharpTools.JY.GUI
             this._axisY = new EasyChartXAxis();
             this._axisY2 = new EasyChartXAxis();
             _axisX.Initialize(parentChart, this, chartArea.AxisX);
-            _axisX.InitAxisViewRange(1000, 0, 1000, 0);
+            _axisX.InitAxisViewRange(Constants.DefaultXMax, Constants.DefaultXMin, Constants.DefaultXMax, Constants.DefaultXMin);
 
             _axisX2.Initialize(parentChart, this, chartArea.AxisX2);
-            _axisX2.InitAxisViewRange(1000, 0, 1000, 0);
+            _axisX2.InitAxisViewRange(Constants.DefaultXMax, Constants.DefaultXMin, Constants.DefaultXMax, Constants.DefaultXMin);
 
             _axisY.Initialize(parentChart, this, chartArea.AxisY);
-            _axisY.InitAxisViewRange(3.5, 0, 3.5, 0);
+            _axisY.InitAxisViewRange(Constants.DefaultYMax, Constants.DefaultYMin, Constants.DefaultYMax, Constants.DefaultYMin);
 
             _axisY2.Initialize(parentChart, this, chartArea.AxisY2);
-            _axisY2.InitAxisViewRange(3.5, 0, 3.5, 0);
+            _axisY2.InitAxisViewRange(Constants.DefaultYMax, Constants.DefaultYMin, Constants.DefaultYMax, Constants.DefaultYMin);
 
             _axes[0] = _axisX;
             _axes[1] = _axisX2;

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using SeeSharpTools.JY.GUI.EasyChartXUtility;
 using SeeSharpTools.JY.GUI.TabCursorUtility;
 
 namespace SeeSharpTools.JY.GUI
@@ -43,10 +45,6 @@ namespace SeeSharpTools.JY.GUI
             // TODO to add _cursor code, get from parentchart
         }
 
-        /// <summary>
-        /// Specify or get the format of cursor value that will be shown in value tip.
-        /// </summary>
-        public string CursorValueFormat { get; set; }
 
         #region IList interface
 
@@ -197,6 +195,22 @@ namespace SeeSharpTools.JY.GUI
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// Specify or get the format of cursor value that will be shown in tabcursor value tip.
+        /// </summary>
+        [Description("Specify or get the format of cursor value that will be shown in tabcursor value tip.")]
+        public string CursorValueFormat { get; set; }
+
+        /// <summary>
+        /// Specify whether the element in collection can be add or delete by TabCursor Form
+        /// </summary>
+        [Description("Specify whether the element in collection can be add or delete by TabCursor Form")]
+        public bool RunTimeEditable { get; set; }
+
+        #endregion
+
         internal void AttachOrDetachPaintEvent()
         {
             bool cursorEnabled = _cursors.Any(item => item.Enabled);
@@ -263,15 +277,22 @@ namespace SeeSharpTools.JY.GUI
             _parentChart.OnTabCursorChanged(cursor, TabCursorOperation.ValueChanged, null);
         }
         
-        public void RefreshCursorValue(TabCursor cursor)
+        internal void RefreshCursorValue(TabCursor cursor)
         {
             _adapter.RefreshCursorValue(cursor);
         }
 
-        public void ShowCursorValue(TabCursor cursor, bool isShow)
+        internal void ShowCursorValue(TabCursor cursor, bool isShow)
         {
-            const string tabCursorInfoFormat = "{0}{1}{2}";
+            double yValue = cursor.YValue;
+            const string tabCursorInfoFormat = "{0}{1}X:{2}";
             string showInfo = string.Format(tabCursorInfoFormat, cursor.Name, Environment.NewLine, cursor.ValueString);
+            // TODO just for test
+            if (!double.IsNaN(yValue))
+            {
+                showInfo += $"  Y:{yValue}";
+            }
+
             _parentChart.ShowDynamicValue(showInfo, cursor.Control.Location, isShow);
         }
 
@@ -280,6 +301,17 @@ namespace SeeSharpTools.JY.GUI
             int minXBound = (int)Math.Round(_adapter.PlotRealX);
             int maxXBound = (int)Math.Round(_adapter.PlotRealX + _adapter.PlotRealWidth);
             item.Control.SetXBoundary(minXBound, maxXBound);
+        }
+
+        internal double GetYValue(ref double xValue, int seriesIndex)
+        {
+            double yValue = double.NaN;
+            if (seriesIndex < 0 || seriesIndex > _parentChart.SeriesCount || !_parentChart.IsPlotting())
+            {
+                return yValue;
+            }
+            _parentChart.GetNearestPoint(ref xValue, out yValue, seriesIndex);
+            return yValue;
         }
     }
 }

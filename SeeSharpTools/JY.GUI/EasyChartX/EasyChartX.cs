@@ -31,7 +31,6 @@ namespace SeeSharpTools.JY.GUI
         private readonly List<ToolStripMenuItem> _cursorSeriesMenuItems = new List<ToolStripMenuItem>(Constants.MaxSeriesToDraw);
         // 保存选择配置是否使能线条的menuItem的列表
         private readonly List<ToolStripMenuItem> _enableSeriesMenuItems = new List<ToolStripMenuItem>(Constants.MaxSeriesToDraw);
-        private readonly EasyChartXSeriesCollection _series;
         // 图表视图管理类
         private readonly ChartViewManager _chartViewManager;
         // 绘制线条的管理类
@@ -84,7 +83,7 @@ namespace SeeSharpTools.JY.GUI
         {
             get
             {
-                return _chartViewManager.IsSplitView;
+                return _chartViewManager?.IsSplitView ?? false;
             }
 
             set
@@ -463,12 +462,12 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(true),
             DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
-            Editor(typeof(EasyChartXLineSeriesEditor), typeof(UITypeEditor)),
+            Editor(typeof (EasyChartXLineSeriesEditor), typeof (UITypeEditor)),
             Category("Design"),
             Description("Specify or get the attribute of all series."),
             EditorBrowsable(EditorBrowsableState.Never)
         ]
-        public EasyChartXLineSeries LineSeries { get; }
+        public EasyChartXLineSeries LineSeries => _plotManager.LineSeries;
 
         /// <summary>
         /// Get or set the series attributes.
@@ -481,20 +480,70 @@ namespace SeeSharpTools.JY.GUI
             Description("Specify or get the attribute of all series."),
             EditorBrowsable(EditorBrowsableState.Always)
         ]
-        public EasyChartXSeriesCollection Series => _series;
+        public EasyChartXSeriesCollection Series => _plotManager.Series;
 
         /// <summary>
-        /// Get or set the tab cursor attributes.
+        /// Tabcursor container. This property is just used for design time.
         /// </summary>
+        [
+            Browsable(false),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
+            Editor(typeof(TabCursorCollectionEditor), typeof(UITypeEditor)),
+            Category("Data"),
+            Description("Tabcursor container. This property is just used for design time."),
+            EditorBrowsable(EditorBrowsableState.Never)
+        ]
+        public TabCursorDesignTimeCollection TabCursorContainer { get; }
+
+        /// <summary>
+        /// TabCursor collection of EasyChartX.
+        /// </summary>
+        [
+            Browsable(true),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
+            Editor(typeof(TabCursorCollectionEditor), typeof(UITypeEditor)),
+            Category("Data"),
+            Description("TabCursor collection of EasyChartX."),
+            EditorBrowsable(EditorBrowsableState.Always)
+        ]
         public TabCursorCollection TabCursors { get; }
+
+        /// <summary>
+        /// Split view layout configure
+        /// </summary>
+        [
+            Browsable(true),
+            Category("Apperance"),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
+            Editor(typeof(PropertyClonableClassEditor), typeof(UITypeEditor)),
+            Description("Split view layout configure."),
+            EditorBrowsable(EditorBrowsableState.Always)
+        ]
+        public SplitViewLayout SplitViewLayout { get; internal set; }
 
         #endregion
 
         #region User event handler and event call
 
+        /// <summary>
+        /// EasyChartX axis view changing event delegate
+        /// </summary>
         public delegate void ViewEvents(object sender, EasyChartXViewEventArgs e);
+
+        /// <summary>
+        /// EasyChartX cursor changed event delegate
+        /// </summary>
         public delegate void CursorEvents(object sender, EasyChartXCursorEventArgs e);
+
+        /// <summary>
+        /// EasyChartX tabcursor changed event delegate
+        /// </summary>
         public delegate void TabCursorEvent(object sender, TabCursorEventArgs e);
+
+        /// <summary>
+        /// EasyChartX plot event delegate
+        /// </summary>
+        public delegate void PlotEvent(object sender, EasyChartXPlotEventArgs e);
 
         /// <summary>
         /// Axis view changed event. Raised when scale view changed by mouse or user.
@@ -557,6 +606,27 @@ namespace SeeSharpTools.JY.GUI
             TabCursorChanged(this, eventArgs);
         }
 
+        /// <summary>
+        /// Event raised before plot data.
+        /// </summary>
+        [Description("Event raised before plot data.")]
+        public event PlotEvent BeforePlot;
+
+        internal void OnBeforePlot(bool isClearOperation)
+        {
+            BeforePlot?.Invoke(this, new EasyChartXPlotEventArgs() {ParentChart = this, IsClear = isClearOperation});
+        }
+
+        /// <summary>
+        /// Event raised after plot data.
+        /// </summary>
+        [Description("Event raised after plot data.")]
+        public event PlotEvent AfterPlot;
+
+        internal void OnAfterPlot(bool isClearOperation)
+        {
+            AfterPlot?.Invoke(this, new EasyChartXPlotEventArgs() { ParentChart = this, IsClear = isClearOperation });
+        }
         #endregion
 
         #region Constructor
@@ -566,18 +636,22 @@ namespace SeeSharpTools.JY.GUI
             InitializeComponent();
             // 设计器中自动配置了Name会导致在设计时获取控件名称失败
             this.Name = "";
-            _series = new EasyChartXSeriesCollection(_chart.Series);
-            LineSeries = new EasyChartXLineSeries(_series);
-
-            _plotManager = new PlotManager(this, _chart.Series, _series);
+            // EasyChartX中最核心的两个功能类：
+            // _chartViewManager：管理chart的所有视图更新
+            // _plotManager：管理线条的数据特性
+            _plotManager = new PlotManager(this, _chart.Series);
             _chartViewManager = new ChartViewManager(this, _chart, _plotManager);
 
             _tabCursorForm = null;
             TabCursors = new TabCursorCollection(this, _chart, _chartViewManager.MainPlotArea);
+            this.TabCursorContainer = new TabCursorDesignTimeCollection(TabCursors);
+
 
             _plotManager.AdaptSeriesCount();
             //更新
             _plotManager.AdaptPlotDatasCount(_plotManager.SeriesCount);
+
+            this.SplitViewLayout = new SplitViewLayout(_chartViewManager);
 
             AdaptPlotSeriesAndChartView();
             Clear();
@@ -957,9 +1031,11 @@ namespace SeeSharpTools.JY.GUI
         public void Clear()
         {
 //            BindPlotSeriesAndChartView();
+            OnBeforePlot(true);
             _plotManager.Clear();
             _chartViewManager.Clear();
             EasyChartXValueDisplayToolTip.RemoveAll();
+            OnAfterPlot(true);
         }
 
         /// <summary>
@@ -1117,7 +1193,7 @@ namespace SeeSharpTools.JY.GUI
             if (result.ChartElementType == ChartElementType.LegendItem)
             {
                 LegendItem legendItem = (LegendItem)result.Object;
-                _hitSeries = _series.First(item => item.Name.Equals(legendItem.SeriesName));
+                _hitSeries = _plotManager.Series.First(item => item.Name.Equals(legendItem.SeriesName));
                 if (null == _hitSeries)
                 {
                     return;
@@ -1126,10 +1202,6 @@ namespace SeeSharpTools.JY.GUI
             }
             else
             {
-                if (!IsPlotting())
-                {
-                    return;
-                }
                 //在chartarea区域显示当前缩放需要显示的光标
                 _hitPlotArea = _chartViewManager.GetHitPlotArea(result);
                 if (null == _hitPlotArea)
@@ -1140,7 +1212,10 @@ namespace SeeSharpTools.JY.GUI
                 switch (eventArgs.Button)
                 {
                     case MouseButtons.Left:
-                        ShowCursorDataValue();
+                        if (IsPlotting() && IsCursorMode(_hitPlotArea))
+                        {
+                            ShowCursorDataValue();
+                        }
                         break;
                     case MouseButtons.Right:
                         ShowContextMenu(eventArgs);
@@ -1181,10 +1256,6 @@ namespace SeeSharpTools.JY.GUI
 
         private void ShowCursorDataValue()
         {
-            if (!IsCursorMode(_hitPlotArea))
-            {
-                return;
-            }
             int seriesIndex = GetCursorSeriesIndex();
             string dispText = MoveCursorAndShowValue(_hitPlotArea, seriesIndex);
             if (string.IsNullOrEmpty(dispText))
@@ -1255,6 +1326,19 @@ namespace SeeSharpTools.JY.GUI
         
         private void RefreshContextMenuItems()
         {
+            // 配置未绘图情况下部分菜单项不使能
+            bool isPlotting = IsPlotting();
+            ToolStripMenuItem_xAxisZoom.Enabled = isPlotting;
+            ToolStripMenuItem_yAxisZoom.Enabled = isPlotting;
+            ToolStripMenuItem_windowZoom.Enabled =isPlotting;
+            ToolStripMenuItem_zoomReset.Enabled = isPlotting;
+            ToolStripMenuItem_showValue.Enabled = isPlotting;
+            ToolStripMenuItem_saveAsPicture.Enabled = isPlotting;
+            ToolStripMenuItem_saveAsCsv.Enabled = isPlotting;
+            ToolStripMenuItem_showSeriesParent.Enabled = isPlotting;
+            ToolStripMenuItem_cursorSeriesParent.Enabled = isPlotting;
+            tabCursorToolStripMenuItem.Enabled = isPlotting;
+            // 根据当前的用户配置更新各个菜单项的勾选情况
             ToolStripMenuItem_xAxisZoom.Checked = EasyChartXCursor.CursorMode.Zoom == _hitPlotArea.XCursor.Mode &&
                                                   EasyChartXCursor.CursorMode.Zoom != _hitPlotArea.YCursor.Mode;
             ToolStripMenuItem_yAxisZoom.Checked = EasyChartXCursor.CursorMode.Zoom != _hitPlotArea.XCursor.Mode &&
@@ -1265,7 +1349,7 @@ namespace SeeSharpTools.JY.GUI
             toolStripMenuItem_splitView.Checked = _chartViewManager.IsSplitView;
             ToolStripMenuItem_legendVisible.Checked = LegendVisible;
             ToolStripMenuItem_yAxisAutoScale.Checked = _hitPlotArea.AxisY.AutoScale;
-
+            
             // 分区视图隐藏CursorSeries
 //            ToolStripMenuItem_showSeriesParent.Visible = !_chartViewManager.IsSplitView;
             ToolStripMenuItem_cursorSeriesParent.Visible = (!_chartViewManager.IsSplitView && IsCursorMode(_hitPlotArea));
@@ -1292,12 +1376,15 @@ namespace SeeSharpTools.JY.GUI
                     _enableSeriesMenuItems.Add(seriesMenuItem);
                 }
             }
+            // 只有在非分区模式下用户才可以选择是否显示某个Series
+            bool seriesMenuEnabled = !_chartViewManager.IsSplitView;
             for (int seriesIndex = 0; seriesIndex < _plotManager.SeriesCount; seriesIndex++)
             {
                 Series plotSeries = _plotManager.PlotSeries[seriesIndex];
                 _enableSeriesMenuItems[seriesIndex].Text = plotSeries.Name;
                 _enableSeriesMenuItems[seriesIndex].Visible = _hitPlotArea.Name.Equals(plotSeries.ChartArea);
                 _enableSeriesMenuItems[seriesIndex].Checked = plotSeries.Enabled;
+                _enableSeriesMenuItems[seriesIndex].Enabled = seriesMenuEnabled;
             }
         }
 
@@ -1380,10 +1467,10 @@ namespace SeeSharpTools.JY.GUI
         private int GetCursorSeriesIndex()
         {
             int selectSeriesIndex = 0;
-            Series selectSeries = null;
             if (!_chartViewManager.IsSplitView)
             {
                 int selectIndex = _cursorSeriesMenuItems.FindIndex(seriesItem => seriesItem.Checked && seriesItem.Enabled);
+                Series selectSeries = null;
                 if (selectIndex >= 0)
                 {
                     selectSeries = _plotManager.PlotSeries.FindByName(_cursorSeriesMenuItems[selectIndex].Text);
@@ -1709,10 +1796,6 @@ namespace SeeSharpTools.JY.GUI
             if (null != menuItem.Tag && Enum.TryParse(menuItem.Tag.ToString(), out markerType))
             {
                 _hitSeries.Marker = markerType;
-                if (_hitSeries.Marker != EasyChartXSeries.MarkerType.None)
-                {
-                    _hitSeries.Type = EasyChartXSeries.LineType.Line;
-                }
             }
         }
 
@@ -1794,6 +1877,7 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         internal void PlotDataInRange()
         {
+            OnBeforePlot(false);
             // 如果不是分区视图则统一绘制，如果是分区视图则分别绘制每条线
             if (!_chartViewManager.IsSplitView)
             {
@@ -1810,6 +1894,7 @@ namespace SeeSharpTools.JY.GUI
                     _plotManager.PlotDataInRange(beginX, endX, i, true);
                 }
             }
+            OnAfterPlot(false);
         }
 
         private bool IsCursorMode(EasyChartXPlotArea plotArea)
@@ -1820,6 +1905,14 @@ namespace SeeSharpTools.JY.GUI
             }
             return EasyChartXCursor.CursorMode.Cursor == _hitPlotArea.XCursor.Mode &&
                    EasyChartXCursor.CursorMode.Cursor == _hitPlotArea.YCursor.Mode;
+        }
+
+        internal int GetNearestPoint(ref double xValue, out double yValue, int seriesIndex)
+        {
+            yValue = double.NaN;
+            int lineIndex;
+            DataEntity cursorData = _plotManager.GetDataEntityBySeriesIndex(seriesIndex, out lineIndex);
+            return cursorData.FindeNearestIndex(ref xValue, ref yValue, lineIndex);
         }
 
         #endregion

@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms.DataVisualization.Charting;
 using SeeSharpTools.JY.GUI.EasyChartXData;
+using SeeSharpTools.JY.GUI.EasyChartXEditor;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 {
     internal class PlotManager
     {
         public readonly SeriesCollection PlotSeries;
-        private readonly EasyChartXSeriesCollection _lineSeries;
+        private readonly EasyChartXSeriesCollection _series;
 
         internal DataCheckParameters DataCheckParams;
 
@@ -35,6 +36,10 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         public bool CumulativePlot { get; set; }
         private int _plotSeriesCount;
 
+        public EasyChartXSeriesCollection Series => _series;
+
+        public EasyChartXLineSeries LineSeries { get; }
+
         public int SeriesCount
         {
             get { return _plotSeriesCount;}
@@ -45,29 +50,33 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                     return;
                 }
                 _plotSeriesCount = value;
-                _easyChart?.AdaptPlotSeriesAndChartView();
+                _parentChart?.AdaptPlotSeriesAndChartView();
             }
         }
 
         public bool IsPlotting { get; private set; }
-        private readonly EasyChartX _easyChart;
+        private readonly EasyChartX _parentChart;
 
         public readonly List<DataEntity> PlotDatas;
 
-        internal PlotManager(EasyChartX easyChart, SeriesCollection plotSeries, EasyChartXSeriesCollection lineSeries)
+        internal PlotManager(EasyChartX parentChart, SeriesCollection plotSeries)
         {
+
+            // LineSeries只是一个用于维护对外接口的属性
             this._fitType = EasyChartX.FitType.Range;
 
             this.IsPlotting = false;
-            this._easyChart = easyChart;
+            this._parentChart = parentChart;
             this.CumulativePlot = false;
             this._plotSeriesCount = 1;
 
             this.PlotSeries = plotSeries;
             this._plotSeriesCount = PlotSeries.Count;
-            this._lineSeries = lineSeries;
-            this.PlotDatas = new List<DataEntity>(Constants.MaxPointsInSingleSeries);
 
+            this._series = new EasyChartXSeriesCollection(plotSeries, parentChart);
+            LineSeries = new EasyChartXLineSeries(_series);
+
+            this.PlotDatas = new List<DataEntity>(Constants.MaxPointsInSingleSeries);
             this.DataCheckParams = new DataCheckParameters();
         }
 
@@ -365,13 +374,13 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             {
                 return;
             }
-            _lineSeries.AdaptSeriesCount(_plotSeriesCount);
+            _series.AdaptSeriesCount(_plotSeriesCount);
             if (_plotSeriesCount > PlotSeries.Count)
             {
                 for (int i = PlotSeries.Count; i < _plotSeriesCount; i++)
                 {
                     Series newSeries = new Series();
-                    ((EasyChartXSeries)_lineSeries[i]).AdaptBaseSeries(newSeries);
+                    ((EasyChartXSeries)_series[i]).AdaptBaseSeries(newSeries);
                     PlotSeries.Add(newSeries);
                 }
                 // 如果当前没有绘图则使用默认数据填充
@@ -415,7 +424,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         private void PlotDefaultView()
         {
             const int defaultViewSize = 2;
-            const int startOffset = 2000;
+            const int startOffset = 500;
             const int yValue = 100;
             double[] xData = new double[defaultViewSize];
             double[] yData = new double[defaultViewSize];
@@ -427,6 +436,10 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             foreach (Series singleSeries in PlotSeries)
             {
                 singleSeries.Points.DataBindXY(xData, yData);
+                foreach (DataPoint point in singleSeries.Points)
+                {
+                    point.IsEmpty = true;
+                }
             }
         }
 
@@ -490,7 +503,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         }
 
         public void GetMaxAndMinYValue(EasyChartXPlotArea plotArea, out double maxYValue, out double minYValue, 
-            int seriesIndex = -1)
+            int seriesIndex)
         {
             maxYValue = double.NaN;
             minYValue = double.NaN;
@@ -501,10 +514,10 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 // 所有的类型都相同则计算全局最大值
                 if (PlotSeries.All(item => item.YAxisType == yAxisType))
                 {
-                    PlotDatas[0].GetMaxAndMinYValue(out maxYValue, out minYValue);
+                    PlotDatas[0].GetMaxAndMinYValue(out maxYValue, out minYValue, -1);
                     for (int i = 1; i < PlotDatas.Count; i++)
                     {
-                        PlotDatas[i].GetMaxAndMinYValue(out tmpMaxYValue, out tmpMinYValue);
+                        PlotDatas[i].GetMaxAndMinYValue(out tmpMaxYValue, out tmpMinYValue, -1);
                         if (tmpMaxYValue > maxYValue)
                         {
                             maxYValue = tmpMaxYValue;
@@ -554,7 +567,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         }
 
         public void GetMaxAndMinY2Value(EasyChartXPlotArea plotArea, out double maxYValue, out double minYValue, 
-            int seriesIndex = -1)
+            int seriesIndex)
         {
             maxYValue = double.NaN;
             minYValue = double.NaN;

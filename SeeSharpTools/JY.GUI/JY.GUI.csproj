@@ -100,9 +100,27 @@
     <Compile Include="EasyButton\EasyButtunDesigner.cs" />
     <Compile Include="EasyChartX\EasyChartXData\PlotBufferBase.cs" />
     <Compile Include="EasyChartX\EasyChartXData\XDataType.cs" />
+    <Compile Include="EasyChartX\EasyChartXEditor\TabCursorCollectionEditor.cs" />
+    <Compile Include="EasyChartX\EasyChartXEditor\TabCursorDesignTimeCollection.cs" />
+    <Compile Include="EasyChartX\EasyChartXEvents\EasyChartXPlotEventArgs.cs" />
+    <Compile Include="Utility\CollectionPropertyEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utility\CollectionPropertyEditorForm.Designer.cs">
+      <DependentUpon>CollectionPropertyEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\PropertyClonableClassEditor.cs" />
+    <Compile Include="Utility\CollectionPropertyEditor.cs" />
     <Compile Include="EasyChartX\EasyChartXEditor\EasyChartXLineSeries.cs" />
     <Compile Include="EasyChartX\EasyChartXData\ShallowPlotBuffer.cs" />
+    <Compile Include="Utility\PropertiesEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utility\PropertiesEditorForm.Designer.cs">
+      <DependentUpon>PropertiesEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EasyChartX\EasyChartXEvents\TabCursorEventArgs.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\SplitViewLayout.cs" />
     <Compile Include="EasyChartX\TabCursorUtility\TabCursorInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,7 +163,7 @@
     <Compile Include="EasyChartX\EasyChartXUtility\EasyChartXPlotArea.cs" />
     <Compile Include="EasyChartX\EasyChartXUtility\EasyChartXPlotAreaCollection.cs" />
     <Compile Include="EasyChartX\EasyChartXUtility\PlotManager.cs" />
-    <Compile Include="EasyChartX\EasyChartXUtility\EasyChartXSortDirection.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\LayoutDirection.cs" />
     <Compile Include="EasyChartX\EasyChartXDesigner.cs" />
     <Compile Include="EasyChartX\EasyChartXEvents\EasyChartXCursorEventArgs.cs" />
     <Compile Include="EasyChartX\EasyChartXEvents\EasyChartXViewEventArgs.cs" />
@@ -240,9 +258,9 @@
     <Compile Include="PathControl\PathControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PathControl\PathControl.designer.cs" >
-	  <DependentUpon>PathControl.cs</DependentUpon>
-	</Compile>
+    <Compile Include="PathControl\PathControl.designer.cs">
+      <DependentUpon>PathControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PathControl\PathControlDesigner.cs" />
     <Compile Include="PressureGauge\PressureGauge.cs">
       <SubType>UserControl</SubType>
@@ -364,6 +382,7 @@
     <Compile Include="Utility\ColorSection.cs" />
     <Compile Include="Utility\HSLColor.cs" />
     <Compile Include="Utility\iColors.cs" />
+    <Compile Include="Utility\PropertyClonableClass.cs" />
     <Compile Include="Utility\TickMajor.cs" />
     <Compile Include="Utility\TickMinor.cs" />
     <Compile Include="ViewController\ControlElements\ViewControlElement.cs" />
@@ -413,8 +432,15 @@
     <EmbeddedResource Include="EasyChartX\EasyChartX.resx">
       <DependentUpon>EasyChartX.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Utility\CollectionPropertyEditorForm.resx">
+      <DependentUpon>CollectionPropertyEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utility\PropertiesEditorForm.resx">
+      <DependentUpon>PropertiesEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EasyChartX\TabCursorUtility\TabCursorInfoForm.resx">
       <DependentUpon>TabCursorInfoForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EasyChartX\TabCursorUtility\TabCursorControl.resx">
       <DependentUpon>TabCursorControl.cs</DependentUpon>

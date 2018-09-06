@@ -21,15 +21,18 @@ namespace SeeSharpTools.JY.GUI
         };
 
         private readonly SeriesCollection _plotSeries;
+        private readonly EasyChartX _parentChart;
 
-        internal EasyChartXSeriesCollection(SeriesCollection chartSeries)
+        internal EasyChartXSeriesCollection(SeriesCollection chartSeries, EasyChartX parentChart)
         {
             this._plotSeries = chartSeries;
             _lineSeries = new List<EasyChartXSeries>(Constants.MaxSeriesToDraw);
+            this._parentChart = parentChart;
             // 默认添加n个Series
             foreach (Series plotSeries in _plotSeries)
             {
                 EasyChartXSeries series = new EasyChartXSeries();
+                series.SetSeriesCollecton(this);
                 series.Name = plotSeries.Name;
                 series.AdaptBaseSeries(plotSeries);
                 // 为了判断是否为设计时，只能使用原集合的Add
@@ -111,6 +114,7 @@ namespace SeeSharpTools.JY.GUI
         {
             // 开始内部Add后即设计时代码已结束
             _designEndFlag = true;
+            item.SetSeriesCollecton(this);
             int index = _lineSeries.FindIndex(existItem => existItem.Name.Equals(item.Name));
             if (index >= 0 && index < _lineSeries.Count)
             {
@@ -176,6 +180,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 return;
             }
+            item.SetSeriesCollecton(this);
             if (null == item.Name || "".Equals(item.Name))
             {
                 string seriesName = "";
@@ -186,7 +191,6 @@ namespace SeeSharpTools.JY.GUI
                 } while (!_lineSeries.Any(existItem => existItem.Name.Equals(seriesName)));
                 item.Name = seriesName;
             }
-            item.SetSeriesCollecton(this);
             _lineSeries.Insert(index, item);
             ReAdaptSeriesFromFront(index);
         }
@@ -246,6 +250,22 @@ namespace SeeSharpTools.JY.GUI
                     value.AdaptBaseSeries(_plotSeries[index]);
                 }
                 _lineSeries[index] = value;
+            }
+        }
+
+        internal void RefreshPlotAxis(EasyChartXSeries series)
+        {
+            bool isSplitView = _parentChart.SplitView;
+            if (null == series)
+            {
+                foreach (EasyChartXSeries xSeries in _lineSeries)
+                {
+                    xSeries.RefreshPlotAxis(isSplitView);
+                }
+            }
+            else
+            {
+                series.RefreshPlotAxis(isSplitView);
             }
         }
 

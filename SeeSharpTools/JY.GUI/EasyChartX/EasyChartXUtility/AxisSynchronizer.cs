@@ -65,6 +65,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 
                 this.SlaveMaxValue = slaveMaxValue;
                 this.SlaveMinValue = slaveMinValue;
+                // 更新副坐标轴的真实范围
+                _slaveAxis.SetSlaveAxisSpecifiedRange(slaveMaxValue, slaveMinValue);
             }
         }
 

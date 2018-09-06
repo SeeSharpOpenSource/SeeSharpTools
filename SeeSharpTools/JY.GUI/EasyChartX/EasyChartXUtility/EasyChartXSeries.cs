@@ -139,7 +139,7 @@ namespace SeeSharpTools.JY.GUI
                     return;
                 }
                 _xPlotAxis = value;
-                RefreshPlotAxis();
+                _seriesCollection?.RefreshPlotAxis(this);
             }
         }
 
@@ -160,7 +160,7 @@ namespace SeeSharpTools.JY.GUI
                     return;
                 }
                 _yPlotAxis = value;
-                RefreshPlotAxis();
+                _seriesCollection?.RefreshPlotAxis(this);
             }
         }
 
@@ -180,7 +180,8 @@ namespace SeeSharpTools.JY.GUI
                 _type = value;
                 if (null != _baseSeries)
                 {
-                    _baseSeries.ChartType = (SeriesChartType) _type;
+                    // 如果marker不为none，则自动将线型修改为Line
+                    _baseSeries.ChartType = (MarkerType.None == _marker) ? (SeriesChartType)_type : SeriesChartType.Line;
                 }
             }
         }
@@ -201,6 +202,8 @@ namespace SeeSharpTools.JY.GUI
                 if (null != _baseSeries)
                 {
                     _baseSeries.MarkerStyle = (MarkerStyle) _marker;
+                    // 如果marker不为none，则自动将线型修改为Line
+                    _baseSeries.ChartType = (MarkerType.None == _marker) ? (SeriesChartType)_type : SeriesChartType.Line;
                 }
             }
         }
@@ -221,7 +224,7 @@ namespace SeeSharpTools.JY.GUI
             baseSeries.BorderWidth = (int) this._lineWidth;
             baseSeries.ChartType = (SeriesChartType) this._type;
             baseSeries.MarkerStyle = (MarkerStyle) this._marker;
-            RefreshPlotAxis();
+            _seriesCollection.RefreshPlotAxis(this);
         }
 
         // 取消配置的Series和EasyChartXSeries的绑定
@@ -230,13 +233,21 @@ namespace SeeSharpTools.JY.GUI
             this._baseSeries = null;
         }
         
-        // 更新线条显示的坐标轴
-        private void RefreshPlotAxis()
+        // 更新线条显示的坐标轴，如果在分区视图，则始终使用主坐标轴显示。
+        // 坐标轴更新在新建线条/分区视图切换/用户修改时需要更新
+        // 需要获取isSplitView，所以必须委托SeriesCollection去执行，后期考虑再优化
+        internal void RefreshPlotAxis(bool isSplitView)
         {
-            if (null != _baseSeries)
+            if (null == _baseSeries) return;
+            if (isSplitView)
             {
-                _baseSeries.XAxisType = (AxisType) _xPlotAxis;
-                _baseSeries.YAxisType = (AxisType) _yPlotAxis;
+                _baseSeries.XAxisType = AxisType.Primary;
+                _baseSeries.YAxisType = AxisType.Primary;
+            }
+            else
+            {
+                _baseSeries.XAxisType = (AxisType)_xPlotAxis;
+                _baseSeries.YAxisType = (AxisType)_yPlotAxis;
             }
         }
 

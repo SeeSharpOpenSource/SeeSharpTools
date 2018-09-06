@@ -35,11 +35,15 @@
             this.ColumnSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CursorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SeriesIndex = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.XValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.YValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button_add = new System.Windows.Forms.Button();
             this.button_delete = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
+            this.tableLayoutPanel_buttonPanel = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_cursorInfo)).BeginInit();
+            this.tableLayoutPanel_buttonPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView_cursorInfo
@@ -64,12 +68,14 @@
             this.ColumnSelect,
             this.ColorColumn,
             this.CursorColumn,
-            this.XValueColumn});
+            this.SeriesIndex,
+            this.XValueColumn,
+            this.YValue});
             this.dataGridView_cursorInfo.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_cursorInfo.Name = "dataGridView_cursorInfo";
             this.dataGridView_cursorInfo.RowHeadersVisible = false;
             this.dataGridView_cursorInfo.RowTemplate.Height = 23;
-            this.dataGridView_cursorInfo.Size = new System.Drawing.Size(307, 112);
+            this.dataGridView_cursorInfo.Size = new System.Drawing.Size(411, 106);
             this.dataGridView_cursorInfo.TabIndex = 0;
             this.dataGridView_cursorInfo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_cursorInfo_CellContentClick);
             this.dataGridView_cursorInfo.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_cursorInfo_CellContentClick);
@@ -100,23 +106,40 @@
             // 
             // CursorColumn
             // 
-            this.CursorColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CursorColumn.HeaderText = "Cursor Name";
+            this.CursorColumn.HeaderText = "Name";
             this.CursorColumn.Name = "CursorColumn";
+            this.CursorColumn.Width = 70;
+            // 
+            // SeriesIndex
+            // 
+            this.SeriesIndex.HeaderText = "Series";
+            this.SeriesIndex.Name = "SeriesIndex";
+            this.SeriesIndex.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SeriesIndex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.SeriesIndex.Width = 80;
             // 
             // XValueColumn
             // 
             this.XValueColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.XValueColumn.HeaderText = "X Value";
+            this.XValueColumn.MaxInputLength = 50;
             this.XValueColumn.Name = "XValueColumn";
+            // 
+            // YValue
+            // 
+            this.YValue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.YValue.HeaderText = "Y Value";
+            this.YValue.MaxInputLength = 50;
+            this.YValue.Name = "YValue";
+            this.YValue.ReadOnly = true;
             // 
             // button_add
             // 
             this.button_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_add.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_add.Location = new System.Drawing.Point(12, 117);
+            this.button_add.Location = new System.Drawing.Point(3, 3);
             this.button_add.Name = "button_add";
-            this.button_add.Size = new System.Drawing.Size(75, 23);
+            this.button_add.Size = new System.Drawing.Size(69, 21);
             this.button_add.TabIndex = 1;
             this.button_add.Text = "Add";
             this.button_add.UseVisualStyleBackColor = true;
@@ -126,9 +149,9 @@
             // 
             this.button_delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_delete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_delete.Location = new System.Drawing.Point(110, 117);
+            this.button_delete.Location = new System.Drawing.Point(121, 3);
             this.button_delete.Name = "button_delete";
-            this.button_delete.Size = new System.Drawing.Size(75, 23);
+            this.button_delete.Size = new System.Drawing.Size(69, 21);
             this.button_delete.TabIndex = 2;
             this.button_delete.Text = "Delete";
             this.button_delete.UseVisualStyleBackColor = true;
@@ -138,22 +161,40 @@
             // 
             this.button_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_clear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_clear.Location = new System.Drawing.Point(208, 117);
+            this.button_clear.Location = new System.Drawing.Point(239, 3);
             this.button_clear.Name = "button_clear";
-            this.button_clear.Size = new System.Drawing.Size(75, 23);
+            this.button_clear.Size = new System.Drawing.Size(69, 21);
             this.button_clear.TabIndex = 3;
             this.button_clear.Text = "Clear";
             this.button_clear.UseVisualStyleBackColor = true;
             this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
             // 
+            // tableLayoutPanel_buttonPanel
+            // 
+            this.tableLayoutPanel_buttonPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel_buttonPanel.ColumnCount = 5;
+            this.tableLayoutPanel_buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel_buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel_buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_buttonPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel_buttonPanel.Controls.Add(this.button_add, 0, 0);
+            this.tableLayoutPanel_buttonPanel.Controls.Add(this.button_clear, 4, 0);
+            this.tableLayoutPanel_buttonPanel.Controls.Add(this.button_delete, 2, 0);
+            this.tableLayoutPanel_buttonPanel.Location = new System.Drawing.Point(46, 112);
+            this.tableLayoutPanel_buttonPanel.Name = "tableLayoutPanel_buttonPanel";
+            this.tableLayoutPanel_buttonPanel.RowCount = 1;
+            this.tableLayoutPanel_buttonPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_buttonPanel.Size = new System.Drawing.Size(311, 27);
+            this.tableLayoutPanel_buttonPanel.TabIndex = 4;
+            // 
             // TabCursorInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 145);
-            this.Controls.Add(this.button_clear);
-            this.Controls.Add(this.button_delete);
-            this.Controls.Add(this.button_add);
+            this.ClientSize = new System.Drawing.Size(411, 145);
+            this.Controls.Add(this.tableLayoutPanel_buttonPanel);
             this.Controls.Add(this.dataGridView_cursorInfo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -163,6 +204,7 @@
             this.Deactivate += new System.EventHandler(this.DynamicCursorInfoForm_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DynamicCursorInfoForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_cursorInfo)).EndInit();
+            this.tableLayoutPanel_buttonPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -176,6 +218,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnSelect;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CursorColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn SeriesIndex;
         private System.Windows.Forms.DataGridViewTextBoxColumn XValueColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn YValue;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_buttonPanel;
     }
 }

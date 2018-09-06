@@ -8,7 +8,7 @@ using SeeSharpTools.JY.GUI.EasyChartXUtility;
 namespace SeeSharpTools.JY.GUI
 {
     /// <summary>
-    /// EasyChart axis class
+    /// EasyChartX axis class
     /// </summary>
     public class EasyChartXAxis
     {
@@ -16,8 +16,8 @@ namespace SeeSharpTools.JY.GUI
         private EasyChartXPlotArea _basePlotArea;
         private Axis _baseAxis;
 
-        private double _maxData = double.NaN;
-        private double _minData = double.NaN;
+        private double _maxData;
+        private double _minData;
 
         #region Constrctor
 
@@ -31,10 +31,6 @@ namespace SeeSharpTools.JY.GUI
             this._autoScale = true;
             this.AutoZoomReset = false;
             this.InitWithScaleView = false;
-            this.Maximum = double.NaN;
-            this.Minimum = double.NaN;
-            this.ViewMaximum = double.NaN;
-            this.ViewMinimum = double.NaN;
         }
 
         internal void Initialize(EasyChartX baseEasyChart, EasyChartXPlotArea basePlotArea, Axis baseAxis)
@@ -43,14 +39,37 @@ namespace SeeSharpTools.JY.GUI
             this._baseEasyChart = baseEasyChart;
             this._basePlotArea = basePlotArea;
             this._baseAxis = baseAxis;
-
-            this._specifiedMax = baseAxis.Maximum;
-            this._specifiedMin = baseAxis.Minimum;
-
+            
             this._viewMax = baseAxis.ScaleView.ViewMaximum;
             this._viewMin = baseAxis.ScaleView.ViewMinimum;
 
+            if (IsXAxis())
+            {
+                this._maxData = Constants.DefaultXMax;
+                this._minData = Constants.DefaultXMin;
+                this._specifiedMax = Constants.DefaultXMax;
+                this._specifiedMin = Constants.DefaultXMin;
+                this.ViewMaximum = Constants.DefaultXMax;
+                this.ViewMinimum = Constants.DefaultXMin;
+            }
+            else
+            {
+                this._maxData = Constants.DefaultYMax;
+                this._minData = Constants.DefaultYMin;
+                this._specifiedMax = Constants.DefaultYMax;
+                this._specifiedMin = Constants.DefaultYMin;
+                this.ViewMaximum = Constants.DefaultYMax;
+                this.ViewMinimum = Constants.DefaultYMin;
+            }
+            RefreshAxisRange();
+            if (IsYAxis())
+            {
+                RefreshYMajorGridInterval();
+            }
             SetAxisLabelStyle();
+            // 设置主网格默认为虚线
+            this.MajorGridType = GridStyle.Dash;
+            this.MinorGridType = GridStyle.DashDot;
         }
 
         // TODO 为了避免初始化时范围为double.nan的问题，后续优化
@@ -133,16 +152,16 @@ namespace SeeSharpTools.JY.GUI
             get { return _baseEasyChart.IsPlotting() ? _baseAxis.Maximum : _specifiedMax; }
             set
             {
-                if (value <= _specifiedMin || double.IsNaN(value))
+                if (double.IsNaN(value))
                 {
                     return;
                 }
                 _specifiedMax = value;
-                if (null != _baseAxis && _baseEasyChart.IsPlotting())
+                if (value - _specifiedMin < Constants.MinLegalInterval || null == _baseAxis)
                 {
-                    _baseEasyChart.RefreshAxesRange(_basePlotArea);
-                    _baseEasyChart.RefreshScaleViewAndSendEvent(_basePlotArea.ChartArea, this._baseAxis, false);
+                    return;
                 }
+                RefreshUserConfigAxisRange();
             }
         }
 
@@ -159,15 +178,33 @@ namespace SeeSharpTools.JY.GUI
             get { return _baseEasyChart.IsPlotting() ? _baseAxis.Minimum : _specifiedMin; }
             set
             {
-                if (_specifiedMax <= value || double.IsNaN(value))
+                if (double.IsNaN(value))
                 {
                     return;
                 }
                 _specifiedMin = value;
-                if (null != _baseAxis && _baseEasyChart.IsPlotting())
+                if (_specifiedMax - value < Constants.MinLegalInterval || null == _baseAxis)
                 {
-                    _baseEasyChart.RefreshAxesRange(_basePlotArea);
-                    _baseEasyChart.RefreshScaleViewAndSendEvent(_basePlotArea.ChartArea, this._baseAxis, false);
+                    return;
+                }
+                RefreshUserConfigAxisRange();
+            }
+        }
+
+        private void RefreshUserConfigAxisRange()
+        {
+            // 如果正在绘图，则根据用户的配置和当前的数据更新坐标轴范围
+            if (_baseEasyChart.IsPlotting())
+            {
+                _baseEasyChart.RefreshAxesRange(_basePlotArea);
+                _baseEasyChart.RefreshScaleViewAndSendEvent(_basePlotArea.ChartArea, this._baseAxis, false);
+            }
+            else
+            {
+                RefreshAxisRange();
+                if (IsYAxis())
+                {
+                    RefreshYMajorGridInterval();
                 }
             }
         }
@@ -494,6 +531,27 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
+        /// <summary>
+        /// The percentage of Major grid tick line width to the chart width or height
+        /// 主网格在坐标轴另一侧的长度占整个图表的长或宽的百分比
+        /// </summary>
+        [
+            Browsable(true),
+            Category("Appearance"),
+            Description("Specify the color of minor grids.")
+        ]
+        public float TickWidth
+        {
+            get { return _baseAxis?.MajorTickMark.Size ?? 0; }
+            set
+            {
+                if (_baseAxis?.MajorTickMark != null)
+                {
+                    _baseAxis.MajorTickMark.Size = value;
+                }
+            }
+        }
+
         #endregion
 
         #region Public method
@@ -563,8 +621,8 @@ namespace SeeSharpTools.JY.GUI
         {
             if (double.IsNaN(max) || double.IsNaN(min))
             {
-                this._maxData = double.NaN;
-                this._minData = double.NaN;
+                this._maxData = Constants.DefaultXMax;
+                this._minData = Constants.DefaultXMin;
             }
             else
             {
@@ -587,6 +645,13 @@ namespace SeeSharpTools.JY.GUI
             Utility.RoundYRange(ref maxYValue, ref minYValue, IsLogarithmic);
             _maxData = maxYValue;
             _minData = minYValue;
+        }
+
+        // 设置副坐标轴真实的范围
+        internal void SetSlaveAxisSpecifiedRange(double maxValue, double minValue)
+        {
+            _specifiedMax = maxValue;
+            _specifiedMin = minValue;
         }
 
         // 副坐标轴使用，用于修改配置最大最小值
@@ -638,32 +703,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 return;
             }
-
-            _baseAxis.LabelStyle.Format = Constants.DefaultLabelFormat;
-
-            if (IsXAxis())
-            {
-                _baseAxis.Maximum = 1000;
-                _baseAxis.Minimum = 0;
-                //                _baseAxis.Interval = Constants.ClearXInterval;
-            }
-            else if (IsYAxis())
-            {
-                _baseAxis.Maximum = 3.5;
-                _baseAxis.Minimum = 1;
-                if (!IsLogarithmic)
-                {
-                    _baseAxis.Interval = Constants.ClearYInterval;
-                }
-                else
-                {
-                    RefreshYMajorGridInterval();
-                }
-            }
-            if (IsZoomed)
-            {
-                ZoomReset();
-            }
+            CancelScaleView();
         }
 
         internal void ResetAxisScaleView()
@@ -707,15 +747,24 @@ namespace SeeSharpTools.JY.GUI
             this.MinorGridColor = template.MinorGridColor;
             this.MinorGridType = template.MinorGridType;
 
+            this.TickWidth = template.TickWidth;
+
             // 需要判断赋值顺序
             double max, min;
             template.GetSpecifiedRange(out max, out min);
             this._specifiedMax = max;
             this._specifiedMin = min;
+            this.RefreshAxisRange();
+
+            if (IsYAxis())
+            {
+                RefreshYMajorGridInterval();
+            }
 
             template.GetViewRange(out max, out min);
             this._viewMax = max;
             this._viewMin = min;
+
             this.Color = template.Color;
         }
 
@@ -818,6 +867,7 @@ namespace SeeSharpTools.JY.GUI
                 _baseAxis.Interval = (Math.Log10(viewMax) - Math.Log10(viewMin)) / Constants.YMajorGridCount;
                 SetLabelFormat(viewMin);
             }
+//            _baseAxis.CustomLabels.Clear();
         }
 
         private bool IsXAxis(params PlotAxis[] axis)
