@@ -16,10 +16,12 @@ namespace SeeSharpTools.JY.TCP
         /// </summary>
         /// <param name="ipAddress">IP地址</param>
         /// <param name="port">端口</param>
-        public JYTCPClient(String ipAddress, int port)
+        public JYTCPClient(String ipAddress, int port,ChannelDataType dataType= ChannelDataType.DataStream)
         {
             _ipAddress = ipAddress;
             _port = port;
+            _dataType = dataType;
+
             _client = new JYAsyncTcpClient(_ipAddress, _port);
             if (_client == null)
             {
@@ -29,17 +31,34 @@ namespace SeeSharpTools.JY.TCP
             _bufferSize = 1024 * 1024 * 100;//10MB
 
             _cricularBuffer = new CircularBuffer<byte>((int)_bufferSize);
+            _stringBuffer = new StringBuffer((int)_bufferSize);
 
+            switch (_dataType)
+            {
+                case ChannelDataType.DataStream:
+                    _client.DatagramReceived += _client_DatagramReceived;
+
+                    break;
+                case ChannelDataType.String:
+                    _client.PlaintextReceived += _client_PlaintextReceived;
+
+                    break;
+                default:
+                    break;
+            }
             _client.ServerDisconnected += _client_ServerDisconnected;
-            _client.DatagramReceived += _client_DatagramReceived;
             _client.Retries = 10;
             _client.RetryInterval = 1;
         }
 
+        private void _client_PlaintextReceived(object sender, TcpDatagramReceivedEventArgs<string> e)
+        {
+            _stringBuffer.Enqueue(e.Datagram);
+        }
+
         private void _client_DatagramReceived(object sender, TcpDatagramReceivedEventArgs<byte[]> e)
         {
-            eventArgs = e;
-            _cricularBuffer.Enqueue(eventArgs.Datagram);
+            _cricularBuffer.Enqueue(e.Datagram);
         }
 
         #region-----------------------------private------------------
@@ -47,6 +66,8 @@ namespace SeeSharpTools.JY.TCP
         private string _ipAddress;
         private int _port;
         public event EventHandler ServerDisconnected;
+
+        private ChannelDataType _dataType;
         /// <summary>
         /// 客户端句柄
         /// </summary>
@@ -61,6 +82,7 @@ namespace SeeSharpTools.JY.TCP
         /// 内部缓冲区
         /// </summary>
         CircularBuffer<byte> _cricularBuffer;
+        private StringBuffer _stringBuffer;
 
         private TcpDatagramReceivedEventArgs<byte[]> eventArgs;
 
@@ -90,7 +112,15 @@ namespace SeeSharpTools.JY.TCP
             {
                 if (_client.Connected)
                 {
-                    return _cricularBuffer.NumOfElement;
+                    switch (_dataType)
+                    {
+                        case ChannelDataType.DataStream:
+                            return _cricularBuffer.NumOfElement;
+                        case ChannelDataType.String:
+                            return _stringBuffer.NumOfElement;
+                        default:
+                            return 0;
+                    }
                 }
                 else
                 {
@@ -121,6 +151,18 @@ namespace SeeSharpTools.JY.TCP
             }
             
         }
+
+        public void ReadString(ref string Buf, int TimeOut)
+        {
+            if (_client.Connected)
+            {
+                if (_stringBuffer.NumOfElement> 0)
+                {
+                    _stringBuffer.Dequeue(ref Buf);
+                }
+            }
+        }
+
         /// <summary>
         /// 读取一维数组数据
         /// </summary>
@@ -222,6 +264,16 @@ namespace SeeSharpTools.JY.TCP
             }
 
         }
+
+        public void SendData(string dataBuf)
+        {
+            if (_client.Connected && dataBuf.Length != 0)
+            {
+                _client.Send(dataBuf);
+            }
+
+        }
+
 
         /// <summary>
         /// 发送数据

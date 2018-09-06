@@ -17,7 +17,7 @@ namespace SeeSharpTools.JY.TCP
         private TcpListener listener;
         private List<TcpClientState> clients;
         private bool disposed = false;
-
+        private byte[] receivedBytes = new byte[1];
         #endregion
 
         #region Ctors
@@ -54,6 +54,7 @@ namespace SeeSharpTools.JY.TCP
             clients = new List<TcpClientState>();
             
             listener = new TcpListener(Address, Port);
+            
             //listener.AllowNatTraversal(true);
         }
 
@@ -98,7 +99,7 @@ namespace SeeSharpTools.JY.TCP
                 IsRunning = true;
                 listener.Start();
                 listener.BeginAcceptTcpClient(
-                  new AsyncCallback(HandleTcpClientAccepted), listener);
+                     new AsyncCallback(HandleTcpClientAccepted), listener);
             }
             return this;
         }
@@ -117,7 +118,7 @@ namespace SeeSharpTools.JY.TCP
                 IsRunning = true;
                 listener.Start(backlog);
                 listener.BeginAcceptTcpClient(
-                  new AsyncCallback(HandleTcpClientAccepted), listener);
+                     new AsyncCallback(HandleTcpClientAccepted), listener);
             }
             return this;
         }
@@ -210,7 +211,11 @@ namespace SeeSharpTools.JY.TCP
                 }
 
                 // received byte and trigger event notification
-                byte[] receivedBytes = new byte[numberOfReadBytes];
+                if (receivedBytes.Length != numberOfReadBytes)
+                {
+                    receivedBytes = new byte[numberOfReadBytes];
+                }
+
                 Buffer.BlockCopy(
                   internalClient.Buffer, 0,
                   receivedBytes, 0, numberOfReadBytes);
@@ -280,6 +285,8 @@ namespace SeeSharpTools.JY.TCP
             {
                 ClientDisconnected(this, new TcpClientDisconnectedEventArgs(tcpClient));
             }
+            listener.BeginAcceptTcpClient(
+                 new AsyncCallback(HandleTcpClientAccepted), listener);
         }
 
         #endregion

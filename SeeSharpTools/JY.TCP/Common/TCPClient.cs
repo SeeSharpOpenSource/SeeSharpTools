@@ -19,7 +19,8 @@ namespace SeeSharpTools.JY.TCP
         private TcpClient tcpClient;
         private bool disposed = false;
         private int retries = 0;
-
+        private byte[] buffer;
+        private byte[] receivedBytes = new byte[1];
         #endregion
 
         #region Ctors
@@ -71,7 +72,7 @@ namespace SeeSharpTools.JY.TCP
         /// <param name="remoteHostName">远端服务器主机名</param>
         /// <param name="remotePort">远端服务器端口</param>
         public JYAsyncTcpClient(string remoteHostName, int remotePort)
-          : this(Dns.GetHostAddresses(remoteHostName), remotePort)
+          : this(Dns.GetHostAddresses(remoteHostName).Where(x => x.AddressFamily!= AddressFamily.InterNetworkV6).ToArray(), remotePort)
         {
         }
 
@@ -83,7 +84,7 @@ namespace SeeSharpTools.JY.TCP
         /// <param name="localEP">本地客户端终结点</param>
         public JYAsyncTcpClient(
           string remoteHostName, int remotePort, IPEndPoint localEP)
-          : this(Dns.GetHostAddresses(remoteHostName), remotePort, localEP)
+          : this(Dns.GetHostAddresses(remoteHostName).Where(x=> x.AddressFamily != AddressFamily.InterNetworkV6).ToArray(), remotePort, localEP)
         {
         }
 
@@ -117,7 +118,7 @@ namespace SeeSharpTools.JY.TCP
             }
             else
             {
-                this.tcpClient = new TcpClient();
+                this.tcpClient = new TcpClient( );
             }
 
             Retries = 3;
@@ -256,7 +257,7 @@ namespace SeeSharpTools.JY.TCP
             }
 
             NetworkStream stream = tcpClient.GetStream();
-            Socket socket= (Socket)stream.GetType().GetProperty("Socket", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(stream, null);;
+            Socket socket = (Socket)stream.GetType().GetProperty("Socket", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(stream, null); ;
 
             int numberOfReadBytes = 0;
             try
@@ -268,7 +269,7 @@ namespace SeeSharpTools.JY.TCP
                 numberOfReadBytes = 0;
             }
 
-            if (!socket.Connected||numberOfReadBytes == 0)
+            if (!socket.Connected || numberOfReadBytes == 0)
             {
                 // connection has been closed
                 Close();
@@ -276,8 +277,11 @@ namespace SeeSharpTools.JY.TCP
             }
 
             // received byte and trigger event notification
-            byte[] buffer = (byte[])ar.AsyncState;
-            byte[] receivedBytes = new byte[numberOfReadBytes];
+            buffer = (byte[])ar.AsyncState;
+            if (receivedBytes.Length!=numberOfReadBytes)
+            {
+                receivedBytes = new byte[numberOfReadBytes];
+            }
             Buffer.BlockCopy(buffer, 0, receivedBytes, 0, numberOfReadBytes);
             RaiseDatagramReceived(tcpClient, receivedBytes);
             RaisePlaintextReceived(tcpClient, receivedBytes);

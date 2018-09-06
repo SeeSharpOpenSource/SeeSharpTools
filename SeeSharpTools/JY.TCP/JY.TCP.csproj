@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\CircularBuffer.cs" />
+    <Compile Include="Common\Enum.cs" />
+    <Compile Include="Common\StringBuffer.cs" />
     <Compile Include="Common\TCPClient.cs" />
     <Compile Include="Common\TCPServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
