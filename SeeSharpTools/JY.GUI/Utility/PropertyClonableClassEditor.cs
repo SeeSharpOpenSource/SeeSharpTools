@@ -23,7 +23,8 @@ namespace SeeSharpTools.JY.GUI
         {
             //打开属性编辑器修改数据
             Control control = context.Instance as Control;
-            PropertyClonableClass data = context.PropertyDescriptor.GetValue(context.Instance) as PropertyClonableClass;
+            PropertyDescriptor editPropertyInfo = context.PropertyDescriptor;
+            PropertyClonableClass data = editPropertyInfo.GetValue(context.Instance) as PropertyClonableClass;
             if (null == data)
             {
                 throw new InvalidCastException("Property should be the subclass of PropertyClonableClass.");
@@ -32,7 +33,7 @@ namespace SeeSharpTools.JY.GUI
             PropertyDescriptor property = TypeDescriptor.GetProperties(control)["BackColor"];
             property.SetValue(control, control.BackColor);
 
-            return PropertiesEditorForm.EditValue("SplitViewLayout", data);
+            return PropertiesEditorForm.EditValue(editPropertyInfo.Name, data);
         }
     }
 }
