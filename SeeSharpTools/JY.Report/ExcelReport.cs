@@ -107,6 +107,32 @@ namespace SeeSharpTools.JY.Report
             set { _defaultFont = value; }
         }
 
+        /// <summary>
+        /// 返回当前Worksheet工作表的行长度，使用ChangeCurrentWorkSheet方法切换工作表
+        /// </summary>
+        public int RowCount
+        {
+            get
+            {
+                _workSheet = (Excel.Worksheet)_workBook.ActiveSheet;
+                return _workSheet.UsedRange.Rows.Count;
+
+            }
+        }
+
+        /// <summary>
+        /// 返回当前Worksheet工作表的列长度，使用ChangeCurrentWorkSheet方法切换工作表
+        /// </summary>
+        public int ColumnCount
+        {
+            get
+            {
+                _workSheet = (Excel.Worksheet)_workBook.ActiveSheet;
+                return _workSheet.UsedRange.Columns.Count;
+
+            }
+
+        }
         #endregion 公共属性
 
         #region 公共方法
