@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Numerics;
+using MathNet.Numerics.IntegralTransforms;
 using SeeSharpTools.JY.DSP.Fundamental;
 
 namespace SeeSharpTools.JY.DSP.Utility
@@ -86,21 +86,18 @@ namespace SeeSharpTools.JY.DSP.Utility
         /// </summary>
         /// <param name="signal1">waveform array1</param>
         /// <param name="signal2">waveform array2</param>
-        /// <returns>phase shift in unit of degree</returns>
+        /// <returns></returns>
         public static double CalPhaseShift(double[] signal1, double[] signal2)
         {
-            double phase = Math.Acos(Dot(signal1, signal2) / (Norm(signal1) * Norm(signal2)));
-            
-            //convert radian to degree
-            if (signal1[0] - signal2[0] < 0)
+            var signal1Hilbert = MathDotNetHilbert(signal1);
+            var signal2Hilbert = MathDotNetHilbert(signal2);
+            int dataLength = signal1.Length > signal2.Length ? signal2.Length : signal1.Length;
+            double phaseShiftSum = 0;
+            for (int i = 0; i < dataLength; i++)
             {
-                phase = - phase * 180 / Math.PI;
-            }     
-            else
-            {
-                phase = phase * 180 / Math.PI;
+                phaseShiftSum += (signal1Hilbert[i] / signal2Hilbert[i]).Phase;
             }
-            return phase;
+            return phaseShiftSum * 180 / (Math.PI * dataLength);
         }
 
         /// <summary>
@@ -109,63 +106,76 @@ namespace SeeSharpTools.JY.DSP.Utility
         /// <param name="signal1">waveform array1</param>
         /// <param name="signal2">waveform array2</param>
         /// <returns>phase shift in unit of degree</returns>
-        public static float CalPhaseShift(float[] signal1, float[] signal2)
+        public static double CalPhaseShift(float[] signal1, float[] signal2)
         {
-            float phase = (float)Math.Acos(Dot(signal1, signal2) / (Norm(signal1) * Norm(signal2)));
-
-            //convert radian to degree
-            if (signal1[0] - signal2[0] < 0)
+            var signal1Hilbert = MathDotNetHilbert(signal1);
+            var signal2Hilbert = MathDotNetHilbert(signal2);
+            int dataLength = signal1.Length > signal2.Length ? signal2.Length : signal1.Length;
+            double phaseShiftSum = 0;
+            for (int i = 0; i < dataLength; i++)
             {
-                phase = -phase * 180 / (float)Math.PI;
+                phaseShiftSum += (signal1Hilbert[i] / signal2Hilbert[i]).Phase;
             }
-            else
-            {
-                phase = phase * 180 / (float)Math.PI;
-            }
-            return phase;
+            return phaseShiftSum * 180 / (Math.PI * dataLength);
         }
 
         #endregion
 
         #region 私有方法
-        private static double Dot(double[] data1, double[] data2)
+        /// <summary>
+        /// Hilbert transform by Math.Net
+        /// </summary>
+        /// <param name="xreal"></param>
+        /// <returns></returns>
+        private static Complex[] MathDotNetHilbert(double[] xreal)
         {
-            double sum = 0;
-            for (int i = 0; i < data1.Length; i++)
+            var x = (from sample in xreal select new Complex(sample, 0)).ToArray();
+            Fourier.Forward(x, FourierOptions.Default);
+            var h = new double[x.Length];
+            var fftLengthIsOdd = (x.Length | 1) == 1;
+            if (fftLengthIsOdd)
             {
-                sum += data1[i] * data2[i];
+                h[0] = 1;
+                for (var i = 1; i < xreal.Length / 2; i++) h[i] = 2;
             }
-            return sum;
+            else
+            {
+                h[0] = 1;
+                h[(xreal.Length / 2)] = 1;
+                for (var i = 1; i < xreal.Length / 2; i++) h[i] = 2;
+            }
+            for (var i = 0; i < x.Length; i++) x[i] *= h[i];
+            Fourier.Inverse(x, FourierOptions.Default);
+
+            return x;
         }
 
-        private static float Dot(float[] data1, float[] data2)
+        /// <summary>
+        /// Hilbert transform by Math.Net
+        /// </summary>
+        /// <param name="xreal"></param>
+        /// <returns></returns>
+        private static Complex[] MathDotNetHilbert(float[] xreal)
         {
-            float sum = 0;
-            for (int i = 0; i < data1.Length; i++)
+            var x = (from sample in xreal select new Complex(sample, 0)).ToArray();
+            Fourier.Forward(x, FourierOptions.Default);
+            var h = new double[x.Length];
+            var fftLengthIsOdd = (x.Length | 1) == 1;
+            if (fftLengthIsOdd)
             {
-                sum += data1[i] * data2[i];
+                h[0] = 1;
+                for (var i = 1; i < xreal.Length / 2; i++) h[i] = 2;
             }
-            return sum;
-        }
+            else
+            {
+                h[0] = 1;
+                h[(xreal.Length / 2)] = 1;
+                for (var i = 1; i < xreal.Length / 2; i++) h[i] = 2;
+            }
+            for (var i = 0; i < x.Length; i++) x[i] *= h[i];
+            Fourier.Inverse(x, FourierOptions.Default);
 
-        private static double Norm(double[] data)
-        {
-            double squareSum = 0;
-            for (int i = 0; i < data.Length; i++)
-            {
-                squareSum += (Math.Abs(data[i]) * Math.Abs(data[i]));
-            }
-            return Math.Sqrt(squareSum);
-        }
-
-        private static float Norm(float[] data)
-        {
-            float squareSum = 0;
-            for (int i = 0; i < data.Length; i++)
-            {
-                squareSum += (Math.Abs(data[i]) * Math.Abs(data[i]));
-            }
-            return (float)Math.Sqrt(squareSum);
+            return x;
         }
         #endregion
     }

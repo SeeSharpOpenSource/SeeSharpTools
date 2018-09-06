@@ -43,7 +43,7 @@ namespace SeeSharpTools.JY.DSP.Utility
                     else
                     {
                         //侦测波谷
-                        if (data[i] < data[i - 1] && data[i] < data[i + 1] && data[i] >= threshold)
+                        if (data[i] < data[i - 1] && data[i] < data[i + 1] && data[i] <= threshold)
                         {
                             dict.Add(i, data[i]);
                         }
