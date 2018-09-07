@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.EasyChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -49,7 +48,7 @@ namespace SeeSharpTools.JY.GUI
         {
             EasyChartSeries series = value as EasyChartSeries;
 
-            if (null == series || _lineSeries.Count >= Constants.MaxSeriesToDraw)
+            if (null == series || _lineSeries.Count >= MaxSeriesToDraw)
             {
                 return _lineSeries.Count - 1;
             }
