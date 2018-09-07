@@ -30,8 +30,10 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         /// <summary>
         /// The maximum point count of series in a single view.
         /// </summary>
+        // TODO 该属性暂时配置对序列化
         [
             Category("Series Configuration"),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
             Description("The maximum point count of series in a single view.")
         ]
         public int MaxSeriesPointCount
