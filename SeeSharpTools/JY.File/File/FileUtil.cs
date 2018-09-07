@@ -208,7 +208,6 @@ namespace SeeSharpTools.JY.File
             StreamWriter writer = null;
             try
             {
-
                 if (System.IO.File.Exists(filePath))
                 {
                     // TODO to add
@@ -227,7 +226,7 @@ namespace SeeSharpTools.JY.File
                     }
                 }
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, 
                     i18n.GetFStr("Runtime.WriteFail", ex.Message), ex);
@@ -238,12 +237,12 @@ namespace SeeSharpTools.JY.File
             }
         }
 
-        internal static void InitReadStream(ref StreamReader reader, string filePath, Encoding encode = null)
+        internal static void InitReadStream(ref StreamReader reader, string filePath, Encoding encode)
         {
             reader = (null != encode) ? new StreamReader(filePath, encode) : new StreamReader(filePath);
         }
 
-        internal static void InitWriteStream(ref StreamWriter writer, string filePath, WriteMode writeMode, Encoding encode = null)
+        internal static void InitWriteStream(ref StreamWriter writer, string filePath, WriteMode writeMode, Encoding encode)
         {
             bool isAppend = (WriteMode.Append == writeMode);
             writer = (null != encode) ? new StreamWriter(filePath, isAppend, encode) : new StreamWriter(filePath, isAppend);
@@ -268,7 +267,7 @@ namespace SeeSharpTools.JY.File
             {
                 resource?.Dispose();
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, ex.Message, ex);
             }

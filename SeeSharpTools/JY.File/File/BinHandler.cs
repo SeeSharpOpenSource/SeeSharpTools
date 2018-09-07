@@ -439,7 +439,7 @@ namespace SeeSharpTools.JY.File
             {
                 throw;
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, 
                     i18n.GetFStr("Runtime.ReadFail", ex.Message), ex);
@@ -464,7 +464,7 @@ namespace SeeSharpTools.JY.File
             {
                 throw;
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, 
                     i18n.GetFStr("Runtime.ReadFail", ex.Message), ex);
@@ -489,7 +489,7 @@ namespace SeeSharpTools.JY.File
             {
                 throw;
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, 
                     i18n.GetFStr("Runtime.ReadFail", ex.Message), ex);
@@ -514,7 +514,7 @@ namespace SeeSharpTools.JY.File
             {
                 throw;
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, 
                     i18n.GetFStr("Runtime.ReadFail", ex.Message), ex);
@@ -1065,7 +1065,7 @@ namespace SeeSharpTools.JY.File
             {
                 throw;
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, 
                     i18n.GetFStr("Runtime.WriteFail", ex.Message), ex);
@@ -1126,7 +1126,7 @@ namespace SeeSharpTools.JY.File
             {
                 FileUtil.InitBinReadStream(ref stream, ref reader, filePath);
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
                 FileUtil.ReleaseResource(reader);
                 FileUtil.ReleaseResource(stream);
@@ -1231,7 +1231,7 @@ namespace SeeSharpTools.JY.File
                 }
                 return (TDataType[,])dataBuf;
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
                 StopStreamRead();
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, 
