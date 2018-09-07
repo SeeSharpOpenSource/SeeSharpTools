@@ -39,7 +39,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             {
                 if (_slaveAxis.AutoScale)
                 {
-                    Utility.RoundYRange(ref slaveMaxValue, ref slaveMinValue, _slaveAxis.IsLogarithmic);
+                    Utility.RoundYRange(ref slaveMaxValue, ref slaveMinValue, _slaveAxis.MajorGridCount, _slaveAxis.IsLogarithmic);
                 }
                 else
                 {

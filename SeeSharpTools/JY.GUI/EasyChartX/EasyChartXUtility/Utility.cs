@@ -4,7 +4,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 {
     internal static class Utility
     {
-        public static void RoundYRange(ref double maxYValue, ref double minYValue, bool isLogarithmic = false)
+        public static void RoundYRange(ref double maxYValue, ref double minYValue, int yMajorGridCount, bool isLogarithmic = false)
         {
             if (double.IsNaN(maxYValue) || double.IsNaN(minYValue))
             {
@@ -14,15 +14,15 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             }
             if (!isLogarithmic || minYValue <= 0)
             {
-                GetLinearRoundRange(ref maxYValue, ref minYValue);
+                GetLinearRoundRange(ref maxYValue, ref minYValue, yMajorGridCount);
             }
             else
             {
-                GetLogarithmRoundRange(ref maxYValue, ref minYValue);
+                GetLogarithmRoundRange(ref maxYValue, ref minYValue, yMajorGridCount);
             }
         }
         
-        private static void GetLinearRoundRange(ref double maxYValue, ref double minYValue)
+        private static void GetLinearRoundRange(ref double maxYValue, ref double minYValue, int yMajorGridCount)
         {
             double range = (maxYValue - minYValue);
             double expandRange = range*Constants.YAutoExpandRatio;
@@ -40,38 +40,38 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 if (maxYValue <= Constants.MinDoubleValue && maxYValue >= -1*expandRange)
                 {
                     maxYValue = 0;
-                    minYValue = FloorRound(minYValue - expandRange, Constants.YMajorGridCount*roundSegment);
+                    minYValue = FloorRound(minYValue - expandRange, yMajorGridCount*roundSegment);
                 }
                 // 如果最小值在1 * expandRange和0之间，配置最小值为0
                 else if (minYValue <= expandRange && minYValue >= -1*Constants.MinDoubleValue)
                 {
-                    maxYValue = CeilRound(maxYValue + expandRange, Constants.YMajorGridCount*roundSegment);
+                    maxYValue = CeilRound(maxYValue + expandRange, yMajorGridCount * roundSegment);
                     minYValue = 0;
                 }
                 else if (maxYValue > Constants.MinDoubleValue && minYValue < -1*Constants.MinDoubleValue)
                 {
-                    int maxRatio = (int) Math.Round((maxYValue/range)*Constants.YMajorGridCount);
+                    int maxRatio = (int) Math.Round((maxYValue/range)* yMajorGridCount);
                     if (0 >= maxRatio)
                     {
                         maxRatio = 1;
                     }
-                    else if (Constants.YMajorGridCount <= maxRatio)
+                    else if (yMajorGridCount <= maxRatio)
                     {
                         maxRatio = 5;
                     }
                     double maxSingleIntervalSize = CeilRound((maxYValue + expandRange)/maxRatio, roundSegment);
-                    double minSingleIntervalSize = CeilRound((expandRange - minYValue)/(Constants.YMajorGridCount - maxRatio),
+                    double minSingleIntervalSize = CeilRound((expandRange - minYValue)/(yMajorGridCount - maxRatio),
                         roundSegment);
                     double internvalSize = maxSingleIntervalSize > minSingleIntervalSize
                         ? maxSingleIntervalSize
                         : minSingleIntervalSize;
                     maxYValue = maxRatio*internvalSize;
-                    minYValue = (maxRatio - Constants.YMajorGridCount)*internvalSize;
+                    minYValue = (maxRatio - yMajorGridCount) *internvalSize;
                 }
                 else
                 {
                     double midRoundValue = CeilRound((maxYValue + minYValue)/2, roundSegment);
-                    double roundRange = CeilRound(range/2 + expandRange, roundSegment*Constants.YMajorGridCount/2);
+                    double roundRange = CeilRound(range/2 + expandRange, roundSegment* yMajorGridCount / 2);
 
                     maxYValue = midRoundValue + roundRange;
                     minYValue = midRoundValue - roundRange;
@@ -79,7 +79,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             }
         }
 
-        private static void GetLogarithmRoundRange(ref double maxYValue, ref double minYValue)
+        private static void GetLogarithmRoundRange(ref double maxYValue, ref double minYValue, int yMajorGridCount)
         {
             maxYValue = Math.Log10(maxYValue);
             minYValue = Math.Log10(minYValue);

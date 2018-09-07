@@ -20,10 +20,10 @@
         // Clear时Y轴主网格间隔
         public const double ClearYInterval = 0.5;
 //        public const string DefaultTimeFormat = "hh:mm:ss:fff";
-        // 非对数绘图时Y轴主网格的个数
+        // 非对数绘图时X轴主网格的个数
         public const int MaxXGridCount = 10;
         // 非对数绘图时Y轴主网格的个数
-        public const int YMajorGridCount = 6;
+        public const int DefaultYMajorGridCount = 6;
         // 单条线最多显示的点数
         public const int MaxPointsInSingleSeries = 4000;
         // 默认每个DataEntity的线条容量

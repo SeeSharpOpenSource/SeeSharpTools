@@ -51,6 +51,7 @@ namespace SeeSharpTools.JY.GUI
                 this._specifiedMin = Constants.DefaultXMin;
                 this.ViewMaximum = Constants.DefaultXMax;
                 this.ViewMinimum = Constants.DefaultXMin;
+                this._majorGridCount = -1;
             }
             else
             {
@@ -60,6 +61,7 @@ namespace SeeSharpTools.JY.GUI
                 this._specifiedMin = Constants.DefaultYMin;
                 this.ViewMaximum = Constants.DefaultYMax;
                 this.ViewMinimum = Constants.DefaultYMin;
+                this._majorGridCount = Constants.DefaultYMajorGridCount;
             }
             RefreshAxisRange();
             if (IsYAxis())
@@ -269,7 +271,6 @@ namespace SeeSharpTools.JY.GUI
                     ResetAxisScaleView();
                     _baseEasyChart.OnAxisViewChanged(this, true, false);
                 }
-
             }
         }
 
@@ -552,6 +553,31 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
+        private int _majorGridCount;
+        public int MajorGridCount
+        {
+            get { return _majorGridCount;}
+            set
+            {
+                // 值不对或X轴，该值不生效
+                if (value < 2)
+                {
+                    return;
+                }
+                if (IsXAxis(PlotAxis.Primary, PlotAxis.Secondary))
+                {
+                    return;
+                }
+                else
+                {
+                    // 主Y轴使用用户配置，副Y轴使用主坐标轴的配置
+                    _majorGridCount = value;
+                }
+                RefreshYMajorGridInterval();
+                RefreshLabels();
+            }
+        }
+
         #endregion
 
         #region Public method
@@ -642,7 +668,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 return;
             }
-            Utility.RoundYRange(ref maxYValue, ref minYValue, IsLogarithmic);
+            Utility.RoundYRange(ref maxYValue, ref minYValue, _majorGridCount, IsLogarithmic);
             _maxData = maxYValue;
             _minData = minYValue;
         }
@@ -766,6 +792,9 @@ namespace SeeSharpTools.JY.GUI
             this._viewMin = min;
 
             this.Color = template.Color;
+
+            this.TickWidth = template.TickWidth;
+            this.MajorGridCount = template.MajorGridCount;
         }
 
         internal void GetViewRange(out double viewMax, out double viewMin)
@@ -857,14 +886,14 @@ namespace SeeSharpTools.JY.GUI
             }
             if (!IsLogarithmic)
             {
-                double interval = (viewMax - viewMin) / Constants.YMajorGridCount;
+                double interval = (viewMax - viewMin) / _majorGridCount;
                 //            _baseAxis.IntervalAutoMode = IntervalAutoMode.VariableCount;
                 _baseAxis.Interval = interval;
                 SetLabelFormat(interval);
             }
             else
             {
-                _baseAxis.Interval = (Math.Log10(viewMax) - Math.Log10(viewMin)) / Constants.YMajorGridCount;
+                _baseAxis.Interval = (Math.Log10(viewMax) - Math.Log10(viewMin)) / _majorGridCount;
                 SetLabelFormat(viewMin);
             }
 //            _baseAxis.CustomLabels.Clear();
