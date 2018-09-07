@@ -28,9 +28,9 @@ namespace SeeSharpTools.JY.GUI
     {
         #region Private Fields
         // 保存选择游标对齐到哪条线的menuItem的列表
-        private readonly List<ToolStripMenuItem> _cursorSeriesMenuItems = new List<ToolStripMenuItem>(Constants.MaxSeriesToDraw);
+        private readonly List<ToolStripMenuItem> _cursorSeriesMenuItems = new List<ToolStripMenuItem>(Constants.DefaultMaxSeriesCount);
         // 保存选择配置是否使能线条的menuItem的列表
-        private readonly List<ToolStripMenuItem> _enableSeriesMenuItems = new List<ToolStripMenuItem>(Constants.MaxSeriesToDraw);
+        private readonly List<ToolStripMenuItem> _enableSeriesMenuItems = new List<ToolStripMenuItem>(Constants.DefaultMaxSeriesCount);
         // 图表视图管理类
         private readonly ChartViewManager _chartViewManager;
         // 绘制线条的管理类
@@ -116,7 +116,9 @@ namespace SeeSharpTools.JY.GUI
         /// Get or specify whether check NaN data.
         /// </summary>
         [
-            Browsable(true),
+            Obsolete,
+            Browsable(false),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
             Category("Data"),
             Description("Get or specify whether check NaN data.")
         ]
@@ -137,7 +139,9 @@ namespace SeeSharpTools.JY.GUI
         /// Get or specify whether check negtive or zero data.
         /// </summary>
         [
-            Browsable(true),
+            Obsolete,
+            Browsable(false),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
             Category("Data"),
             Description("Get or specify whether check negtive or zero data.")
         ]
@@ -158,7 +162,9 @@ namespace SeeSharpTools.JY.GUI
         /// Get or specify whether check infinity data.
         /// </summary>
         [
-            Browsable(true),
+            Obsolete,
+            Browsable(false),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
             Category("Data"),
             Description("Get or specify whether check infinity data.")
         ]
@@ -179,7 +185,9 @@ namespace SeeSharpTools.JY.GUI
         /// Specify or get the fitting algorithm type when point sparse enabled.
         /// </summary>
         [
-            Browsable(true),
+            Obsolete,
+            Browsable(false),
+            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
             Category("Data"),
             Description("Specify or get the fitting algorithm type when point sparse enabled."),
             EditorBrowsable(EditorBrowsableState.Never),
@@ -513,13 +521,13 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         [
             Browsable(true),
-            Category("Apperance"),
+            Category("Misc"),
             DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
             Editor(typeof(PropertyClonableClassEditor), typeof(UITypeEditor)),
             Description("Split view layout configure."),
             EditorBrowsable(EditorBrowsableState.Always)
         ]
-        public SplitViewLayout SplitViewLayout { get; internal set; }
+        public MiscellaneousConfiguration Miscellaneous { get; internal set; }
 
         #endregion
 
@@ -651,7 +659,7 @@ namespace SeeSharpTools.JY.GUI
             //更新
             _plotManager.AdaptPlotDatasCount(_plotManager.SeriesCount);
 
-            this.SplitViewLayout = new SplitViewLayout(_chartViewManager);
+            this.Miscellaneous = new MiscellaneousConfiguration(this, _chartViewManager, _plotManager);
 
             AdaptPlotSeriesAndChartView();
             Clear();

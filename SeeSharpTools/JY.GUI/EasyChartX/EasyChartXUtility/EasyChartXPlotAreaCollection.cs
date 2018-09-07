@@ -9,7 +9,7 @@ namespace SeeSharpTools.JY.GUI
     {
         private readonly EasyChartX _baseEasyChart;
         private readonly ChartAreaCollection _chartAreas;
-        private readonly List<EasyChartXPlotArea> _plotAreas = new List<EasyChartXPlotArea>(Constants.MaxSeriesToDraw); 
+        private readonly List<EasyChartXPlotArea> _plotAreas = new List<EasyChartXPlotArea>(Constants.DefaultMaxSeriesCount); 
 
         public EasyChartXPlotAreaCollection(EasyChartX baseEasyChart, ChartAreaCollection chartAreas)
         {

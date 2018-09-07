@@ -35,7 +35,7 @@
         // 缩放时默认的扩展常数(该常数确定X轴缩放范围以外额外的点数)
         public const double ScaleDataExpandRatio = 0.05;
         // 默认的最大绘图个数
-        public const int MaxSeriesToDraw = 32;
+        public const int DefaultMaxSeriesCount = 32;
         // Double类型的最小接受值范围
         public const double MinDoubleValue = 1E-50;
         // Y轴配置范围时根据最大值最小值向上向下的扩展系数

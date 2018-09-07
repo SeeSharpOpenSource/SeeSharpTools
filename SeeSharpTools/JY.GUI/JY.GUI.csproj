@@ -120,7 +120,7 @@
       <DependentUpon>PropertiesEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EasyChartX\EasyChartXEvents\TabCursorEventArgs.cs" />
-    <Compile Include="EasyChartX\EasyChartXUtility\SplitViewLayout.cs" />
+    <Compile Include="EasyChartX\EasyChartXUtility\MiscellaneousConfiguration.cs" />
     <Compile Include="EasyChartX\TabCursorUtility\TabCursorInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>

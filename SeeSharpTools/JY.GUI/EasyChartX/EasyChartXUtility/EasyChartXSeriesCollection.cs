@@ -26,7 +26,7 @@ namespace SeeSharpTools.JY.GUI
         internal EasyChartXSeriesCollection(SeriesCollection chartSeries, EasyChartX parentChart)
         {
             this._plotSeries = chartSeries;
-            _lineSeries = new List<EasyChartXSeries>(Constants.MaxSeriesToDraw);
+            _lineSeries = new List<EasyChartXSeries>(Constants.DefaultMaxSeriesCount);
             this._parentChart = parentChart;
             // 默认添加n个Series
             foreach (Series plotSeries in _plotSeries)
@@ -97,7 +97,7 @@ namespace SeeSharpTools.JY.GUI
         // 用于外部的Add方法，主要是设计时会使用
         public void Add(EasyChartXSeries item)
         {
-            if (null == item || _lineSeries.Count >= Constants.MaxSeriesToDraw)
+            if (null == item || _lineSeries.Count >= _parentChart.Miscellaneous.MaxSeriesCount)
             {
                 return;
             }
@@ -175,7 +175,7 @@ namespace SeeSharpTools.JY.GUI
 
         public void Insert(int index, EasyChartXSeries item)
         {
-            if (null == item || index >= _lineSeries.Count || _lineSeries.Count >= Constants.MaxSeriesToDraw
+            if (null == item || index >= _lineSeries.Count || _lineSeries.Count >= _parentChart.Miscellaneous.MaxSeriesCount
                 || _lineSeries.Any(existItem => existItem.Name.Equals(item.Name)))
             {
                 return;

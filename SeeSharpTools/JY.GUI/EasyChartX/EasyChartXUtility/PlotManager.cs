@@ -17,7 +17,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         internal DataCheckParameters DataCheckParams;
 
         private EasyChartX.FitType _fitType;
-        internal EasyChartX.FitType FitType
+        public EasyChartX.FitType FitType
         {
             get
             {
@@ -34,6 +34,9 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         }
 
         public bool CumulativePlot { get; set; }
+
+        public int MaxSeriesCount { get; set; }
+
         private int _plotSeriesCount;
 
         public EasyChartXSeriesCollection Series => _series;
@@ -78,6 +81,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 
             this.PlotDatas = new List<DataEntity>(Constants.MaxPointsInSingleSeries);
             this.DataCheckParams = new DataCheckParameters();
+
+            this.MaxSeriesCount = Constants.DefaultMaxSeriesCount;
         }
 
         /// <summary>
@@ -91,16 +96,16 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         public void AddPlotData(double xStart, double xstep, IList<double> yData, int xSize, int ySize)
         {
             // 如果是连续绘图且已经达到线数上限则直接返回
-            if (CumulativePlot && _plotSeriesCount >= Constants.MaxSeriesToDraw)
+            if (CumulativePlot && _plotSeriesCount >= MaxSeriesCount)
             {
                 return;
             }
             int lineNum = ySize / xSize;
             _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > Constants.MaxSeriesToDraw)
+            if (_plotSeriesCount > MaxSeriesCount)
             {
-                ySize -= (_plotSeriesCount - Constants.MaxSeriesToDraw)*xSize;
-                _plotSeriesCount = Constants.MaxSeriesToDraw;
+                ySize -= (_plotSeriesCount - MaxSeriesCount) *xSize;
+                _plotSeriesCount = MaxSeriesCount;
             }
             IsPlotting = true;
             AdaptPlotDatasCount(1);
@@ -117,16 +122,16 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         public void AddPlotData(double xStart, double xstep, double[,] yData)
         {
             // 如果是连续绘图且已经达到线数上限则直接返回
-            if (CumulativePlot && _plotSeriesCount >= Constants.MaxSeriesToDraw)
+            if (CumulativePlot && _plotSeriesCount >= MaxSeriesCount)
             {
                 return;
             }
             int lineNum = yData.GetLength(0);
             _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > Constants.MaxSeriesToDraw)
+            if (_plotSeriesCount > MaxSeriesCount)
             {
-                lineNum -= _plotSeriesCount - Constants.MaxSeriesToDraw;
-                _plotSeriesCount = Constants.MaxSeriesToDraw;
+                lineNum -= _plotSeriesCount - MaxSeriesCount;
+                _plotSeriesCount = MaxSeriesCount;
             }
             IsPlotting = true;
             AdaptPlotDatasCount(1);
@@ -161,16 +166,16 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         public void AddPlotData(IList<double> xData, IList<double> yData, int xSize, int ySize)
         {
             // 如果是连续绘图且已经达到线数上限则直接返回
-            if (CumulativePlot && _plotSeriesCount >= Constants.MaxSeriesToDraw)
+            if (CumulativePlot && _plotSeriesCount >= MaxSeriesCount)
             {
                 return;
             }
             int lineNum = ySize / xSize;
             _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > Constants.MaxSeriesToDraw)
+            if (_plotSeriesCount > MaxSeriesCount)
             {
-                ySize -= (_plotSeriesCount - Constants.MaxSeriesToDraw)*xSize;
-                _plotSeriesCount = Constants.MaxSeriesToDraw;
+                ySize -= (_plotSeriesCount - MaxSeriesCount) *xSize;
+                _plotSeriesCount = MaxSeriesCount;
             }
             IsPlotting = true;
             AdaptPlotDatasCount(1);
@@ -186,16 +191,16 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         public void AddPlotData(IList<IList<double>> xData, IList<IList<double>> yData)
         {
             // 如果是连续绘图且已经达到线数上限则直接返回
-            if (CumulativePlot && _plotSeriesCount >= Constants.MaxSeriesToDraw)
+            if (CumulativePlot && _plotSeriesCount >= MaxSeriesCount)
             {
                 return;
             }
             int lineNum = xData.Count;
             _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > Constants.MaxSeriesToDraw)
+            if (_plotSeriesCount > MaxSeriesCount)
             {
-                lineNum -= _plotSeriesCount - Constants.MaxSeriesToDraw;
-                _plotSeriesCount = Constants.MaxSeriesToDraw;
+                lineNum -= _plotSeriesCount - MaxSeriesCount;
+                _plotSeriesCount = MaxSeriesCount;
             }
             IsPlotting = true;
             AdaptPlotDatasCount(lineNum);
