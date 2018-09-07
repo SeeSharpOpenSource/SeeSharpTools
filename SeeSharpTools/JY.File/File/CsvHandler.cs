@@ -42,15 +42,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional string array</para>
         ///         <para>Chinese Simplified:读取后的二维string数组</para>
         ///     </returns>
         /// </summary>
-        public static string[,] ReadData(uint startRow = 0, uint startColumn = 0)
+        public static string[,] ReadData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadData(filePath, startRow, startColumn);
+            return ReadData(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -64,15 +68,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional string array</para>
         ///         <para>Chinese Simplified:读取后的二维string数组</para>
         ///     </returns>
         /// </summary>
-        public static string[,] ReadData(uint startRow, uint[] columns)
+        public static string[,] ReadData(uint startRow, uint[] columns, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadData(filePath, startRow, columns);
+            return ReadData(filePath, startRow, columns, rowCount);
         }
 
         /// <summary>
@@ -90,15 +98,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional string array</para>
         ///         <para>Chinese Simplified:读取后的二维string数组</para>
         ///     </returns>
         /// </summary>
-        public static string[,] ReadData(string filePath, uint startRow = 0, uint startColumn = 0)
+        public static string[,] ReadData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<string>(filePath, startRow, startColumn);
+            return StreamReadData<string>(filePath, startRow, startColumn, rowCount);
 
 //            string[] fileDatas = FileUtil.ReadFileDataAsString(filePath);
 //            return FileUtil.GetStrData(fileDatas, Delims);
@@ -119,15 +131,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional string array</para>
         ///         <para>Chinese Simplified:读取后的二维string数组</para>
         ///     </returns>
         /// </summary>
-        public static string[,] ReadData(string filePath, uint startRow, uint[] columns)
+        public static string[,] ReadData(string filePath, uint startRow, uint[] columns, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<string>(filePath, startRow, columns);
+            return StreamReadData<string>(filePath, startRow, columns, rowCount);
 
             //            string[] fileDatas = FileUtil.ReadFileDataAsString(filePath);
             //            return FileUtil.GetStrData(fileDatas, Delims);
@@ -256,15 +272,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
-        ///     <returns >
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///     <returns>
         ///         <para>The read two dimensional float array</para>
         ///         <para>Chinese Simplified:读取后的二维float数组</para>
         ///     </returns>
         /// </summary>
-        public static float[,] ReadFloatData(uint startRow = 0, uint startColumn = 0)
+        public static float[,] ReadFloatData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadFloatData(filePath, startRow, startColumn);
+            return ReadFloatData(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -278,15 +298,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional float array</para>
         ///         <para>Chinese Simplified:读取后的二维float数组</para>
         ///     </returns>
         /// </summary>
-        public static float[,] ReadFloatData(uint startRow, uint[] columns)
+        public static float[,] ReadFloatData(uint startRow, uint[] columns, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadFloatData(filePath, startRow, columns);
+            return ReadFloatData(filePath, startRow, columns, rowCount);
         }
 
         /// <summary>
@@ -304,15 +328,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional float array</para>
         ///         <para>Chinese Simplified:读取后的二维float数组</para>
         ///     </returns>
         /// </summary>
-        public static float[,] ReadFloatData(string filePath, uint startRow = 0, uint startColumn = 0)
+        public static float[,] ReadFloatData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<float>(filePath, startRow, startColumn);
+            return StreamReadData<float>(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -330,15 +358,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional float array</para>
         ///         <para>Chinese Simplified:读取后的二维float数组</para>
         ///     </returns>
         /// </summary>
-        public static float[,] ReadFloatData(string filePath, uint startRow, uint[] columns)
+        public static float[,] ReadFloatData(string filePath, uint startRow, uint[] columns, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<float>(filePath, startRow, columns);
+            return StreamReadData<float>(filePath, startRow, columns, rowCount);
         }
 
 
@@ -353,15 +385,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional int array</para>
         ///         <para>Chinese Simplified:读取后的二维int数组</para>
         ///     </returns>
         /// </summary>
-        public static int[,] ReadIntData(uint startRow = 0, uint startColumn = 0)
+        public static int[,] ReadIntData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadIntData(filePath, startRow, startColumn);
+            return ReadIntData(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -375,15 +411,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional int array</para>
         ///         <para>Chinese Simplified:读取后的二维int数组</para>
         ///     </returns>
         /// </summary>
-        public static int[,] ReadIntData(uint startRow, uint[] columns)
+        public static int[,] ReadIntData(uint startRow, uint[] columns, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadIntData(filePath, startRow, columns);
+            return ReadIntData(filePath, startRow, columns, rowCount);
         }
 
         /// <summary>
@@ -401,15 +441,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional int array</para>
         ///         <para>Chinese Simplified:读取后的二维int数组</para>
         ///     </returns>
         /// </summary>
-        public static int[,] ReadIntData(string filePath, uint startRow = 0, uint startColumn = 0)
+        public static int[,] ReadIntData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<int>(filePath, startRow, startColumn);
+            return StreamReadData<int>(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -427,15 +471,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional int array</para>
         ///         <para>Chinese Simplified:读取后的二维int数组</para>
         ///     </returns>
         /// </summary>
-        public static int[,] ReadIntData(string filePath, uint startRow, uint[] columns)
+        public static int[,] ReadIntData(string filePath, uint startRow, uint[] columns, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<int>(filePath, startRow, columns);
+            return StreamReadData<int>(filePath, startRow, columns, rowCount);
         }
 
         /// <summary>
@@ -449,15 +497,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional uint array</para>
         ///         <para>Chinese Simplified:读取后的二维uint数组</para>
         ///     </returns>
         /// </summary>
-        public static uint[,] ReadUIntData(uint startRow = 0, uint startColumn = 0)
+        public static uint[,] ReadUIntData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadUIntData(filePath, startRow, startColumn);
+            return ReadUIntData(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -471,15 +523,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional uint array</para>
         ///         <para>Chinese Simplified:读取后的二维uint数组</para>
         ///     </returns>
         /// </summary>
-        public static uint[,] ReadUIntData(uint startRow, uint[] columns)
+        public static uint[,] ReadUIntData(uint startRow, uint[] columns, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadUIntData(filePath, startRow, columns);
+            return ReadUIntData(filePath, startRow, columns, rowCount);
         }
 
         /// <summary>
@@ -497,15 +553,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional uint array</para>
         ///         <para>Chinese Simplified:读取后的二维uint数组</para>
         ///     </returns>
         /// </summary>
-        public static uint[,] ReadUIntData(string filePath, uint startRow = 0, uint startColumn = 0)
+        public static uint[,] ReadUIntData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<uint>(filePath, startRow, startColumn);
+            return StreamReadData<uint>(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -523,15 +583,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional uint array</para>
         ///         <para>Chinese Simplified:读取后的二维uint数组</para>
         ///     </returns>
         /// </summary>
-        public static uint[,] ReadUIntData(string filePath, uint startRow, uint[] columns)
+        public static uint[,] ReadUIntData(string filePath, uint startRow, uint[] columns, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<uint>(filePath, startRow, columns);
+            return StreamReadData<uint>(filePath, startRow, columns, rowCount);
         }
 
         /// <summary>
@@ -545,15 +609,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional short array</para>
         ///         <para>Chinese Simplified:读取后的二维short数组</para>
         ///     </returns>
         /// </summary>
-        public static short[,] ReadShortData(uint startRow = 0, uint startColumn = 0)
+        public static short[,] ReadShortData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadShortData(filePath, startRow, startColumn);
+            return ReadShortData(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -567,15 +635,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional short array</para>
         ///         <para>Chinese Simplified:读取后的二维short数组</para>
         ///     </returns>
         /// </summary>
-        public static short[,] ReadShortData(uint startRow, uint[] columns)
+        public static short[,] ReadShortData(uint startRow, uint[] columns, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadShortData(filePath, startRow, columns);
+            return ReadShortData(filePath, startRow, columns, rowCount);
         }
 
         /// <summary>
@@ -593,15 +665,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional short array</para>
         ///         <para>Chinese Simplified:读取后的二维short数组</para>
         ///     </returns>
         /// </summary>
-        public static short[,] ReadShortData(string filePath, uint startRow = 0, uint startColumn = 0)
+        public static short[,] ReadShortData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<short>(filePath, startRow, startColumn);
+            return StreamReadData<short>(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -619,15 +695,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional short array</para>
         ///         <para>Chinese Simplified:读取后的二维short数组</para>
         ///     </returns>
         /// </summary>
-        public static short[,] ReadShortData(string filePath, uint startRow, uint[] columns)
+        public static short[,] ReadShortData(string filePath, uint startRow, uint[] columns, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<short>(filePath, startRow, columns);
+            return StreamReadData<short>(filePath, startRow, columns, rowCount);
         }
 
         /// <summary>
@@ -641,15 +721,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional ushort array</para>
         ///         <para>Chinese Simplified:读取后的二维ushort数组</para>
         ///     </returns>
         /// </summary>
-        public static ushort[,] ReadUShortData(uint startRow = 0, uint startColumn = 0)
+        public static ushort[,] ReadUShortData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadUShortData(filePath, startRow, startColumn);
+            return ReadUShortData(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -663,15 +747,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional ushort array</para>
         ///         <para>Chinese Simplified:读取后的二维ushort数组</para>
         ///     </returns>
         /// </summary>
-        public static ushort[,] ReadUShortData(uint startRow, uint[] columns)
+        public static ushort[,] ReadUShortData(uint startRow, uint[] columns, uint rowCount = 0)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return ReadUShortData(filePath, startRow, columns);
+            return ReadUShortData(filePath, startRow, columns, rowCount);
         }
 
         /// <summary>
@@ -689,15 +777,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start column index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional ushort array</para>
         ///         <para>Chinese Simplified:读取后的二维ushort数组</para>
         ///     </returns>
         /// </summary>
-        public static ushort[,] ReadUShortData(string filePath, uint startRow = 0, uint startColumn = 0)
+        public static ushort[,] ReadUShortData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<ushort>(filePath, startRow, startColumn);
+            return StreamReadData<ushort>(filePath, startRow, startColumn, rowCount);
         }
 
         /// <summary>
@@ -715,15 +807,19 @@ namespace SeeSharpTools.JY.File
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
         ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
         ///     <returns >
         ///         <para>The read two dimensional ushort array</para>
         ///         <para>Chinese Simplified:读取后的二维ushort数组</para>
         ///     </returns>
         /// </summary>
-        public static ushort[,] ReadUShortData(string filePath, uint startRow, uint[] columns)
+        public static ushort[,] ReadUShortData(string filePath, uint startRow, uint[] columns, uint rowCount = 0)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<ushort>(filePath, startRow, columns);
+            return StreamReadData<ushort>(filePath, startRow, columns, rowCount);
         }
 
         #endregion
@@ -1297,7 +1393,7 @@ namespace SeeSharpTools.JY.File
 
         #region 私有方法
 
-        private static TDataType[,] StreamReadData<TDataType>(string filePath, uint startRow, uint startColumn, uint lineCount = 0)
+        private static TDataType[,] StreamReadData<TDataType>(string filePath, uint startRow, uint startColumn, uint lineCount)
         {
             StreamReader reader = null;
             try
@@ -1324,7 +1420,7 @@ namespace SeeSharpTools.JY.File
             }
         }
 
-        private static TDataType[,] StreamReadData<TDataType>(string filePath, uint startRow, uint[] columns, uint lineCount = 0)
+        private static TDataType[,] StreamReadData<TDataType>(string filePath, uint startRow, uint[] columns, uint lineCount)
         {
             StreamReader reader = null;
             try
