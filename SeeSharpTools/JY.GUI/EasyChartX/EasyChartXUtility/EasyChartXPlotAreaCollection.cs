@@ -7,13 +7,13 @@ namespace SeeSharpTools.JY.GUI
 {
     public class EasyChartXPlotAreaCollection : IList<EasyChartXPlotArea>
     {
-        private readonly EasyChartX _baseEasyChart;
+        private readonly EasyChartX _parentChart;
         private readonly ChartAreaCollection _chartAreas;
         private readonly List<EasyChartXPlotArea> _plotAreas = new List<EasyChartXPlotArea>(Constants.DefaultMaxSeriesCount); 
 
-        public EasyChartXPlotAreaCollection(EasyChartX baseEasyChart, ChartAreaCollection chartAreas)
+        public EasyChartXPlotAreaCollection(EasyChartX parentChart, ChartAreaCollection chartAreas)
         {
-            this._baseEasyChart = baseEasyChart;
+            this._parentChart = parentChart;
             this._chartAreas = chartAreas;
         }
 
@@ -80,7 +80,7 @@ namespace SeeSharpTools.JY.GUI
         {
             while (seriesCount > _plotAreas.Count)
             {
-                _plotAreas.Add(CreateBaseChartArea());
+                _plotAreas.Add(CreatePlotArea());
             }
             while (seriesCount < _plotAreas.Count)
             {
@@ -90,7 +90,7 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
-        private EasyChartXPlotArea CreateBaseChartArea()
+        private EasyChartXPlotArea CreatePlotArea()
         {
             const string chartAreaNameFormat = "ChartArea{0}";
             // TODO to add more
@@ -104,7 +104,7 @@ namespace SeeSharpTools.JY.GUI
             baseChartArea.AxisY2.CustomLabels.Clear();
             baseChartArea.AxisY2.IntervalAutoMode = IntervalAutoMode.VariableCount;
             _chartAreas.Add(baseChartArea);
-            return new EasyChartXPlotArea(_baseEasyChart, baseChartArea);
+            return new EasyChartXPlotArea(_parentChart, baseChartArea);
         }
 
         internal int FindIndexByBaseChartArea(ChartArea baseArea)

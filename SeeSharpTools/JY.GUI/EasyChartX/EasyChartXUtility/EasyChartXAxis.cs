@@ -12,8 +12,8 @@ namespace SeeSharpTools.JY.GUI
     /// </summary>
     public class EasyChartXAxis
     {
-        private EasyChartX _baseEasyChart;
-        private EasyChartXPlotArea _basePlotArea;
+        private EasyChartX _parentChart;
+        private EasyChartXPlotArea _parentPlotArea;
         private Axis _baseAxis;
 
         private double _maxData;
@@ -26,7 +26,7 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         public EasyChartXAxis()
         {
-            this._baseEasyChart = null;
+            this._parentChart = null;
             this._baseAxis = null;
             this._autoScale = true;
             this.AutoZoomReset = false;
@@ -36,8 +36,8 @@ namespace SeeSharpTools.JY.GUI
         internal void Initialize(EasyChartX baseEasyChart, EasyChartXPlotArea basePlotArea, Axis baseAxis)
         {
             this.Name = baseAxis.Name;
-            this._baseEasyChart = baseEasyChart;
-            this._basePlotArea = basePlotArea;
+            this._parentChart = baseEasyChart;
+            this._parentPlotArea = basePlotArea;
             this._baseAxis = baseAxis;
             
             this._viewMax = baseAxis.ScaleView.ViewMaximum;
@@ -130,12 +130,12 @@ namespace SeeSharpTools.JY.GUI
                     return;
                 }
                 _autoScale = value;
-                if (!_baseEasyChart.IsPlotting())
+                if (!_parentChart.IsPlotting())
                 {
                     return;
                 }
-                _baseEasyChart.RefreshAxesRange(_basePlotArea);
-                _baseEasyChart.RefreshScaleViewAndSendEvent(_basePlotArea.ChartArea, _baseAxis, false);
+                _parentChart.RefreshAxesRange(_parentPlotArea);
+                _parentChart.RefreshScaleViewAndSendEvent(_parentPlotArea.ChartArea, _baseAxis, false);
             }
         }
 
@@ -151,7 +151,7 @@ namespace SeeSharpTools.JY.GUI
         ]
         public double Maximum
         {
-            get { return _baseEasyChart.IsPlotting() ? _baseAxis.Maximum : _specifiedMax; }
+            get { return _parentChart.IsPlotting() ? _baseAxis.Maximum : _specifiedMax; }
             set
             {
                 if (double.IsNaN(value))
@@ -177,7 +177,7 @@ namespace SeeSharpTools.JY.GUI
         ]
         public double Minimum
         {
-            get { return _baseEasyChart.IsPlotting() ? _baseAxis.Minimum : _specifiedMin; }
+            get { return _parentChart.IsPlotting() ? _baseAxis.Minimum : _specifiedMin; }
             set
             {
                 if (double.IsNaN(value))
@@ -196,10 +196,10 @@ namespace SeeSharpTools.JY.GUI
         private void RefreshUserConfigAxisRange()
         {
             // 如果正在绘图，则根据用户的配置和当前的数据更新坐标轴范围
-            if (_baseEasyChart.IsPlotting())
+            if (_parentChart.IsPlotting())
             {
-                _baseEasyChart.RefreshAxesRange(_basePlotArea);
-                _baseEasyChart.RefreshScaleViewAndSendEvent(_basePlotArea.ChartArea, this._baseAxis, false);
+                _parentChart.RefreshAxesRange(_parentPlotArea);
+                _parentChart.RefreshScaleViewAndSendEvent(_parentPlotArea.ChartArea, this._baseAxis, false);
             }
             else
             {
@@ -258,7 +258,7 @@ namespace SeeSharpTools.JY.GUI
         ]
         public double ViewMaximum
         {
-            get { return _baseEasyChart.IsPlotting() ? _baseAxis.ScaleView.ViewMaximum : _viewMax; }
+            get { return _parentChart.IsPlotting() ? _baseAxis.ScaleView.ViewMaximum : _viewMax; }
             set
             {
                 if (_viewMin >= value || double.IsNaN(value))
@@ -266,10 +266,10 @@ namespace SeeSharpTools.JY.GUI
                     return;
                 }
                 _viewMax = value;
-                if (null != _baseAxis && _baseEasyChart.IsPlotting())
+                if (null != _baseAxis && _parentChart.IsPlotting())
                 {
                     ResetAxisScaleView();
-                    _baseEasyChart.OnAxisViewChanged(this, true, false);
+                    _parentChart.OnAxisViewChanged(this, true, false);
                 }
             }
         }
@@ -286,7 +286,7 @@ namespace SeeSharpTools.JY.GUI
         ]
         public double ViewMinimum
         {
-            get { return _baseEasyChart.IsPlotting() ? _baseAxis.ScaleView.ViewMinimum : _viewMin; }
+            get { return _parentChart.IsPlotting() ? _baseAxis.ScaleView.ViewMinimum : _viewMin; }
             set
             {
                 if (_viewMax <= value || double.IsNaN(value))
@@ -294,10 +294,10 @@ namespace SeeSharpTools.JY.GUI
                     return;
                 }
                 _viewMin = value;
-                if (null != _baseAxis && _baseEasyChart.IsPlotting())
+                if (null != _baseAxis && _parentChart.IsPlotting())
                 {
                     ResetAxisScaleView();
-                    _baseEasyChart.OnAxisViewChanged(this, true, false);
+                    _parentChart.OnAxisViewChanged(this, true, false);
                 }
             }
         }
@@ -598,9 +598,9 @@ namespace SeeSharpTools.JY.GUI
                 RefreshYMajorGridInterval(true);
             }
             _baseAxis.ScaleView.ZoomReset(resetTimes);
-            if (_baseEasyChart.IsPlotting())
+            if (_parentChart.IsPlotting())
             {
-                _baseEasyChart.RefreshScaleViewAndSendEvent(_basePlotArea.ChartArea, _baseAxis, false);
+                _parentChart.RefreshScaleViewAndSendEvent(_parentPlotArea.ChartArea, _baseAxis, false);
             }
         }
 
@@ -626,9 +626,9 @@ namespace SeeSharpTools.JY.GUI
                 return false;
             }
             _baseAxis.ScaleView.Zoom(start, end);
-            if (_baseEasyChart.IsPlotting())
+            if (_parentChart.IsPlotting())
             {
-                _baseEasyChart.RefreshScaleViewAndSendEvent(_basePlotArea.ChartArea, _baseAxis, false);
+                _parentChart.RefreshScaleViewAndSendEvent(_parentPlotArea.ChartArea, _baseAxis, false);
             }
             return true;
         }
@@ -805,9 +805,9 @@ namespace SeeSharpTools.JY.GUI
 
         internal void SetAxisLabelStyle()
         {
-            _baseAxis.LabelStyle.ForeColor = _baseEasyChart.ForeColor;
-            _baseAxis.LabelStyle.Font = _baseEasyChart.Font;
-            _baseAxis.TitleForeColor = _baseEasyChart.ForeColor;
+            _baseAxis.LabelStyle.ForeColor = _parentChart.ForeColor;
+            _baseAxis.LabelStyle.Font = _parentChart.Font;
+            _baseAxis.TitleForeColor = _parentChart.ForeColor;
             //            _baseAxis.TitleFont = _baseEasyChart.Font;
         }
 

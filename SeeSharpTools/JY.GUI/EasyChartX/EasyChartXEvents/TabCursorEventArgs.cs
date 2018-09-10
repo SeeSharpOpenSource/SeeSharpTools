@@ -13,7 +13,7 @@ namespace SeeSharpTools.JY.GUI
         public TabCursor Cursor { get; set; }
 
         /// <summary>
-        /// Parent easyChart
+        /// Parent EasyChartX
         /// </summary>
         public EasyChartX ParentChart { get; set; }
 

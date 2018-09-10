@@ -8,18 +8,18 @@ namespace SeeSharpTools.JY.GUI
 //    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class EasyChartXCursor
     {
-        private readonly EasyChartX _baseEasyChart;
-        private readonly EasyChartXPlotArea _basePlotArea;
+        private readonly EasyChartX _parentChart;
+        private readonly EasyChartXPlotArea _parentPlotArea;
         private readonly Cursor _baseCursor;
         private readonly Axis _baseAxis;
         //        private bool _isUserChangedView = false;
 
         #region Constrctor
 
-        internal EasyChartXCursor(EasyChartX baseEasyChart, EasyChartXPlotArea basePlotArea, Cursor baseCursor, Axis baseAxis, string cursorName)
+        internal EasyChartXCursor(EasyChartX parentChart, EasyChartXPlotArea parentPlotArea, Cursor baseCursor, Axis baseAxis, string cursorName)
         {
-            this._baseEasyChart = baseEasyChart;
-            this._basePlotArea = basePlotArea;
+            this._parentChart = parentChart;
+            this._parentPlotArea = parentPlotArea;
             this._baseCursor = baseCursor;
             this._baseAxis = baseAxis;
             this.Name = cursorName;
@@ -57,7 +57,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 _mode = value;
                 RefreshCursor();
-                _basePlotArea.BindCursorToAxis();
+                _parentPlotArea.BindCursorToAxis();
             }
         }
 
@@ -140,7 +140,7 @@ namespace SeeSharpTools.JY.GUI
                 {
                     _baseCursor.Position = value;
                 }
-                _baseEasyChart.OnCursorPositionChanged(this, false);
+                _parentChart.OnCursorPositionChanged(this, false);
             }
         }
 
@@ -156,7 +156,7 @@ namespace SeeSharpTools.JY.GUI
         ]
         public double Interval
         {
-            get { return _baseEasyChart.IsPlotting() ? _baseCursor.Interval : _interval; }
+            get { return _parentChart.IsPlotting() ? _baseCursor.Interval : _interval; }
             set
             {
                 _interval = value;
@@ -172,7 +172,7 @@ namespace SeeSharpTools.JY.GUI
 
         internal void RefreshCursor()
         {
-            if (!_baseEasyChart.IsPlotting())
+            if (!_parentChart.IsPlotting())
             {
                 _baseCursor.LineColor = Color.Transparent;
                 _baseCursor.IsUserEnabled = false;

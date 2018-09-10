@@ -16,7 +16,7 @@ namespace SeeSharpTools.JY.GUI
     public class TabCursorCollection : IList<TabCursor>
     {
         private readonly EasyChartX _parentChart;
-        private readonly EasyChartXPlotArea _plotArea;
+        private readonly EasyChartXPlotArea _parentPlotArea;
         private readonly Chart _baseChart;
         private IList<TabCursor> _cursors;
         private readonly PositionAdapter _adapter;
@@ -31,12 +31,12 @@ namespace SeeSharpTools.JY.GUI
             Color.Brown
         };
 
-        internal TabCursorCollection(EasyChartX parentChart, Chart baseChart, EasyChartXPlotArea plotArea)
+        internal TabCursorCollection(EasyChartX parentChart, Chart baseChart, EasyChartXPlotArea parentPlotArea)
         {
             this._parentChart = parentChart;
-            this._plotArea = plotArea;
+            this._parentPlotArea = parentPlotArea;
             this._baseChart = baseChart;
-            this._adapter = new PositionAdapter(baseChart, plotArea);
+            this._adapter = new PositionAdapter(baseChart, parentPlotArea);
             this._cursors = new List<TabCursor>(MaxCursorCount);
             this.CursorValueFormat = null;
 
@@ -234,7 +234,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 return;
             }
-            if (_parentChart.IsPlotting() && _plotArea.Enabled)
+            if (_parentChart.IsPlotting() && _parentPlotArea.Enabled)
             {
                 RefreshAdapterAndCursorBoundry();
             }
