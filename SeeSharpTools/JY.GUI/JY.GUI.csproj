@@ -103,6 +103,72 @@
     <Compile Include="EasyChartX\EasyChartXEditor\TabCursorCollectionEditor.cs" />
     <Compile Include="EasyChartX\EasyChartXEditor\TabCursorDesignTimeCollection.cs" />
     <Compile Include="EasyChartX\EasyChartXEvents\EasyChartXPlotEventArgs.cs" />
+    <Compile Include="StripChartX\StripChartX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StripChartX\StripChartX.Designer.cs">
+	  <DependentUpon>StripChartX.cs</DependentUpon>
+	</Compile>
+    <Compile Include="StripChartX\StripChartXData\DataEntity.cs" />
+    <Compile Include="StripChartX\StripChartXData\DataEntityInfo.cs" />
+    <Compile Include="StripChartX\StripChartXData\PlotBuffer.cs" />
+    <Compile Include="StripChartX\StripChartXData\PlotBufferBase.cs" />
+    <Compile Include="StripChartX\StripChartXData\ShallowPlotBuffer.cs" />
+    <Compile Include="StripChartX\StripChartXData\XDataInputType.cs" />
+    <Compile Include="StripChartX\StripChartXData\XDataType.cs" />
+    <Compile Include="StripChartX\StripChartXDesigner.cs" />
+    <Compile Include="StripChartX\StripChartXEditor\StripChartXLineSeries.cs" />
+    <Compile Include="StripChartX\StripChartXEditor\StripChartXLineSeriesEditor.cs" />
+    <Compile Include="StripChartX\StripChartXEditor\StripTabCursorCollectionEditor.cs" />
+    <Compile Include="StripChartX\StripChartXEditor\StripTabCursorDesignTimeCollection.cs" />
+    <Compile Include="StripChartX\StripChartXEvents\StripChartXCursorEventArgs.cs" />
+    <Compile Include="StripChartX\StripChartXEvents\StripChartXPlotEventArgs.cs" />
+    <Compile Include="StripChartX\StripChartXEvents\StripChartXViewEventArgs.cs" />
+    <Compile Include="StripChartX\StripChartXEvents\StripTabCursorEventArgs.cs" />
+    <Compile Include="StripChartX\StripChartXPropertyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StripChartX\StripChartXPropertyForm.Designer.cs">
+	  <DependentUpon>StripChartXPropertyForm.cs</DependentUpon>
+	</Compile>
+    <Compile Include="StripChartX\StripChartXRangeYConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StripChartX\StripChartXRangeYConfigForm.Designer.cs">
+	  <DependentUpon>StripChartXRangeYConfigForm.cs</DependentUpon>
+	</Compile>
+    <Compile Include="StripChartX\StripChartXUtility\AxisSynchronizer.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\ChartViewManager.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\Constants.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\DataCheckParameters.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\DataConvertor.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\EasyChartXSortDirection.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\LayoutDirection.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\MiscellaneousConfiguration.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\ParallelHandler.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\PlotManager.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\StripChartXAxis.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\StripChartXCursor.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\StripChartXPlotArea.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\StripChartXPlotAreaCollection.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\StripChartXSeries.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\StripChartXSeriesCollection.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\Utility.cs" />
+    <Compile Include="StripChartX\StripTabCursorUtility\PositionAdapter.cs" />
+    <Compile Include="StripChartX\StripTabCursorUtility\StripTabCursor.cs" />
+    <Compile Include="StripChartX\StripTabCursorUtility\StripTabCursorCollection.cs" />
+    <Compile Include="StripChartX\StripTabCursorUtility\StripTabCursorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StripChartX\StripTabCursorUtility\StripTabCursorControl.Designer.cs">
+	  <DependentUpon>StripTabCursorControl.cs</DependentUpon>
+	</Compile>
+    <Compile Include="StripChartX\StripTabCursorUtility\StripTabCursorInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StripChartX\StripTabCursorUtility\StripTabCursorInfoForm.Designer.cs">
+	  <DependentUpon>StripTabCursorInfoForm.cs</DependentUpon>
+	</Compile>
     <Compile Include="Utility\CollectionPropertyEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -432,6 +498,21 @@
     <EmbeddedResource Include="EasyChartX\EasyChartX.resx">
       <DependentUpon>EasyChartX.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StripChartX\StripChartX.resx">
+	  <DependentUpon>StripChartX.cs</DependentUpon>
+	</EmbeddedResource>
+    <EmbeddedResource Include="StripChartX\StripChartXPropertyForm.resx">
+	  <DependentUpon>StripChartXPropertyForm.cs</DependentUpon>
+	</EmbeddedResource>
+    <EmbeddedResource Include="StripChartX\StripChartXRangeYConfigForm.resx">
+	  <DependentUpon>StripChartXRangeYConfigForm.cs</DependentUpon>
+	</EmbeddedResource>
+    <EmbeddedResource Include="StripChartX\StripTabCursorUtility\StripTabCursorControl.resx">
+	  <DependentUpon>StripTabCursorControl.cs</DependentUpon>
+	</EmbeddedResource>
+    <EmbeddedResource Include="StripChartX\StripTabCursorUtility\StripTabCursorInfoForm.resx">
+	  <DependentUpon>StripTabCursorInfoForm.cs</DependentUpon>
+	</EmbeddedResource>
     <EmbeddedResource Include="Utility\CollectionPropertyEditorForm.resx">
       <DependentUpon>CollectionPropertyEditorForm.cs</DependentUpon>
     </EmbeddedResource>
