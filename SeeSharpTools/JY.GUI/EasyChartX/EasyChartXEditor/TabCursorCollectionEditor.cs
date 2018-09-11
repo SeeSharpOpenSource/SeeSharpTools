@@ -29,7 +29,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXEditor
             PropertyDescriptor backColorProperty = TypeDescriptor.GetProperties(control)["BackColor"];
             backColorProperty.SetValue(control, control.BackColor);
             
-            return CollectionPropertyEditorForm<TabCursor>.EditValue(descriptor.Name, tabCursor, () => { tabCursor.Add(new TabCursor());  });
+            return CollectionPropertyEditorForm<TabCursor>.EditValue(descriptor.Name, tabCursor, () => { tabCursor.Add(new TabCursor());  }, true);
         }
     }
 }

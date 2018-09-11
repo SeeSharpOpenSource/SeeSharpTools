@@ -27,15 +27,24 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         /// <param name="propertyName">Property name</param>
         /// <param name="value">PropertyValue</param>
+        /// <param name="addItemMethod"></param>
+        /// <param name="editable"></param>
         /// <returns>Value after configure</returns>
-        public static object EditValue<TDataType>(string propertyName, IList<TDataType> value, Action addItemMethod)
+        public static object EditValue<TDataType>(string propertyName, IList<TDataType> value, Action addItemMethod, bool editable)
         {
             CollectionPropertyEditorForm<TDataType> form = new CollectionPropertyEditorForm<TDataType>();
             form.BindData(propertyName, value, addItemMethod);
+            form.SetCollectionEditable(editable);
             form.ShowDialog();
             return form.GetValue();
         }
-        
+
+        private void SetCollectionEditable(bool editable)
+        {
+            button_add.Enabled = editable;
+            button_delete.Enabled = editable;
+        }
+
         internal void BindData(string name, IList<TDataType> value, Action addItemMethod)
         {
             this._addItemMethod = addItemMethod;
