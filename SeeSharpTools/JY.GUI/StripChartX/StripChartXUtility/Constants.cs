@@ -2,7 +2,13 @@
 {
     internal static class Constants
     {
-        
+        // 最小的显示点数
+        public const int MinPoints = 3;
+        public const string DefaultTimeStampFormat = "HH:mm:ss";
+        // 最小的DisplayPoints
+        public const int MinDisplayPoints = 10;
+        // 最大的DisplayPoints
+        public const int MaxDisplayPoints = 10000000;
         // 小数点位数或者小数点以上位数大于该值后使用数学计数法显示
         public const int MinDecimalOfScientificNotition = 6;
         // 用来配置Y轴范围舍进比率的常数
@@ -22,6 +28,8 @@
 //        public const string DefaultTimeFormat = "hh:mm:ss:fff";
         // 非对数绘图时X轴主网格的个数
         public const int MaxXGridCount = 10;
+        // 非对数绘图时Y轴主网格的个数
+        public const int DefaultXMajorGridCount = 6;
         // 非对数绘图时Y轴主网格的个数
         public const int DefaultYMajorGridCount = 6;
         // 单条线最多显示的点数

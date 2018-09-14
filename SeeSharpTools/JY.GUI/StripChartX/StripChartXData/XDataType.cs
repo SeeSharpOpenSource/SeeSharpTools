@@ -6,11 +6,11 @@
         /// <summary>
         /// 数值类型
         /// </summary>
-        Number,
+        Index,
 
         /// <summary>
-        /// 时间戳类型
+        /// 字符串类型
         /// </summary>
-        DateTime
+        String
     }
 }

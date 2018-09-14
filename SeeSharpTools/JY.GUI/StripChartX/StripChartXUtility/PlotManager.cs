@@ -37,11 +37,49 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         public int MaxSeriesCount { get; set; }
 
+        /// <summary>
+        /// Maximum point count to show in single line
+        /// 单条线最多显示的点数
+        /// </summary>
+        public int DisplayPoints { get; set; }
+
+        /// <summary>
+        /// Specify the x axis label type
+        /// 配置X轴显示的类型
+        /// </summary>
+        public StripChartX.XAxisDataType XDataType { get; set; }
+
+        /// <summary>
+        /// Time stamp format
+        /// 时间戳格式
+        /// </summary>
+        public string TimeStampFormat { get; set; }
+
+        /// <summary>
+        /// Get or set the next time stamp value
+        /// 获取或配置下一个绘图时的其实时间戳
+        /// </summary>
+        public DateTime NextTimeStamp { get; set; }
+
+        /// <summary>
+        /// Get or set the time interval between two samples
+        /// 获取或配置相邻两个样点之间的时间间隔
+        /// </summary>
+        public TimeSpan TimeInterval { get; set; }
+
+        /// <summary>
+        /// Start value of X axis index
+        /// X轴索引起始值
+        /// </summary>
+        public int XAxisStartIndex { get; set; }
+
         private int _plotSeriesCount;
 
         public StripChartXSeriesCollection Series => _series;
 
         public StripChartXLineSeries LineSeries { get; }
+
+        public int SamplesInChart { get; private set; }
 
         public int SeriesCount
         {
@@ -56,6 +94,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 _parentChart?.AdaptPlotSeriesAndChartView();
             }
         }
+        
 
         public bool IsPlotting { get; private set; }
         private readonly StripChartX _parentChart;
@@ -81,6 +120,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
             this.PlotDatas = new List<DataEntity>(Constants.MaxPointsInSingleSeries);
             this.DataCheckParams = new DataCheckParameters();
+
+            this.SamplesInChart = 0;
 
             this.MaxSeriesCount = Constants.DefaultMaxSeriesCount;
         }
@@ -420,6 +461,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         {
             IsPlotting = false;
             PlotDefaultView();
+            SamplesInChart = 0;
             foreach (DataEntity dataEntity in PlotDatas)
             {
                 dataEntity.Clear();
@@ -448,50 +490,18 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             }
         }
 
-        public double GetMinXData()
+        public int GetEndIndex()
         {
-            double minData = double.MaxValue;
-            foreach (DataEntity dataEntity in PlotDatas)
-            {
-                if (dataEntity.MinXValue < minData)
-                {
-                    minData = dataEntity.MinXValue;
-                }
-            }
-            return minData;
+
         }
 
-        public double GetMaxXData()
+        public int GetStartIndex()
         {
-            double maxData = double.MinValue;
-            DataEntity maxEntity = null;
-            foreach (DataEntity dataEntity in PlotDatas)
-            {
-                if (dataEntity.MaxXValue > maxData)
-                {
-                    maxData = dataEntity.MaxXValue;
-                    maxEntity = dataEntity;
-                }
-            }
-            // TODO fix later.为了避免0-999这种情况做的特殊处理
-            if (null != maxEntity && XDataInputType.Increment == maxEntity.DataInfo.XDataInputType)
-            {
-                maxData += maxEntity.XIncrement;
-            }
-            return maxData;
         }
 
         public double GetMinXInterval()
         {
-            double minInterval = double.MaxValue;
-            foreach (DataEntity dataEntity in PlotDatas)
-            {
-                if (dataEntity.XMinInterval < minInterval)
-                {
-                    minInterval = dataEntity.XMinInterval;
-                }
-            }
-            return minInterval;
+            return 1;
         }
 
         public int GetMaxDataSize()

@@ -9,6 +9,7 @@ using System.Drawing.Design;
 using System.IO;
 using System.Linq;
 using System.Text;
+using SeeSharpTools.JY.GUI.Common.i18n;
 using SeeSharpTools.JY.GUI.StripChartXData;
 using SeeSharpTools.JY.GUI.StripChartXEditor;
 using SeeSharpTools.JY.GUI.StripTabCursorUtility;
@@ -41,6 +42,8 @@ namespace SeeSharpTools.JY.GUI
         private StripChartXPlotArea _hitPlotArea;
         // 游标管理窗体的实例
         private StripTabCursorInfoForm _tabCursorForm;
+        // 国际化管理类
+        private readonly I18nEntity i18n = I18nEntity.GetInstance(null);
 
         #endregion   //Private Fields
 
@@ -113,92 +116,6 @@ namespace SeeSharpTools.JY.GUI
         }
 
         /// <summary>
-        /// Get or specify whether check NaN data.
-        /// </summary>
-        [
-            Obsolete,
-            Browsable(false),
-            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-            Category("Data"),
-            Description("Get or specify whether check NaN data.")
-        ]
-        public bool CheckNaN
-        {
-            get
-            {
-                return _plotManager.DataCheckParams.CheckNaN;
-            }
-
-            set
-            {
-                _plotManager.DataCheckParams.CheckNaN = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or specify whether check negtive or zero data.
-        /// </summary>
-        [
-            Obsolete,
-            Browsable(false),
-            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-            Category("Data"),
-            Description("Get or specify whether check negtive or zero data.")
-        ]
-        public bool CheckNegtiveOrZero
-        {
-            get
-            {
-                return _plotManager.DataCheckParams.CheckNegtiveOrZero;
-            }
-
-            set
-            {
-                _plotManager.DataCheckParams.CheckNegtiveOrZero = value;
-            }
-        }
-
-        /// <summary>
-        /// Get or specify whether check infinity data.
-        /// </summary>
-        [
-            Obsolete,
-            Browsable(false),
-            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-            Category("Data"),
-            Description("Get or specify whether check infinity data.")
-        ]
-        public bool CheckInfinity
-        {
-            get
-            {
-                return _plotManager.DataCheckParams.CheckInfinity;
-            }
-
-            set
-            {
-                _plotManager.DataCheckParams.CheckInfinity = value;
-            }
-        }
-
-        /// <summary>
-        /// Specify or get the fitting algorithm type when point sparse enabled.
-        /// </summary>
-        [
-            Obsolete,
-            Browsable(false),
-            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-            Category("Data"),
-            Description("Specify or get the fitting algorithm type when point sparse enabled."),
-            EditorBrowsable(EditorBrowsableState.Never),
-        ]
-        public FitType Fitting
-        {
-            get { return _plotManager.FitType; }
-            set { _plotManager.FitType = value; }
-        }
-
-        /// <summary>
         /// Get plot areas in split view.
         /// </summary>
         [
@@ -265,32 +182,6 @@ namespace SeeSharpTools.JY.GUI
             set
             {
                 _chart.BackGradientStyle = (GradientStyle) value;
-            }
-        }
-
-        //停止该接口，后续如果需要直接通过AxisY去自行配置
-        /// <summary>
-        /// Specify whether auto Y axis range enabled
-        /// </summary>
-        [
-            Browsable(false),
-            Category("Behavior"),
-            Description("Y axis auto scale")
-        ]
-        internal bool YAutoEnable
-        {
-            get
-            {
-                return _chartViewManager.MainPlotArea.AxisY.AutoScale;
-            }
-
-            set
-            {
-                _chartViewManager.MainPlotArea.AxisY.AutoScale = value;
-                if (_chartViewManager.UseMainAreaConfig)
-                {
-                    _chartViewManager.ApplyMainPlotAreaToAll();
-                }
             }
         }
 
@@ -529,6 +420,144 @@ namespace SeeSharpTools.JY.GUI
         ]
         public MiscellaneousConfiguration Miscellaneous { get; internal set; }
 
+        /// <summary>
+        /// Select stripchartX scroll type
+        /// 选择StripChartX滚动类型
+        /// </summary>
+        [
+            Browsable(true),
+            CategoryAttribute("Appearance"),
+            Description("Select the scroll type of stripchartX"),
+        ]
+        public StripScrollType ScrollType
+        {
+            get { return _chartViewManager.ScrollType; }
+            set
+            {
+                if (IsPlotting())
+                {
+                    return;
+                }
+                _chartViewManager.ScrollType = value;
+            }
+        }
+
+        /// <summary>
+        /// Maximum point count to show in single line. The points at the most front will be overlapped when the point count exceed this number.
+        /// 单条线最多显示的点数，超过该点数后数据开始滚动并覆盖最前面的点。
+        /// </summary>
+        [
+            Browsable(true),
+            CategoryAttribute("Behavior"),
+            Description("Maximum point count to show in single line. The points at the most front will be overlapped when the point count exceed this number.")
+        ]
+        public int DisplaySamples
+        {
+            get { return _plotManager.DisplayPoints; }
+            set
+            {
+                if (value < Constants.MinDisplayPoints || value > Constants.MaxDisplayPoints)
+                {
+                    throw new ArgumentOutOfRangeException(i18n.GetFStr("ParamCheck.InvalidRange", "DisplayPoints", Constants.MinDisplayPoints, 
+                        Constants.MaxDisplayPoints));
+                }
+                if (IsPlotting())
+                {
+                    throw new InvalidOperationException(i18n.GetFStr("Runtime.CannotSetWhenPlotting", "DisplayPoints"));
+                }
+                _plotManager.DisplayPoints = value;
+            }
+        }
+
+        /// <summary>
+        /// Specify the x axis label type
+        /// 配置X轴显示的类型
+        /// </summary>
+        [
+            Browsable(true),
+            CategoryAttribute("Behavior"),
+            Description("Specify X axis data type")
+        ]
+        public XAxisDataType XDataType
+        {
+            get { return _plotManager.XDataType; }
+            set { _plotManager.XDataType = value; }
+        }
+        
+        /// <summary>
+        /// Time stamp format
+        /// 时间戳格式
+        /// </summary>
+        [
+            Browsable(true),
+            CategoryAttribute("Behavior"),
+            DefaultValueAttribute(Constants.DefaultTimeStampFormat),
+            Description("Specify the time stamp format. Only available when XAxisDataType is TimeStamp.")
+        ]
+        public string TimeStampFormat
+        {
+            get { return _plotManager.TimeStampFormat; }
+            set { _plotManager.TimeStampFormat = value; }
+        }
+
+        /// <summary>
+        /// Get or set the next time stamp value
+        /// 获取或配置下一个绘图时的其实时间戳
+        /// </summary>
+        [Browsable(false)]
+        public DateTime NextTimeStamp
+        {
+            get { return _plotManager.NextTimeStamp; }
+            set { _plotManager.NextTimeStamp = value; }
+        }
+
+        /// <summary>
+        /// Get or set the time interval between two samples
+        /// 获取或配置相邻两个样点之间的时间间隔
+        /// </summary>
+        public TimeSpan TimeInterval
+        {
+            get { return _plotManager.TimeInterval; }
+            set { _plotManager.TimeInterval = value; }
+        }
+
+        /// <summary>
+        /// Start value of X axis index. Only available when XDataType is Index.
+        /// X轴索引起始值，仅在XDataType为Index时可用。
+        /// </summary>
+        [
+            Browsable(true),
+            CategoryAttribute("Behavior"),
+            Description("Specify the start index of x axis. Only available when XDataType is Index.")
+        ]
+        public int XAxisStartIndex
+        {
+            get { return _plotManager.XAxisStartIndex; }
+            set
+            {
+                if (_plotManager.IsPlotting)
+                {
+                    return;
+                }
+                _plotManager.XAxisStartIndex = value; 
+            }
+        }
+
+        /// <summary>
+        /// Get or specify the scroll direction of StripChartX.
+        /// 获取或配置StripChartX的滚动方向
+        /// </summary>
+        [
+            Browsable(true),
+            CategoryAttribute("Behavior"),
+            Description("Get or specify the scroll direction of StripChartX.")
+        ]
+        public ScrollDirection Direction
+        {
+            get { return _chartViewManager.Direction; }
+            set { _chartViewManager.Direction = value; }
+        }
+
         #endregion
 
         #region User event handler and event call
@@ -536,12 +565,12 @@ namespace SeeSharpTools.JY.GUI
         /// <summary>
         /// StripChartX axis view changing event delegate
         /// </summary>
-        public delegate void ViewEvents(object sender, StripChartXViewEventArgs e);
+        public delegate void ViewEvent(object sender, StripChartXViewEventArgs e);
 
         /// <summary>
         /// StripChartX cursor changed event delegate
         /// </summary>
-        public delegate void CursorEvents(object sender, StripChartXCursorEventArgs e);
+        public delegate void CursorEvent(object sender, StripChartXCursorEventArgs e);
 
         /// <summary>
         /// StripChartX tabcursor changed event delegate
@@ -557,7 +586,7 @@ namespace SeeSharpTools.JY.GUI
         /// Axis view changed event. Raised when scale view changed by mouse or user.
         /// </summary>
         [Description("Raised when StripChartX axis view changed.")]
-        public event ViewEvents AxisViewChanged;
+        public event ViewEvent AxisViewChanged;
 
         internal void OnAxisViewChanged(StripChartXAxis axis, bool isScaleViewChanged, bool isRaiseByMouseEvent)
         {
@@ -577,7 +606,7 @@ namespace SeeSharpTools.JY.GUI
         /// Cursor position changed event. Raised when cursor position changed by mouse or user.
         /// </summary>
         [Description("Raised when cursor position changed by mouse or user.")]
-        public event CursorEvents CursorPositionChanged;
+        public event CursorEvent CursorPositionChanged;
 
         internal void OnCursorPositionChanged(StripChartXCursor cursor, bool raiseByMouseEvent, int seriesIndex = -1)
         {
@@ -813,6 +842,10 @@ namespace SeeSharpTools.JY.GUI
                     PlotDataInRange();
                 }
         */
+        
+        
+
+
         #endregion
 
         #region Double IList interface
@@ -1138,7 +1171,7 @@ namespace SeeSharpTools.JY.GUI
                 if (ReferenceEquals(_chartViewManager.MainPlotArea.ChartArea, chartArea) && !_chartViewManager.IsSplitView)
                 {
                     changedAxis = _chartViewManager.MainPlotArea.AxisX;
-                    changedAxis.RefreshXLabelFormat();
+                    changedAxis.RefreshXGridsAndLabels();
                     _plotManager.PlotDataInRange(axis.ScaleView.ViewMinimum, axis.ScaleView.ViewMaximum, false);
                 }
                 // 分区视图，副绘图区的缩放事件
@@ -1148,7 +1181,7 @@ namespace SeeSharpTools.JY.GUI
                     if (seriesIndex >= 0 && seriesIndex < _chartViewManager.SplitPlotAreas.Count)
                     {
                         changedAxis = _chartViewManager.SplitPlotAreas[seriesIndex].AxisX;
-                        changedAxis.RefreshXLabelFormat();
+                        changedAxis.RefreshXGridsAndLabels();
                         _plotManager.PlotDataInRange(axis.ScaleView.ViewMinimum, axis.ScaleView.ViewMaximum, seriesIndex, false);
                         // 分区模式下，视图更新需要手动刷新Label
                         changedAxis.RefreshLabels();
@@ -1162,8 +1195,8 @@ namespace SeeSharpTools.JY.GUI
                 {
                     changedAxis = _chartViewManager.MainPlotArea.AxisY;
                     _chartViewManager.MainPlotArea.YAxisSync.SyncAxis();
-                    _chartViewManager.MainPlotArea.AxisY.RefreshYMajorGridInterval();
-                    _chartViewManager.MainPlotArea.AxisY2.RefreshYMajorGridInterval();
+                    _chartViewManager.MainPlotArea.AxisY.RefreshYGridsAndLabels();
+                    _chartViewManager.MainPlotArea.AxisY2.RefreshYGridsAndLabels();
                 }
                 else
                 {
@@ -1176,8 +1209,8 @@ namespace SeeSharpTools.JY.GUI
                         _chartViewManager.SplitPlotAreas[seriesIndex].AxisY.RefreshLabels();
                         _chartViewManager.SplitPlotAreas[seriesIndex].AxisY2.RefreshLabels();
 
-                        _chartViewManager.SplitPlotAreas[seriesIndex].AxisY.RefreshYMajorGridInterval();
-                        _chartViewManager.SplitPlotAreas[seriesIndex].AxisY2.RefreshYMajorGridInterval();
+                        _chartViewManager.SplitPlotAreas[seriesIndex].AxisY.RefreshYGridsAndLabels();
+                        _chartViewManager.SplitPlotAreas[seriesIndex].AxisY2.RefreshYGridsAndLabels();
                     }
                 }
             }
@@ -2029,6 +2062,64 @@ namespace SeeSharpTools.JY.GUI
             /// </summary>
             Range
         }
+
+        /// <summary>
+        /// StripChart scroll type
+        /// </summary>
+        public enum StripScrollType
+        {
+            /// <summary>
+            /// 累积点数，到达最大点数时滚动
+            /// </summary>
+            Cumulation,
+
+            /// <summary>
+            /// 滚动模式
+            /// </summary>
+            Scroll,
+        }
+
+        /// <summary>
+        /// X axis data type
+        /// X轴数据类型
+        /// </summary>
+        public enum XAxisDataType
+        {
+            /// <summary>
+            /// 数字索引
+            /// </summary>
+            Index,
+
+            /// <summary>
+            /// 时间戳
+            /// </summary>
+            TimeStamp,
+
+            /// <summary>
+            /// 字符串(用户自定义)
+            /// </summary>
+            String
+        }
+
+        /// <summary>
+        /// Enum Display Mode
+        /// 显示方向
+        /// </summary>
+        public enum ScrollDirection
+        {
+            /// <summary>
+            /// From left to right
+            /// 从左到右
+            /// </summary>
+            LeftToRight,
+
+            /// <summary>
+            /// From right to left
+            /// 从右到左
+            /// </summary>
+            RightToLeft
+        };
+
         #endregion
     }
 }

@@ -87,7 +87,7 @@ namespace SeeSharpTools.JY.GUI
             _adapter.MoveCursorToTarget(item);
             SetCursorXBoundry(item);
             AttachOrDetachPaintEvent();
-            _parentChart.OnTabCursorChanged(item, TabCursorOperation.CursorAdded, null);
+            _parentChart.OnTabCursorChanged(item, StripTabCursorOperation.CursorAdded, null);
         }
 
         
@@ -103,7 +103,7 @@ namespace SeeSharpTools.JY.GUI
             }
             _cursors.Clear();
             AttachOrDetachPaintEvent();
-            _parentChart.OnTabCursorChanged(null, TabCursorOperation.CursorDeleted, null);
+            _parentChart.OnTabCursorChanged(null, StripTabCursorOperation.CursorDeleted, null);
         }
 
         public bool Contains(StripTabCursor item)
@@ -126,7 +126,7 @@ namespace SeeSharpTools.JY.GUI
             }
             bool remove = _cursors.Remove(item);
             AttachOrDetachPaintEvent();
-            _parentChart.OnTabCursorChanged(null, TabCursorOperation.CursorDeleted, null);
+            _parentChart.OnTabCursorChanged(null, StripTabCursorOperation.CursorDeleted, null);
             return remove;
         }
 
@@ -168,7 +168,7 @@ namespace SeeSharpTools.JY.GUI
             _adapter.MoveCursorToTarget(item);
             SetCursorXBoundry(item);
             AttachOrDetachPaintEvent();
-            _parentChart.OnTabCursorChanged(item, TabCursorOperation.CursorAdded, null);
+            _parentChart.OnTabCursorChanged(item, StripTabCursorOperation.CursorAdded, null);
         }
 
         public void RemoveAt(int index)
@@ -184,7 +184,7 @@ namespace SeeSharpTools.JY.GUI
             }
             _cursors.RemoveAt(index);
             AttachOrDetachPaintEvent();
-            _parentChart.OnTabCursorChanged(null, TabCursorOperation.CursorDeleted, null);
+            _parentChart.OnTabCursorChanged(null, StripTabCursorOperation.CursorDeleted, null);
         }
 
         public StripTabCursor this[int index]
@@ -274,7 +274,7 @@ namespace SeeSharpTools.JY.GUI
                 cursor.Control.Visible = false;
             }
             // TODO 暂时Enable变化和Value变化都触发ValueChanged事件，后期再优化
-            _parentChart.OnTabCursorChanged(cursor, TabCursorOperation.ValueChanged, null);
+            _parentChart.OnTabCursorChanged(cursor, StripTabCursorOperation.ValueChanged, null);
         }
         
         internal void RefreshCursorValue(StripTabCursor cursor)

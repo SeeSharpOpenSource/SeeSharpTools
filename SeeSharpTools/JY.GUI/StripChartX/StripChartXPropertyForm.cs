@@ -34,8 +34,8 @@ namespace SeeSharpTools.JY.GUI
             //update groupbox of LegendVisible
             checkBox_LegendVisible.Checked = _changedCtrl.LegendVisible;
             //update Tickwidth
-            checkBox_AutoYaxis.Checked = _changedCtrl.YAutoEnable;
-            if (_changedCtrl.YAutoEnable == true)
+            checkBox_AutoYaxis.Checked = _changedCtrl.AxisY.AutoScale;
+            if (_changedCtrl.AxisY.AutoScale == true)
             {
                 textBox_primaryYMax.Enabled = false;
                 textBox_primaryYMin.Enabled = false;
@@ -45,7 +45,7 @@ namespace SeeSharpTools.JY.GUI
                 textBox_primaryYMax.Enabled = true;
                 textBox_primaryYMin.Enabled = true;
             }
-            if (!_changedCtrl.YAutoEnable)
+            if (!_changedCtrl.AxisY.AutoScale)
             {
                 textBox_primaryYMax.Text = _changedCtrl.AxisY.Maximum.ToString();
                 textBox_primaryYMin.Text = _changedCtrl.AxisY.Minimum.ToString();
@@ -93,8 +93,8 @@ namespace SeeSharpTools.JY.GUI
 
         private void checkBox_AutoYaxis_CheckedChanged(object sender, EventArgs e)
         {
-            _changedCtrl.YAutoEnable = checkBox_AutoYaxis.Checked;
-            if (_changedCtrl.YAutoEnable)
+            _changedCtrl.AxisY.AutoScale = checkBox_AutoYaxis.Checked;
+            if (_changedCtrl.AxisY.AutoScale)
             {
                 textBox_primaryYMax.Enabled = false;
                 textBox_primaryYMin.Enabled = false;
@@ -200,7 +200,7 @@ namespace SeeSharpTools.JY.GUI
             _changedCtrl.Size = beforeChart.Size;
 
             _changedCtrl.LegendVisible = beforeChart.LegendVisible;
-            _changedCtrl.YAutoEnable = beforeChart.YAutoEnable;
+            _changedCtrl.AxisY.AutoScale = beforeChart.AxisY.AutoScale;
             double yAxisRange = beforeChart.AxisY.Maximum;
             if (!double.IsNaN(yAxisRange))
             {

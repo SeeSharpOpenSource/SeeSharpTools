@@ -29,7 +29,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXEditor
             PropertyDescriptor backColorProperty = TypeDescriptor.GetProperties(control)["BackColor"];
             backColorProperty.SetValue(control, control.BackColor);
             
-            return CollectionPropertyEditorForm<StripTabCursor>.EditValue(descriptor.Name, tabCursor, () => { tabCursor.Add(new StripTabCursor());  });
+            return CollectionPropertyEditorForm<StripTabCursor>.EditValue(descriptor.Name, tabCursor, () => { tabCursor.Add(new StripTabCursor());  }, true);
         }
     }
 }
