@@ -463,7 +463,7 @@ namespace SeeSharpTools.JY.GUI
                 }
                 if (IsPlotting())
                 {
-                    throw new InvalidOperationException(i18n.GetFStr("Runtime.CannotSetWhenPlotting", "DisplayPoints"));
+                    throw new InvalidOperationException(i18n.GetFStr("Runtime.NotSetInRunTime", "DisplayPoints"));
                 }
                 _plotManager.DisplayPoints = value;
             }
@@ -726,125 +726,150 @@ namespace SeeSharpTools.JY.GUI
 
         #region Public Methods
 
-        #region Double Array interface
+        #region Array interface
 
         /// <summary>
-        /// Plot single waveform y on chart, x will be generated using xStart and xIncrement.
+        /// 绘制多条曲线的多个点，String模式可用
         /// </summary>
-        /// <param name="yData"> waveform to plot</param>
-        /// <param name="xStart"> offset value for generating x sequence using "offset + (Increment * i)"</param>
-        /// <param name="xIncrement">increment value for generating x sequence using "offset + (Increment * i)"</param>
-        public void Plot(double[] yData, double xStart = 0, double xIncrement = 1)
+        /// <param name="lineData">待显示数据</param>
+        /// <param name="xLabels">X轴待显示内容</param>
+        public void Plot<TDataType>(TDataType[,] lineData, string[] xLabels)
         {
-            // Plot的流程
-            // 1. 将绘图数据保存到plotmanager的PlotDatas的DataEntity结构中
-            // 2. 根据绘图数据的线数匹配视图
-            // 3. 根据待绘制的数据更新坐标轴和游标部分与数据相关的配置
-            // 4. 根据坐标轴当前的缩放范围进行绘图
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xStart, xIncrement, yData, yData.Length, yData.Length);
-
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-
+            CheckXData(XAxisDataType.String);
+            int seriesCount = lineData.GetLength(0);
+            if (!_plotManager.IsPlotting)
+            {
+                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+            }
+            CheckYData(seriesCount, typeof(TDataType));
+            _plotManager.AddPlotData<TDataType>(xData, yData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
         }
-
-        /// <summary>
-        /// Plot multiple waveforms on chart, x will be generated using xStart and xIncrement.
-        /// </summary>
-        /// <param name="yData"> waveforms to plot, each line in y[,] represents a single waveform</param>
-        /// <param name="xStart">offset value for generating x sequence using "offset + (Increment * i)"</param>
-        /// <param name="xIncrement">increment value for generating x sequence using "offset + (Increment * i)"</param>
-        public void Plot(double[,] yData, double xStart = 0, double xIncrement = 1)
-        {
-            // Plot的流程
-            // 1. 将绘图数据保存到plotmanager的PlotDatas的DataEntity结构中
-            // 2. 根据绘图数据的线数匹配视图
-            // 3. 根据待绘制的数据更新坐标轴和游标部分与数据相关的配置
-            // 4. 根据坐标轴当前的缩放范围进行绘图
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xStart, xIncrement, yData);
-
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-
-        /// <summary>
-        /// Plot x[] and y[] pair on chart.
-        /// </summary>
-        /// <param name="xData"> x sequence to plot</param>
-        /// <param name="yData"> y sequence to plot</param>
-        public void Plot(double[] xData, double[] yData)
-        {
-            // Plot的流程
-            // 1. 将绘图数据保存到plotmanager的PlotDatas的DataEntity结构中
-            // 2. 根据绘图数据的线数匹配视图
-            // 3. 根据待绘制的数据更新坐标轴和游标部分与数据相关的配置
-            // 4. 根据坐标轴当前的缩放范围进行绘图
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xData, yData, yData.Length, yData.Length);
-
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-
-        /// <summary>
-        /// Plot MutiDimension x and y data on chart.
-        /// </summary>
-        /// <param name="xData"> x sequences to plot</param>
-        /// <param name="yData"> y sequences to plot</param>
-        public void Plot(double[][] xData, double[][] yData)
-        {
-            // Plot的流程
-            // 1. 将绘图数据保存到plotmanager的PlotDatas的DataEntity结构中
-            // 2. 根据绘图数据的线数匹配视图
-            // 3. 根据待绘制的数据更新坐标轴和游标部分与数据相关的配置
-            // 4. 根据坐标轴当前的缩放范围进行绘图
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xData, yData);
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-        /*
-                /// <summary>
-                /// Plot single waveform y on chart, x will be generated using xStart and xIncrement.
-                /// </summary>
-                /// <param name="yData"> waveform to plot</param>
-                /// <param name="startTime"></param>
-                /// <param name="sampleRate"></param>
-                public void Plot(double[] yData, DateTime startTime, double sampleRate)
-                {
-                    int lastSeriesCount = _plotManager.SeriesCount;
-                    _plotManager.AddPlotData(startTime, sampleRate, yData, yData.Length, yData.Length);
-
-                    AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-
-                    _chartViewManager.RefreshAxesAndCursors();
-                    PlotDataInRange();
-                }
-
-                /// <summary>
-                /// Plot multiple waveforms on chart, x will be generated using xStart and xIncrement.
-                /// </summary>
-                /// <param name="yData"> waveforms to plot, each line in y[,] represents a single waveform</param>
-                /// <param name="startTime"></param>
-                /// <param name="sampleRate"></param>
-                public void Plot(double[,] yData, DateTime startTime, double sampleRate)
-                {
-                    int lastSeriesCount = _plotManager.SeriesCount;
-                    _plotManager.AddPlotData(startTime, sampleRate, yData.Cast<double>(), yData.GetLength(1), yData.Length);
-                    AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-                    _chartViewManager.RefreshAxesAndCursors();
-                    PlotDataInRange();
-                }
-        */
         
-        
+        /// <summary>
+        /// 绘制一条曲线的多个点，String模式可用
+        /// </summary>
+        /// <param name="lineData">待显示数据</param>
+        /// <param name="xLabels">X轴待显示内容</param>
+        public void Plot<TDataType>(TDataType[] lineData, string[] xLabels)
+        {
+            CheckXData(XAxisDataType.String);
+            int seriesCount = lineData.GetLength(0);
+            if (!_plotManager.IsPlotting)
+            {
+                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+            }
+            CheckYData(seriesCount, typeof(TDataType));
+            _plotManager.AddPlotData<TDataType>(xData, yData);
+            _chartViewManager.RefreshAxesAndCursors();
+            PlotDataInRange();
+        }
 
+        /// <summary>
+        /// 绘制多条曲线的多个点，TimeStamp模式可用
+        /// </summary>
+        /// <param name="lineData">待显示数据</param>
+        /// <param name="xLabels">X轴待显示内容</param>
+        public void Plot<TDataType>(TDataType[,] lineData, DateTime[] xLabels)
+        {
+            CheckXData(XAxisDataType.TimeStamp);
+            int seriesCount = lineData.GetLength(0);
+            if (!_plotManager.IsPlotting)
+            {
+                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+            }
+            CheckYData(seriesCount, typeof(TDataType));
+            _plotManager.AddPlotData<TDataType>(xData, yData);
+            _chartViewManager.RefreshAxesAndCursors();
+            PlotDataInRange();
+        }
+
+        /// <summary>
+        /// 绘制一条曲线的多个点，TimeStamp模式可用
+        /// </summary>
+        /// <param name="lineData">待显示数据</param>
+        /// <param name="xLabels">X轴待显示内容</param>
+        public void Plot<TDataType>(TDataType[] lineData, DateTime[] xLabels)
+        {
+            CheckXData(XAxisDataType.TimeStamp);
+            int seriesCount = lineData.GetLength(0);
+            if (!_plotManager.IsPlotting)
+            {
+                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+            }
+            CheckYData(seriesCount, typeof(TDataType));
+            _plotManager.AddPlotData<TDataType>(xData, yData);
+            _chartViewManager.RefreshAxesAndCursors();
+            PlotDataInRange();
+        }
+
+        /// <summary>
+        /// 绘制多条曲线的多个点，Index模式可用
+        /// </summary>
+        /// <param name="lineData">待显示数据</param>
+        public void Plot<TDataType>(TDataType[,] lineData)
+        {
+            CheckXData(XAxisDataType.Index, XAxisDataType.TimeStamp);
+            int seriesCount = lineData.GetLength(0);
+            if (!_plotManager.IsPlotting)
+            {
+                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+            }
+            CheckYData(seriesCount, typeof(TDataType));
+            _plotManager.AddPlotData<TDataType>(xData, yData);
+            _chartViewManager.RefreshAxesAndCursors();
+            PlotDataInRange();
+        }
+
+        /// <summary>
+        /// 绘制多条曲线的多个点，Index模式可用
+        /// </summary>
+        /// <param name="lineData">待显示数据</param>
+        public void Plot<TDataType>(TDataType[] lineData)
+        {
+            CheckXData(XAxisDataType.Index, XAxisDataType.TimeStamp);
+            int seriesCount = lineData.GetLength(0);
+            if (!_plotManager.IsPlotting)
+            {
+                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+            }
+            CheckYData(seriesCount, typeof(TDataType));
+            _plotManager.AddPlotData<TDataType>(xData, yData);
+            _chartViewManager.RefreshAxesAndCursors();
+            PlotDataInRange();
+        }
+
+        private void CheckXData(params XAxisDataType[] validXDataTypes)
+        {
+            if (!validXDataTypes.Contains(_plotManager.XDataType))
+            {
+                throw new InvalidOperationException(i18n.GetFStr("ParamCheck.InvalidCall", "XDataType", _plotManager.XDataType));
+            }
+        }
+
+        private void CheckYData(int seriesCount, Type dataType)
+        {
+            if (_plotManager.IsPlotting && seriesCount != _plotManager.SeriesCount)
+            {
+                throw new ArgumentException(i18n.GetFStr("RunTime.NoFixInRunTime", "SeriesCount"));
+            }
+            if (null != _plotManager.DataType && !ReferenceEquals(dataType, _plotManager.DataType))
+            {
+                throw new ArgumentException(i18n.GetStr("RunTime.YDataTypeNotSame"));
+            }
+        }
+
+        private void InitPlotManagerAndViewManager<TDataType>(int newSeriesCount)
+        {
+            Type dataType = typeof (TDataType);
+            if (!Constants.ValidDataType.Contains(dataType))
+            {
+                throw new ArgumentException(i18n.GetFStr("RunTime.InvalidDataType", dataType.Name));
+            }
+            int lastSeriesCount = _plotManager.SeriesCount;
+            AdaptPlotSeriesAndChartView(newSeriesCount != lastSeriesCount);
+        }
 
         #endregion
 

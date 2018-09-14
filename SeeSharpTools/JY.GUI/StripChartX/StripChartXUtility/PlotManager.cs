@@ -37,6 +37,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         public int MaxSeriesCount { get; set; }
 
+        public Type DataType { get; set; }
+
         /// <summary>
         /// Maximum point count to show in single line
         /// 单条线最多显示的点数
@@ -462,6 +464,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             IsPlotting = false;
             PlotDefaultView();
             SamplesInChart = 0;
+            DataType = null;
             foreach (DataEntity dataEntity in PlotDatas)
             {
                 dataEntity.Clear();

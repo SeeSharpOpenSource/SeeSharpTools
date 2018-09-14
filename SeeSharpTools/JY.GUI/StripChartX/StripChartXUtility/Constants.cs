@@ -1,4 +1,7 @@
-﻿namespace SeeSharpTools.JY.GUI.StripChartXUtility
+﻿using System;
+using System.Collections.Generic;
+
+namespace SeeSharpTools.JY.GUI.StripChartXUtility
 {
     internal static class Constants
     {
@@ -81,5 +84,19 @@
         // 分区视图时X轴和Y轴的边界比例(百分比)
         public const float XBoundRatio = 5f;
         public const float YBoundRatio = 5f;
+
+        public static readonly HashSet<Type> ValidDataType;
+
+        static Constants()
+        {
+            ValidDataType = new HashSet<Type>();
+            ValidDataType.Add(typeof (double));
+            ValidDataType.Add(typeof (float));
+            ValidDataType.Add(typeof (int));
+            ValidDataType.Add(typeof (uint));
+            ValidDataType.Add(typeof (short));
+            ValidDataType.Add(typeof (ushort));
+            ValidDataType.Add(typeof (byte));
+        }
     }
 }
