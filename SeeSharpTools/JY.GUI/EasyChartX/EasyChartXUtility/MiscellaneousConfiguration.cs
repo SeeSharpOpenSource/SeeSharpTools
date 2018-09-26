@@ -32,7 +32,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         /// </summary>
         // TODO 该属性暂时配置对序列化
         [
-            Category("Series Configuration"),
+            Category("Series"),
             DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
             Description("The maximum point count of series in a single view.")
         ]
@@ -126,30 +126,30 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             get { return _plotManager.FitType; }
             set { _plotManager.FitType = value; }
         }
-        
+
         #region Split View layout configuire
 
         /// <summary>
-        /// The layout direction: LeftToRight/TopToBottom.
+        /// The layout direction of split view: LeftToRight/TopToBottom.
         /// </summary>
         [
             Category("Split View Layout"),
-            Description("The layout direction: LeftToRight/TopToBottom.")
+            Description("The layout direction of split view: LeftToRight/TopToBottom.")
         ]
-        public LayoutDirection Direction
+        public LayoutDirection SplitLayoutDirection
         {
             get { return _viewManager.LayoutDirection; }
             set { _viewManager.LayoutDirection = value; }
         }
 
         /// <summary>
-        /// Specify whether enabled auto layout.
+        /// Specify whether enabled split view auto layout.
         /// </summary>
         [
             Category("Split View Layout"),
-            Description("Specify whether enabled auto layout.")
+            Description("Specify whether enabled split view auto layout.")
         ]
-        public bool AutoLayout
+        public bool SplitViewAutoLayout
         {
             get { return _viewManager.AutoLayout; }
             set { _viewManager.AutoLayout = value; }
@@ -175,7 +175,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             Category("Split View Layout"),
             Description("Specify the interval in pixel between adjacent columns.")
         ]
-        public float ColumnInterval
+        public float SplitLayoutColumnInterval
         {
             get { return _viewManager.ColumnInterval; }
             set { _viewManager.ColumnInterval = value; }
@@ -188,7 +188,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             Category("Split View Layout"),
             Description("Specify the interval in pixel between adjacent rows.")
         ]
-        public float RowInterval
+        public float SplitLayoutRowInterval
         {
             get { return _viewManager.RowInterval; }
             set { _viewManager.RowInterval = value; }

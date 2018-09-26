@@ -9,6 +9,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 {
     internal class ParallelHandler
     {
+        const int MinParallelCalcCount = 4000;
+
         private readonly ParallelOptions _option;
         private readonly object _parallelLock = new object();
 
@@ -203,7 +205,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         public void GetMaxAndMin(IList<double> datas, out double max, out double min)
         {
             // 点数小于4000时手动计算
-            if (datas.Count <= 4000)
+            if (datas.Count <= MinParallelCalcCount)
             {
                 int startIndex = 0;
                 while (startIndex < datas.Count)

@@ -85,6 +85,8 @@
     <Compile Include="ButtonSwitch\Renderers\ToggleSwitchModernRenderer.cs" />
     <Compile Include="ButtonSwitch\Renderers\ToggleSwitchOSXRenderer.cs" />
     <Compile Include="ButtonSwitch\Renderers\ToggleSwitchRendererBase.cs" />
+    <Compile Include="Common\i18n\I18nEntity.cs" />
+    <Compile Include="Common\i18n\I18nLocalWrapper.cs" />
     <Compile Include="EasyButton\EasyButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -107,15 +109,18 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="StripChartX\StripChartX.Designer.cs">
-	  <DependentUpon>StripChartX.cs</DependentUpon>
-	</Compile>
-    <Compile Include="StripChartX\StripChartXData\DataEntity.cs" />
+      <DependentUpon>StripChartX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StripChartX\StripChartXData\DataEntities\IndexDataEntity.cs" />
+    <Compile Include="StripChartX\StripChartXData\DataEntities\StringDataEntity.cs" />
+    <Compile Include="StripChartX\StripChartXData\DataEntities\TimeStampDataEntity.cs" />
     <Compile Include="StripChartX\StripChartXData\DataEntityInfo.cs" />
+    <Compile Include="StripChartX\StripChartXData\DataEntityBase.cs" />
     <Compile Include="StripChartX\StripChartXData\PlotBuffer.cs" />
-    <Compile Include="StripChartX\StripChartXData\PlotBufferBase.cs" />
     <Compile Include="StripChartX\StripChartXData\ShallowPlotBuffer.cs" />
-    <Compile Include="StripChartX\StripChartXData\XDataInputType.cs" />
+    <Compile Include="StripChartX\StripChartXData\XDataEntity.cs" />
     <Compile Include="StripChartX\StripChartXData\XDataType.cs" />
+    <Compile Include="StripChartX\StripChartXData\YDataEntity.cs" />
     <Compile Include="StripChartX\StripChartXDesigner.cs" />
     <Compile Include="StripChartX\StripChartXEditor\StripChartXLineSeries.cs" />
     <Compile Include="StripChartX\StripChartXEditor\StripChartXLineSeriesEditor.cs" />
@@ -129,15 +134,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StripChartX\StripChartXPropertyForm.Designer.cs">
-	  <DependentUpon>StripChartXPropertyForm.cs</DependentUpon>
-	</Compile>
+      <DependentUpon>StripChartXPropertyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StripChartX\StripChartXRangeYConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StripChartX\StripChartXRangeYConfigForm.Designer.cs">
-	  <DependentUpon>StripChartXRangeYConfigForm.cs</DependentUpon>
-	</Compile>
+      <DependentUpon>StripChartXRangeYConfigForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StripChartX\StripChartXUtility\AxisSynchronizer.cs" />
+    <Compile Include="StripChartX\StripChartXUtility\AxisViewAdapter.cs" />
     <Compile Include="StripChartX\StripChartXUtility\ChartViewManager.cs" />
     <Compile Include="StripChartX\StripChartXUtility\Constants.cs" />
     <Compile Include="StripChartX\StripChartXUtility\DataCheckParameters.cs" />
@@ -161,14 +167,14 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="StripChartX\StripTabCursorUtility\StripTabCursorControl.Designer.cs">
-	  <DependentUpon>StripTabCursorControl.cs</DependentUpon>
-	</Compile>
+      <DependentUpon>StripTabCursorControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="StripChartX\StripTabCursorUtility\StripTabCursorInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StripChartX\StripTabCursorUtility\StripTabCursorInfoForm.Designer.cs">
-	  <DependentUpon>StripTabCursorInfoForm.cs</DependentUpon>
-	</Compile>
+      <DependentUpon>StripTabCursorInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility\CollectionPropertyEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -499,20 +505,20 @@
       <DependentUpon>EasyChartX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StripChartX\StripChartX.resx">
-	  <DependentUpon>StripChartX.cs</DependentUpon>
-	</EmbeddedResource>
+      <DependentUpon>StripChartX.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StripChartX\StripChartXPropertyForm.resx">
-	  <DependentUpon>StripChartXPropertyForm.cs</DependentUpon>
-	</EmbeddedResource>
+      <DependentUpon>StripChartXPropertyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StripChartX\StripChartXRangeYConfigForm.resx">
-	  <DependentUpon>StripChartXRangeYConfigForm.cs</DependentUpon>
-	</EmbeddedResource>
+      <DependentUpon>StripChartXRangeYConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StripChartX\StripTabCursorUtility\StripTabCursorControl.resx">
-	  <DependentUpon>StripTabCursorControl.cs</DependentUpon>
-	</EmbeddedResource>
+      <DependentUpon>StripTabCursorControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StripChartX\StripTabCursorUtility\StripTabCursorInfoForm.resx">
-	  <DependentUpon>StripTabCursorInfoForm.cs</DependentUpon>
-	</EmbeddedResource>
+      <DependentUpon>StripTabCursorInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utility\CollectionPropertyEditorForm.resx">
       <DependentUpon>CollectionPropertyEditorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -687,6 +693,8 @@
     <EmbeddedResource Include="Thermometer\Thermometer.bmp" />
     <EmbeddedResource Include="KnobControl\KnobControl.bmp" />
     <EmbeddedResource Include="Tank\Tank.bmp" />
+    <EmbeddedResource Include="Resources\locale\i18n_GUI_CN.properties" />
+    <EmbeddedResource Include="Resources\locale\i18n_GUI_EN.properties" />
     <None Include="Resources\开关1.png" />
     <None Include="Resources\开关2.png" />
     <None Include="Resources\钮1.png" />

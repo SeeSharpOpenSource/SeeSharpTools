@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms.DataVisualization.Charting;
 using SeeSharpTools.JY.GUI.StripChartXData;
+using SeeSharpTools.JY.GUI.StripChartXData.DataEntities;
 using SeeSharpTools.JY.GUI.StripChartXEditor;
 
 namespace SeeSharpTools.JY.GUI.StripChartXUtility
@@ -25,19 +26,19 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             }
             set
             {
-                foreach (DataEntity dataEntity in PlotDatas)
+                if (null != DataEntity)
                 {
-                    dataEntity.PlotBuf.FitType = value;
+                    DataEntity.FitType = value;
                 }
                 this._fitType = value;
             }
         }
 
-        public bool CumulativePlot { get; set; }
-
         public int MaxSeriesCount { get; set; }
 
         public Type DataType { get; set; }
+
+        internal DataEntityBase DataEntity { get; private set; }
 
         /// <summary>
         /// Maximum point count to show in single line
@@ -73,7 +74,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         /// Start value of X axis index
         /// X轴索引起始值
         /// </summary>
-        public int XAxisStartIndex { get; set; }
+        public int StartIndex { get; set; }
 
         private int _plotSeriesCount;
 
@@ -101,8 +102,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         public bool IsPlotting { get; private set; }
         private readonly StripChartX _parentChart;
 
-        public readonly List<DataEntity> PlotDatas;
-
         internal PlotManager(StripChartX parentChart, SeriesCollection plotSeries)
         {
 
@@ -111,16 +110,16 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
             this.IsPlotting = false;
             this._parentChart = parentChart;
-            this.CumulativePlot = false;
             this._plotSeriesCount = 1;
 
             this.PlotSeries = plotSeries;
             this._plotSeriesCount = PlotSeries.Count;
 
+            this.DataEntity = null;
+
             this._series = new StripChartXSeriesCollection(plotSeries, parentChart);
             LineSeries = new StripChartXLineSeries(_series);
 
-            this.PlotDatas = new List<DataEntity>(Constants.MaxPointsInSingleSeries);
             this.DataCheckParams = new DataCheckParameters();
 
             this.SamplesInChart = 0;
@@ -128,130 +127,33 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             this.MaxSeriesCount = Constants.DefaultMaxSeriesCount;
         }
 
-        /// <summary>
-        /// 添加绘图数据到缓存中
-        /// </summary>
-        /// <param name="xStart"></param>
-        /// <param name="xstep"></param>
-        /// <param name="yData"></param>
-        /// <param name="xSize"></param>
-        /// <param name="ySize"></param>
-        public void AddPlotData(double xStart, double xstep, IList<double> yData, int xSize, int ySize)
+        public void InitializeDataEntity<TDataType>(int lineCount, int sampleCount)
         {
-            // 如果是连续绘图且已经达到线数上限则直接返回
-            if (CumulativePlot && _plotSeriesCount >= MaxSeriesCount)
+            DataEntityInfo dataEntityInfo = new DataEntityInfo()
             {
-                return;
-            }
-            int lineNum = ySize / xSize;
-            _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > MaxSeriesCount)
+                Capacity = this.DisplayPoints,
+                DataType = typeof (TDataType),
+                LineCount = lineCount,
+            };
+            if (null == DataEntity || !DataEntity.DataInfo.IsEqual(dataEntityInfo))
             {
-                ySize -= (_plotSeriesCount - MaxSeriesCount) *xSize;
-                _plotSeriesCount = MaxSeriesCount;
-            }
-            IsPlotting = true;
-            AdaptPlotDatasCount(1);
-            AdaptSeriesCount();
-            PlotDatas[PlotDatas.Count - 1].SaveData(xStart, xstep, yData, xSize, ySize);
-        }
-
-        /// <summary>
-        /// 添加绘图数据到缓存中
-        /// </summary>
-        /// <param name="xStart"></param>
-        /// <param name="xstep"></param>
-        /// <param name="yData"></param>
-        public void AddPlotData(double xStart, double xstep, double[,] yData)
-        {
-            // 如果是连续绘图且已经达到线数上限则直接返回
-            if (CumulativePlot && _plotSeriesCount >= MaxSeriesCount)
-            {
-                return;
-            }
-            int lineNum = yData.GetLength(0);
-            _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > MaxSeriesCount)
-            {
-                lineNum -= _plotSeriesCount - MaxSeriesCount;
-                _plotSeriesCount = MaxSeriesCount;
-            }
-            IsPlotting = true;
-            AdaptPlotDatasCount(1);
-            AdaptSeriesCount();
-            PlotDatas[PlotDatas.Count - 1].SaveData(xStart, xstep, yData, lineNum);
-        }
-
-        /*
-                public void AddPlotData(DateTime startTime, double sampleRate, IEnumerable<double> yData, int xSize, int ySize)
+                switch (XDataType)
                 {
-                    int lineNum = ySize / xSize;
-                    int seriesCountAfterPlot = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
-                    if (_plotSeriesCount > Constants.MaxSeriesToDraw)
-                    {
-                        return;
-                    }
-                    _plotSeriesCount = seriesCountAfterPlot;
-                    IsPlotting = true;
-                    AdaptPlotDatasCount(1);
-                    AdaptSeriesCount();
-                    PlotDatas[PlotDatas.Count - 1].SaveData(startTime, sampleRate, _easyChart.AxisX.LabelFormat, yData, xSize, ySize);
+                    case StripChartX.XAxisDataType.Index:
+                        DataEntity = new IndexDataEntity<TDataType>(this, dataEntityInfo);
+                        break;
+                    case StripChartX.XAxisDataType.String:
+                        DataEntity = new StringDataEntity<TDataType>(this, dataEntityInfo);
+                        break;
+                    case StripChartX.XAxisDataType.TimeStamp:
+                        DataEntity = new TimeStampDataEntity<TDataType>(this, dataEntityInfo, sampleCount);
+                        break;
                 }
-        */
-
-        /// <summary>
-        /// 添加绘图数据到缓存中
-        /// </summary>
-        /// <param name="xData"></param>
-        /// <param name="yData"></param>
-        /// <param name="xSize"></param>
-        /// <param name="ySize"></param>
-        public void AddPlotData(IList<double> xData, IList<double> yData, int xSize, int ySize)
-        {
-            // 如果是连续绘图且已经达到线数上限则直接返回
-            if (CumulativePlot && _plotSeriesCount >= MaxSeriesCount)
-            {
-                return;
             }
-            int lineNum = ySize / xSize;
-            _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > MaxSeriesCount)
+            else
             {
-                ySize -= (_plotSeriesCount - MaxSeriesCount) *xSize;
-                _plotSeriesCount = MaxSeriesCount;
-            }
-            IsPlotting = true;
-            AdaptPlotDatasCount(1);
-            AdaptSeriesCount();
-            PlotDatas[PlotDatas.Count - 1].SaveData(xData, yData, xSize, ySize);
-        }
-
-        /// <summary>
-        /// 添加绘图数据到缓存中
-        /// </summary>
-        /// <param name="xData"></param>
-        /// <param name="yData"></param>
-        public void AddPlotData(IList<IList<double>> xData, IList<IList<double>> yData)
-        {
-            // 如果是连续绘图且已经达到线数上限则直接返回
-            if (CumulativePlot && _plotSeriesCount >= MaxSeriesCount)
-            {
-                return;
-            }
-            int lineNum = xData.Count;
-            _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > MaxSeriesCount)
-            {
-                lineNum -= _plotSeriesCount - MaxSeriesCount;
-                _plotSeriesCount = MaxSeriesCount;
-            }
-            IsPlotting = true;
-            AdaptPlotDatasCount(lineNum);
-            AdaptSeriesCount();
-            int plotDataIndex = PlotDatas.Count - lineNum;
-            for (int i = 0; i < lineNum; i++)
-            {
-                PlotDatas[plotDataIndex++].SaveData(xData[i], yData[i], xData[i].Count, yData[i].Count);
+                DataEntity.Clear();
+                DataEntity.Initialize(sampleCount);
             }
         }
 
@@ -262,7 +164,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         internal void PlotDataInRange(double beginXValue, double endXValue, int seriesIndex, bool forceRefresh = false)
         {
             int lineIndex;
-            DataEntity dataEntity = GetDataEntityBySeriesIndex(seriesIndex, out lineIndex);
+            DataEntityBase dataEntity = GetDataEntityBySeriesIndex(seriesIndex, out lineIndex);
             if (null == dataEntity)
             {
                 return;
@@ -361,58 +263,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 }
             }
         }
-/*
-        private void RefreshTimeToXLabel(int seriesIndex)
-        {
-            if (seriesIndex < 0)
-            {
-                for (int index = 0; index < PlotSeries.Count; index++)
-                {
-                    RefreshTimeToXLabel(index);
-                }
-            }
-            else
-            {
-                int lineIndex;
-                DataEntity dataEntity = GetDataEntityBySeriesIndex(seriesIndex, out lineIndex);
-                IList<string> xTimeBuffer = dataEntity.Buffer.XTimeBuffer;
-                if (null == xTimeBuffer)
-                {
-                    return;
-                }
-                for (int i = 0; i < xTimeBuffer.Count; i++)
-                {
-                    PlotSeries[seriesIndex].Points[i].AxisLabel = xTimeBuffer[i];
-                }
-            }
-        }
-*/
-        
-        internal void AdaptPlotDatasCount(int plotDataCount)
-        {
-            // 如果是累积绘图则绘图个数是当前DataEntity个数与待添加DataEntity个数之和
-            if (CumulativePlot)
-            {
-                plotDataCount += PlotDatas.Count;
-            }
 
-            if (PlotDatas.Count == plotDataCount)
-            {
-                return;
-            }
-
-            while (PlotDatas.Count < plotDataCount)
-            {
-                DataEntity dataEntity = new DataEntity(this.DataCheckParams);
-                dataEntity.PlotBuf.FitType = _fitType;
-                PlotDatas.Add(dataEntity);
-            }
-
-            while (PlotDatas.Count > plotDataCount)
-            {
-                PlotDatas.RemoveAt(PlotDatas.Count - 1);
-            }
-        }
         /// <summary>
         /// 根据数据需要的线数匹配Chart上的线条个数
         /// </summary>
@@ -779,5 +630,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 lineData.Clear();
             }
         }
+        
     }
 }

@@ -16,15 +16,14 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         private int _blockSize;
         private int _indexOffset;
 
-        private readonly DataEntity _dataEntity;
-        private readonly PlotBuffer _buffer;
+        private readonly DataEntityBase _dataEntity;
+//        private readonly PlotBuffer _buffer;
         private IList<double> _datas;
         private readonly DataCheckParameters _dataCheckParams;
 
-        public ParallelHandler(DataEntity dataEntity, DataCheckParameters dataCheckParams)
+        public ParallelHandler(DataEntityBase dataEntity, DataCheckParameters dataCheckParams)
         {
             this._dataEntity = dataEntity;
-            this._buffer = dataEntity.PlotBuf;
             this._option = new ParallelOptions();
             this._indexOffset = 0;
             this._dataCheckParams = dataCheckParams;

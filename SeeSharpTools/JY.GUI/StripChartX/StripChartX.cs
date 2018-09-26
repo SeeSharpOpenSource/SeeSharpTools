@@ -518,7 +518,14 @@ namespace SeeSharpTools.JY.GUI
         public TimeSpan TimeInterval
         {
             get { return _plotManager.TimeInterval; }
-            set { _plotManager.TimeInterval = value; }
+            set
+            {
+                if (IsPlotting())
+                {
+                    throw new InvalidOperationException(i18n.GetFStr("Runtime.NotSetInRunTime", "TimeInterval"));
+                }
+                _plotManager.TimeInterval = value;
+            }
         }
 
         /// <summary>
@@ -530,16 +537,16 @@ namespace SeeSharpTools.JY.GUI
             CategoryAttribute("Behavior"),
             Description("Specify the start index of x axis. Only available when XDataType is Index.")
         ]
-        public int XAxisStartIndex
+        public int StartIndex
         {
-            get { return _plotManager.XAxisStartIndex; }
+            get { return _plotManager.StartIndex; }
             set
             {
                 if (_plotManager.IsPlotting)
                 {
                     return;
                 }
-                _plotManager.XAxisStartIndex = value; 
+                _plotManager.StartIndex = value; 
             }
         }
 
@@ -686,7 +693,6 @@ namespace SeeSharpTools.JY.GUI
 
             _plotManager.AdaptSeriesCount();
             //更新
-            _plotManager.AdaptPlotDatasCount(_plotManager.SeriesCount);
 
             this.Miscellaneous = new MiscellaneousConfiguration(this, _chartViewManager, _plotManager);
 
@@ -728,6 +734,8 @@ namespace SeeSharpTools.JY.GUI
 
         #region Array interface
 
+        #region MultiSample interface
+
         /// <summary>
         /// 绘制多条曲线的多个点，String模式可用
         /// </summary>
@@ -739,14 +747,14 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = lineData.GetLength(0);
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length);
             }
-            CheckYData(seriesCount, typeof(TDataType));
-            _plotManager.AddPlotData<TDataType>(xData, yData);
+            CheckYData(seriesCount, typeof (TDataType));
+            _plotManager.DataEntity.AddPlotData(xLabels, lineData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
         }
-        
+
         /// <summary>
         /// 绘制一条曲线的多个点，String模式可用
         /// </summary>
@@ -755,13 +763,13 @@ namespace SeeSharpTools.JY.GUI
         public void Plot<TDataType>(TDataType[] lineData, string[] xLabels)
         {
             CheckXData(XAxisDataType.String);
-            int seriesCount = lineData.GetLength(0);
+            int seriesCount = 1;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length);
             }
-            CheckYData(seriesCount, typeof(TDataType));
-            _plotManager.AddPlotData<TDataType>(xData, yData);
+            CheckYData(seriesCount, typeof (TDataType));
+            _plotManager.DataEntity.AddPlotData(xLabels, lineData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
         }
@@ -777,10 +785,10 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = lineData.GetLength(0);
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length);
             }
-            CheckYData(seriesCount, typeof(TDataType));
-            _plotManager.AddPlotData<TDataType>(xData, yData);
+            CheckYData(seriesCount, typeof (TDataType));
+            _plotManager.DataEntity.AddPlotData(xLabels, lineData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
         }
@@ -793,13 +801,13 @@ namespace SeeSharpTools.JY.GUI
         public void Plot<TDataType>(TDataType[] lineData, DateTime[] xLabels)
         {
             CheckXData(XAxisDataType.TimeStamp);
-            int seriesCount = lineData.GetLength(0);
+            int seriesCount = lineData.Length/xLabels.Length;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length);
             }
-            CheckYData(seriesCount, typeof(TDataType));
-            _plotManager.AddPlotData<TDataType>(xData, yData);
+            CheckYData(seriesCount, typeof (TDataType));
+            _plotManager.DataEntity.AddPlotData(xLabels, lineData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
         }
@@ -814,10 +822,10 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = lineData.GetLength(0);
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, lineData.GetLength(1));
             }
-            CheckYData(seriesCount, typeof(TDataType));
-            _plotManager.AddPlotData<TDataType>(xData, yData);
+            CheckYData(seriesCount, typeof (TDataType));
+            _plotManager.DataEntity.AddPlotData(lineData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
         }
@@ -829,16 +837,79 @@ namespace SeeSharpTools.JY.GUI
         public void Plot<TDataType>(TDataType[] lineData)
         {
             CheckXData(XAxisDataType.Index, XAxisDataType.TimeStamp);
-            int seriesCount = lineData.GetLength(0);
+            int seriesCount = 1;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, lineData.Length);
             }
-            CheckYData(seriesCount, typeof(TDataType));
-            _plotManager.AddPlotData<TDataType>(xData, yData);
+            CheckYData(seriesCount, typeof (TDataType));
+            _plotManager.DataEntity.AddPlotData(lineData, lineData.Length);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
         }
+
+        #endregion
+
+        #region Single Sample Interface
+
+        /// <summary>
+        /// 绘制一条曲线的多个点，String模式可用
+        /// </summary>
+        /// <param name="lineData">待显示数据</param>
+        /// <param name="xLabel">X轴待显示内容</param>
+        public void PlotSingle<TDataType>(TDataType[] lineData, string xLabel)
+        {
+            CheckXData(XAxisDataType.String);
+            int seriesCount = lineData.Length;
+            if (!_plotManager.IsPlotting)
+            {
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1);
+            }
+            CheckYData(seriesCount, typeof (TDataType));
+            _plotManager.DataEntity.AddPlotData(new string[] {xLabel}, lineData);
+            _chartViewManager.RefreshAxesAndCursors();
+            PlotDataInRange();
+        }
+
+        /// <summary>
+        /// 绘制一条曲线的多个点，TimeStamp模式可用
+        /// </summary>
+        /// <param name="lineData">待显示数据</param>
+        /// <param name="xLabel">X轴待显示内容</param>
+        public void PlotSingle<TDataType>(TDataType[] lineData, DateTime xLabel)
+        {
+            CheckXData(XAxisDataType.TimeStamp);
+            int seriesCount = lineData.Length;
+            if (!_plotManager.IsPlotting)
+            {
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1);
+            }
+            CheckYData(seriesCount, typeof (TDataType));
+            _plotManager.DataEntity.AddPlotData(new DateTime[] {xLabel}, lineData);
+            _chartViewManager.RefreshAxesAndCursors();
+            PlotDataInRange();
+        }
+
+        /// <summary>
+        /// 绘制多条曲线的多个点，Index模式可用
+        /// </summary>
+        /// <param name="lineData">待显示数据</param>
+        public void PlotSingle<TDataType>(TDataType[] lineData)
+        {
+            CheckXData(XAxisDataType.Index, XAxisDataType.TimeStamp);
+            int seriesCount = lineData.Length;
+            if (!_plotManager.IsPlotting)
+            {
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1);
+            }
+            CheckYData(seriesCount, typeof (TDataType));
+            _plotManager.DataEntity.AddPlotData<TDataType>(lineData, 1);
+            _chartViewManager.RefreshAxesAndCursors();
+            PlotDataInRange();
+        }
+
+        #endregion
+
 
         private void CheckXData(params XAxisDataType[] validXDataTypes)
         {
@@ -860,7 +931,7 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
-        private void InitPlotManagerAndViewManager<TDataType>(int newSeriesCount)
+        private void InitPlotManagerAndViewManager<TDataType>(int newSeriesCount, int sampleCount)
         {
             Type dataType = typeof (TDataType);
             if (!Constants.ValidDataType.Contains(dataType))
@@ -869,6 +940,7 @@ namespace SeeSharpTools.JY.GUI
             }
             int lastSeriesCount = _plotManager.SeriesCount;
             AdaptPlotSeriesAndChartView(newSeriesCount != lastSeriesCount);
+            _plotManager.InitializeDataEntity<TDataType>(newSeriesCount, sampleCount);
         }
 
         #endregion

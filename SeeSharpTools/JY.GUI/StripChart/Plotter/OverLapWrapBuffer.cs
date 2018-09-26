@@ -251,7 +251,7 @@ namespace SeeSharpTools.JY.GUI
             UpdateOverLapStatus();
         }
 
-        public void Add(string[] data, int dataLength, int offset = 0)
+        public void Add(IList<string> data, int dataLength, int offset = 0)
         {
             int copySize = dataLength > BufSize ? BufSize : dataLength;
             DataSize = DataSize + copySize;

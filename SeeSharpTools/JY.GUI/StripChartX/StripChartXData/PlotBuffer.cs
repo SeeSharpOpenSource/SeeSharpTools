@@ -213,7 +213,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
                 SparseRatio = 1;
                 int segmentCount = startIndexes.Count;
                 _plotSize = 0;
-                if (XDataInputType.Increment == _dataInfo.XDataInputType)
+                if (XDataInputType.Increment == _dataInfo.XType)
                 {
                     int pointIndex = 0;
                     for (int segmentIndex = 0; segmentIndex < segmentCount; segmentIndex++)
@@ -225,10 +225,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
                             int pointBufIndex = startIndexes[segmentIndex] + index;
                             XPlotBuffer[pointIndex] = xDataValue;
                             xDataValue += _dataEntity.XIncrement;
-                            for (int lineIndex = 0; lineIndex < _dataInfo.LineNum; lineIndex++)
+                            for (int lineIndex = 0; lineIndex < _dataInfo.LineCount; lineIndex++)
                             {
                                 YPlotBuffer[lineIndex][pointIndex] = _dataEntity.YData[pointBufIndex];
-                                pointBufIndex += _dataInfo.Size;
+                                pointBufIndex += _dataInfo.Capacity;
                             }
                             pointIndex++;
                         }
@@ -252,11 +252,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
                         {
                             int pointBufIndex = startIndexes[segmentIndex] + index;
                             XPlotBuffer[pointIndex] = _dataEntity.XData[pointBufIndex];
-                            for (int lineIndex = 0; lineIndex < _dataInfo.LineNum; lineIndex++)
+                            for (int lineIndex = 0; lineIndex < _dataInfo.LineCount; lineIndex++)
                             {
                                 // TODO to simplified
                                 YPlotBuffer[lineIndex][pointIndex] = _dataEntity.YData[pointBufIndex];
-                                pointBufIndex += _dataInfo.Size;
+                                pointBufIndex += _dataInfo.Capacity;
                             }
                             pointIndex++;
                         }
@@ -296,11 +296,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
                     {
                         int pointBufIndex = startIndexes[segmentIndex] + index * SparseRatio;
                         XPlotBuffer[pointIndex] = _dataEntity.XData[pointBufIndex];
-                        for (int lineIndex = 0; lineIndex < _dataInfo.LineNum; lineIndex++)
+                        for (int lineIndex = 0; lineIndex < _dataInfo.LineCount; lineIndex++)
                         {
                             // TODO to simplified
                             YPlotBuffer[lineIndex][pointIndex] = _dataEntity.YData[pointBufIndex];
-                            pointBufIndex += _dataInfo.Size;
+                            pointBufIndex += _dataInfo.Capacity;
                         }
                         pointIndex++;
                         // TODO Not Right, Fix Later

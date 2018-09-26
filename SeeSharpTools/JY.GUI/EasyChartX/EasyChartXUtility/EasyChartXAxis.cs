@@ -560,19 +560,12 @@ namespace SeeSharpTools.JY.GUI
             set
             {
                 // 值不对或X轴，该值不生效
-                if (value < 2)
+                if (value < 2 || value == _majorGridCount || IsXAxis(PlotAxis.Primary, PlotAxis.Secondary))
                 {
                     return;
                 }
-                if (IsXAxis(PlotAxis.Primary, PlotAxis.Secondary))
-                {
-                    return;
-                }
-                else
-                {
-                    // 主Y轴使用用户配置，副Y轴使用主坐标轴的配置
-                    _majorGridCount = value;
-                }
+                // 主Y轴使用用户配置，副Y轴使用主坐标轴的配置
+                _majorGridCount = value;
                 RefreshYMajorGridInterval();
                 RefreshLabels();
             }

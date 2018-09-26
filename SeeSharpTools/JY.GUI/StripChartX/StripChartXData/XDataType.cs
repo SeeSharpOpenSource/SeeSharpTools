@@ -11,6 +11,11 @@
         /// <summary>
         /// 字符串类型
         /// </summary>
-        String
+        String,
+
+        /// <summary>
+        /// 时间戳类型
+        /// </summary>
+        DataTime
     }
 }
