@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using SeeSharpTools.JY.GUI.StripChartXUtility;
 
@@ -9,12 +10,16 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
         private int _startIndex = 0;
         private int _nextIndex = 0;
 
+        private readonly PlotBuffer<TDataType> _plotBuffer;
+
         private readonly List<OverLapWrapBuffer<TDataType>> _yBuffers;
 
         public IndexDataEntity(PlotManager plotManager, DataEntityInfo dataInfo) : base(plotManager, dataInfo)
         {
             this._startIndex = plotManager.StartIndex;
             this._nextIndex = plotManager.StartIndex;
+            
+            this._plotBuffer = new PlotBuffer<TDataType>(DataInfo.LineCount);
 
             _yBuffers = new List<OverLapWrapBuffer<TDataType>>(DataInfo.LineCount);
             for (int i = 0; i < DataInfo.LineCount; i++)
@@ -55,10 +60,14 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             }
         }
 
-        public override void GetXYValue(int xIndex, int seriesIndex, ref string xValue, ref string yValue)
+        public override string GetXValue(int xIndex)
         {
-            xValue = (_startIndex + xIndex).ToString();
-            yValue = _yBuffers[seriesIndex][xIndex].ToString();
+            return (_startIndex + xIndex).ToString();
+        }
+
+        public override object GetYValue(int xIndex, int seriesIndex)
+        {
+            return _yBuffers[seriesIndex][xIndex];
         }
 
         public override IList<TDataType> GetPlotDatas<TDataType>(int startIndex, int endIndex)
@@ -68,12 +77,28 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
 
         public override void GetMaxAndMinYValue(int seriesIndex, out double maxYValue, out double minYValue)
         {
-            throw new NotImplementedException();
+            ParallelHandler.GetMaxAndMin(_yBuffers[seriesIndex], out maxYValue, out minYValue);
         }
 
         public override void GetMaxAndMinYValue(out double maxYValue, out double minYValue)
         {
-            throw new NotImplementedException();
+            maxYValue = double.MinValue;
+            minYValue = double.MaxValue;
+            double tmpMaxYValue = 0;
+            double tmpMinYValue = 0;
+
+            foreach (OverLapWrapBuffer<TDataType> yBuffer in _yBuffers)
+            {
+                ParallelHandler.GetMaxAndMin(yBuffer, out tmpMaxYValue, out tmpMinYValue);
+                if (maxYValue < tmpMaxYValue)
+                {
+                    maxYValue = tmpMaxYValue;
+                }
+                if (minYValue > tmpMinYValue)
+                {
+                    minYValue = tmpMinYValue;
+                }
+            }
         }
 
         public override void Clear()
@@ -85,6 +110,21 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             {
                 yBuffer.Clear();
             }
+        }
+
+        public override IList GetXData()
+        {
+            return _plotBuffer.XPlotBuffer.GetRange(0, _plotBuffer.PlotSize);
+        }
+
+        public override IList GetYData()
+        {
+            _plotBuffer.YShallowBuffer.Clear();
+            foreach (List<TDataType> yBuf in _plotBuffer.YPlotBuffer)
+            {
+                _plotBuffer.YShallowBuffer.Add(yBuf.GetRange(0, _plotBuffer.PlotSize));
+            }
+            return _plotBuffer.YShallowBuffer;
         }
     }
 }

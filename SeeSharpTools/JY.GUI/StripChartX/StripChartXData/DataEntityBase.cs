@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using SeeSharpTools.JY.GUI.StripChartXUtility;
 
@@ -15,23 +16,13 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
         protected ParallelHandler ParallelHandler;
 
         public abstract int SamplesInChart { get; }
-
-        public int RealSamplesInChart { get; }
-
-        public readonly List<double[]> _plotBuffers; 
-
+        
         protected DataEntityBase(PlotManager plotManager, DataEntityInfo dataInfo)
         {
             this.ParentManager = plotManager;
             this.FitType = plotManager.FitType;
             this.DataInfo = dataInfo;
-            this._plotBuffers = new List<double[]>(DataInfo.LineCount);
             this.ParallelHandler = new ParallelHandler(this, ParentManager.DataCheckParams);
-            for (int i = 0; i < DataInfo.LineCount; i++)
-            {
-                _plotBuffers.Add(new double[Constants.MaxPointsInSingleSeries]);
-            }
-
         }
 
         public virtual void Initialize(int sampleCount)
@@ -44,7 +35,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
 
         public abstract void AddPlotData(Array lineData, int sampleCount);
 
-        public abstract void GetXYValue(int xIndex, int seriesIndex, ref string xValue, ref string yValue);
+        public abstract string GetXValue(int xIndex);
+        public abstract object GetYValue(int xIndex, int seriesIndex);
 
         public abstract IList<TDataType> GetPlotDatas<TDataType>(int startIndex, int endIndex);
 
@@ -68,6 +60,15 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
         public virtual void Clear()
         {
 //            this.SamplesInChart = 0;
+        }
+
+        public abstract IList GetXData();
+
+        public abstract IList GetYData();
+
+        public bool FillPlotDataInRange(double beginXValue, double endXValue, bool forceRefresh, int seriesIndex)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using SeeSharpTools.JY.GUI.StripChartXUtility;
 
@@ -9,6 +10,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
         private readonly OverLapStrBuffer _xBuffer;
         private readonly List<OverLapWrapBuffer<TDataType>> _yBuffers;
 
+        private readonly PlotBuffer<TDataType> _plotBuffer;
+
         public StringDataEntity(PlotManager plotManager, DataEntityInfo dataInfo) : base(plotManager, dataInfo)
         {
             _xBuffer = new OverLapStrBuffer(DataInfo.Capacity);
@@ -17,6 +20,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             {
                 _yBuffers.Add(new OverLapWrapBuffer<TDataType>(DataInfo.Capacity));
             }
+
+            _plotBuffer = new PlotBuffer<TDataType>(DataInfo.LineCount);
         }
 
         public override int SamplesInChart => _xBuffer.Count;
@@ -43,10 +48,14 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             throw new NotImplementedException();
         }
 
-        public override void GetXYValue(int xIndex, int seriesIndex, ref string xValue, ref string yValue)
+        public override string GetXValue(int xIndex)
         {
-            xValue = _xBuffer[xIndex];
-            yValue = _yBuffers[seriesIndex][xIndex].ToString();
+            return _xBuffer[xIndex];
+        }
+
+        public override object GetYValue(int xIndex, int seriesIndex)
+        {
+            return _yBuffers[seriesIndex][xIndex];
         }
 
         public override IList<TDataType> GetPlotDatas<TDataType>(int startIndex, int endIndex)
@@ -88,6 +97,21 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             {
                 yBuffer.Clear();
             }
+        }
+
+        public override IList GetXData()
+        {
+            return _plotBuffer.XPlotBuffer.GetRange(0, _plotBuffer.PlotSize);
+        }
+
+        public override IList GetYData()
+        {
+            _plotBuffer.YShallowBuffer.Clear();
+            foreach (List<TDataType> yBuf in _plotBuffer.YPlotBuffer)
+            {
+                _plotBuffer.YShallowBuffer.Add(yBuf.GetRange(0, _plotBuffer.PlotSize));
+            }
+            return _plotBuffer.YShallowBuffer;
         }
     }
 }

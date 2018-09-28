@@ -18,7 +18,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         private readonly DataEntityBase _dataEntity;
 //        private readonly PlotBuffer _buffer;
-        private IList<double> _datas;
+        private object _datas;
         private readonly DataCheckParameters _dataCheckParams;
 
         public ParallelHandler(DataEntityBase dataEntity, DataCheckParameters dataCheckParams)
@@ -35,16 +35,16 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         }
 
         #region Invalid Data Check
-
-        private Dictionary<int, double> _invalidBuf; 
-        public void InvalidDataCheck(IList<double> checkData, Dictionary<int, double> invalidBuf)
+        // 暂时不打开保存Csv的接口，屏蔽InvalidBuf
+//        private Dictionary<int, TDataType> _invalidBuf; 
+        public void InvalidDataCheck<TDataType>(IList<TDataType> checkData, Dictionary<int, TDataType> invalidBuf)
         {
             if (_dataCheckParams.IsCheckDisabled() || null == checkData || 0 == checkData.Count)
             {
                 return;
             }
             this._datas = checkData;
-            this._invalidBuf = invalidBuf;
+//            this._invalidBuf = invalidBuf;
             _blockSize = GetBlockSize(checkData.Count);
             _indexOffset = 0;
             if (!_dataCheckParams.CheckNaN)
@@ -66,7 +66,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 }
             }
             this._datas = null;
-            this._invalidBuf = null;
+//            this._invalidBuf = null;
         }
 
         // 过滤越界数据，将其替换为Nan(空点)
@@ -194,88 +194,130 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         #endregion
 
 
-        #region Max / Min /Interval计算
+        #region Max / Min 计算
         
         private readonly double[] _maxDatas;
         private readonly double[] _minDatas;
 
-        public void GetMaxAndMin(IList<double> datas, out double max, out double min)
+        public void GetMaxAndMin<TDataType>(IList<TDataType> datas, out double max, out double min)
+        {
+            string typeName = typeof(TDataType).FullName;
+            if (typeName.Equals(typeof (double).FullName))
+            {
+                GetDoubleMaxAndMin(datas, datas.Count, out max, out min);
+            }
+            else if (typeName.Equals(typeof (float).FullName))
+            {
+                GetFloatMaxAndMin(datas, datas.Count, out max, out min);
+            }
+            else if (typeName.Equals(typeof(int).FullName))
+            {
+                GetIntMaxAndMin(datas, datas.Count, out max, out min);
+            }
+            else if (typeName.Equals(typeof(uint).FullName))
+            {
+                GetUIntMaxAndMin(datas, datas.Count, out max, out min);
+            }
+            else if (typeName.Equals(typeof(short).FullName))
+            {
+                GetShortMaxAndMin(datas, datas.Count, out max, out min);
+            }
+            else if (typeName.Equals(typeof(ushort).FullName))
+            {
+                GetUShortMaxAndMin(datas, datas.Count, out max, out min);
+            }
+            else if (typeName.Equals(typeof(byte).FullName))
+            {
+                GetByteMaxAndMin(datas, datas.Count, out max, out min);
+            }
+            else
+            {
+                max = double.NaN;
+                min = double.NaN;
+            }
+        }
+
+        #region Double Max / Min
+
+        public void GetDoubleMaxAndMin(object datas, int dataCount, out double max, out double min)
         {
             // 点数小于4000时手动计算
-            if (datas.Count <= 4000)
+            if (dataCount <= 4000)
             {
+                IList<double> doubleDatas = datas as IList<double>;
                 int startIndex = 0;
-                while (startIndex < datas.Count)
+                while (startIndex < doubleDatas.Count)
                 {
-                    if (!double.IsNaN(datas[startIndex]))
+                    if (!double.IsNaN(doubleDatas[startIndex]))
                     {
                         break;
                     }
                     startIndex++;
                 }
-                if (startIndex == datas.Count)
+                if (startIndex == doubleDatas.Count)
                 {
                     max = 0;
                     min = 0;
                     return;
                 }
-                max = datas[startIndex];
-                min = datas[startIndex];
-                for (int index = startIndex + 1; index < datas.Count; index++)
+                max = doubleDatas[startIndex];
+                min = doubleDatas[startIndex];
+                for (int index = startIndex + 1; index < doubleDatas.Count; index++)
                 {
-                    if (double.IsNaN(datas[index]))
+                    if (double.IsNaN(doubleDatas[index]))
                     {
                         continue;
                     }
-                    if (datas[index] > max)
+                    if (doubleDatas[index] > max)
                     {
-                        max = datas[index];
+                        max = doubleDatas[index];
                     }
-                    else if (datas[index] < min)
+                    else if (doubleDatas[index] < min)
                     {
-                        min = datas[index];
+                        min = doubleDatas[index];
                     }
                 }
             }
             else
             {
                 _datas = datas;
-                _blockSize = GetBlockSize(datas.Count);
+                _blockSize = GetBlockSize(dataCount);
                 _indexOffset = 0;
-                Parallel.For(0, _option.MaxDegreeOfParallelism, FillMaxAndMinToBuf);
+                Parallel.For(0, _option.MaxDegreeOfParallelism, FillDoubleMaxAndMinToBuf);
                 max = _maxDatas.Max();
                 min = _minDatas.Min();
             }
             _datas = null;
         }
 
-        private void FillMaxAndMinToBuf(int blockIndex)
+        private void FillDoubleMaxAndMinToBuf(int blockIndex)
         {
-            int startIndex = blockIndex * _blockSize + _indexOffset;
+            IList<double> doubleDatas = this._datas as IList<double>;
+            int startIndex = blockIndex*_blockSize + _indexOffset;
             int endIndex = startIndex + _blockSize;
-            if (endIndex > _datas.Count)
+            if (endIndex > doubleDatas.Count)
             {
-                endIndex = _datas.Count;
+                endIndex = doubleDatas.Count;
             }
-            while (startIndex < _datas.Count)
+            while (startIndex < doubleDatas.Count)
             {
-                if (!double.IsNaN(_datas[startIndex]))
+                if (!double.IsNaN(doubleDatas[startIndex]))
                 {
                     break;
                 }
                 startIndex++;
             }
-            if (startIndex == _datas.Count)
+            if (startIndex == doubleDatas.Count)
             {
                 _maxDatas[blockIndex] = 0;
                 _minDatas[blockIndex] = 0;
                 return;
             }
-            double maxValue = _datas[startIndex];
-            double minValue = _datas[startIndex];
+            double maxValue = doubleDatas[startIndex];
+            double minValue = doubleDatas[startIndex];
             for (int index = startIndex + 1; index < endIndex; index++)
             {
-                double value = _datas[index];
+                double value = doubleDatas[index];
                 if (double.IsNaN(value))
                 {
                     continue;
@@ -295,8 +337,438 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         #endregion
 
-        #region Fill Function
+        #region Float Max / Min
+
+        public void GetFloatMaxAndMin(object datas, int dataCount, out double max, out double min)
+        {
+            // 点数小于4000时手动计算
+            if (dataCount <= 4000)
+            {
+                IList<float> floatDatas = datas as IList<float>;
+                int startIndex = 0;
+                while (startIndex < floatDatas.Count)
+                {
+                    if (!float.IsNaN(floatDatas[startIndex]))
+                    {
+                        break;
+                    }
+                    startIndex++;
+                }
+                if (startIndex == floatDatas.Count)
+                {
+                    max = double.NaN;
+                    min = double.NaN;
+                    return;
+                }
+                float tmpMax = floatDatas[startIndex];
+                float tmpMin = floatDatas[startIndex];
+                for (int index = startIndex + 1; index < floatDatas.Count; index++)
+                {
+                    if (float.IsNaN(floatDatas[index]))
+                    {
+                        continue;
+                    }
+                    if (floatDatas[index] > tmpMax)
+                    {
+                        tmpMax = floatDatas[index];
+                    }
+                    else if (floatDatas[index] < tmpMin)
+                    {
+                        tmpMin = floatDatas[index];
+                    }
+                }
+                max = tmpMax;
+                min = tmpMin;
+            }
+            else
+            {
+                _datas = datas;
+                _blockSize = GetBlockSize(dataCount);
+                _indexOffset = 0;
+                Parallel.For(0, _option.MaxDegreeOfParallelism, FillFloatMaxAndMinToBuf);
+                max = _maxDatas.Max();
+                min = _minDatas.Min();
+            }
+            _datas = null;
+        }
+
+        private void FillFloatMaxAndMinToBuf(int blockIndex)
+        {
+            IList<float> floatDatas = this._datas as IList<float>;
+            int startIndex = blockIndex * _blockSize + _indexOffset;
+            int endIndex = startIndex + _blockSize;
+            if (endIndex > floatDatas.Count)
+            {
+                endIndex = floatDatas.Count;
+            }
+            while (startIndex < floatDatas.Count)
+            {
+                if (!float.IsNaN(floatDatas[startIndex]))
+                {
+                    break;
+                }
+                startIndex++;
+            }
+            if (startIndex == floatDatas.Count)
+            {
+                _maxDatas[blockIndex] = 0;
+                _minDatas[blockIndex] = 0;
+                return;
+            }
+            float maxValue = floatDatas[startIndex];
+            float minValue = floatDatas[startIndex];
+            for (int index = startIndex + 1; index < endIndex; index++)
+            {
+                float value = floatDatas[index];
+                if (float.IsNaN(value))
+                {
+                    continue;
+                }
+                if (value > maxValue)
+                {
+                    maxValue = value;
+                }
+                else if (value < minValue)
+                {
+                    minValue = value;
+                }
+            }
+            _maxDatas[blockIndex] = maxValue;
+            _minDatas[blockIndex] = minValue;
+        }
+
+        #endregion
+
+        #region Int Max / Min
+
+        public void GetIntMaxAndMin(object datas, int dataCount, out double max, out double min)
+        {
+            // 点数小于4000时手动计算
+            if (dataCount <= 4000)
+            {
+                IList<int> intDatas = datas as IList<int>;
+                int tmpMax = intDatas[0];
+                int tmpMin = intDatas[0];
+                foreach (int data in intDatas)
+                {
+                    if (data > tmpMax)
+                    {
+                        tmpMax = data;
+                    }
+                    else if (data < tmpMin)
+                    {
+                        tmpMin = data;
+                    }
+                }
+                max = tmpMax;
+                min = tmpMin;
+            }
+            else
+            {
+                _datas = datas;
+                _blockSize = GetBlockSize(dataCount);
+                _indexOffset = 0;
+                Parallel.For(0, _option.MaxDegreeOfParallelism, FillIntMaxAndMinToBuf);
+                max = _maxDatas.Max();
+                min = _minDatas.Min();
+            }
+            _datas = null;
+        }
+
+        private void FillIntMaxAndMinToBuf(int blockIndex)
+        {
+            IList<int> intDatas = this._datas as IList<int>;
+            int startIndex = blockIndex * _blockSize + _indexOffset;
+            int endIndex = startIndex + _blockSize;
+            if (endIndex > intDatas.Count)
+            {
+                endIndex = intDatas.Count;
+            }
+            int maxValue = intDatas[startIndex];
+            int minValue = intDatas[startIndex];
+            for (int index = startIndex + 1; index < endIndex; index++)
+            {
+                int value = intDatas[index];
+                if (value > maxValue)
+                {
+                    maxValue = value;
+                }
+                else if (value < minValue)
+                {
+                    minValue = value;
+                }
+            }
+            _maxDatas[blockIndex] = maxValue;
+            _minDatas[blockIndex] = minValue;
+        }
+
+        #endregion
         
+        #region UInt Max / Min
+
+        public void GetUIntMaxAndMin(object datas, int dataCount, out double max, out double min)
+        {
+            // 点数小于4000时手动计算
+            if (dataCount <= 4000)
+            {
+                IList<uint> uintDatas = datas as IList<uint>;
+                uint tmpMax = uintDatas[0];
+                uint tmpMin = uintDatas[0];
+                foreach (uint data in uintDatas)
+                {
+                    if (data > tmpMax)
+                    {
+                        tmpMax = data;
+                    }
+                    else if (data < tmpMin)
+                    {
+                        tmpMin = data;
+                    }
+                }
+                max = tmpMax;
+                min = tmpMin;
+            }
+            else
+            {
+                _datas = datas;
+                _blockSize = GetBlockSize(dataCount);
+                _indexOffset = 0;
+                Parallel.For(0, _option.MaxDegreeOfParallelism, FillUIntMaxAndMinToBuf);
+                max = _maxDatas.Max();
+                min = _minDatas.Min();
+            }
+            _datas = null;
+        }
+
+        private void FillUIntMaxAndMinToBuf(int blockIndex)
+        {
+            IList<uint> uintDatas = this._datas as IList<uint>;
+            int startIndex = blockIndex * _blockSize + _indexOffset;
+            int endIndex = startIndex + _blockSize;
+            if (endIndex > uintDatas.Count)
+            {
+                endIndex = uintDatas.Count;
+            }
+            uint maxValue = uintDatas[startIndex];
+            uint minValue = uintDatas[startIndex];
+            for (int index = startIndex + 1; index < endIndex; index++)
+            {
+                uint value = uintDatas[index];
+                if (value > maxValue)
+                {
+                    maxValue = value;
+                }
+                else if (value < minValue)
+                {
+                    minValue = value;
+                }
+            }
+            _maxDatas[blockIndex] = maxValue;
+            _minDatas[blockIndex] = minValue;
+        }
+
+        #endregion
+
+        #region Short Max / Min
+
+        public void GetShortMaxAndMin(object datas, int dataCount, out double max, out double min)
+        {
+            // 点数小于4000时手动计算
+            if (dataCount <= 4000)
+            {
+                IList<short> shortDatas = datas as IList<short>;
+                short tmpMax = shortDatas[0];
+                short tmpMin = shortDatas[0];
+                foreach (short data in shortDatas)
+                {
+                    if (data > tmpMax)
+                    {
+                        tmpMax = data;
+                    }
+                    else if (data < tmpMin)
+                    {
+                        tmpMin = data;
+                    }
+                }
+                max = tmpMax;
+                min = tmpMin;
+
+            }
+            else
+            {
+                _datas = datas;
+                _blockSize = GetBlockSize(dataCount);
+                _indexOffset = 0;
+                Parallel.For(0, _option.MaxDegreeOfParallelism, FillShortMaxAndMinToBuf);
+                max = (short)_maxDatas.Max();
+                min = (short)_minDatas.Min();
+            }
+            _datas = null;
+        }
+
+        private void FillShortMaxAndMinToBuf(int blockIndex)
+        {
+            IList<short> shortDatas = this._datas as IList<short>;
+            int startIndex = blockIndex * _blockSize + _indexOffset;
+            int endIndex = startIndex + _blockSize;
+            if (endIndex > shortDatas.Count)
+            {
+                endIndex = shortDatas.Count;
+            }
+            short maxValue = shortDatas[startIndex];
+            short minValue = shortDatas[startIndex];
+            for (int index = startIndex + 1; index < endIndex; index++)
+            {
+                short value = shortDatas[index];
+                if (value > maxValue)
+                {
+                    maxValue = value;
+                }
+                else if (value < minValue)
+                {
+                    minValue = value;
+                }
+            }
+            _maxDatas[blockIndex] = maxValue;
+            _minDatas[blockIndex] = minValue;
+        }
+
+        #endregion
+
+        #region UShort Max / Min
+
+        public void GetUShortMaxAndMin(object datas, int dataCount, out double max, out double min)
+        {
+            // 点数小于4000时手动计算
+            if (dataCount <= 4000)
+            {
+                IList<ushort> ushortDatas = datas as IList<ushort>;
+                ushort tmpMax = ushortDatas[0];
+                ushort tmpMin = ushortDatas[0];
+                foreach (ushort data in ushortDatas)
+                {
+                    if (data > tmpMax)
+                    {
+                        tmpMax = data;
+                    }
+                    else if (data < tmpMin)
+                    {
+                        tmpMin = data;
+                    }
+                }
+                max = tmpMax;
+                min = tmpMin;
+            }
+            else
+            {
+                _datas = datas;
+                _blockSize = GetBlockSize(dataCount);
+                _indexOffset = 0;
+                Parallel.For(0, _option.MaxDegreeOfParallelism, FillUShortMaxAndMinToBuf);
+                max = _maxDatas.Max();
+                min = _minDatas.Min();
+            }
+            _datas = null;
+        }
+
+        private void FillUShortMaxAndMinToBuf(int blockIndex)
+        {
+            IList<ushort> shortDatas = this._datas as IList<ushort>;
+            int startIndex = blockIndex * _blockSize + _indexOffset;
+            int endIndex = startIndex + _blockSize;
+            if (endIndex > shortDatas.Count)
+            {
+                endIndex = shortDatas.Count;
+            }
+            ushort maxValue = shortDatas[startIndex];
+            ushort minValue = shortDatas[startIndex];
+            for (int index = startIndex + 1; index < endIndex; index++)
+            {
+                ushort value = shortDatas[index];
+                if (value > maxValue)
+                {
+                    maxValue = value;
+                }
+                else if (value < minValue)
+                {
+                    minValue = value;
+                }
+            }
+            _maxDatas[blockIndex] = maxValue;
+            _minDatas[blockIndex] = minValue;
+        }
+
+        #endregion
+
+        #region Byte Max / Min
+
+        public void GetByteMaxAndMin(object datas, int dataCount, out double max, out double min)
+        {
+            // 点数小于4000时手动计算
+            if (dataCount <= 4000)
+            {
+                IList<byte> byteDatas = datas as IList<byte>;
+                byte tmpMax = byteDatas[0];
+                byte tmpMin = byteDatas[0];
+                foreach (byte data in byteDatas)
+                {
+                    if (data > tmpMax)
+                    {
+                        tmpMax = data;
+                    }
+                    else if (data < tmpMin)
+                    {
+                        tmpMin = data;
+                    }
+                }
+                max = tmpMax;
+                min = tmpMin;
+            }
+            else
+            {
+                _datas = datas;
+                _blockSize = GetBlockSize(dataCount);
+                _indexOffset = 0;
+                Parallel.For(0, _option.MaxDegreeOfParallelism, FillByteMaxAndMinToBuf);
+                max = _maxDatas.Max();
+                min = _minDatas.Min();
+            }
+            _datas = null;
+        }
+
+        private void FillByteMaxAndMinToBuf(int blockIndex)
+        {
+            IList<byte> byteDatas = this._datas as IList<byte>;
+            int startIndex = blockIndex * _blockSize + _indexOffset;
+            int endIndex = startIndex + _blockSize;
+            if (endIndex > byteDatas.Count)
+            {
+                endIndex = byteDatas.Count;
+            }
+            byte maxValue = byteDatas[startIndex];
+            byte minValue = byteDatas[startIndex];
+            for (int index = startIndex + 1; index < endIndex; index++)
+            {
+                byte value = byteDatas[index];
+                if (value > maxValue)
+                {
+                    maxValue = value;
+                }
+                else if (value < minValue)
+                {
+                    minValue = value;
+                }
+            }
+            _maxDatas[blockIndex] = maxValue;
+            _minDatas[blockIndex] = minValue;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Fill Function
+
         #region No Fit
 
         public void FillNoneFitPlotData(int startIndex)

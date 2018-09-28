@@ -7,16 +7,16 @@ using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI.StripChartXData
 {
-    internal class PlotBuffer
+    internal class PlotBuffer<TDataType>
     {
-        private List<double> _xPlotBuffer;
-        internal IList<double> XPlotBuffer { get; set; }
+        private List<int> _xPlotBuffer;
+        internal List<int> XPlotBuffer => _xPlotBuffer;
 
         internal StripChartX.FitType FitType { get; set; }
 
-        private readonly List<IList<double>> _yPlotBuffer;
-        private readonly List<IList<double>> _yShallowBuffer;
-        internal IList<IList<double>> YPlotBuffer { get; set; }
+        private readonly List<List<TDataType>> _yPlotBuffer;
+        internal List<List<TDataType>> YPlotBuffer => _yPlotBuffer;
+        internal List<List<TDataType>> YShallowBuffer { get; }
 
         // 绘图缓存中X轴数据的稀疏比和最大最小值
         public int SparseRatio { get; set; }
@@ -32,70 +32,29 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
         public int PlotSize => _plotSize;
 
         private readonly DataEntityInfo _dataInfo;
-        private readonly DataEntity _dataEntity;
 
-        public PlotBuffer(DataEntity dataEntity)
+        public PlotBuffer(int lineCount)
         {
-            this._dataEntity = dataEntity;
             _dataInfo = new DataEntityInfo();
             _plotSize = 0;
             SparseRatio = int.MaxValue;
-            _xPlotBuffer = null;
-            _yPlotBuffer = new List<IList<double>>(Constants.DefaultLineCapacity);
-            _yShallowBuffer = new List<IList<double>>(Constants.DefaultLineCapacity);
             this.PlotXStart = double.NaN;
             this.PlotXEnd = double.NaN;
-        }
 
-        #region 适配缓存
-
-        public void AdaptPlotBuffer()
-        {
-            // TODO 为了保证稳定性，暂时强制配置
-            //            if (null == _xPlotBuffer || _dataInfo.IsNeedAdaptXBuffer(dataEntity.DataInfo))
-            if (null == _xPlotBuffer)
-            {
-                AdaptXPlotBuffer();
-            }
-            if (0 == _yPlotBuffer.Count || _dataInfo.IsNeedAdaptYBuffer(_dataEntity.DataInfo))
-            {
-                AdaptYPlotBuffer();
-            }
-            _dataInfo.Copy(_dataEntity.DataInfo);
-            this._plotSize = 0;
-            this.SparseRatio = 0;
-            this.PlotXStart = double.NaN;
-            this.PlotXEnd = double.NaN;
-        }
-
-        private void AdaptXPlotBuffer()
-        {
-            if (null == _xPlotBuffer)
-            {
-                _xPlotBuffer = new List<double>(Constants.MaxPointsInSingleSeries);
-                FillDefaultToListBuffer(_xPlotBuffer, 0, Constants.MaxPointsInSingleSeries);
-            }
-        }
-
-        private void AdaptYPlotBuffer()
-        {
-            while (_yPlotBuffer.Count > _dataEntity.DataInfo.LineNum)
-            {
-                _yPlotBuffer.RemoveAt(_yPlotBuffer.Count - 1);
-            }
-            for (int i = 0; i < _dataEntity.DataInfo.LineNum; i++)
+            _xPlotBuffer = new List<int>(Constants.MaxPointsInSingleSeries);
+            FillDefaultToListBuffer(_xPlotBuffer, 0, Constants.MaxPointsInSingleSeries);
+            _yPlotBuffer = new List<List<TDataType>>(Constants.DefaultLineCapacity);
+            YShallowBuffer = new List<List<TDataType>>(Constants.DefaultLineCapacity);
+            for (int i = 0; i < lineCount; i++)
             {
                 if (i >= _yPlotBuffer.Count)
                 {
-                    List<double> newBuf = new List<double>(Constants.MaxPointsInSingleSeries);
+                    List<TDataType> newBuf = new List<TDataType>(Constants.MaxPointsInSingleSeries);
                     FillDefaultToListBuffer(newBuf, 0, Constants.MaxPointsInSingleSeries);
                     _yPlotBuffer.Add(newBuf);
                 }
             }
-            _yShallowBuffer.Clear();
         }
-
-        #endregion
 
         #region Step方式传入X的绘图
 
@@ -175,161 +134,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             }
             return isNeedRefreshPlot;
         }
-        #endregion
-
-        #region Array方式传入X数据的绘图
-
-        public bool FillPlotDataToBuffer(List<int> startIndexes, List<int> counts, bool forceRefresh)
-        {
-            // 如果只有一个数据段需要绘图，则和Step输入的绘图方式相同
-            if (1 == startIndexes.Count)
-            {
-                return FillPlotDataToBuffer(startIndexes[0], counts[0], forceRefresh);
-            }
-
-            bool isNeedRefreshPlot = false;
-            // 每段的后面都有一个空点
-            int totalCount = counts.Sum() + counts.Count;
-            if (totalCount <= Constants.MaxPointsInSingleSeries)
-            {
-                XPlotBuffer = _xPlotBuffer;
-                YPlotBuffer = _yPlotBuffer;
-                isNeedRefreshPlot = FillPlotDataWithoutSparse(startIndexes, counts, forceRefresh);
-            }
-            else
-            {
-                XPlotBuffer = _xPlotBuffer;
-                YPlotBuffer = _yPlotBuffer;
-                isNeedRefreshPlot = FillPlotDataWithSparse(startIndexes, counts, forceRefresh);
-            }
-            return isNeedRefreshPlot;
-        }
-
-        private bool FillPlotDataWithoutSparse(List<int> startIndexes, List<int> counts, bool forceRefresh)
-        {
-            bool isNeedRefreshPlot = IsNeedRefreshPlot(1, forceRefresh);
-            if (isNeedRefreshPlot)
-            {
-                SparseRatio = 1;
-                int segmentCount = startIndexes.Count;
-                _plotSize = 0;
-                if (XDataInputType.Increment == _dataInfo.XType)
-                {
-                    int pointIndex = 0;
-                    for (int segmentIndex = 0; segmentIndex < segmentCount; segmentIndex++)
-                    {
-                        int plotCount = counts[segmentIndex];
-                        double xDataValue = _dataEntity.XStart + _dataEntity.XIncrement*startIndexes[segmentIndex];
-                        for (int index = 0; index < plotCount; index++)
-                        {
-                            int pointBufIndex = startIndexes[segmentIndex] + index;
-                            XPlotBuffer[pointIndex] = xDataValue;
-                            xDataValue += _dataEntity.XIncrement;
-                            for (int lineIndex = 0; lineIndex < _dataInfo.LineCount; lineIndex++)
-                            {
-                                YPlotBuffer[lineIndex][pointIndex] = _dataEntity.YData[pointBufIndex];
-                                pointBufIndex += _dataInfo.Capacity;
-                            }
-                            pointIndex++;
-                        }
-                        // 每段之间要互相断开
-                        XPlotBuffer[pointIndex] = 0;
-                        foreach (IList<double> plotBuffer in YPlotBuffer)
-                        {
-                            plotBuffer[pointIndex] = double.NaN;
-                        }
-                        _plotSize += plotCount + 1;
-                        pointIndex++;
-                    }
-                }
-                else
-                {
-                    int pointIndex = 0;
-                    for (int segmentIndex = 0; segmentIndex < segmentCount; segmentIndex++)
-                    {
-                        int plotCount = counts[segmentIndex];
-                        for (int index = 0; index < plotCount; index++)
-                        {
-                            int pointBufIndex = startIndexes[segmentIndex] + index;
-                            XPlotBuffer[pointIndex] = _dataEntity.XData[pointBufIndex];
-                            for (int lineIndex = 0; lineIndex < _dataInfo.LineCount; lineIndex++)
-                            {
-                                // TODO to simplified
-                                YPlotBuffer[lineIndex][pointIndex] = _dataEntity.YData[pointBufIndex];
-                                pointBufIndex += _dataInfo.Capacity;
-                            }
-                            pointIndex++;
-                        }
-
-                        // 每段之间要互相断开
-                        XPlotBuffer[pointIndex] = 0;
-                        foreach (IList<double> plotBuffer in YPlotBuffer)
-                        {
-                            plotBuffer[pointIndex] = Double.NaN;
-                        }
-                        _plotSize += plotCount + 1;
-                        pointIndex++;
-                    }
-                }
-            }
-            return isNeedRefreshPlot;
-        }
-
-        // Array类型入参的暂时不执行插值处理
-        private bool FillPlotDataWithSparse(List<int> startIndexes, List<int> counts, bool forceRefresh)
-        {
-            int totalCounts = counts.Sum();
-            int segmentCount = startIndexes.Count;
-            int plotSize;
-            int newSparseRatio = GetSparseRatio(totalCounts+segmentCount, out plotSize);
-            bool isNeedRefreshPlot = IsNeedRefreshPlot(newSparseRatio, forceRefresh);
-            int pointIndex = 0;
-            if (isNeedRefreshPlot)
-            {
-                SparseRatio = newSparseRatio;
-                _plotSize = 0;
-                // 只可能是X轴时Array方式会进入该方法
-                for (int segmentIndex = 0; segmentIndex < segmentCount; segmentIndex++)
-                {
-                    int plotCount = (counts[segmentIndex] + SparseRatio - 1) / SparseRatio;
-                    for (int index = 0; index < plotCount; index++)
-                    {
-                        int pointBufIndex = startIndexes[segmentIndex] + index * SparseRatio;
-                        XPlotBuffer[pointIndex] = _dataEntity.XData[pointBufIndex];
-                        for (int lineIndex = 0; lineIndex < _dataInfo.LineCount; lineIndex++)
-                        {
-                            // TODO to simplified
-                            YPlotBuffer[lineIndex][pointIndex] = _dataEntity.YData[pointBufIndex];
-                            pointBufIndex += _dataInfo.Capacity;
-                        }
-                        pointIndex++;
-                        // TODO Not Right, Fix Later
-                        if (pointIndex >= XPlotBuffer.Count)
-                        {
-                            break;
-                        }
-                    }
-                    _plotSize += plotCount;
-//                    // 每段之间要互相断开
-//                    XPlotBuffer[pointIndex] = 0;
-//                    foreach (IList<double> plotBuffer in YPlotBuffer)
-//                    {
-//                        plotBuffer[pointIndex] = Double.NaN;
-//                    }
-//                    pointIndex++;
-//                    _plotSize += plotCount + 1;
-                }
-
-                // TODO Not Right, Fix Later
-                if (_plotSize > XPlotBuffer.Count)
-                {
-                    _plotSize = XPlotBuffer.Count;
-                }
-            }
-            return isNeedRefreshPlot;
-
-        }
-
         #endregion
 
         #region 所有点的绘图
@@ -423,32 +227,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
 
         #region Utility
 
-        public IList<double> GetXData()
-        {
-//            if (ReferenceEquals(XPlotBuffer, _xPlotBuffer))
-//            {
-//                return _xPlotBuffer.GetRange(0, _plotSize);
-//            }
-//            else
-//            {
-//                return XPlotBuffer;
-//            }
-            return (XPlotBuffer as List<double>).GetRange(0, _plotSize);
-        }
-
-        public IList<IList<double>> GetYData()
-        {
-            if (ReferenceEquals(YPlotBuffer, _yPlotBuffer))
-            {
-                _yShallowBuffer.Clear();
-                foreach (List<double> yPlotData in _yPlotBuffer)
-                {
-                    _yShallowBuffer.Add(yPlotData.GetRange(0, _plotSize));
-                }
-            }
-            return _yShallowBuffer;
-        }
-
         private static int GetSparseRatio(int count, out int plotCount)
         {
 //            int sparseRatio = (int) Math.Ceiling((double) count/ Constants.MaxPointsInSingleSeries);
@@ -460,20 +238,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
 
             plotCount = (count + sparseRatio - 1)/sparseRatio;
             return sparseRatio;
-        }
-
-        //如果范围内全是空数据则将buffer赋值为空值
-        private readonly List<double> _emptyData = new List<double>(1);
-        public void FillEmptyDataToBuffer(int lineNum)
-        {
-            _plotSize = 0;
-            PlotXStart = double.NaN;
-            PlotXEnd = double.NaN;
-            _yShallowBuffer.Clear();
-            for (int i = 0; i < lineNum; i++)
-            {
-                _yShallowBuffer.Add(_emptyData);
-            }
         }
 
         // 是否需要重新绘图，如果需要更新绘图则更新PlotXStart和PlotXEnd
