@@ -47,7 +47,13 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
                 _yBuffers.Add(new OverLapWrapBuffer<TDataType>(DataInfo.Capacity));
             }
 
-            _plotBuffer = new PlotBuffer<TDataType>(DataInfo.LineCount);
+            _plotBuffer = new PlotBuffer<TDataType>(DataInfo.LineCount, DataInfo.Capacity);
+        }
+
+        public override int PlotCount
+        {
+            get { return _plotBuffer.PlotCount; }
+            set { _plotBuffer.PlotCount = value; }
         }
 
         public override int SamplesInChart => _samplesInChart;
@@ -129,6 +135,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
                 }
             }
             RemoveXDataExceedDisplayPoints(sampleCount);
+        }
+
+        public override List<int> GetXPlotBuffer()
+        {
+            return _plotBuffer.XPlotBuffer;
         }
 
         public override string GetXValue(int xIndex)
@@ -302,7 +313,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
 
         public override IList GetXData()
         {
-            return _plotBuffer.XPlotBuffer.GetRange(0, _plotBuffer.PlotSize);
+            return _plotBuffer.XPlotBuffer.GetRange(0, _plotBuffer.PlotCount);
         }
 
         public override IList GetYData()
@@ -310,9 +321,44 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             _plotBuffer.YShallowBuffer.Clear();
             foreach (List<TDataType> yBuf in _plotBuffer.YPlotBuffer)
             {
-                _plotBuffer.YShallowBuffer.Add(yBuf.GetRange(0, _plotBuffer.PlotSize));
+                _plotBuffer.YShallowBuffer.Add(yBuf.GetRange(0, _plotBuffer.PlotCount));
             }
             return _plotBuffer.YShallowBuffer;
+        }
+
+        public override bool FillYPlotDatas(int beginXIndex, int endXIndex, bool forceRefresh, int seriesIndex, int newSparseRatio, int plotCount)
+        {
+            // 如果不需要强制更新，且当前起始位置等于上次起始位置、当前结束位置小于等于上次结束位置、新的SparseRatio等于上次的SpaseRatio时无需更新数据。
+            if (!forceRefresh && LastYStartIndex[seriesIndex] == beginXIndex && LastYEndIndex[seriesIndex] >= endXIndex &&
+                SparseRatio[seriesIndex] == newSparseRatio)
+            {
+                return false;
+            }
+            LastYStartIndex[seriesIndex] = beginXIndex;
+            LastYEndIndex[seriesIndex] = endXIndex;
+            SparseRatio[seriesIndex] = newSparseRatio;
+
+            if (1 == newSparseRatio)
+            {
+                ParallelHandler.FillNoneFitPlotData(beginXIndex, SparseRatio[seriesIndex], _yBuffers[seriesIndex],
+                            _plotBuffer.YPlotBuffer[seriesIndex], plotCount);
+            }
+            else
+            {
+                switch (ParentManager.FitType)
+                {
+                    case StripChartX.FitType.None:
+                        ParallelHandler.FillNoneFitPlotData(beginXIndex, SparseRatio[seriesIndex], _yBuffers[seriesIndex],
+                            _plotBuffer.YPlotBuffer[seriesIndex], plotCount);
+                        break;
+                    case StripChartX.FitType.Range:
+                        ParallelHandler.FillRangeFitPlotData<TDataType>(beginXIndex, SparseRatio[seriesIndex], _yBuffers[seriesIndex],
+                            _plotBuffer.YPlotBuffer[seriesIndex], plotCount);
+                        break;
+                }
+            }
+
+            return true;
         }
     }
 }

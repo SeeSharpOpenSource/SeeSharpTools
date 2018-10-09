@@ -16,14 +16,12 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         private int _blockSize;
         private int _indexOffset;
 
-        private readonly DataEntityBase _dataEntity;
 //        private readonly PlotBuffer _buffer;
         private object _datas;
         private readonly DataCheckParameters _dataCheckParams;
 
-        public ParallelHandler(DataEntityBase dataEntity, DataCheckParameters dataCheckParams)
+        public ParallelHandler(DataCheckParameters dataCheckParams)
         {
-            this._dataEntity = dataEntity;
             this._option = new ParallelOptions();
             this._indexOffset = 0;
             this._dataCheckParams = dataCheckParams;
@@ -35,164 +33,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         }
 
         #region Invalid Data Check
-        // 暂时不打开保存Csv的接口，屏蔽InvalidBuf
-//        private Dictionary<int, TDataType> _invalidBuf; 
-        public void InvalidDataCheck<TDataType>(IList<TDataType> checkData, Dictionary<int, TDataType> invalidBuf)
-        {
-            if (_dataCheckParams.IsCheckDisabled() || null == checkData || 0 == checkData.Count)
-            {
-                return;
-            }
-            this._datas = checkData;
-//            this._invalidBuf = invalidBuf;
-            _blockSize = GetBlockSize(checkData.Count);
-            _indexOffset = 0;
-            if (!_dataCheckParams.CheckNaN)
-            {
-                // 如果不校验Nan则将非法数据替换为Nan
-                Parallel.For(0, _option.MaxDegreeOfParallelism, _option, CheckDataExceedRange);
-            }
-            else
-            {
-                if (_dataCheckParams.CheckNegtiveOrZero)
-                {
-                    // 如果校验Nan则将非法数据替换为允许的最大最小值
-                    Parallel.For(0, _option.MaxDegreeOfParallelism, _option, CheckInvalidAndNegtiveData);
-                }
-                else
-                {
-                    // 如果校验Nan则将非法数据替换为允许的最大最小值
-                    Parallel.For(0, _option.MaxDegreeOfParallelism, _option, CheckInvalidData);
-                }
-            }
-            this._datas = null;
-//            this._invalidBuf = null;
-        }
-
-        // 过滤越界数据，将其替换为Nan(空点)
-        private void CheckDataExceedRange(int blockIndex)
-        {
-            int start = blockIndex*_blockSize + _indexOffset;
-            int end = start + _blockSize;
-            if (start >= _datas.Count)
-            {
-                return;
-            }
-            if (end > _datas.Count)
-            {
-                end = _datas.Count;
-            }
-            for (int index = start; index < end; index++)
-            {
-                double originalValue = _datas[index];
-                if ((_dataCheckParams.CheckInfinity && double.IsInfinity(originalValue)) ||
-                    (_dataCheckParams.CheckNegtiveOrZero && originalValue <= 0))
-                {
-                    // 如果数据非法则添加到缓存中
-                    lock (_parallelLock)
-                    {
-                        _invalidBuf.Add(index, originalValue);
-                    }
-                    _datas[index] = double.NaN;
-                }
-            }
-        }
-
-        // 过滤越界数据和Nan数据，分别替换为最大double和最小正double
-        private void CheckInvalidAndNegtiveData(int blockIndex)
-        {
-            int start = blockIndex * _blockSize + _indexOffset;
-            int end = start + _blockSize;
-            if (start >= _datas.Count)
-            {
-                return;
-            }
-            if (end > _datas.Count)
-            {
-                end = _datas.Count;
-            }
-            for(int index = start; index < end; index++)
-            {
-                double originalValue = _datas[index];
-                if (double.IsNaN(originalValue))
-                {
-                    // 如果数据非法则添加到缓存中
-                    lock (_parallelLock)
-                    {
-                        _invalidBuf.Add(index, originalValue);
-                    }
-                    _datas[index] = Constants.NanDataFakeValue;
-                }
-                else if (originalValue <= 0 ||
-                         (_dataCheckParams.CheckInfinity && double.IsNegativeInfinity(originalValue)))
-                {
-                    // 如果数据非法则添加到缓存中
-                    lock (_parallelLock)
-                    {
-                        _invalidBuf.Add(index, originalValue);
-                    }
-                    _datas[index] = Constants.MinPositiveDoubleValue;
-                }
-                else if (_dataCheckParams.CheckInfinity && double.IsPositiveInfinity(originalValue))
-                {
-                    // 如果数据非法则添加到缓存中
-                    lock (_parallelLock)
-                    {
-                        _invalidBuf.Add(index, originalValue);
-                    }
-                    _datas[index] = Constants.MaxPositiveDoubleValue;
-                }
-            }
-        }
-
-        // 过滤越界数据和Nan数据，分别替换为最大double和最小double
-        private void CheckInvalidData(int blockIndex)
-        {
-            int start = blockIndex * _blockSize + _indexOffset;
-            int end = start + _blockSize;
-            if (start >= _datas.Count)
-            {
-                return;
-            }
-            if (end > _datas.Count)
-            {
-                end = _datas.Count;
-            }
-            for (int index = start; index < end; index++)
-            {
-                double originalValue = _datas[index];
-                if (double.IsNaN(originalValue))
-                {
-                    // 如果数据非法则添加到缓存中
-                    lock (_parallelLock)
-                    {
-                        _invalidBuf.Add(index, originalValue);
-                    }
-                    _datas[index] = Constants.NanDataFakeValue;
-                }
-                else if (_dataCheckParams.CheckInfinity && double.IsNegativeInfinity(originalValue))
-                {
-                    // 如果数据非法则添加到缓存中
-                    lock (_parallelLock)
-                    {
-                        _invalidBuf.Add(index, originalValue);
-                    }
-                    _datas[index] = Constants.MinNegtiveDoubleValue;
-                }
-                else if (_dataCheckParams.CheckInfinity && double.IsPositiveInfinity(originalValue))
-                {
-                    // 如果数据非法则添加到缓存中
-                    lock (_parallelLock)
-                    {
-                        _invalidBuf.Add(index, originalValue);
-                    }
-                    _datas[index] = Constants.MaxPositiveDoubleValue;
-                }
-            }
-        }
-
+        // TODO not implemented
         #endregion
-
 
         #region Max / Min 计算
         
@@ -771,35 +613,14 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         #region No Fit
 
-        public void FillNoneFitPlotData(int startIndex)
+        public void FillNoneFitPlotData<TDataType>(int startIndex, int sparseRatio, IList<TDataType> dataBuf, 
+            IList<TDataType> plotBuf, int plotCount)
         {
-            int plotIndex = 0;
-            if (XDataInputType.Increment == _dataEntity.DataInfo.XDataInputType)
+            int plotIndex = startIndex;
+            for (int index = 0; index < plotCount; index++)
             {
-                for (int index = 0; index < _buffer.PlotSize; index++)
-                {
-                    int pointIndex = (startIndex + index*_buffer.SparseRatio);
-                    _buffer.XPlotBuffer[plotIndex] = _dataEntity.XStart + pointIndex*_dataEntity.XIncrement;
-                    for (int i = 0; i < _dataEntity.DataInfo.LineNum; i++)
-                    {
-                        _buffer.YPlotBuffer[i][plotIndex] = _dataEntity.YData[pointIndex];
-                        pointIndex += _dataEntity.DataInfo.Size;
-                    }
-                    plotIndex++;
-                }
-            }
-            else
-            {
-                for (int index = 0; index < _buffer.PlotSize; index++)
-                {
-                    int pointIndex = (startIndex + index*_buffer.SparseRatio);
-                    _buffer.XPlotBuffer[plotIndex] = (_dataEntity.XData[pointIndex]);
-                    for (int i = 0; i < _dataEntity.DataInfo.LineNum; i++)
-                    {
-                        _buffer.YPlotBuffer[i][plotIndex] = _dataEntity.YData[i*_dataEntity.DataInfo.Size + pointIndex];
-                    }
-                    plotIndex++;
-                }
+                plotIndex += _sparseRatio;
+                plotBuf[index] = dataBuf[plotIndex];
             }
         }
 
@@ -807,153 +628,410 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         #region Range Fit
 
-        public void FillRangeFitPlotData(int indexOffset)
+        private object _dataBuf;
+        private object _plotBuf;
+        private int _sparseRatio;
+        private int _plotCount;
+
+        public void FillRangeFitPlotData<TDataType>(int startIndex, int sparseRatio, IList<TDataType> dataBuf, 
+            IList<TDataType> plotBuf, int plotCount)
         {
             //将PlotSize的数据分为2*_option.MaxDegreeOfParallelism段，每段最长为_segmentSize
-            _blockSize = GetBlockSize(this._dataEntity.PlotBuf.PlotSize/2);
-            this._indexOffset = indexOffset;
-            if (XDataInputType.Increment == this._dataEntity.DataInfo.XDataInputType)
-            {
-                Parallel.For(0, _option.MaxDegreeOfParallelism, _option, FillRangeFitStepXData);
-            }
-            else
-            {
-                Parallel.For(0, _option.MaxDegreeOfParallelism, _option, FillRangeFitArrayXData);
-            }
+            _blockSize = GetBlockSize(plotCount/2);
+            this._dataBuf = dataBuf;
+            this._plotBuf = plotBuf;
+            this._sparseRatio = sparseRatio;
+            this._indexOffset = startIndex;
+            this._plotCount = plotCount;
+            Parallel.For(0, _option.MaxDegreeOfParallelism, _option, FillRangeFitData<TDataType>);
+            this._dataBuf = null;
+            this._plotBuf = null;
         }
 
-        private void FillRangeFitStepXData(int segmentIndex)
+        private void FillRangeFitData<TDataType>(int segmentIndex)
         {
-            IList<double> xDataBuf = _buffer.XPlotBuffer;
-            IList<IList<double>> yDataBuf = _buffer.YPlotBuffer;
-
             // 一个拟合对在真是数据中的索引起始位置
             int start = _blockSize*segmentIndex;
             // 一个拟合对在真是数据中的索引结束位置，不包含该位置
             int end = _blockSize*(segmentIndex + 1);
-            if (end > this._buffer.PlotSize/2)
+            if (end > this._plotCount/2)
             {
-                end = this._buffer.PlotSize/2;
+                end = this._plotCount/2;
             }
+            string typeName = typeof(TDataType).FullName;
+            if (typeName.Equals(typeof(double).FullName))
+            {
+                FillDoubleRangeFitData(start, end);
+            }
+            else if (typeName.Equals(typeof(float).FullName))
+            {
+                FillFloatRangeFitData(start, end);
+            }
+            else if (typeName.Equals(typeof(int).FullName))
+            {
+                FillIntRangeFitData(start, end);
+            }
+            else if (typeName.Equals(typeof(uint).FullName))
+            {
+                FillUIntRangeFitData(start, end);
+            }
+            else if (typeName.Equals(typeof(short).FullName))
+            {
+                FillShortRangeFitData(start, end);
+            }
+            else if (typeName.Equals(typeof(ushort).FullName))
+            {
+                FillUShortRangeFitData(start, end);
+            }
+            else if (typeName.Equals(typeof(byte).FullName))
+            {
+                FillByteRangeFitData(start, end);
+            }
+        }
+
+        private void FillDoubleRangeFitData(int start, int end)
+        {
+            IList<double> yDataBuf = _dataBuf as IList<double>;
+            IList<double> plotBuf = _plotBuf as IList<double>;
             // 两个相邻的数据作为拟合对。
             for (int dataPairIndex = start; dataPairIndex < end; dataPairIndex++)
             {
                 // 待写入缓存的索引位置
                 int startBufIndex = 2*dataPairIndex;
                 // 真实数据的起始索引
-                int pointStartIndex = startBufIndex*_buffer.SparseRatio + _indexOffset;
+                int pointStartIndex = startBufIndex*_sparseRatio + _indexOffset;
                 // 真实数据的终止索引位置，不包含该点
-                int pointEndIndex = pointStartIndex + 2*_buffer.SparseRatio;
-                if (pointEndIndex > _dataEntity.DataInfo.Size)
+                int pointEndIndex = pointStartIndex + 2*_sparseRatio;
+                if (pointEndIndex > yDataBuf.Count)
                 {
-                    pointEndIndex = _dataEntity.DataInfo.Size;
+                    pointEndIndex = yDataBuf.Count;
                 }
 
-                xDataBuf[startBufIndex] = _dataEntity.XStart + pointStartIndex*_dataEntity.XIncrement;
-                xDataBuf[startBufIndex + 1] = _dataEntity.XStart + (pointStartIndex+_buffer.SparseRatio) * _dataEntity.XIncrement; ;
-
-                int lineIndexOffset = 0;
-                for (int lineIndex = 0; lineIndex < _dataEntity.DataInfo.LineNum; lineIndex++)
+                double maxValue = yDataBuf[pointStartIndex];
+                double minValue = yDataBuf[pointStartIndex];
+                int maxIndex = pointStartIndex;
+                int minIndex = pointStartIndex;
+                for (int pointIndex = pointStartIndex + 1; pointIndex < pointEndIndex; pointIndex++)
                 {
-                    double maxValue = _dataEntity.YData[pointStartIndex + lineIndexOffset];
-                    double minValue = _dataEntity.YData[pointStartIndex + lineIndexOffset];
-                    int maxIndex = pointStartIndex;
-                    int minIndex = pointStartIndex;
-                    for (int pointIndex = pointStartIndex + 1; pointIndex < pointEndIndex; pointIndex++)
+                    double value = yDataBuf[pointIndex];
+                    if (value > maxValue)
                     {
-                        double value = _dataEntity.YData[pointIndex + lineIndexOffset];
-                        if (value > maxValue)
-                        {
-                            maxIndex = pointIndex;
-                            maxValue = value;
-                        }
-                        else if (value < minValue)
-                        {
-                            minIndex = pointIndex;
-                            minValue = value;
-                        }
+                        maxIndex = pointIndex;
+                        maxValue = value;
                     }
-                    if (maxIndex > minIndex)
+                    else if (value < minValue)
                     {
-                        yDataBuf[lineIndex][startBufIndex] = minValue;
-                        yDataBuf[lineIndex][startBufIndex + 1] = maxValue;
+                        minIndex = pointIndex;
+                        minValue = value;
                     }
-                    else
-                    {
-                        yDataBuf[lineIndex][startBufIndex] = maxValue;
-                        yDataBuf[lineIndex][startBufIndex + 1] = minValue;
-                    }
-                    lineIndexOffset += _dataEntity.DataInfo.Size;
+                }
+                if (maxIndex > minIndex)
+                {
+                    yDataBuf[startBufIndex] = minValue;
+                    yDataBuf[startBufIndex + 1] = maxValue;
+                }
+                else
+                {
+                    plotBuf[startBufIndex] = maxValue;
+                    plotBuf[startBufIndex + 1] = minValue;
                 }
             }
         }
 
-        private void FillRangeFitArrayXData(int segmentIndex)
+        private void FillFloatRangeFitData(int start, int end)
         {
-            IList<double> xDataBuf = _buffer.XPlotBuffer;
-            IList<IList<double>> yDataBuf = _buffer.YPlotBuffer;
-
-            // 一个拟合对在真是数据中的索引起始位置
-            int start = _blockSize*segmentIndex;
-            // 一个拟合对在真是数据中的索引结束位置，不包含该位置
-            int end = _blockSize*(segmentIndex + 1);
-            if (end > this._buffer.PlotSize/2)
-            {
-                end = this._buffer.PlotSize/2;
-            }
+            IList<float> yDataBuf = _dataBuf as IList<float>;
+            IList<float> plotBuf = _plotBuf as IList<float>;
             // 两个相邻的数据作为拟合对。
             for (int dataPairIndex = start; dataPairIndex < end; dataPairIndex++)
             {
                 // 待写入缓存的索引位置
-                int startBufIndex = 2*dataPairIndex;
+                int startBufIndex = 2 * dataPairIndex;
                 // 真实数据的起始索引
-                int pointStartIndex = startBufIndex*_buffer.SparseRatio + _indexOffset;
-                // 真实数据的终止索引，不包含该点
-                int pointEndIndex = pointStartIndex + 2*_buffer.SparseRatio;
-                if (pointEndIndex > _dataEntity.DataInfo.Size)
+                int pointStartIndex = startBufIndex * _sparseRatio + _indexOffset;
+                // 真实数据的终止索引位置，不包含该点
+                int pointEndIndex = pointStartIndex + 2 * _sparseRatio;
+                if (pointEndIndex > yDataBuf.Count)
                 {
-                    pointEndIndex = _dataEntity.DataInfo.Size;
+                    pointEndIndex = yDataBuf.Count;
                 }
 
-                xDataBuf[startBufIndex] = _dataEntity.XData[pointStartIndex];
-                xDataBuf[startBufIndex + 1] = _dataEntity.XData[pointStartIndex + _buffer.SparseRatio];
-
-                int lineIndexOffset = 0;
-                for (int lineIndex = 0; lineIndex < _dataEntity.DataInfo.LineNum; lineIndex++)
+                float maxValue = yDataBuf[pointStartIndex];
+                float minValue = yDataBuf[pointStartIndex];
+                int maxIndex = pointStartIndex;
+                int minIndex = pointStartIndex;
+                for (int pointIndex = pointStartIndex + 1; pointIndex < pointEndIndex; pointIndex++)
                 {
-                    double maxValue = _dataEntity.YData[pointStartIndex + lineIndexOffset];
-                    double minValue = _dataEntity.YData[pointStartIndex + lineIndexOffset];
-                    int maxIndex = pointStartIndex;
-                    int minIndex = pointStartIndex;
-                    for (int pointIndex = pointStartIndex + 1; pointIndex < pointEndIndex; pointIndex++)
+                    float value = yDataBuf[pointIndex];
+                    if (value > maxValue)
                     {
-                        double value = _dataEntity.YData[pointIndex + lineIndexOffset];
-                        if (value > maxValue)
-                        {
-                            maxIndex = pointIndex;
-                            maxValue = value;
-                        }
-                        else if (value < minValue)
-                        {
-                            minIndex = pointIndex;
-                            minValue = value;
-                        }
+                        maxIndex = pointIndex;
+                        maxValue = value;
                     }
-                    if (maxIndex > minIndex)
+                    else if (value < minValue)
                     {
-                        yDataBuf[lineIndex][startBufIndex] = minValue;
-                        yDataBuf[lineIndex][startBufIndex + 1] = maxValue;
+                        minIndex = pointIndex;
+                        minValue = value;
                     }
-                    else
-                    {
-                        yDataBuf[lineIndex][startBufIndex] = maxValue;
-                        yDataBuf[lineIndex][startBufIndex + 1] = minValue;
-                    }
-                    lineIndexOffset += _dataEntity.DataInfo.Size;
+                }
+                if (maxIndex > minIndex)
+                {
+                    plotBuf[startBufIndex] = minValue;
+                    plotBuf[startBufIndex + 1] = maxValue;
+                }
+                else
+                {
+                    plotBuf[startBufIndex] = maxValue;
+                    plotBuf[startBufIndex + 1] = minValue;
                 }
             }
         }
 
+        private void FillIntRangeFitData(int start, int end)
+        {
+            IList<int> yDataBuf = _dataBuf as IList<int>;
+            IList<int> plotBuf = _plotBuf as IList<int>;
+            // 两个相邻的数据作为拟合对。
+            for (int dataPairIndex = start; dataPairIndex < end; dataPairIndex++)
+            {
+                // 待写入缓存的索引位置
+                int startBufIndex = 2 * dataPairIndex;
+                // 真实数据的起始索引
+                int pointStartIndex = startBufIndex * _sparseRatio + _indexOffset;
+                // 真实数据的终止索引位置，不包含该点
+                int pointEndIndex = pointStartIndex + 2 * _sparseRatio;
+                if (pointEndIndex > yDataBuf.Count)
+                {
+                    pointEndIndex = yDataBuf.Count;
+                }
+
+                int maxValue = yDataBuf[pointStartIndex];
+                int minValue = yDataBuf[pointStartIndex];
+                int maxIndex = pointStartIndex;
+                int minIndex = pointStartIndex;
+                for (int pointIndex = pointStartIndex + 1; pointIndex < pointEndIndex; pointIndex++)
+                {
+                    int value = yDataBuf[pointIndex];
+                    if (value > maxValue)
+                    {
+                        maxIndex = pointIndex;
+                        maxValue = value;
+                    }
+                    else if (value < minValue)
+                    {
+                        minIndex = pointIndex;
+                        minValue = value;
+                    }
+                }
+                if (maxIndex > minIndex)
+                {
+                    plotBuf[startBufIndex] = minValue;
+                    plotBuf[startBufIndex + 1] = maxValue;
+                }
+                else
+                {
+                    plotBuf[startBufIndex] = maxValue;
+                    plotBuf[startBufIndex + 1] = minValue;
+                }
+            }
+        }
+
+        private void FillUIntRangeFitData(int start, int end)
+        {
+            IList<uint> yDataBuf = _dataBuf as IList<uint>;
+            IList<uint> plotBuf = _plotBuf as IList<uint>;
+            // 两个相邻的数据作为拟合对。
+            for (int dataPairIndex = start; dataPairIndex < end; dataPairIndex++)
+            {
+                // 待写入缓存的索引位置
+                int startBufIndex = 2 * dataPairIndex;
+                // 真实数据的起始索引
+                int pointStartIndex = startBufIndex * _sparseRatio + _indexOffset;
+                // 真实数据的终止索引位置，不包含该点
+                int pointEndIndex = pointStartIndex + 2 * _sparseRatio;
+                if (pointEndIndex > yDataBuf.Count)
+                {
+                    pointEndIndex = yDataBuf.Count;
+                }
+
+                uint maxValue = yDataBuf[pointStartIndex];
+                uint minValue = yDataBuf[pointStartIndex];
+                int maxIndex = pointStartIndex;
+                int minIndex = pointStartIndex;
+                for (int pointIndex = pointStartIndex + 1; pointIndex < pointEndIndex; pointIndex++)
+                {
+                    uint value = yDataBuf[pointIndex];
+                    if (value > maxValue)
+                    {
+                        maxIndex = pointIndex;
+                        maxValue = value;
+                    }
+                    else if (value < minValue)
+                    {
+                        minIndex = pointIndex;
+                        minValue = value;
+                    }
+                }
+                if (maxIndex > minIndex)
+                {
+                    plotBuf[startBufIndex] = minValue;
+                    plotBuf[startBufIndex + 1] = maxValue;
+                }
+                else
+                {
+                    plotBuf[startBufIndex] = maxValue;
+                    plotBuf[startBufIndex + 1] = minValue;
+                }
+            }
+        }
+
+        private void FillShortRangeFitData(int start, int end)
+        {
+            IList<short> yDataBuf = _dataBuf as IList<short>;
+            IList<short> plotBuf = _plotBuf as IList<short>;
+            // 两个相邻的数据作为拟合对。
+            for (int dataPairIndex = start; dataPairIndex < end; dataPairIndex++)
+            {
+                // 待写入缓存的索引位置
+                int startBufIndex = 2 * dataPairIndex;
+                // 真实数据的起始索引
+                int pointStartIndex = startBufIndex * _sparseRatio + _indexOffset;
+                // 真实数据的终止索引位置，不包含该点
+                int pointEndIndex = pointStartIndex + 2 * _sparseRatio;
+                if (pointEndIndex > yDataBuf.Count)
+                {
+                    pointEndIndex = yDataBuf.Count;
+                }
+
+                short maxValue = yDataBuf[pointStartIndex];
+                short minValue = yDataBuf[pointStartIndex];
+                int maxIndex = pointStartIndex;
+                int minIndex = pointStartIndex;
+                for (int pointIndex = pointStartIndex + 1; pointIndex < pointEndIndex; pointIndex++)
+                {
+                    short value = yDataBuf[pointIndex];
+                    if (value > maxValue)
+                    {
+                        maxIndex = pointIndex;
+                        maxValue = value;
+                    }
+                    else if (value < minValue)
+                    {
+                        minIndex = pointIndex;
+                        minValue = value;
+                    }
+                }
+                if (maxIndex > minIndex)
+                {
+                    plotBuf[startBufIndex] = minValue;
+                    plotBuf[startBufIndex + 1] = maxValue;
+                }
+                else
+                {
+                    plotBuf[startBufIndex] = maxValue;
+                    plotBuf[startBufIndex + 1] = minValue;
+                }
+            }
+        }
+        
+        private void FillUShortRangeFitData(int start, int end)
+        {
+            IList<ushort> yDataBuf = _dataBuf as IList<ushort>;
+            IList<ushort> plotBuf = _plotBuf as IList<ushort>;
+            // 两个相邻的数据作为拟合对。
+            for (int dataPairIndex = start; dataPairIndex < end; dataPairIndex++)
+            {
+                // 待写入缓存的索引位置
+                int startBufIndex = 2 * dataPairIndex;
+                // 真实数据的起始索引
+                int pointStartIndex = startBufIndex * _sparseRatio + _indexOffset;
+                // 真实数据的终止索引位置，不包含该点
+                int pointEndIndex = pointStartIndex + 2 * _sparseRatio;
+                if (pointEndIndex > yDataBuf.Count)
+                {
+                    pointEndIndex = yDataBuf.Count;
+                }
+
+                ushort maxValue = yDataBuf[pointStartIndex];
+                ushort minValue = yDataBuf[pointStartIndex];
+                int maxIndex = pointStartIndex;
+                int minIndex = pointStartIndex;
+                for (int pointIndex = pointStartIndex + 1; pointIndex < pointEndIndex; pointIndex++)
+                {
+                    ushort value = yDataBuf[pointIndex];
+                    if (value > maxValue)
+                    {
+                        maxIndex = pointIndex;
+                        maxValue = value;
+                    }
+                    else if (value < minValue)
+                    {
+                        minIndex = pointIndex;
+                        minValue = value;
+                    }
+                }
+                if (maxIndex > minIndex)
+                {
+                    plotBuf[startBufIndex] = minValue;
+                    plotBuf[startBufIndex + 1] = maxValue;
+                }
+                else
+                {
+                    plotBuf[startBufIndex] = maxValue;
+                    plotBuf[startBufIndex + 1] = minValue;
+                }
+            }
+        }
+        
+        private void FillByteRangeFitData(int start, int end)
+        {
+            IList<byte> yDataBuf = _dataBuf as IList<byte>;
+            IList<byte> plotBuf = _plotBuf as IList<byte>;
+            // 两个相邻的数据作为拟合对。
+            for (int dataPairIndex = start; dataPairIndex < end; dataPairIndex++)
+            {
+                // 待写入缓存的索引位置
+                int startBufIndex = 2 * dataPairIndex;
+                // 真实数据的起始索引
+                int pointStartIndex = startBufIndex * _sparseRatio + _indexOffset;
+                // 真实数据的终止索引位置，不包含该点
+                int pointEndIndex = pointStartIndex + 2 * _sparseRatio;
+                if (pointEndIndex > yDataBuf.Count)
+                {
+                    pointEndIndex = yDataBuf.Count;
+                }
+
+                byte maxValue = yDataBuf[pointStartIndex];
+                byte minValue = yDataBuf[pointStartIndex];
+                int maxIndex = pointStartIndex;
+                int minIndex = pointStartIndex;
+                for (int pointIndex = pointStartIndex + 1; pointIndex < pointEndIndex; pointIndex++)
+                {
+                    byte value = yDataBuf[pointIndex];
+                    if (value > maxValue)
+                    {
+                        maxIndex = pointIndex;
+                        maxValue = value;
+                    }
+                    else if (value < minValue)
+                    {
+                        minIndex = pointIndex;
+                        minValue = value;
+                    }
+                }
+                if (maxIndex > minIndex)
+                {
+                    plotBuf[startBufIndex] = minValue;
+                    plotBuf[startBufIndex + 1] = maxValue;
+                }
+                else
+                {
+                    plotBuf[startBufIndex] = maxValue;
+                    plotBuf[startBufIndex + 1] = minValue;
+                }
+            }
+        }
+        
         #endregion
 
         #endregion

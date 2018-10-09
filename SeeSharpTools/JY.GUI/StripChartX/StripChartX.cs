@@ -96,26 +96,6 @@ namespace SeeSharpTools.JY.GUI
         }
         
         /// <summary>
-        /// Get or specify whether enable cumulative.
-        /// </summary>
-        [
-            Browsable(false),
-            Category("Behavior"),
-            Description("Get or specify whether use cumulative plot.")
-        ]
-        public bool Cumulitive
-        {
-            get
-            {
-                return _plotManager.CumulativePlot;
-            }
-            set
-            {
-                _plotManager.CumulativePlot = value;
-            }
-        }
-
-        /// <summary>
         /// Get plot areas in split view.
         /// </summary>
         [
@@ -825,7 +805,7 @@ namespace SeeSharpTools.JY.GUI
                 InitPlotManagerAndViewManager<TDataType>(seriesCount, lineData.GetLength(1));
             }
             CheckYData(seriesCount, typeof (TDataType));
-            _plotManager.DataEntity.AddPlotData(lineData);
+            _plotManager.DataEntity.AddPlotData(lineData, lineData.GetLength(1));
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
         }
@@ -903,7 +883,7 @@ namespace SeeSharpTools.JY.GUI
                 InitPlotManagerAndViewManager<TDataType>(seriesCount, 1);
             }
             CheckYData(seriesCount, typeof (TDataType));
-            _plotManager.DataEntity.AddPlotData<TDataType>(lineData, 1);
+            _plotManager.DataEntity.AddPlotData(lineData, 1);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
         }
@@ -947,219 +927,53 @@ namespace SeeSharpTools.JY.GUI
 
         #region Double IList interface
 
-        /// <summary>
-        /// Plot one or more line data with xIncrement x
-        /// </summary>
-        /// <param name="yData">Y datas to plot</param>
-        /// <param name="xStart">offset value for generating x sequence using "offset + (xIncrement * i)"</param>
-        /// <param name="xIncrement">xIncrement value for generating x sequence using "offset + (xIncrement * i)"</param>
-        /// <param name="xSize">X data size, when xSize smaller than 1 means only one line in yData</param>
-        public void Plot(IList<double> yData, double xStart = 0, double xIncrement = 1, int xSize = 0)
-        {
-            int lastSeriesCount = _plotManager.SeriesCount;
-            if (xSize <= 0)
-            {
-                xSize = yData.Count;
-            }
-            _plotManager.AddPlotData(xStart, xIncrement, yData, xSize, yData.Count);
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-
-        /// <summary>
-        /// X-Y plot. Plot List x Data and list y data pair on chart. The series count is y.Count/x.Count.
-        /// </summary>
-        /// <param name="xData"> x sequence to plot</param>
-        /// <param name="yData"> y sequence to plot</param>
-        public void Plot(IList<double> xData, IList<double> yData)
-        {
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xData, yData, xData.Count, yData.Count);
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-
-        /// <summary>
-        /// Plot MutiDimension x and y data on chart.
-        /// </summary>
-        /// <param name="xData"> x sequences to plot</param>
-        /// <param name="yData"> y sequences to plot</param>
-        public void Plot(IList<IList<double>> xData, IList<IList<double>> yData)
-        {
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xData, yData);
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-
-        #endregion
-
-        #region Template interface
-
-        // 当数据类型不是double时的类型转换器
-        private DataConvertor _convertor;
-
-        /// <summary>
-        /// Plot single waveform y on chart, x will be generated using xStart and xIncrement. Supported data type: float/int/uint/short/ushort.
-        /// </summary>
-        /// <param name="yData"> waveform to plot. Supported data type: float/int/uint/short/ushort.</param>
-        /// <param name="xStart"> offset value for generating x sequence using "offset + (Increment * i)"</param>
-        /// <param name="xIncrement">increment value for generating x sequence using "offset + (Increment * i)"</param>
-        public void Plot<TDataType>(TDataType[] yData, double xStart = 0, double xIncrement = 1)
-        {
-            if (null == _convertor)
-            {
-                _convertor = new DataConvertor();
-            }
-            if (!_convertor.IsValidType(typeof(TDataType)))
-            {
-                return;
-            }
-            double[] convertedYData = _convertor.Convert(yData, yData.Length);
-
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xStart, xIncrement, convertedYData, yData.Length, yData.Length);
-
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-
-        /// <summary>
-        /// Plot multiple waveforms on chart, x will be generated using xStart and xIncrement. Supported data type: float/int/uint/short/ushort.
-        /// </summary>
-        /// <param name="yData"> waveforms to plot, each line in y[,] represents a single waveform. Supported data type: float/int/uint/short/ushort.</param>
-        /// <param name="xStart">offset value for generating x sequence using "offset + (Increment * i)"</param>
-        /// <param name="xIncrement">increment value for generating x sequence using "offset + (Increment * i)"</param>
-        public void Plot<TDataType>(TDataType[,] yData, double xStart = 0, double xIncrement = 1)
-        {
-            if (null == _convertor)
-            {
-                _convertor = new DataConvertor();
-            }
-            if (!_convertor.IsValidType(typeof(TDataType)))
-            {
-                return;
-            }
-            double[,] convertedYData = _convertor.Convert(yData, yData.GetLength(0), yData.GetLength(1));
-
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xStart, xIncrement, convertedYData);
-
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-
-        /// <summary>
-        /// Plot x[] and y[] pair on chart. Supported data type: float/int/uint/short/ushort.
-        /// </summary>
-        /// <param name="xData"> x sequence to plot, Supported data type: float/int/uint/short/ushort.</param>
-        /// <param name="yData"> y sequence to plot, Supported data type: float/int/uint/short/ushort.</param>
-        public void Plot<TDataType1, TDataType2>(TDataType1[] xData, TDataType2[] yData)
-        {
-            if (null == _convertor)
-            {
-                _convertor = new DataConvertor();
-            }
-            if (!_convertor.IsValidType(typeof(TDataType1)) || !_convertor.IsValidType(typeof(TDataType2)))
-            {
-                return;
-            }
-            double[] convertedXData = _convertor.Convert(xData, xData.Length);
-            double[] convertedYData = _convertor.Convert(yData, yData.Length);
-
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(convertedXData, convertedYData, yData.Length, yData.Length);
-
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-
-        /// <summary>
-        /// Plot MutiDimension x and y data on chart. Supported data type: float/int/uint/short/ushort.
-        /// </summary>
-        /// <param name="xData"> x sequences to plot. Supported data type: float/int/uint/short/ushort.</param>
-        /// <param name="yData"> y sequences to plot. Supported data type: float/int/uint/short/ushort.</param>
-        public void Plot<TDataType1, TDataType2>(TDataType1[][] xData, TDataType2[][] yData)
-        {
-            if (null == _convertor)
-            {
-                _convertor = new DataConvertor();
-            }
-            if (!_convertor.IsValidType(typeof(TDataType1)) || !_convertor.IsValidType(typeof(TDataType2)))
-            {
-                return;
-            }
-            double[][] convertedXData = _convertor.Convert(xData);
-            double[][] convertedYData = _convertor.Convert(yData);
-
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(convertedXData, convertedYData);
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-
-        #endregion
-
-        // TODO IList模板类接口暂时屏蔽
-        #region Template IList interface
-/*
-
-        /// <summary>
-        /// Plot one or more line data with xIncrement x
-        /// </summary>
-        /// <param name="yData">Y datas to plot</param>
-        /// <param name="xStart">offset value for generating x sequence using "offset + (xIncrement * i)"</param>
-        /// <param name="xIncrement">xIncrement value for generating x sequence using "offset + (xIncrement * i)"</param>
-        /// <param name="xSize">X data size, when xSize smaller than 1 means only one line in yData</param>
-        public void Plot<TDataType>(IList<TDataType> yData, double xStart = 0, double xIncrement = 1, int xSize = 0)
-        {
-            int lastSeriesCount = _plotManager.SeriesCount;
-            if (xSize <= 0)
-            {
-                xSize = yData.Count;
-            }
-            _plotManager.AddPlotData(xStart, xIncrement, yData, xSize, yData.Count);
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-
-        /// <summary>
-        /// Plot x[] and y[] pair on chart.
-        /// </summary>
-        /// <param name="xData"> x sequence to plot</param>
-        /// <param name="yData"> y sequence to plot</param>
-        public void Plot<TDataType>(IList<TDataType> xData, IList<TDataType> yData)
-        {
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xData, yData, yData.Count, yData.Count);
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-
-        /// <summary>
-        /// Plot MutiDimension x and y data on chart.
-        /// </summary>
-        /// <param name="xData"> x sequences to plot</param>
-        /// <param name="yData"> y sequences to plot</param>
-        public void Plot<TDataType>(IList<IList<TDataType>> xData, IList<IList<TDataType>> yData)
-        {
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xData, yData);
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-*/
+//        /// <summary>
+//        /// Plot one or more line data with xIncrement x
+//        /// </summary>
+//        /// <param name="yData">Y datas to plot</param>
+//        /// <param name="xStart">offset value for generating x sequence using "offset + (xIncrement * i)"</param>
+//        /// <param name="xIncrement">xIncrement value for generating x sequence using "offset + (xIncrement * i)"</param>
+//        /// <param name="xSize">X data size, when xSize smaller than 1 means only one line in yData</param>
+//        public void Plot(IList<double> yData, double xStart = 0, double xIncrement = 1, int xSize = 0)
+//        {
+//            int lastSeriesCount = _plotManager.SeriesCount;
+//            if (xSize <= 0)
+//            {
+//                xSize = yData.Count;
+//            }
+//            _plotManager.AddPlotData(xStart, xIncrement, yData, xSize, yData.Count);
+//            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
+//            _chartViewManager.RefreshAxesAndCursors();
+//            PlotDataInRange();
+//        }
+//
+//        /// <summary>
+//        /// X-Y plot. Plot List x Data and list y data pair on chart. The series count is y.Count/x.Count.
+//        /// </summary>
+//        /// <param name="xData"> x sequence to plot</param>
+//        /// <param name="yData"> y sequence to plot</param>
+//        public void Plot(IList<double> xData, IList<double> yData)
+//        {
+//            int lastSeriesCount = _plotManager.SeriesCount;
+//            _plotManager.AddPlotData(xData, yData, xData.Count, yData.Count);
+//            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
+//            _chartViewManager.RefreshAxesAndCursors();
+//            PlotDataInRange();
+//        }
+//
+//        /// <summary>
+//        /// Plot MutiDimension x and y data on chart.
+//        /// </summary>
+//        /// <param name="xData"> x sequences to plot</param>
+//        /// <param name="yData"> y sequences to plot</param>
+//        public void Plot(IList<IList<double>> xData, IList<IList<double>> yData)
+//        {
+//            int lastSeriesCount = _plotManager.SeriesCount;
+//            _plotManager.AddPlotData(xData, yData);
+//            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
+//            _chartViewManager.RefreshAxesAndCursors();
+//            PlotDataInRange();
+//        }
 
         #endregion
 
@@ -1412,26 +1226,23 @@ namespace SeeSharpTools.JY.GUI
             StripChartXCursor yCursor = hitPlotArea.YCursor;
             string dispText = string.Empty;
             int lineIndex;
-            DataEntity cursorData = _plotManager.GetDataEntityBySeriesIndex(seriesIndex, out lineIndex);
-            if (seriesIndex < 0 || null == cursorData)
+            if (seriesIndex < 0)
             {
                 return dispText;
             }
-            double xValue = xCursor.Value;
-            double yValue = yCursor.Value;
+            double xNearIndex = xCursor.Value;
+//            double yValue = yCursor.Value;
             if (hitPlotArea.AxisX.IsLogarithmic)
             {
-                xValue = Math.Pow(10, xValue);
+                xNearIndex = Math.Pow(10, xNearIndex);
             }
-            if (hitPlotArea.AxisY.IsLogarithmic)
-            {
-                yValue = Math.Pow(10, yValue);
-            }
-            int pointIndex = cursorData.FindeNearestIndex(ref xValue, ref yValue, lineIndex);
-            if (pointIndex < 0)
-            {
-                return dispText;
-            }
+//            if (hitPlotArea.AxisY.IsLogarithmic)
+//            {
+//                yValue = Math.Pow(10, yValue);
+//            }
+            int xIndex = (int) Math.Round(xNearIndex);
+            string xValue = _plotManager.DataEntity.GetXValue(xIndex);
+            double yValue = (double)_plotManager.DataEntity.GetYValue(xIndex, seriesIndex);
 
             StripChartXAxis xAxis, yAxis;
             xAxis = StripChartXAxis.PlotAxis.Primary == Series[seriesIndex].XPlotAxis
@@ -1442,7 +1253,7 @@ namespace SeeSharpTools.JY.GUI
                 ? hitPlotArea.AxisY
                 : hitPlotArea.AxisY2;
 
-            xCursor.Value = !xAxis.IsLogarithmic ? xValue : Math.Log10(xValue);
+            xCursor.Value = !xAxis.IsLogarithmic ? xNearIndex : Math.Log10(xNearIndex);
             yCursor.Value = !yAxis.IsLogarithmic ? yValue : Math.Log10(yValue);
             return string.Format(Constants.DataValueFormat, xValue, yValue, Environment.NewLine);
         }
@@ -2043,14 +1854,6 @@ namespace SeeSharpTools.JY.GUI
             }
             return StripChartXCursor.CursorMode.Cursor == _hitPlotArea.XCursor.Mode &&
                    StripChartXCursor.CursorMode.Cursor == _hitPlotArea.YCursor.Mode;
-        }
-
-        internal int GetNearestPoint(ref double xValue, out double yValue, int seriesIndex)
-        {
-            yValue = double.NaN;
-            int lineIndex;
-            DataEntity cursorData = _plotManager.GetDataEntityBySeriesIndex(seriesIndex, out lineIndex);
-            return cursorData.FindeNearestIndex(ref xValue, ref yValue, lineIndex);
         }
 
         #endregion

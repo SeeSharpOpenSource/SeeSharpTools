@@ -148,7 +148,6 @@
     <Compile Include="StripChartX\StripChartXUtility\Constants.cs" />
     <Compile Include="StripChartX\StripChartXUtility\DataCheckParameters.cs" />
     <Compile Include="StripChartX\StripChartXUtility\DataConvertor.cs" />
-    <Compile Include="StripChartX\StripChartXUtility\EasyChartXSortDirection.cs" />
     <Compile Include="StripChartX\StripChartXUtility\LayoutDirection.cs" />
     <Compile Include="StripChartX\StripChartXUtility\MiscellaneousConfiguration.cs" />
     <Compile Include="StripChartX\StripChartXUtility\ParallelHandler.cs" />
