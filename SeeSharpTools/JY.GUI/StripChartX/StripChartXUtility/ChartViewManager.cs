@@ -160,8 +160,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             }
         }
 
-        private AxisViewAdapter _axisViewAdapter;
-
         #endregion
 
         private readonly StripChartX _parentChart = null;
@@ -178,8 +176,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             this._layoutDirection = LayoutDirection.LeftToRight;
             this._oneWayChartNum = 3;
             this.UseMainAreaConfig = true;
-            this._axisViewAdapter = new AxisViewAdapter();
-
             this.SplitPlotAreas = new StripChartXPlotAreaCollection(parentChart, plotChart.ChartAreas);
             AdaptView();
         }
@@ -367,29 +363,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         /// </summary>
         public void RefreshAxesAndCursors()
         {
-            int startIndex = _plotManager.GetStartIndex();
-            int endIndex = _plotManager.GetEndIndex();
-            switch (ScrollType)
-            {
-                case StripChartX.StripScrollType.Cumulation:
-                    // 如果是累积模式，X轴的起始位置就是当前的位置，终止位置时当前位置加1。
-                    endIndex += 1;
-                    break;
-                case StripChartX.StripScrollType.Scroll:
-                    // 如果是滚动模式，X轴的起始位置取决于当前点数是否达到DisplayPoints，终止位置为当前结束位置加1
-                    endIndex += 1;
-                    if (_plotManager.SamplesInChart < _plotManager.DisplayPoints)
-                    {
-                        startIndex = endIndex - _plotManager.SamplesInChart;
-                    }
-                    break;
-            }
-
             double minXInterval = _plotManager.GetMinXInterval();
             double minYInterval;
             if (!_isSplitView)
             {
-                AdaptMainPlotAreaAxesRange(startIndex, endIndex);
+                AdaptMainPlotAreaAxesRange();
                 minYInterval = GetMinYInterval(MainPlotArea);
                 MainPlotArea.AdaptCursors(minXInterval, minYInterval);
             }
@@ -397,7 +375,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             {
                 for (int i = 0; i < SplitPlotAreas.Count; i++)
                 {
-                    AdaptSplitPlotAreaAxesRange(i, startIndex, endIndex);
+                    AdaptSplitPlotAreaAxesRange(i);
                     minYInterval = GetMinYInterval(SplitPlotAreas[i]);
                     SplitPlotAreas[i].AdaptCursors(minXInterval, minYInterval);
                 }
@@ -406,38 +384,21 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         public void RefreshAxesRange(StripChartXPlotArea plotArea)
         {
-            int startIndex = _plotManager.GetStartIndex();
-            int endIndex = _plotManager.GetEndIndex();
-            switch (ScrollType)
-            {
-                case StripChartX.StripScrollType.Cumulation:
-                    // 如果是累积模式，X轴的起始位置就是当前的位置，终止位置时当前位置加1。
-                    endIndex += 1;
-                    break;
-                case StripChartX.StripScrollType.Scroll:
-                    // 如果是滚动模式，X轴的起始位置取决于当前点数是否达到DisplayPoints，终止位置为当前结束位置加1
-                    endIndex += 1;
-                    if (_plotManager.SamplesInChart < _plotManager.DisplayPoints)
-                    {
-                        startIndex = endIndex - _plotManager.SamplesInChart;
-                    }
-                    break;
-            }
             if (ReferenceEquals(MainPlotArea, plotArea))
             {
-                AdaptMainPlotAreaAxesRange(startIndex, endIndex);
+                AdaptMainPlotAreaAxesRange();
             }
             else
             {
                 int areaIndex = SplitPlotAreas.IndexOf(plotArea);
                 if (areaIndex >= 0)
                 {
-                    AdaptSplitPlotAreaAxesRange(areaIndex, startIndex, endIndex);
+                    AdaptSplitPlotAreaAxesRange(areaIndex);
                 }
             }
         }
 
-        private void AdaptMainPlotAreaAxesRange(int startIndex, int endIndex)
+        private void AdaptMainPlotAreaAxesRange()
         {
             double maxYRange = double.NaN;
             double minYRange = double.NaN;
@@ -445,8 +406,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             {
                 _plotManager.GetMaxAndMinYValue(MainPlotArea, out maxYRange, out minYRange, -1);
             }
-            double maxXValue = _axisViewAdapter.GetAxisValue(endIndex);
-            double minXValue = _axisViewAdapter.GetAxisValue(startIndex);
+            double maxXValue, minXValue;
+            _parentChart.ViewAdapter.GetXAxisRange(out minXValue, out maxXValue);
             MainPlotArea.AdaptPrimaryAxes(maxXValue, minXValue, maxYRange, minYRange);
 
             // 默认不同步，如果需要打开在AdaptSecondaryAxes方法中打开
@@ -467,8 +428,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             }
         }
 
-        private void AdaptSplitPlotAreaAxesRange(int areaIndex, double minXRange, double maxXRange)
+        private void AdaptSplitPlotAreaAxesRange(int areaIndex)
         {
+            double maxXValue, minXValue;
+            _parentChart.ViewAdapter.GetXAxisRange(out minXValue, out maxXValue);
+
             double maxYRange = double.NaN;
             double minYRange = double.NaN;
             
@@ -476,10 +440,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             {
                 _plotManager.GetMaxAndMinYValue(SplitPlotAreas[areaIndex], out maxYRange, out minYRange, areaIndex);
             }
-            SplitPlotAreas[areaIndex].AdaptPrimaryAxes(maxXRange, minXRange, maxYRange, minYRange);
+            SplitPlotAreas[areaIndex].AdaptPrimaryAxes(maxXValue, minXValue, maxYRange, minYRange);
 
 //            SplitPlotAreas[areaIndex].AxisX.RefreshLabels();
-            SplitPlotAreas[areaIndex].AxisY.RefreshLabels();
+            SplitPlotAreas[areaIndex].AxisY.ClearLabels();
             // 在分区视图时不会在副坐标轴显示数据
             // 默认不同步，如果需要打开在AdaptSecondaryAxes方法中打开
 //            SplitPlotAreas[areaIndex].YAxisSync.NeedSync = false;

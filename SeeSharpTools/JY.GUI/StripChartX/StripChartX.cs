@@ -44,6 +44,8 @@ namespace SeeSharpTools.JY.GUI
         private StripTabCursorInfoForm _tabCursorForm;
         // 国际化管理类
         private readonly I18nEntity i18n = I18nEntity.GetInstance(null);
+        // 视图和数据适配类，不太好，没有找到更好的处理方式，暂时放在这
+        internal readonly AxisViewAdapter ViewAdapter;
 
         #endregion   //Private Fields
 
@@ -665,7 +667,7 @@ namespace SeeSharpTools.JY.GUI
             // _plotManager：管理线条的数据特性
             _plotManager = new PlotManager(this, _chart.Series);
             _chartViewManager = new ChartViewManager(this, _chart, _plotManager);
-
+            ViewAdapter = new AxisViewAdapter(_chartViewManager, _plotManager);
             _tabCursorForm = null;
             TabCursors = new StripTabCursorCollection(this, _chart, _chartViewManager.MainPlotArea);
             this.TabCursorContainer = new StripTabCursorDesignTimeCollection(TabCursors);
@@ -925,58 +927,6 @@ namespace SeeSharpTools.JY.GUI
 
         #endregion
 
-        #region Double IList interface
-
-//        /// <summary>
-//        /// Plot one or more line data with xIncrement x
-//        /// </summary>
-//        /// <param name="yData">Y datas to plot</param>
-//        /// <param name="xStart">offset value for generating x sequence using "offset + (xIncrement * i)"</param>
-//        /// <param name="xIncrement">xIncrement value for generating x sequence using "offset + (xIncrement * i)"</param>
-//        /// <param name="xSize">X data size, when xSize smaller than 1 means only one line in yData</param>
-//        public void Plot(IList<double> yData, double xStart = 0, double xIncrement = 1, int xSize = 0)
-//        {
-//            int lastSeriesCount = _plotManager.SeriesCount;
-//            if (xSize <= 0)
-//            {
-//                xSize = yData.Count;
-//            }
-//            _plotManager.AddPlotData(xStart, xIncrement, yData, xSize, yData.Count);
-//            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-//            _chartViewManager.RefreshAxesAndCursors();
-//            PlotDataInRange();
-//        }
-//
-//        /// <summary>
-//        /// X-Y plot. Plot List x Data and list y data pair on chart. The series count is y.Count/x.Count.
-//        /// </summary>
-//        /// <param name="xData"> x sequence to plot</param>
-//        /// <param name="yData"> y sequence to plot</param>
-//        public void Plot(IList<double> xData, IList<double> yData)
-//        {
-//            int lastSeriesCount = _plotManager.SeriesCount;
-//            _plotManager.AddPlotData(xData, yData, xData.Count, yData.Count);
-//            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-//            _chartViewManager.RefreshAxesAndCursors();
-//            PlotDataInRange();
-//        }
-//
-//        /// <summary>
-//        /// Plot MutiDimension x and y data on chart.
-//        /// </summary>
-//        /// <param name="xData"> x sequences to plot</param>
-//        /// <param name="yData"> y sequences to plot</param>
-//        public void Plot(IList<IList<double>> xData, IList<IList<double>> yData)
-//        {
-//            int lastSeriesCount = _plotManager.SeriesCount;
-//            _plotManager.AddPlotData(xData, yData);
-//            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-//            _chartViewManager.RefreshAxesAndCursors();
-//            PlotDataInRange();
-//        }
-
-        #endregion
-
         /// <summary>
         /// Clear chart line points
         /// </summary>
@@ -1082,7 +1032,7 @@ namespace SeeSharpTools.JY.GUI
                 if (ReferenceEquals(_chartViewManager.MainPlotArea.ChartArea, chartArea) && !_chartViewManager.IsSplitView)
                 {
                     changedAxis = _chartViewManager.MainPlotArea.AxisX;
-                    changedAxis.RefreshXGridsAndLabels();
+                    changedAxis.RefreshGridsAndLabels();
                     _plotManager.PlotDataInRange(axis.ScaleView.ViewMinimum, axis.ScaleView.ViewMaximum, false);
                 }
                 // 分区视图，副绘图区的缩放事件
@@ -1092,10 +1042,9 @@ namespace SeeSharpTools.JY.GUI
                     if (seriesIndex >= 0 && seriesIndex < _chartViewManager.SplitPlotAreas.Count)
                     {
                         changedAxis = _chartViewManager.SplitPlotAreas[seriesIndex].AxisX;
-                        changedAxis.RefreshXGridsAndLabels();
+                        changedAxis.RefreshGridsAndLabels();
                         _plotManager.PlotDataInRange(axis.ScaleView.ViewMinimum, axis.ScaleView.ViewMaximum, seriesIndex, false);
-                        // 分区模式下，视图更新需要手动刷新Label
-                        changedAxis.RefreshLabels();
+                        
                     }
                 }
             }
@@ -1106,8 +1055,8 @@ namespace SeeSharpTools.JY.GUI
                 {
                     changedAxis = _chartViewManager.MainPlotArea.AxisY;
                     _chartViewManager.MainPlotArea.YAxisSync.SyncAxis();
-                    _chartViewManager.MainPlotArea.AxisY.RefreshYGridsAndLabels();
-                    _chartViewManager.MainPlotArea.AxisY2.RefreshYGridsAndLabels();
+                    _chartViewManager.MainPlotArea.AxisY.RefreshGridsAndLabels();
+                    _chartViewManager.MainPlotArea.AxisY2.RefreshGridsAndLabels();
                 }
                 else
                 {
@@ -1117,11 +1066,10 @@ namespace SeeSharpTools.JY.GUI
                         changedAxis = _chartViewManager.SplitPlotAreas[seriesIndex].AxisY;
                         _chartViewManager.SplitPlotAreas[seriesIndex].YAxisSync.SyncAxis();
                         // 分区视图更新后需要手动刷新Y轴的label
-                        _chartViewManager.SplitPlotAreas[seriesIndex].AxisY.RefreshLabels();
-                        _chartViewManager.SplitPlotAreas[seriesIndex].AxisY2.RefreshLabels();
-
-                        _chartViewManager.SplitPlotAreas[seriesIndex].AxisY.RefreshYGridsAndLabels();
-                        _chartViewManager.SplitPlotAreas[seriesIndex].AxisY2.RefreshYGridsAndLabels();
+                        _chartViewManager.SplitPlotAreas[seriesIndex].AxisY.RefreshGridsAndLabels();
+                        _chartViewManager.SplitPlotAreas[seriesIndex].AxisY2.RefreshGridsAndLabels();
+                        // 分区模式下，视图更新需要手动刷新Label
+                        changedAxis.ClearLabels();
                     }
                 }
             }
@@ -1846,6 +1794,31 @@ namespace SeeSharpTools.JY.GUI
             OnAfterPlot(false);
         }
 
+        internal string GetXLabelValue(double axisValue)
+        {
+            int realIndex = ViewAdapter.GetRealIndex(axisValue);
+            if (realIndex < 0 || realIndex > _plotManager.SamplesInChart)
+            {
+                return " ";
+            }
+            return _plotManager.DataEntity.GetXValue(realIndex);
+        }
+
+        internal void GetNearestPoint(ref double xValue, out double yValue, int seriesIndex)
+        {
+            int index = ViewAdapter.GetRealIndex(xValue);
+            if (index >= _plotManager.SamplesInChart)
+            {
+                index = _plotManager.SamplesInChart - 1;
+            }
+            else if (index < 0)
+            {
+                index = 0;
+            }
+            xValue = ViewAdapter.GetAxisValue(index);
+            yValue = (double) _plotManager.DataEntity.GetYValue(index, seriesIndex);
+        }
+
         private bool IsCursorMode(StripChartXPlotArea plotArea)
         {
             if (null == plotArea)
@@ -2021,5 +1994,6 @@ namespace SeeSharpTools.JY.GUI
         };
 
         #endregion
+        
     }
 }

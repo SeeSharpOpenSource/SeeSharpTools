@@ -111,8 +111,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
         public bool FillPlotDataInRange(double beginXValue, double endXValue, bool forceRefresh, int seriesIndex)
         {
             bool plotParamChanged = false;
-            int beginXIndex = (int)Math.Ceiling(beginXValue);
-            int endXIndex = (int)Math.Floor(endXValue);
+            int beginXIndex = (int)Math.Ceiling(beginXValue) - SamplesInChart;
+            int endXIndex = (int)Math.Floor(endXValue) - SamplesInChart;
             int plotCount = 0;
             int newSparseRatio = GetSparseRatio(beginXIndex, endXIndex, out plotCount);
             if (-1 == seriesIndex)

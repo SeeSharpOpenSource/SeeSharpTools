@@ -334,8 +334,8 @@ namespace SeeSharpTools.JY.GUI
                 _axisY.ResetAxisScaleView();
             }
 
-            _axisX.RefreshXGridsAndLabels();
-            _axisY.RefreshYGridsAndLabels();
+            _axisX.RefreshGridsAndLabels();
+            _axisY.RefreshGridsAndLabels();
         }
 
         // TODO 暂时只开发Y轴和Y2轴的同步，X轴的后期再加
@@ -345,7 +345,8 @@ namespace SeeSharpTools.JY.GUI
             YAxisSync.SyncAxis();
 
 //            _axisX2.RefreshXLabelFormat();
-            _axisY2.RefreshYGridsAndLabels();
+            _axisX2.RefreshGridsAndLabels();
+            _axisY2.RefreshGridsAndLabels();
         }
 
         internal void AdaptCursors(double xMinInterval, double yMinInternval)

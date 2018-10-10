@@ -88,6 +88,8 @@ namespace SeeSharpTools.JY.GUI
             // _chart
             // 
             chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisX2.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
             chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea1.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
             chartArea1.AxisY2.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
@@ -109,7 +111,7 @@ namespace SeeSharpTools.JY.GUI
             this._chart.AxisViewChanged += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ViewEventArgs>(this.Chart_AxisViewChanged);
             this._chart.MouseDown += new System.Windows.Forms.MouseEventHandler(this._chart_MouseDown);
             // 
-            // StripChartXFunctionMenu
+            // ChartFunctionMenu
             // 
             this.ChartFunctionMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItem_xAxisZoom,
@@ -261,7 +263,7 @@ namespace SeeSharpTools.JY.GUI
             this.tabCursorToolStripMenuItem.Text = "Tab Cursor";
             this.tabCursorToolStripMenuItem.Click += new System.EventHandler(this.tabCursorToolStripMenuItem_Click);
             // 
-            // StripChartXSeriesMenu
+            // ChartSeriesMenu
             // 
             this.ChartSeriesMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripTextBox_seriesName,

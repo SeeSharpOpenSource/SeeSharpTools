@@ -63,10 +63,7 @@ namespace SeeSharpTools.JY.GUI
                 this._majorGridCount = Constants.DefaultYMajorGridCount;
             }
             RefreshAxisRange();
-            if (IsYAxis())
-            {
-                RefreshYGridsAndLabels();
-            }
+            RefreshGridsAndLabels();
             SetAxisLabelStyle();
             // 设置主网格默认为虚线
             this.MajorGridType = GridStyle.Dash;
@@ -209,10 +206,7 @@ namespace SeeSharpTools.JY.GUI
             else
             {
                 RefreshAxisRange();
-                if (IsYAxis())
-                {
-                    RefreshYGridsAndLabels();
-                }
+                RefreshGridsAndLabels();
             }
         }
 
@@ -408,18 +402,23 @@ namespace SeeSharpTools.JY.GUI
 
         private string _labelFormat;
         /// <summary>
-        /// Axis title position
+        /// Specify or get the axis label format. Only available for axis Y.
         /// </summary>
         [
             Browsable(true),
             Category("Design"),
-            Description("Specify or get if the label format.")
+            Description("Specify or get the axis label format. Only available for axis Y.")
         ]
         public string LabelFormat
         {
             get { return _labelFormat; }
             set
             {
+                // X轴不能配置LabelFormat
+                if (IsXAxis(PlotAxis.Primary, PlotAxis.Secondary))
+                {
+                    return;
+                }
                 _labelFormat = value;
                 _baseAxis.LabelStyle.Format = value;
             }
@@ -574,8 +573,11 @@ namespace SeeSharpTools.JY.GUI
                     return;
                 }
                 _majorGridCount = value;
-                RefreshYGridsAndLabels();
-                RefreshLabels();
+                RefreshGridsAndLabels();
+                if (IsYAxis())
+                {
+                    ClearLabels();
+                }
             }
         }
 
@@ -607,11 +609,8 @@ namespace SeeSharpTools.JY.GUI
             {
                 return;
             }
-            // 如果是Y轴取消缩放，则先更新Interval，避免Interval过小导致的Label重叠显示
-            if (IsYAxis())
-            {
-                RefreshYGridsAndLabels(true);
-            }
+            // 如果是取消缩放，则先更新Interval，避免Interval过小导致的Label重叠显示
+            RefreshGridsAndLabels(true);
             _baseAxis.ScaleView.ZoomReset(resetTimes);
             if (_parentChart.IsPlotting())
             {
@@ -760,87 +759,10 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
-        public void RefreshLabels()
+        public void ClearLabels()
         {
             _baseAxis.CustomLabels.Clear();
         }
-
-        public void RefreshXLabels(StripChartXPlotArea plotArea)
-        {
-            StripChartXAxis axisX = plotArea.AxisX;
-            if (double.IsNaN(axisX.ViewMaximum) || double.IsNaN(axisX.ViewMinimum) ||
-                axisX.ViewMaximum - axisX.ViewMinimum < 1)
-            {
-                return;
-            }
-            double labelStep = (axisX.ViewMaximum - axisX.ViewMinimum) / axisX.MajorGridCount;
-            double labelRangeSize = labelStep / 4;
-            double labelPosition = axisX.ViewMinimum;
-            OverLapStrBuffer xLabels = _plotter.PlotAction.XWrapBuf;
-            int pointIndex;
-            for (int i = 0; i < axisX.MajorGridCount; i++)
-            {
-                axisX.CustomLabels[i].FromPosition = labelPosition - labelRangeSize;
-                axisX.CustomLabels[i].ToPosition = labelPosition + labelRangeSize;
-
-                pointIndex = (int)Math.Round(labelPosition) + _samplesInChart;
-                if (pointIndex >= 0 && pointIndex < xLabels.Count && !string.IsNullOrWhiteSpace(xLabels[pointIndex]))
-                {
-                    axisX.CustomLabels[i].Text = xLabels[pointIndex];
-                }
-                else
-                {
-                    axisX.CustomLabels[i].Text = " ";
-                }
-                labelPosition += labelStep;
-            }
-
-            // 最后一个做特殊处理
-            labelPosition = 0;
-            axisX.CustomLabels[axisX.MajorGridCount].FromPosition = labelPosition - labelRangeSize;
-            axisX.CustomLabels[axisX.MajorGridCount].ToPosition = labelPosition + labelRangeSize;
-            pointIndex = xLabels.Count - 1;
-            if (pointIndex >= 0 && !string.IsNullOrWhiteSpace(xLabels[pointIndex]))
-            {
-                axisX.CustomLabels[axisX.MajorGridCount].Text = xLabels[pointIndex];
-            }
-            else
-            {
-                axisX.CustomLabels[axisX.MajorGridCount].Text = " ";
-            }
-        }
-
-        internal void RefreshGrid(StripChartXAxis axis)
-        {
-
-            if (double.IsNaN(axis.ViewMaximum) || double.IsNaN(axis.ViewMinimum))
-            {
-                return;
-            }
-            //            axis.MajorGrid.IntervalOffset = 0;
-            //            axis.MinorGrid.IntervalOffset = 0;
-            double interval = (axis.ViewMaximum - axis.ViewMinimum) / _majorGridCount;
-            _baseAxis.MajorGrid.Interval = interval;
-            _baseAxis.Interval = interval;
-            _baseAxis.IntervalAutoMode = IntervalAutoMode.VariableCount;
-            if (interval < 1)
-            {
-                int decimalCounts = (int)Math.Ceiling(Math.Log10(1 / interval));
-                if (decimalCounts > Constants.MinDecimalOfScientificNotition)
-                {
-                    axis.LabelFormat = "E2";
-                }
-                else
-                {
-                    axis.LabelFormat = $"F{decimalCounts}";
-                }
-            }
-            else
-            {
-                axis.LabelFormat = "";
-            }
-        }
-
 
         // TODO 新增属性需要在这里添加代码，后期可以考虑通过接口注解实现
         internal void ApplyConfig(StripChartXAxis template)
@@ -876,10 +798,7 @@ namespace SeeSharpTools.JY.GUI
             this._specifiedMin = min;
             this.RefreshAxisRange();
 
-            if (IsYAxis())
-            {
-                RefreshYGridsAndLabels();
-            }
+            RefreshGridsAndLabels();
 
             template.GetViewRange(out max, out min);
             this._viewMax = max;
@@ -949,26 +868,8 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
-        public void RefreshXGridsAndLabels()
-        {
-            double viewMax = _baseAxis.ScaleView.ViewMaximum;
-            double viewMin = _baseAxis.ScaleView.ViewMinimum;
-            if (double.IsNaN(viewMax) || double.IsNaN(viewMin))
-            {
-                viewMax = _baseAxis.Maximum;
-                viewMin = _baseAxis.Minimum;
-            }
-            if (!IsLogarithmic)
-            {
-                SetLabelFormat((viewMax - viewMin) / _majorGridCount);
-            }
-            else
-            {
-                SetLabelFormat(viewMin);
-            }
-        }
-
-        internal void RefreshYGridsAndLabels(bool resetOperation = false)
+        
+        internal void RefreshGridsAndLabels(bool resetOperation = false)
         {
             double viewMax = _baseAxis.ScaleView.ViewMaximum;
             double viewMin = _baseAxis.ScaleView.ViewMinimum;
@@ -977,20 +878,56 @@ namespace SeeSharpTools.JY.GUI
                 viewMax = _baseAxis.Maximum;
                 viewMin = _baseAxis.Minimum;
             }
+            double interval;
             if (!IsLogarithmic)
             {
-                double interval = (viewMax - viewMin) / _majorGridCount;
-                //            _baseAxis.IntervalAutoMode = IntervalAutoMode.VariableCount;
-                _baseAxis.Interval = interval;
-                SetLabelFormat(interval);
+                interval = (viewMax - viewMin) / _majorGridCount;
             }
             else
             {
-                _baseAxis.Interval = (Math.Log10(viewMax) - Math.Log10(viewMin)) / _majorGridCount;
-                SetLabelFormat(viewMin);
+                interval = (Math.Log10(viewMax) - Math.Log10(viewMin))/_majorGridCount;
             }
-//            _baseAxis.CustomLabels.Clear();
+            _baseAxis.Interval = interval;
+
+            // 如果是X轴的数据，则需要手动更新所有的Label。如果是Y轴数据，需要更新LabelFormat
+            if (IsXAxis())
+            {
+                RefreshXLabels();
+            }
+            else
+            {
+                double yLabelInterval = IsLogarithmic ? viewMin : interval;
+                SetLabelFormat(yLabelInterval);
+            }
         }
+
+        private void RefreshXLabels()
+        {
+            if (double.IsNaN(ViewMaximum) || double.IsNaN(ViewMinimum) ||
+                ViewMaximum - ViewMinimum < 1)
+            {
+                return;
+            }
+            double labelStep = (ViewMaximum - ViewMinimum) / MajorGridCount;
+            double labelRangeSize = labelStep / 4;
+            double labelPosition = ViewMinimum;
+            int pointIndex;
+            for (int i = 0; i < MajorGridCount; i++)
+            {
+                CustomLabels[i].FromPosition = labelPosition - labelRangeSize;
+                CustomLabels[i].ToPosition = labelPosition + labelRangeSize;
+                CustomLabels[i].Text = _parentChart.GetXLabelValue(labelPosition);
+                labelPosition += labelStep;
+            }
+
+            // 最后一个做特殊处理
+            labelPosition = 0;
+            CustomLabels[MajorGridCount].FromPosition = labelPosition - labelRangeSize;
+            CustomLabels[MajorGridCount].ToPosition = labelPosition + labelRangeSize;
+            // 最后一个点使用
+            CustomLabels[MajorGridCount].Text = _parentChart.GetXLabelValue(-1);
+        }
+
 
         private bool IsXAxis(params PlotAxis[] axis)
         {
