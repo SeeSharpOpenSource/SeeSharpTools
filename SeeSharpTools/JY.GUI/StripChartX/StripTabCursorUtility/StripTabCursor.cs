@@ -23,7 +23,7 @@ namespace SeeSharpTools.JY.GUI
         {
             this.Control = new StripTabCursorControl();
             this._name = "";
-            this._value = 0;
+            this._xValue = 0;
             this.Color = Color.Red;
             this._enabled = true;
 
@@ -65,30 +65,25 @@ namespace SeeSharpTools.JY.GUI
                 _name = value;
             }
         }
-
-        private double _value;
+        // TabCursor位置对应的坐标轴原始值
+        private int _xValue;
         /// <summary>
         /// Set or get cursor value
         /// </summary>
         [
             Browsable(true),
             Category("Data"),
-            Description("Set or get the X value of cursor.")
+            Description("Get the X value of cursor.")
         ]
-        public double Value
+        public string XValue => _collection.GetXValue(_xValue);
+
+        public int XIndex
         {
-            get
-            {
-                return _value;
-            }
+            get { return _xValue; }
             set
             {
-                if (Math.Abs(_value - value) < Constants.MinDoubleValue)
-                {
-                    return;
-                }
-                _value = value;
-                _collection?.RefreshCursorPosition(this);
+                _xValue = value;
+                _collection.RefreshCursorPosition(this);
             }
         }
 
@@ -104,10 +99,8 @@ namespace SeeSharpTools.JY.GUI
         {
             get
             {
-                double xAfterAlign = _value;
+                double xAfterAlign = _xValue;
                 double yValue = _collection.GetYValue(ref xAfterAlign, SeriesIndex);
-                // 更新对齐后的X值
-                Value = xAfterAlign;
                 return yValue;
             }
             
@@ -127,8 +120,8 @@ namespace SeeSharpTools.JY.GUI
         /// Get the formated value string
         /// </summary>
         internal string ValueString => string.IsNullOrEmpty(_collection?.CursorValueFormat)
-            ? _value.ToString()
-            : _value.ToString(_collection.CursorValueFormat);
+            ? _xValue.ToString()
+            : _xValue.ToString(_collection.CursorValueFormat);
 
         /// <summary>
         /// Specify or get cursor color

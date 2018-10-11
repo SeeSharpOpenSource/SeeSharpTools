@@ -108,11 +108,9 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
 
         public abstract bool FillYPlotDatas(int beginXIndex, int endXIndex, bool forceRefresh, int seriesIndex, int newSparseRatio, int plotCount);
 
-        public bool FillPlotDataInRange(double beginXValue, double endXValue, bool forceRefresh, int seriesIndex)
+        public bool FillPlotDataInRange(int beginXIndex, int endXIndex, bool forceRefresh, int seriesIndex)
         {
             bool plotParamChanged = false;
-            int beginXIndex = (int)Math.Ceiling(beginXValue) - SamplesInChart;
-            int endXIndex = (int)Math.Floor(endXValue) - SamplesInChart;
             int plotCount = 0;
             int newSparseRatio = GetSparseRatio(beginXIndex, endXIndex, out plotCount);
             if (-1 == seriesIndex)
@@ -143,7 +141,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             _lastXSparseRatio = newSparseRatio;
             _lastXStart = beginXIndex;
             List<int> xPlotBuffer = GetXPlotBuffer();
-            int xStart = beginXIndex - newSparseRatio;
+            int xStart = beginXIndex - newSparseRatio - SamplesInChart;
             for (int i = 0; i < plotCount; i++)
             {
                 xStart += newSparseRatio;

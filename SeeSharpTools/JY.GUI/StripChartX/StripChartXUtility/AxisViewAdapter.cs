@@ -18,25 +18,31 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             this._plotManager = plotManager;
         }
         /// <summary>
-        /// 坐标轴值转换为真实索引
+        /// 坐标轴值转换为真实索引，如果超过边界值会被修正
         /// </summary>
-        public int GetRealIndex(double axisValue)
+        public int GetVerifiedIndex(double axisValue)
         {
-            int value;
-            switch (_viewManager.ScrollType)
+            int samplesInChart = _plotManager.DataEntity.SamplesInChart;
+            int realIndex = (int)Math.Floor(samplesInChart + axisValue);
+            if (realIndex < 0)
             {
-                case StripChartX.StripScrollType.Cumulation:
-                    // 如果是累积模式，X轴的起始位置就是当前的位置，终止位置时当前位置加1。
-                    value = (int)Math.Floor(_plotManager.DataEntity.SamplesInChart + axisValue);
-                    break;
-                case StripChartX.StripScrollType.Scroll:
-                    value = (int)Math.Floor(_plotManager.DisplayPoints + axisValue);
-                    break;
-                default:
-                    value = 0;
-                    break;
+                realIndex = 0;
             }
-            return value;
+            else if (realIndex >= samplesInChart)
+            {
+                realIndex = samplesInChart - 1;
+            }
+            return realIndex; ;
+        }
+
+        public int GetUnVerifiedIndex(double axisValue)
+        {
+            return (int)Math.Floor(_plotManager.DataEntity.SamplesInChart + axisValue);
+        }
+
+        public bool IsValidSampleIndex(int index)
+        {
+            return (index >= 0 && index < _plotManager.DataEntity.SamplesInChart);
         }
 
         /// <summary>
@@ -44,27 +50,13 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         /// </summary>
         public double GetAxisValue(int realValue)
         {
-            double value;
-            switch (_viewManager.ScrollType)
-            {
-                case StripChartX.StripScrollType.Cumulation:
-                    // 如果是累积模式，X轴的起始位置就是当前的位置，终止位置时当前位置加1。
-                    value = Math.Ceiling((double)(realValue - _plotManager.DataEntity.SamplesInChart));
-                    break;
-                case StripChartX.StripScrollType.Scroll:
-                    value = Math.Ceiling((double)(realValue - _plotManager.DisplayPoints));
-                    break;
-                default:
-                    value = 0;
-                    break;
-            }
-            return value;
+            return Math.Ceiling((double)(realValue - _plotManager.DataEntity.SamplesInChart));
         }
 
         //
         public void GetXAxisRange(out double xMin, out double xMax)
         {
-            int samplesInChart = _plotManager.SamplesInChart;
+            int samplesInChart = _plotManager.DataEntity.SamplesInChart;
             switch (_viewManager.ScrollType)
             {
                 case StripChartX.StripScrollType.Cumulation:
@@ -88,6 +80,16 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 xMin = -3;
                 xMax = -1;
             }
+        }
+
+        public int GetXDataStartIndex()
+        {
+            return -1*_plotManager.DataEntity.SamplesInChart;
+        }
+
+        public int GetXDataEndIndex()
+        {
+            return -1;
         }
     }
 }

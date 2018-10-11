@@ -84,6 +84,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         // 分区视图时X轴和Y轴的边界比例(百分比)
         public const float XBoundRatio = 5f;
         public const float YBoundRatio = 5f;
+        // 默认的DisplaySamples
+        public const int DefaultDisplaySamples = 4000;
 
         public static readonly HashSet<Type> ValidDataType;
 

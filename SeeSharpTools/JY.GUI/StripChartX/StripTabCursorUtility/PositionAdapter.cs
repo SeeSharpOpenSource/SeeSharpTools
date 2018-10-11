@@ -102,7 +102,7 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
 
         public void MoveCursorToTarget(StripTabCursor cursor)
         {
-            double cursorPosition = (cursor.Value - _minX)/(_maxX - _minX);
+            double cursorPosition = (cursor.XIndex - _minX)/(_maxX - _minX);
             if (cursorPosition < 0 || double.IsNaN(cursorPosition))
             {
                 cursorPosition = 0;
@@ -139,7 +139,7 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
             {
                 value = _minX;
             }
-            cursor.Value = value;
+            cursor.XIndex = (int) value;
         }
     }
 }

@@ -43,7 +43,7 @@ namespace SeeSharpTools.JY.GUI
         // 游标管理窗体的实例
         private StripTabCursorInfoForm _tabCursorForm;
         // 国际化管理类
-        private readonly I18nEntity i18n = I18nEntity.GetInstance(null);
+        private readonly I18nEntity i18n = I18nEntity.GetInstance("GUI");
         // 视图和数据适配类，不太好，没有找到更好的处理方式，暂时放在这
         internal readonly AxisViewAdapter ViewAdapter;
 
@@ -1173,22 +1173,21 @@ namespace SeeSharpTools.JY.GUI
             StripChartXCursor xCursor = hitPlotArea.XCursor;
             StripChartXCursor yCursor = hitPlotArea.YCursor;
             string dispText = string.Empty;
-            int lineIndex;
             if (seriesIndex < 0)
             {
                 return dispText;
             }
-            double xNearIndex = xCursor.Value;
+            double xNearValue = xCursor.Value;
 //            double yValue = yCursor.Value;
             if (hitPlotArea.AxisX.IsLogarithmic)
             {
-                xNearIndex = Math.Pow(10, xNearIndex);
+                xNearValue = Math.Pow(10, xNearValue);
             }
 //            if (hitPlotArea.AxisY.IsLogarithmic)
 //            {
 //                yValue = Math.Pow(10, yValue);
 //            }
-            int xIndex = (int) Math.Round(xNearIndex);
+            int xIndex = ViewAdapter.GetVerifiedIndex(xNearValue);
             string xValue = _plotManager.DataEntity.GetXValue(xIndex);
             double yValue = (double)_plotManager.DataEntity.GetYValue(xIndex, seriesIndex);
 
@@ -1201,7 +1200,7 @@ namespace SeeSharpTools.JY.GUI
                 ? hitPlotArea.AxisY
                 : hitPlotArea.AxisY2;
 
-            xCursor.Value = !xAxis.IsLogarithmic ? xNearIndex : Math.Log10(xNearIndex);
+            xCursor.Value = !xAxis.IsLogarithmic ? xNearValue : Math.Log10(xNearValue);
             yCursor.Value = !yAxis.IsLogarithmic ? yValue : Math.Log10(yValue);
             return string.Format(Constants.DataValueFormat, xValue, yValue, Environment.NewLine);
         }
@@ -1796,20 +1795,25 @@ namespace SeeSharpTools.JY.GUI
 
         internal string GetXLabelValue(double axisValue)
         {
-            int realIndex = ViewAdapter.GetRealIndex(axisValue);
-            if (realIndex < 0 || realIndex > _plotManager.SamplesInChart)
+            const string emptyStr = " ";
+            if (null == ViewAdapter || null == _plotManager.DataEntity)
             {
-                return " ";
+                return emptyStr;
+            }
+            int realIndex = ViewAdapter.GetUnVerifiedIndex(axisValue);
+            if (realIndex < 0 || realIndex >= _plotManager.DataEntity.SamplesInChart)
+            {
+                return emptyStr;
             }
             return _plotManager.DataEntity.GetXValue(realIndex);
         }
 
         internal void GetNearestPoint(ref double xValue, out double yValue, int seriesIndex)
         {
-            int index = ViewAdapter.GetRealIndex(xValue);
-            if (index >= _plotManager.SamplesInChart)
+            int index = ViewAdapter.GetVerifiedIndex(xValue);
+            if (index >= _plotManager.DataEntity.SamplesInChart)
             {
-                index = _plotManager.SamplesInChart - 1;
+                index = _plotManager.DataEntity.SamplesInChart - 1;
             }
             else if (index < 0)
             {

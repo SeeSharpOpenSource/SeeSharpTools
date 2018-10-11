@@ -79,8 +79,9 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
         const int CursorColorIndex = 1;
         const int CursorNameIndex = 2;
         const int CursorSeriesIndex = 3;
-        const int CursorValueIndex = 4;
-        const int CursorYValueIndex = 5;
+        const int CursorXDataIndex = 4;
+        const int CursorXValueIndex = 5;
+        const int CursorYValueIndex = 6;
         const string ColorButtonText = "Select";
         const string NoSeriesName = "";
 
@@ -124,7 +125,7 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
                     : _parentChart.Series[cursor.SeriesIndex].Name;
                 double yValue = cursor.YValue;
                 string yValueStr = double.IsNaN(yValue) ? string.Empty : yValue.ToString();
-                dataGridView_cursorInfo.Rows.Add(cursor.Enabled, ColorButtonText, cursor.Name, seriesName, cursor.Value, yValueStr);
+                dataGridView_cursorInfo.Rows.Add(cursor.Enabled, ColorButtonText, cursor.Name, seriesName, cursor.XIndex, cursor.XValue, yValueStr);
                 DataGridViewRow row = dataGridView_cursorInfo.Rows[dataGridView_cursorInfo.Rows.Count-1];
                 row.Cells[CursorColorIndex].Style.BackColor = cursor.Color;
                 row.Cells[CursorColorIndex].Style.SelectionBackColor = cursor.Color;
@@ -141,7 +142,8 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
                 dataGridView_cursorInfo.Rows[index].Cells[CursorEnableIndex].Value = _cursors[index].Enabled;
                 dataGridView_cursorInfo.Rows[index].Cells[CursorColorIndex].Style.BackColor = _cursors[index].Color;
                 dataGridView_cursorInfo.Rows[index].Cells[CursorNameIndex].Value = _cursors[index].Name;
-                dataGridView_cursorInfo.Rows[index].Cells[CursorValueIndex].Value = _cursors[index].Value;
+                dataGridView_cursorInfo.Rows[index].Cells[CursorXDataIndex].Value = _cursors[index].XIndex;
+                dataGridView_cursorInfo.Rows[index].Cells[CursorXValueIndex].Value = _cursors[index].XValue;
                 dataGridView_cursorInfo.Rows[index].Cells[CursorYValueIndex].Value = double.IsNaN(yValue) ? string.Empty : yValue.ToString();
             }
             else
@@ -195,13 +197,13 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
                     double yValue = _cursors[e.RowIndex].YValue;
                     dataGridView_cursorInfo.Rows[e.RowIndex].Cells[CursorYValueIndex].Value = double.IsNaN(yValue) ? string.Empty : yValue.ToString();
                     break;
-                case CursorValueIndex:
-                    double xValue;
-                    if (double.TryParse(changedValue.ToString(), out xValue))
+                case CursorXDataIndex:
+                    int xValue;
+                    if (int.TryParse(changedValue.ToString(), out xValue))
                     {
-                        changeCursor.Value = xValue;
+                        changeCursor.XIndex = xValue;
                     }
-                    dataGridView_cursorInfo.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = changeCursor.Value;
+                    dataGridView_cursorInfo.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = changeCursor.XIndex;
                     break;
                 default:
                     break;

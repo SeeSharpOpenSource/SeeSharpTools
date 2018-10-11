@@ -619,8 +619,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             int plotIndex = startIndex;
             for (int index = 0; index < plotCount; index++)
             {
-                plotIndex += _sparseRatio;
                 plotBuf[index] = dataBuf[plotIndex];
+                plotIndex += sparseRatio;
             }
         }
 

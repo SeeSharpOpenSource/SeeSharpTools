@@ -101,14 +101,15 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
                 _yBuffers[i].Add(lineData, sampleCount, offset);
                 offset += sampleCount;
             }
-            if (_singleSamplePlotMode)
+            if (!_singleSamplePlotMode)
             {
                 for (int i = 0; i < sampleCount; i++)
                 {
-                    _blockCounts.Add(1);
+                    _blockCounts.Add(sampleCount);
                 }
             }
-            RemoveXDataExceedDisplayPoints(sampleCount);
+            int samplesToRemove = RefreshSamplesInChart(sampleCount);
+            RemoveXDataExceedDisplayPoints(samplesToRemove);
         }
 
         public override void AddPlotData(Array lineData, int sampleCount)
@@ -119,7 +120,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
                 timeStamp = DateTime.Now;
             }
             _timeStamps.Add(timeStamp);
-            _blockCounts?.Add(sampleCount);
             int offset = 0;
             RefreshIsEvenFlag(sampleCount);
             for (int i = 0; i < _yBuffers.Count; i++)
@@ -131,10 +131,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             {
                 for (int i = 0; i < sampleCount; i++)
                 {
-                    _blockCounts.Add(1);
+                    _blockCounts.Add(sampleCount);
                 }
             }
-            RemoveXDataExceedDisplayPoints(sampleCount);
+            int samplesToRemove = RefreshSamplesInChart(sampleCount);
+            RemoveXDataExceedDisplayPoints(samplesToRemove);
         }
 
         public override List<int> GetXPlotBuffer()
@@ -232,29 +233,45 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
         }
 
         // 获取要删除的Stamp列表中的元素个数和需要后移的元素个数
-        private void RemoveXDataExceedDisplayPoints(int sampleCount)
+        private void RemoveXDataExceedDisplayPoints(int samplesToRemove)
         {
-            int displayPoints = ParentManager.DisplayPoints;
-            int stampCount = _timeStamps.Count;
-            int currentSampleCount = sampleCount + _samplesInChart;
-            if (currentSampleCount < displayPoints)
+            if (samplesToRemove <= 0)
             {
                 return;
             }
+            if (_singleSamplePlotMode)
+            {
+                RemoveSingleModeSamples(samplesToRemove);
+            }
+            else
+            {
+                RemoveNoSingleModeSamples(samplesToRemove);
+            }
+        }
+
+        private void RemoveSingleModeSamples(int samplesToRemove)
+        {
+            _timeStamps.RemoveRange(0, samplesToRemove);
+        }
+
+        private void RemoveNoSingleModeSamples(int samplesToRemove)
+        {
+            int displayPoints = ParentManager.DisplayPoints;
             int removedStampCount;
             int offset;
+            int stampCount = _timeStamps.Count;
             // 如果均等添加，则直接计算删除的位置
             if (_isEven)
             {
                 int eachBlockSize = _blockCounts[_blockCounts.Count - 1];
-                removedStampCount = (currentSampleCount - displayPoints)/eachBlockSize;
-                offset = (stampCount - removedStampCount)*eachBlockSize - displayPoints;
+                removedStampCount = samplesToRemove/eachBlockSize;
+                offset = samplesToRemove - removedStampCount*eachBlockSize;
             }
             // 否则迭代计算需要删除的位置
             else
             {
                 // 写入点数比较多，从后面开始计算
-                if (sampleCount > displayPoints/2)
+                if (samplesToRemove > displayPoints/2)
                 {
                     int count = 0;
                     int index = stampCount;
@@ -269,32 +286,32 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
                 // 写入点数较少，从前面开始计算
                 else
                 {
-                    int removedPointCount = currentSampleCount - displayPoints;
-                    int count = 0;
-                    int index = -1;
-                    do
+                    int index = 0;
+                    int count = _blockCounts[index];
+                    while (count <= samplesToRemove)
                     {
-                        index++;
-                        count += _blockCounts[index];
-                    } while (count <= removedPointCount);
-                    offset = _blockCounts[index] - (count - removedPointCount);
+                        count += _blockCounts[++index];
+                    }
+                    offset = samplesToRemove - (count - _blockCounts[index]);
                     removedStampCount = index;
                 }
             }
-            _timeStamps.RemoveRange(0, removedStampCount + 1);
-            _blockCounts.RemoveRange(0, removedStampCount + 1);
+            _timeStamps.RemoveRange(0, removedStampCount);
+            _blockCounts.RemoveRange(0, removedStampCount);
 
             _timeStamps[0] += TimeSpan.FromMilliseconds(ParentManager.TimeInterval.TotalMilliseconds*offset);
             _blockCounts[0] -= offset;
         }
 
-        private void RefreshSamplesInChart(int sampleCount)
+        private int RefreshSamplesInChart(int sampleCount)
         {
             _samplesInChart += sampleCount;
-            if (_samplesInChart > ParentManager.DisplayPoints)
+            int samplesToRemove = _samplesInChart - ParentManager.DisplayPoints;
+            if (samplesToRemove > 0)
             {
                 _samplesInChart = ParentManager.DisplayPoints;
             }
+            return samplesToRemove;
         }
 
         public override void Clear()

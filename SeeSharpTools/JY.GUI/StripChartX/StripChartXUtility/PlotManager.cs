@@ -88,8 +88,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         public StripChartXLineSeries LineSeries { get; }
 
-        public int SamplesInChart { get; private set; }
-
         public int SeriesCount
         {
             get { return _plotSeriesCount;}
@@ -128,7 +126,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
             this.DataCheckParams = new DataCheckParameters();
 
-            this.SamplesInChart = 0;
+            this.DisplayPoints = Constants.DefaultDisplaySamples;
 
             this.MaxSeriesCount = Constants.DefaultMaxSeriesCount;
         }
@@ -161,6 +159,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 DataEntity.Clear();
                 DataEntity.Initialize(sampleCount);
             }
+            this.IsPlotting = true;
         }
 
         // TODO 后期优化，记录当前Series的Plot范围，然后再判断是否需要重新Plot
@@ -174,8 +173,9 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             {
                 return;
             }
-
-            bool isNeedRefreshPlot = dataEntity.FillPlotDataInRange(beginXValue, endXValue, forceRefresh, seriesIndex);
+            int beginXIndex = _parentChart.ViewAdapter.GetVerifiedIndex(beginXValue);
+            int endXIndex = _parentChart.ViewAdapter.GetVerifiedIndex(endXValue);
+            bool isNeedRefreshPlot = dataEntity.FillPlotDataInRange(beginXIndex, endXIndex, forceRefresh, seriesIndex);
             if (isNeedRefreshPlot)
             {
                 IList xDataBuf = dataEntity.GetXData();
@@ -209,8 +209,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         internal void PlotDataInRange(double beginXValue, double endXValue, bool forceRefresh)
         {
             // 根据begin和end的范围，将数据填充到PlotBuffer中。如果无需更新绘图则返回false。
+            int beginXIndex = _parentChart.ViewAdapter.GetVerifiedIndex(beginXValue);
+            int endXIndex = _parentChart.ViewAdapter.GetVerifiedIndex(endXValue);
             DataEntityBase dataEntity = DataEntity;
-            bool isNeedRefreshPlot = dataEntity.FillPlotDataInRange(beginXValue, endXValue, forceRefresh, -1);
+            bool isNeedRefreshPlot = dataEntity.FillPlotDataInRange(beginXIndex, endXIndex, forceRefresh, -1);
             if (isNeedRefreshPlot)
             {
                 IList xDataBuf = dataEntity.GetXData();
@@ -305,9 +307,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         {
             IsPlotting = false;
             PlotDefaultView();
-            SamplesInChart = 0;
             DataType = null;
-            DataEntity.Clear();
+            DataEntity?.Clear();
         }
 
         private void PlotDefaultView()

@@ -30,6 +30,7 @@ namespace SeeSharpTools.JY.GUI
             this._baseAxis = null;
             this.AutoZoomReset = false;
             this.InitWithScaleView = false;
+            this._autoScale = true;
         }
 
         internal void Initialize(StripChartX parentStripChart, StripChartXPlotArea basePlotArea, Axis baseAxis)
@@ -51,6 +52,7 @@ namespace SeeSharpTools.JY.GUI
                 this.ViewMaximum = Constants.DefaultXMax;
                 this.ViewMinimum = Constants.DefaultXMin;
                 this._majorGridCount = Constants.DefaultXMajorGridCount;
+                InitXAxisLabels();
             }
             else
             {
@@ -568,11 +570,11 @@ namespace SeeSharpTools.JY.GUI
                 {
                     return;
                 }
-                if (IsXAxis(PlotAxis.Primary, PlotAxis.Secondary))
-                {
-                    return;
-                }
                 _majorGridCount = value;
+                if (IsXAxis())
+                {
+                    InitXAxisLabels();
+                }
                 RefreshGridsAndLabels();
                 if (IsYAxis())
                 {
@@ -743,7 +745,15 @@ namespace SeeSharpTools.JY.GUI
             {
                 return;
             }
+            if (IsXAxis())
+            {
+                foreach (CustomLabel customLabel in CustomLabels)
+                {
+                    customLabel.Text = " ";
+                }
+            }
             CancelScaleView();
+            RefreshGridsAndLabels();
         }
 
         internal void ResetAxisScaleView()
@@ -868,7 +878,15 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
-        
+        public void InitXAxisLabels()
+        {
+            CustomLabels.Clear();
+            for (int i = 0; i < MajorGridCount + 1; i++)
+            {
+                CustomLabels.Add(2 * i, 2 * i + 1, " ");
+            }
+        }
+
         internal void RefreshGridsAndLabels(bool resetOperation = false)
         {
             double viewMax = _baseAxis.ScaleView.ViewMaximum;
@@ -909,9 +927,8 @@ namespace SeeSharpTools.JY.GUI
                 return;
             }
             double labelStep = (ViewMaximum - ViewMinimum) / MajorGridCount;
-            double labelRangeSize = labelStep / 4;
+            double labelRangeSize = labelStep / 2;
             double labelPosition = ViewMinimum;
-            int pointIndex;
             for (int i = 0; i < MajorGridCount; i++)
             {
                 CustomLabels[i].FromPosition = labelPosition - labelRangeSize;

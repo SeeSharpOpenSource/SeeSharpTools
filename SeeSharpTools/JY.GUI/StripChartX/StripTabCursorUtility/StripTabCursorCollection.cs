@@ -39,7 +39,7 @@ namespace SeeSharpTools.JY.GUI
             this._adapter = new PositionAdapter(baseChart, parentPlotArea);
             this._cursors = new List<StripTabCursor>(MaxCursorCount);
             this.CursorValueFormat = null;
-
+            this.RunTimeEditable = true;
             _flowCursorEnableFlag = false;
 //            this._baseChart.PostPaint += BaseChartOnPostPaint;
             // TODO to add _cursor code, get from parentchart
@@ -312,6 +312,17 @@ namespace SeeSharpTools.JY.GUI
             }
             _parentChart.GetNearestPoint(ref xValue, out yValue, seriesIndex);
             return yValue;
+        }
+
+        internal string GetXValue(int xValue)
+        {
+            return _parentChart.GetXLabelValue(xValue);
+        }
+
+        internal int GetXDataIndex(double xValue)
+        {
+            int index = _parentChart.ViewAdapter.GetUnVerifiedIndex(xValue);
+            return _parentChart.ViewAdapter.IsValidSampleIndex(index) ? index : -1;
         }
     }
 }
