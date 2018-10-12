@@ -23,10 +23,10 @@ namespace SeeSharpTools.JY.GUI
         {
             this.Control = new StripTabCursorControl();
             this._name = "";
-            this._xValue = 0;
+            this._xRawValue = 0;
             this.Color = Color.Red;
             this._enabled = true;
-
+            this._xRawValue = -1;
             this.SeriesIndex = -1;
         }
 
@@ -66,7 +66,18 @@ namespace SeeSharpTools.JY.GUI
             }
         }
         // TabCursor位置对应的坐标轴原始值
-        private int _xValue;
+        private int _xRawValue;
+
+        internal int XRawValue
+        {
+            get { return _xRawValue; }
+            set
+            {
+                _xRawValue = value;
+                _collection.RefreshCursorPosition(this);
+            }
+        }
+
         /// <summary>
         /// Set or get cursor value
         /// </summary>
@@ -75,14 +86,14 @@ namespace SeeSharpTools.JY.GUI
             Category("Data"),
             Description("Get the X value of cursor.")
         ]
-        public string XValue => _collection.GetXValue(_xValue);
+        public string XValue => _collection.GetXValue(_xRawValue);
 
         public int XIndex
         {
-            get { return _xValue; }
+            get { return _collection.GetXDataIndex(_xRawValue); }
             set
             {
-                _xValue = value;
+                _xRawValue = (int) _collection.GetRealXValue(value);
                 _collection.RefreshCursorPosition(this);
             }
         }
@@ -95,16 +106,7 @@ namespace SeeSharpTools.JY.GUI
             Category("Data"),
             Description("Set or get the Y value of cursor.")
         ]
-        public double YValue
-        {
-            get
-            {
-                double xAfterAlign = _xValue;
-                double yValue = _collection.GetYValue(ref xAfterAlign, SeriesIndex);
-                return yValue;
-            }
-            
-        }
+        public double YValue => _collection.GetYValue(_xRawValue, SeriesIndex);
 
         /// <summary>
         /// Specify the index of series which the tabcursor will be attached to.
@@ -115,13 +117,6 @@ namespace SeeSharpTools.JY.GUI
             Description("Specify the index of series which the tabcursor will be attached to.")
         ]
         public int SeriesIndex { get; set; }
-
-        /// <summary>
-        /// Get the formated value string
-        /// </summary>
-        internal string ValueString => string.IsNullOrEmpty(_collection?.CursorValueFormat)
-            ? _xValue.ToString()
-            : _xValue.ToString(_collection.CursorValueFormat);
 
         /// <summary>
         /// Specify or get cursor color

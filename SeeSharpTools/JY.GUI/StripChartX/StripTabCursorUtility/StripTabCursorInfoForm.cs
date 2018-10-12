@@ -33,7 +33,7 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
 
             RefreshSeriesNames();
             this._parentChart.TabCursorChanged += RefreshCursorValue;
-            this._parentChart.AfterPlot += RefreshCursorYValue;
+            this._parentChart.AfterPlot += RefreshCursorXYValue;
             // RunTimeEditable为false时，tabCursor的添加删除按钮不使能
             if (!parentChart.TabCursors.RunTimeEditable)
             {
@@ -83,7 +83,7 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
         const int CursorXValueIndex = 5;
         const int CursorYValueIndex = 6;
         const string ColorButtonText = "Select";
-        const string NoSeriesName = "";
+        const string NoSeriesName = " ";
 
         private void button_add_Click(object sender, EventArgs e)
         {
@@ -152,11 +152,13 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
             }
         }
 
-        private void RefreshCursorYValue(object sender, EventArgs e)
+        private void RefreshCursorXYValue(object sender, EventArgs e)
         {
             for (int i = 0; i < _cursors.Count; i++)
             {
                 double yValue = _cursors[i].YValue;
+                dataGridView_cursorInfo.Rows[i].Cells[CursorXDataIndex].Value = _cursors[i].XIndex;
+                dataGridView_cursorInfo.Rows[i].Cells[CursorXValueIndex].Value = _cursors[i].XValue;
                 dataGridView_cursorInfo.Rows[i].Cells[CursorYValueIndex].Value = double.IsNaN(yValue) ? string.Empty : yValue.ToString();
             }
         }
@@ -256,7 +258,7 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
         private void DynamicCursorInfoForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this._parentChart.TabCursorChanged -= RefreshCursorValue;
-            this._parentChart.AfterPlot -= RefreshCursorYValue;
+            this._parentChart.AfterPlot -= RefreshCursorXYValue;
         }
 
 

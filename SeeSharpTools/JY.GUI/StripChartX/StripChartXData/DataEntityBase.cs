@@ -131,6 +131,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             return plotParamChanged;
         }
 
+        // 为了保证效率，X轴的buffer是倒着放的，最后一个元素放在容器最后一个位置，然后依次向前延伸
         private void FillXPlotDatas(int beginXIndex, int endXIndex, int newSparseRatio, int plotCount)
         {
             // 如果当前起始位置等于上次起始位置、当前结束位置小于等于上次结束位置、新的SparseRatio等于上次的SpaseRatio时无需更新数据。
@@ -138,16 +139,34 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             {
                 return;
             }
+            List<int> xPlotBuffer = GetXPlotBuffer();
+            int bufSize = xPlotBuffer.Count;
+            int xValue = 0;
+            // 如果X轴起点相同，稀疏比相同，则直接在前面添加
+            if (_lastXStart == beginXIndex && _lastXSparseRatio == newSparseRatio)
+            {
+                xValue = beginXIndex - SamplesInChart - newSparseRatio;
+                int startAddIndex = bufSize - plotCount;
+                int endAddIndex = bufSize - plotCount + (endXIndex - _lastXEnd)/newSparseRatio;
+                for (int i = startAddIndex; i < endAddIndex; i++)
+                {
+                    xValue += newSparseRatio;
+                    xPlotBuffer[i] = xValue;
+                }
+            }
+            else
+            {
+                // X值终点为-1
+                xValue = beginXIndex - SamplesInChart - newSparseRatio;
+                for (int i = bufSize - plotCount; i < bufSize; i++)
+                {
+                    xValue += newSparseRatio;
+                    xPlotBuffer[i] = xValue;
+                }
+            }
             _lastXSparseRatio = newSparseRatio;
             _lastXStart = beginXIndex;
-            List<int> xPlotBuffer = GetXPlotBuffer();
-            int xStart = beginXIndex - newSparseRatio - SamplesInChart;
-            for (int i = 0; i < plotCount; i++)
-            {
-                xStart += newSparseRatio;
-                xPlotBuffer[i] = xStart;
-            }
-            _lastXEnd = xStart;
+            _lastXEnd = endXIndex;
         }
 
         private static int GetSparseRatio(int start, int end, out int plotCount)

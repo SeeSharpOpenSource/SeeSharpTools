@@ -1394,7 +1394,7 @@ namespace SeeSharpTools.JY.GUI
 
         private void tabCursorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _tabCursorForm?.Dispose();
+            _tabCursorForm?.Close();
             _tabCursorForm = new StripTabCursorInfoForm(this);
             _tabCursorForm.Show(this);
         }
@@ -1722,8 +1722,10 @@ namespace SeeSharpTools.JY.GUI
 
         internal void ShowDynamicValue(string showInfo, Point position, bool isShow)
         {
+            const int tabValueTipXOffset = 5;
             if (isShow)
             {
+                position.X += tabValueTipXOffset;
                 toolTip_tabCursorValue.Show(showInfo, this, position);
             }
             else
@@ -1808,19 +1810,17 @@ namespace SeeSharpTools.JY.GUI
             return _plotManager.DataEntity.GetXValue(realIndex);
         }
 
-        internal void GetNearestPoint(ref double xValue, out double yValue, int seriesIndex)
+        internal void GetNearestPoint(double xRawValue, out double yValue, int seriesIndex)
         {
-            int index = ViewAdapter.GetVerifiedIndex(xValue);
-            if (index >= _plotManager.DataEntity.SamplesInChart)
+            int index = ViewAdapter.GetUnVerifiedIndex(xRawValue);
+            if (index < 0 || index >= _plotManager.DataEntity.SamplesInChart)
             {
-                index = _plotManager.DataEntity.SamplesInChart - 1;
+                yValue = double.NaN;
             }
-            else if (index < 0)
+            else
             {
-                index = 0;
+                yValue = (double)_plotManager.DataEntity.GetYValue(index, seriesIndex);
             }
-            xValue = ViewAdapter.GetAxisValue(index);
-            yValue = (double) _plotManager.DataEntity.GetYValue(index, seriesIndex);
         }
 
         private bool IsCursorMode(StripChartXPlotArea plotArea)

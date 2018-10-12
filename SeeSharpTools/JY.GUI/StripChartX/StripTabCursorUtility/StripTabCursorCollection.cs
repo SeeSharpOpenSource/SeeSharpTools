@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using SeeSharpTools.JY.GUI.StripChartXUtility;
@@ -280,20 +281,28 @@ namespace SeeSharpTools.JY.GUI
         internal void RefreshCursorValue(StripTabCursor cursor)
         {
             _adapter.RefreshCursorValue(cursor);
+            _adapter.MoveCursorToTarget(cursor);
         }
 
         internal void ShowCursorValue(StripTabCursor cursor, bool isShow)
         {
+            const string xLabelPrefix = "X: ";
+            const string yLabelPrefix = "Y: ";
+
+            StringBuilder showInfo = new StringBuilder(100);
+            string xValue = cursor.XValue;
             double yValue = cursor.YValue;
-            const string tabCursorInfoFormat = "{0}{1}X:{2}";
-            string showInfo = string.Format(tabCursorInfoFormat, cursor.Name, Environment.NewLine, cursor.ValueString);
-            // TODO just for test
+            showInfo.Append(cursor.Name);
+            if (!string.IsNullOrWhiteSpace(xValue))
+            {
+                showInfo.Append(Environment.NewLine).Append(xLabelPrefix).Append(xValue);
+            }
             if (!double.IsNaN(yValue))
             {
-                showInfo += $"  Y:{yValue}";
+                string yValueStr = string.IsNullOrWhiteSpace(CursorValueFormat) ? yValue.ToString() : yValue.ToString(CursorValueFormat);
+                showInfo.Append(Environment.NewLine).Append(yLabelPrefix).Append(yValueStr);
             }
-
-            _parentChart.ShowDynamicValue(showInfo, cursor.Control.Location, isShow);
+            _parentChart.ShowDynamicValue(showInfo.ToString(), cursor.Control.Location, isShow);
         }
 
         private void SetCursorXBoundry(StripTabCursor item)
@@ -303,14 +312,14 @@ namespace SeeSharpTools.JY.GUI
             item.Control.SetXBoundary(minXBound, maxXBound);
         }
 
-        internal double GetYValue(ref double xValue, int seriesIndex)
+        internal double GetYValue(double xRawValue, int seriesIndex)
         {
             double yValue = double.NaN;
             if (seriesIndex < 0 || seriesIndex > _parentChart.SeriesCount || !_parentChart.IsPlotting())
             {
                 return yValue;
             }
-            _parentChart.GetNearestPoint(ref xValue, out yValue, seriesIndex);
+            _parentChart.GetNearestPoint(xRawValue, out yValue, seriesIndex);
             return yValue;
         }
 
@@ -321,8 +330,12 @@ namespace SeeSharpTools.JY.GUI
 
         internal int GetXDataIndex(double xValue)
         {
-            int index = _parentChart.ViewAdapter.GetUnVerifiedIndex(xValue);
-            return _parentChart.ViewAdapter.IsValidSampleIndex(index) ? index : -1;
+            return _parentChart.ViewAdapter.GetUnVerifiedIndex(xValue);
+        }
+
+        public double GetRealXValue(int value)
+        {
+            return _parentChart.ViewAdapter.GetAxisValue(value);
         }
     }
 }

@@ -109,9 +109,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             }
         }
 
+        // XPlotBuffer是倒着保存的
         public override IList GetXData()
         {
-            return _plotBuffer.XPlotBuffer.GetRange(0, _plotBuffer.PlotCount);
+            int startIndex = _plotBuffer.XPlotBuffer.Count - _plotBuffer.PlotCount;
+            return _plotBuffer.XPlotBuffer.GetRange(startIndex, _plotBuffer.PlotCount);
         }
 
         public override IList GetYData()
