@@ -98,8 +98,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             RefreshIsEvenFlag(sampleCount);
             for (int i = 0; i < _yBuffers.Count; i++)
             {
-                _yBuffers[i].Add(lineData, sampleCount, offset);
+                OverLapWrapBuffer<TDataType> yBuffer = _yBuffers[i];
+                bool removedDataInsideRange = IsRemovedDataInsideRange(yBuffer, sampleCount, i);
+                yBuffer.Add(lineData, sampleCount, offset);
                 offset += sampleCount;
+                RefreshMaxAndMinValue(yBuffer, i, sampleCount, removedDataInsideRange);
             }
             if (!_singleSamplePlotMode)
             {
@@ -124,8 +127,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             RefreshIsEvenFlag(sampleCount);
             for (int i = 0; i < _yBuffers.Count; i++)
             {
-                _yBuffers[i].Add(lineData, sampleCount, offset);
+                OverLapWrapBuffer<TDataType> yBuffer = _yBuffers[i];
+                bool removedDataInsideRange = IsRemovedDataInsideRange(yBuffer, sampleCount, i);
+                yBuffer.Add(lineData, sampleCount, offset);
                 offset += sampleCount;
+                RefreshMaxAndMinValue(yBuffer, i, sampleCount, removedDataInsideRange);
             }
             if (!_singleSamplePlotMode)
             {
@@ -189,32 +195,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
         public override object GetYValue(int xIndex, int seriesIndex)
         {
             return  _yBuffers[seriesIndex][xIndex];
-        }
-
-        public override void GetMaxAndMinYValue(int seriesIndex, out double maxYValue, out double minYValue)
-        {
-            ParallelHandler.GetMaxAndMin(_yBuffers[seriesIndex], out maxYValue, out minYValue);
-        }
-
-        public override void GetMaxAndMinYValue(out double maxYValue, out double minYValue)
-        {
-            maxYValue = double.MinValue;
-            minYValue = double.MaxValue;
-            double tmpMaxYValue = 0;
-            double tmpMinYValue = 0;
-
-            foreach (OverLapWrapBuffer<TDataType> yBuffer in _yBuffers)
-            {
-                ParallelHandler.GetMaxAndMin(yBuffer, out tmpMaxYValue, out tmpMinYValue);
-                if (maxYValue < tmpMaxYValue)
-                {
-                    maxYValue = tmpMaxYValue;
-                }
-                if (minYValue > tmpMinYValue)
-                {
-                    minYValue = tmpMinYValue;
-                }
-            }
         }
 
         private void RefreshIsEvenFlag(int newBlockSize)

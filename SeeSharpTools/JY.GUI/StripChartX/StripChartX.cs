@@ -408,7 +408,7 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         [
             Browsable(true),
-            CategoryAttribute("Appearance"),
+            CategoryAttribute("Behavior"),
             Description("Select the scroll type of stripchartX"),
         ]
         public StripScrollType ScrollType
@@ -418,7 +418,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 if (IsPlotting())
                 {
-                    return;
+                    throw new InvalidOperationException(i18n.GetFStr("Runtime.NotSetInRunTime", "ScrollType"));
                 }
                 _chartViewManager.ScrollType = value;
             }
@@ -433,7 +433,7 @@ namespace SeeSharpTools.JY.GUI
             CategoryAttribute("Behavior"),
             Description("Maximum point count to show in single line. The points at the most front will be overlapped when the point count exceed this number.")
         ]
-        public int DisplaySamples
+        public int DisplayPoints
         {
             get { return _plotManager.DisplayPoints; }
             set
@@ -457,13 +457,20 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         [
             Browsable(true),
-            CategoryAttribute("Behavior"),
+            CategoryAttribute("Data"),
             Description("Specify X axis data type")
         ]
         public XAxisDataType XDataType
         {
             get { return _plotManager.XDataType; }
-            set { _plotManager.XDataType = value; }
+            set
+            {
+                if (IsPlotting())
+                {
+                    throw new InvalidOperationException(i18n.GetFStr("Runtime.NotSetInRunTime", "XDataType"));
+                }
+                _plotManager.XDataType = value;
+            }
         }
         
         /// <summary>
@@ -472,7 +479,7 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         [
             Browsable(true),
-            CategoryAttribute("Behavior"),
+            CategoryAttribute("Data"),
             DefaultValueAttribute(Constants.DefaultTimeStampFormat),
             Description("Specify the time stamp format. Only available when XAxisDataType is TimeStamp.")
         ]
@@ -486,7 +493,11 @@ namespace SeeSharpTools.JY.GUI
         /// Get or set the next time stamp value
         /// 获取或配置下一个绘图时的其实时间戳
         /// </summary>
-        [Browsable(false)]
+        [
+            Browsable(false),
+            CategoryAttribute("Data"),
+            Description("Get or set the next time stamp value.")
+        ]
         public DateTime NextTimeStamp
         {
             get { return _plotManager.NextTimeStamp; }
@@ -497,6 +508,11 @@ namespace SeeSharpTools.JY.GUI
         /// Get or set the time interval between two samples
         /// 获取或配置相邻两个样点之间的时间间隔
         /// </summary>
+        [
+            Browsable(false),
+            CategoryAttribute("Data"),
+            Description("Get or set the time interval between two samples.")
+        ]
         public TimeSpan TimeInterval
         {
             get { return _plotManager.TimeInterval; }
@@ -516,7 +532,7 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         [
             Browsable(true),
-            CategoryAttribute("Behavior"),
+            CategoryAttribute("Data"),
             Description("Specify the start index of x axis. Only available when XDataType is Index.")
         ]
         public int StartIndex
@@ -524,9 +540,9 @@ namespace SeeSharpTools.JY.GUI
             get { return _plotManager.StartIndex; }
             set
             {
-                if (_plotManager.IsPlotting)
+                if (IsPlotting())
                 {
-                    return;
+                    throw new InvalidOperationException(i18n.GetFStr("Runtime.NotSetInRunTime", "StartIndex"));
                 }
                 _plotManager.StartIndex = value; 
             }

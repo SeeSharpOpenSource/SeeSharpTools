@@ -122,7 +122,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             this.DataEntity = null;
 
             this._series = new StripChartXSeriesCollection(plotSeries, parentChart);
-            LineSeries = new StripChartXLineSeries(_series);
+            this.LineSeries = new StripChartXLineSeries(_series);
 
             this.DataCheckParams = new DataCheckParameters();
 
@@ -138,6 +138,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 Capacity = this.DisplayPoints,
                 DataType = typeof (TDataType),
                 LineCount = lineCount,
+                XType = XDataType
             };
             if (null == DataEntity || !DataEntity.DataInfo.IsEqual(dataEntityInfo))
             {

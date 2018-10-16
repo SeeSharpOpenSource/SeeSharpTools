@@ -73,11 +73,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
 
         public abstract string GetXValue(int xIndex);
         public abstract object GetYValue(int xIndex, int seriesIndex);
-
-        public abstract void GetMaxAndMinYValue(int seriesIndex, out double maxYValue, out double minYValue);
-
-        public abstract void GetMaxAndMinYValue(out double maxYValue, out double minYValue);
-
 //        protected void RefreshSamplesInChart(int plotSamples)
 //        {
 //            if (SamplesInChart >= ParentManager.DisplayPoints)
@@ -104,6 +99,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
                 LastYStartIndex[i] = int.MinValue;
                 LastYEndIndex[i] = int.MinValue;
                 SparseRatio[i] = int.MaxValue;
+                _maxYValues[i] = double.MinValue;
+                _minYValues[i] = double.MaxValue;
             }
         }
 
@@ -119,24 +116,24 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             IList<TDataType> newDatas = datas.GetRange(newDataStartIndex, samplesAdded);
             double newDataMax, newDataMin;
             ParallelHandler.GetMaxAndMin(newDatas, out newDataMax, out newDataMin);
-            // 如果新添加的数据Y值范围覆盖到原来的范围，则新的数据的范围就是最终的Y轴范围
-            if (newDataMax >= _maxYValues[seriesIndex] && newDataMin <= _minYValues[seriesIndex])
-            {
-                _maxYValues[seriesIndex] = newDataMax;
-                _minYValues[seriesIndex] = newDataMin;
-            }
             // 如果删除的点没有超过范围，则这些点不会影响最终Y轴的最大最小值
-            else if (removedDataInsideRange)
+            if (removedDataInsideRange)
             {
                 // 如果Y轴新的最大值超过原来最大值，则新的最大值最大；如果Y轴新的最小值小于原来最小值，则新的最小值最小
                 if (newDataMax >= _maxYValues[seriesIndex])
                 {
                     _maxYValues[seriesIndex] = newDataMax;
                 }
-                else if (newDataMin <= _minYValues[seriesIndex])
+                if (newDataMin <= _minYValues[seriesIndex])
                 {
                     _minYValues[seriesIndex] = newDataMin;
                 }
+            }
+            // 如果新添加的数据Y值范围覆盖到原来的范围，则新的数据的范围就是最终的Y轴范围
+            else if(newDataMax >= _maxYValues[seriesIndex] && newDataMin <= _minYValues[seriesIndex])
+            {
+                _maxYValues[seriesIndex] = newDataMax;
+                _minYValues[seriesIndex] = newDataMin;
             }
             else
             {
@@ -166,6 +163,29 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             // 是否在区域内的判定规则：新的范围的极值极性必须和原来的极值极性相同
             bool isBoundSamePolarity = !(lastMax <= 0 ^ dataMax <= 0) && !(lastMin >= 0 ^ dataMin >= 0);
             return isDataInsideRange && isBoundSamePolarity;
+        }
+
+        public void GetMaxAndMinYValue(int seriesIndex, out double maxYValue, out double minYValue)
+        {
+            maxYValue = _maxYValues[seriesIndex];
+            minYValue = _minYValues[seriesIndex];
+        }
+
+        public void GetMaxAndMinYValue(out double maxYValue, out double minYValue)
+        {
+            maxYValue = double.MinValue;
+            minYValue = double.MaxValue;
+            for (int i = 0; i < DataInfo.LineCount; i++)
+            {
+                if (maxYValue < _maxYValues[i])
+                {
+                    maxYValue = _maxYValues[i];
+                }
+                if (minYValue > _minYValues[i])
+                {
+                    minYValue = _minYValues[i];
+                }
+            }
         }
 
         public bool FillPlotDataInRange(int beginXIndex, int endXIndex, bool forceRefresh, int seriesIndex)

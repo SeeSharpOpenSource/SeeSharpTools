@@ -6,14 +6,14 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
     internal class DataEntityInfo
     {
         public int Capacity { get; set; }
-        public XDataType XType { get; set; }
+        public StripChartX.XAxisDataType XType { get; set; }
         public int LineCount { get; set; }
         public Type DataType { get; set; }
 
         public DataEntityInfo()
         {
             this.Capacity = 0;
-            this.XType = XDataType.Index;
+            this.XType = StripChartX.XAxisDataType.Index;
             this.LineCount = 0;
             this.DataType = null;
         }

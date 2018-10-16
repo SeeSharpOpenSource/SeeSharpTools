@@ -33,13 +33,16 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
 
         public override void AddPlotData(IList<string> xData, Array lineData)
         {
-            int dataLength = xData.Count;
-            _xBuffer.Add(xData, dataLength);
+            int sampleCount = xData.Count;
+            _xBuffer.Add(xData, sampleCount);
             int offset = 0;
             for (int i = 0; i < DataInfo.LineCount; i++)
             {
-                _yBuffers[i].Add(lineData, dataLength, offset);
-                offset += dataLength;
+                OverLapWrapBuffer<TDataType> yBuffer = _yBuffers[i];
+                bool removedDataInsideRange = IsRemovedDataInsideRange(yBuffer, sampleCount, i);
+                yBuffer.Add(lineData, sampleCount, offset);
+                offset += sampleCount;
+                RefreshMaxAndMinValue(yBuffer, i, sampleCount, removedDataInsideRange);
             }
         }
 
@@ -66,32 +69,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
         public override object GetYValue(int xIndex, int seriesIndex)
         {
             return _yBuffers[seriesIndex][xIndex];
-        }
-
-        public override void GetMaxAndMinYValue(int seriesIndex, out double maxYValue, out double minYValue)
-        {
-            ParallelHandler.GetMaxAndMin(_yBuffers[seriesIndex], out maxYValue, out minYValue);
-        }
-
-        public override void GetMaxAndMinYValue(out double maxYValue, out double minYValue)
-        {
-            maxYValue = double.MinValue;
-            minYValue = double.MaxValue;
-            double tmpMaxYValue = 0;
-            double tmpMinYValue = 0;
-
-            foreach (OverLapWrapBuffer<TDataType> yBuffer in _yBuffers)
-            {
-                ParallelHandler.GetMaxAndMin(yBuffer, out tmpMaxYValue, out tmpMinYValue);
-                if (maxYValue < tmpMaxYValue)
-                {
-                    maxYValue = tmpMaxYValue;
-                }
-                if (minYValue > tmpMinYValue)
-                {
-                    minYValue = tmpMinYValue;
-                }
-            }
         }
 
         public override void Clear()
