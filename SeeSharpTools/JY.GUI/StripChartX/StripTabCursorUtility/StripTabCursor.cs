@@ -27,7 +27,7 @@ namespace SeeSharpTools.JY.GUI
             this.Color = Color.Red;
             this._enabled = true;
             this._xRawValue = -1;
-            this.SeriesIndex = -1;
+            this._seriesIndex = -1;
         }
 
         internal void Initialize(StripTabCursorCollection collection)
@@ -106,7 +106,9 @@ namespace SeeSharpTools.JY.GUI
             Category("Data"),
             Description("Set or get the Y value of cursor.")
         ]
-        public double YValue => _collection.GetYValue(_xRawValue, SeriesIndex);
+        public double YValue => _collection.GetYValue(_xRawValue, _seriesIndex);
+
+        private int _seriesIndex;
 
         /// <summary>
         /// Specify the index of series which the tabcursor will be attached to.
@@ -116,7 +118,11 @@ namespace SeeSharpTools.JY.GUI
             Category("Behavior"),
             Description("Specify the index of series which the tabcursor will be attached to.")
         ]
-        public int SeriesIndex { get; set; }
+        public int SeriesIndex
+        {
+            get { return _seriesIndex;}
+            set { _seriesIndex = value >= 0 ? value : -1; }
+        }
 
         /// <summary>
         /// Specify or get cursor color
