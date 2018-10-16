@@ -28,7 +28,7 @@ namespace SeeSharpTools.JY.GUI
             this.Color = Color.Red;
             this._enabled = true;
 
-            this.SeriesIndex = -1;
+            this._seriesIndex = -1;
         }
 
         internal void Initialize(TabCursorCollection collection)
@@ -106,7 +106,7 @@ namespace SeeSharpTools.JY.GUI
             get
             {
                 double xAfterAlign = _value;
-                double yValue = _collection.GetYValue(ref xAfterAlign, SeriesIndex);
+                double yValue = _collection.GetYValue(ref xAfterAlign, _seriesIndex);
                 // 更新对齐后的X值
                 Value = xAfterAlign;
                 return yValue;
@@ -114,6 +114,7 @@ namespace SeeSharpTools.JY.GUI
             
         }
 
+        private int _seriesIndex;
         /// <summary>
         /// Specify the index of series which the tabcursor will be attached to.
         /// </summary>
@@ -122,7 +123,13 @@ namespace SeeSharpTools.JY.GUI
             Category("Behavior"),
             Description("Specify the index of series which the tabcursor will be attached to.")
         ]
-        public int SeriesIndex { get; set; }
+        public int SeriesIndex {
+            get { return _seriesIndex; }
+            set
+            {
+                _seriesIndex = value >= 0 ? value : -1;
+            }
+        }
 
         /// <summary>
         /// Get the formated value string
