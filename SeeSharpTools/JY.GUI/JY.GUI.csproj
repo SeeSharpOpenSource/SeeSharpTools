@@ -116,8 +116,9 @@
     <Compile Include="StripChartX\StripChartXData\DataEntities\TimeStampDataEntity.cs" />
     <Compile Include="StripChartX\StripChartXData\DataEntityInfo.cs" />
     <Compile Include="StripChartX\StripChartXData\DataEntityBase.cs" />
+    <Compile Include="StripChartX\StripChartXData\OverLapWrapBuffer.cs" />
     <Compile Include="StripChartX\StripChartXData\PlotBuffer.cs" />
-    <Compile Include="StripChartX\StripChartXData\XDataType.cs" />
+    <Compile Include="StripChartX\StripChartXData\ReadOnlyBuf.cs" />
     <Compile Include="StripChartX\StripChartXDesigner.cs" />
     <Compile Include="StripChartX\StripChartXEditor\StripChartXLineSeries.cs" />
     <Compile Include="StripChartX\StripChartXEditor\StripChartXLineSeriesEditor.cs" />
