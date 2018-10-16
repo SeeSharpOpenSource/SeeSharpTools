@@ -39,7 +39,7 @@ namespace SeeSharpTools.JY.GUI
             this._adapter = new PositionAdapter(baseChart, parentPlotArea);
             this._cursors = new List<TabCursor>(MaxCursorCount);
             this.CursorValueFormat = null;
-
+            this.RunTimeEditable = true;
             _flowCursorEnableFlag = false;
 //            this._baseChart.PostPaint += BaseChartOnPostPaint;
             // TODO to add _cursor code, get from parentchart
