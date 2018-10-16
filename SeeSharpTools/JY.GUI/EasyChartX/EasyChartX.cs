@@ -1506,7 +1506,7 @@ namespace SeeSharpTools.JY.GUI
 
         private void tabCursorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _tabCursorForm?.Dispose();
+            _tabCursorForm?.Close();
             _tabCursorForm = new TabCursorInfoForm(this);
             _tabCursorForm.Show(this);
         }
