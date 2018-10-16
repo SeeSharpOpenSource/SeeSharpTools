@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace SeeSharpTools.JY.GUI
+namespace SeeSharpTools.JY.GUI.Plotter
 {
     internal class OverLapWrapBuffer<TDataType> : IDisposable, IList<TDataType>
     {
