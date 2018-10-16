@@ -191,11 +191,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             return  _yBuffers[seriesIndex][xIndex];
         }
 
-        public override IList<TDataType1> GetPlotDatas<TDataType1>(int startIndex, int endIndex)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void GetMaxAndMinYValue(int seriesIndex, out double maxYValue, out double minYValue)
         {
             ParallelHandler.GetMaxAndMin(_yBuffers[seriesIndex], out maxYValue, out minYValue);

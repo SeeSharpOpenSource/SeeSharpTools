@@ -40,7 +40,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         
         private readonly double[] _maxDatas;
         private readonly double[] _minDatas;
-
+        const int MinParallelDataCount = 2000;
         public void GetMaxAndMin<TDataType>(IList<TDataType> datas, out double max, out double min)
         {
             string typeName = typeof(TDataType).FullName;
@@ -81,10 +81,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         #region Double Max / Min
 
-        public void GetDoubleMaxAndMin(object datas, int dataCount, out double max, out double min)
+        private void GetDoubleMaxAndMin(object datas, int dataCount, out double max, out double min)
         {
             // 点数小于4000时手动计算
-            if (dataCount <= 4000)
+            if (dataCount <= MinParallelDataCount)
             {
                 IList<double> doubleDatas = datas as IList<double>;
                 int startIndex = 0;
@@ -181,10 +181,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         #region Float Max / Min
 
-        public void GetFloatMaxAndMin(object datas, int dataCount, out double max, out double min)
+        private void GetFloatMaxAndMin(object datas, int dataCount, out double max, out double min)
         {
             // 点数小于4000时手动计算
-            if (dataCount <= 4000)
+            if (dataCount <= MinParallelDataCount)
             {
                 IList<float> floatDatas = datas as IList<float>;
                 int startIndex = 0;
@@ -283,10 +283,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         #region Int Max / Min
 
-        public void GetIntMaxAndMin(object datas, int dataCount, out double max, out double min)
+        private void GetIntMaxAndMin(object datas, int dataCount, out double max, out double min)
         {
             // 点数小于4000时手动计算
-            if (dataCount <= 4000)
+            if (dataCount <= MinParallelDataCount)
             {
                 IList<int> intDatas = datas as IList<int>;
                 int tmpMax = intDatas[0];
@@ -345,13 +345,13 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         }
 
         #endregion
-        
+
         #region UInt Max / Min
 
-        public void GetUIntMaxAndMin(object datas, int dataCount, out double max, out double min)
+        private void GetUIntMaxAndMin(object datas, int dataCount, out double max, out double min)
         {
             // 点数小于4000时手动计算
-            if (dataCount <= 4000)
+            if (dataCount <= MinParallelDataCount)
             {
                 IList<uint> uintDatas = datas as IList<uint>;
                 uint tmpMax = uintDatas[0];
@@ -413,10 +413,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         #region Short Max / Min
 
-        public void GetShortMaxAndMin(object datas, int dataCount, out double max, out double min)
+        private void GetShortMaxAndMin(object datas, int dataCount, out double max, out double min)
         {
             // 点数小于4000时手动计算
-            if (dataCount <= 4000)
+            if (dataCount <= MinParallelDataCount)
             {
                 IList<short> shortDatas = datas as IList<short>;
                 short tmpMax = shortDatas[0];
@@ -479,10 +479,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         #region UShort Max / Min
 
-        public void GetUShortMaxAndMin(object datas, int dataCount, out double max, out double min)
+        private void GetUShortMaxAndMin(object datas, int dataCount, out double max, out double min)
         {
             // 点数小于4000时手动计算
-            if (dataCount <= 4000)
+            if (dataCount <= MinParallelDataCount)
             {
                 IList<ushort> ushortDatas = datas as IList<ushort>;
                 ushort tmpMax = ushortDatas[0];
@@ -544,10 +544,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         #region Byte Max / Min
 
-        public void GetByteMaxAndMin(object datas, int dataCount, out double max, out double min)
+        private void GetByteMaxAndMin(object datas, int dataCount, out double max, out double min)
         {
             // 点数小于4000时手动计算
-            if (dataCount <= 4000)
+            if (dataCount <= MinParallelDataCount)
             {
                 IList<byte> byteDatas = datas as IList<byte>;
                 byte tmpMax = byteDatas[0];
@@ -727,8 +727,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 }
                 if (maxIndex > minIndex)
                 {
-                    yDataBuf[startBufIndex] = minValue;
-                    yDataBuf[startBufIndex + 1] = maxValue;
+                    plotBuf[startBufIndex] = minValue;
+                    plotBuf[startBufIndex + 1] = maxValue;
                 }
                 else
                 {

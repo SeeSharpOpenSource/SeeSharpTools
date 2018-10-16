@@ -52,8 +52,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             int offset = 0;
             for (int i = 0; i < DataInfo.LineCount; i++)
             {
+//                IsRemovedDataInsideRange(_yBuffers[i], sampleCount, i);
                 _yBuffers[i].Add(lineData, sampleCount, offset);
                 offset += sampleCount;
+//                RefreshMaxAndMinValue();
             }
         }
 
@@ -79,11 +81,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
         public override object GetYValue(int xIndex, int seriesIndex)
         {
             return _yBuffers[seriesIndex][xIndex];
-        }
-
-        public override IList<TDataType> GetPlotDatas<TDataType>(int startIndex, int endIndex)
-        {
-            throw new NotImplementedException();
         }
 
         public override void GetMaxAndMinYValue(int seriesIndex, out double maxYValue, out double minYValue)
