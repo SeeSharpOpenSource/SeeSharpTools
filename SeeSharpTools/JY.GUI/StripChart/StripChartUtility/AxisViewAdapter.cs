@@ -4,6 +4,7 @@ using System.ComponentModel.Design;
 using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
 using SeeSharpTools.JY.GUI.EasyChartXUtility;
+using SeeSharpTools.JY.GUI.Plotter;
 
 namespace SeeSharpTools.JY.GUI.StripChartUtility
 {
