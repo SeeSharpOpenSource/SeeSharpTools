@@ -21,6 +21,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             _convertMapping.Add(typeof(uint).Name, null);
             _convertMapping.Add(typeof(short).Name, null);
             _convertMapping.Add(typeof(ushort).Name, null);
+            _convertMapping.Add(typeof(byte).Name, null);
         }
 
         // 将一维数组转换为double数组
