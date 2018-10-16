@@ -183,6 +183,26 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
+        private bool _reversed;
+        /// <summary>
+        /// Specify whether reverse the direction of tank.
+        /// </summary>
+        [Description("Specify whether reverse the direction of tank.")]
+        [Category("Appearance")]
+        public bool Reversed
+        {
+            get { return _reversed; }
+            set
+            {
+                if (value == _reversed)
+                {
+                    return;
+                }
+                _reversed = value;
+                this.Invalidate();
+            }
+        }
+
         /// <summary>
         /// The color of the text drawn on the ProgressBar.
         /// <para>If set to transparent, no text is drawn.</para>
@@ -309,6 +329,7 @@ namespace SeeSharpTools.JY.GUI
             this.BackColor = Color.DarkGray;
             this.Size = new Size(70, 150);
             this.Font = new Font("Consolas", 10.25f);
+            this._reversed = false;
             OnForeColorChanged(EventArgs.Empty);
 
         }
@@ -365,19 +386,20 @@ namespace SeeSharpTools.JY.GUI
 
                         if (orientation == Orientation.Vertical)
                         {
-                            float scaledHeight = this.Height - (float)(((double)this.Height / (maximum-minimum)) * (currentValue-minimum));
+                            float scaledHeight = (float) ((this.Height/(maximum - minimum))*(currentValue - minimum));
+                            float yPos = this._reversed ? 0 : this.Height - scaledHeight;
                             //    
 
                             if (isbright == true)
                             {
                                 var brush1 = new LinearGradientBrush(new Point(0, 0), new Point(this.Width / 2, 0), darkColor, barColor);
-                                pe.Graphics.FillRectangle(brush1, 0, scaledHeight, this.Width / 2, this.Height);
+                                pe.Graphics.FillRectangle(brush1, 0, yPos, this.Width / 2, scaledHeight);
                                 var brush2 = new LinearGradientBrush(new Point(this.Width / 2 - 1, 0), new Point(this.Width, 0), barColor, darkColor);
-                                pe.Graphics.FillRectangle(brush2, this.Width / 2 - 1, scaledHeight, this.Width, this.Height);
+                                pe.Graphics.FillRectangle(brush2, this.Width / 2 - 1, yPos, this.Width, scaledHeight);
                             }
                             else
                             {
-                                pe.Graphics.FillRectangle(brush, 0, scaledHeight, this.Width, this.Height);
+                                pe.Graphics.FillRectangle(brush, 0, yPos, this.Width, scaledHeight);
                             }
 
 
@@ -397,17 +419,18 @@ namespace SeeSharpTools.JY.GUI
                         }
                         else
                         {
-                            float scaledWidth = (float)(((double)this.Width / (maximum-minimum)) * (currentValue-minimum));
+                            float scaledWidth = (float)((this.Width / (maximum - minimum)) * (currentValue - minimum));
+                            float xPos = this._reversed ? this.Width - scaledWidth : 0;
                             if (isbright == true)
                             {
                                 var brush1 = new LinearGradientBrush(new Point(0, 0), new Point(0, this.Height / 2), darkColor, barColor);
-                                pe.Graphics.FillRectangle(brush1, 0, 0, scaledWidth, this.Height / 2);
+                                pe.Graphics.FillRectangle(brush1, xPos, 0, scaledWidth, this.Height / 2);
                                 var brush2 = new LinearGradientBrush(new Point(0, this.Height / 2 - 1), new Point(0, this.Height), barColor, darkColor);
-                                pe.Graphics.FillRectangle(brush2, 0, Height / 2 - 1, scaledWidth, this.Height);
+                                pe.Graphics.FillRectangle(brush2, xPos, Height / 2 - 1, scaledWidth, this.Height);
                             }
                             else
                             {
-                                pe.Graphics.FillRectangle(brush, 0, 0, scaledWidth, this.Height);
+                                pe.Graphics.FillRectangle(brush, xPos, 0, scaledWidth, this.Height);
                             }
 
  
