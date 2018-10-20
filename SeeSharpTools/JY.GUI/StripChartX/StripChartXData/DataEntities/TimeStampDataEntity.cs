@@ -151,6 +151,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
 
         public override string GetXValue(int xIndex)
         {
+            if (_singleSamplePlotMode)
+            {
+                return _timeStamps[xIndex].ToString(ParentManager.TimeStampFormat);
+            }
             int blockIndex = 0;
             int posOffset = 0;
             if (_isEven)
@@ -199,6 +203,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
 
         private void RefreshIsEvenFlag(int newBlockSize)
         {
+            if (_singleSamplePlotMode)
+            {
+                return;
+            }
             // 如果已经不是均等增加则一直不再按照均等计算
             // 如果block个数大于2，则新的和上一个不同视为不均等
             // 如果block个数为1，且上一个block小于最大显示点数，且和新的不相等，则视为不均等
