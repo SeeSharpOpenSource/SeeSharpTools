@@ -687,10 +687,25 @@ namespace SeeSharpTools.JY.GUI
             // 触发用户鼠标点击事件
             this._chart.Click += (sender, args) => OnClick(args);
             this._chart.MouseClick += (sender, args) => OnMouseClick(args);
+            this._chart.MouseDoubleClick += (sender, args) => OnMouseDoubleClick(args);
             this._chart.MouseUp += (sender, args) => OnMouseUp(args);
             this._chart.MouseDown += (sender, args) => OnMouseDown(args);
             this._chart.MouseMove += (sender, args) => OnMouseMove(args);
+            this._chart.MouseEnter += (sender, args) => OnMouseEnter(args);
+            this._chart.MouseLeave += (sender, args) => OnMouseLeave(args);
+            this._chart.MouseHover += (sender, args) => OnMouseHover(args);
             this._chart.DragDrop += (sender, args) => OnDragDrop(args);
+            this._chart.DragEnter += (sender, args) => OnDragEnter(args);
+            this._chart.DragLeave += (sender, args) => OnDragLeave(args);
+            this._chart.DragOver += (sender, args) => OnDragOver(args);
+            this._chart.KeyDown += (sender, args) => OnKeyDown(args);
+            this._chart.KeyUp += (sender, args) => OnKeyUp(args);
+            this._chart.KeyPress += (sender, args) => OnKeyPress(args);
+            this._chart.Enter += (sender, args) => OnEnter(args);
+            this._chart.Leave += (sender, args) => OnLeave(args);
+            this._chart.Resize += (sender, args) => OnResize(args);
+            this._chart.VisibleChanged += (sender, args) => OnVisibleChanged(args);
+            this._chart.EnabledChanged += (sender, args) => OnEnabledChanged(args);
         }
 
         #endregion  // Constructor
