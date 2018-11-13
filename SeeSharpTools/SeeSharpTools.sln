@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JY.Sensors", "JY.Sensors\JY
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JY.TCP", "JY.TCP\JY.TCP.csproj", "{E57315EB-7DAA-42B2-A541-9573D97B36F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartTest", "ChartTest\ChartTest.csproj", "{910D5D90-2E04-42D6-8CDE-4C80C85DD74B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +183,14 @@ Global
 		{E57315EB-7DAA-42B2-A541-9573D97B36F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E57315EB-7DAA-42B2-A541-9573D97B36F9}.Release|x86.ActiveCfg = Release|Any CPU
 		{E57315EB-7DAA-42B2-A541-9573D97B36F9}.Release|x86.Build.0 = Release|Any CPU
+		{910D5D90-2E04-42D6-8CDE-4C80C85DD74B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{910D5D90-2E04-42D6-8CDE-4C80C85DD74B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{910D5D90-2E04-42D6-8CDE-4C80C85DD74B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{910D5D90-2E04-42D6-8CDE-4C80C85DD74B}.Debug|x86.Build.0 = Debug|Any CPU
+		{910D5D90-2E04-42D6-8CDE-4C80C85DD74B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{910D5D90-2E04-42D6-8CDE-4C80C85DD74B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{910D5D90-2E04-42D6-8CDE-4C80C85DD74B}.Release|x86.ActiveCfg = Release|Any CPU
+		{910D5D90-2E04-42D6-8CDE-4C80C85DD74B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
