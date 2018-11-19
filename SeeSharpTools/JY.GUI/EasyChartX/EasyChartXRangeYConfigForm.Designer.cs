@@ -168,12 +168,13 @@
             this.Controls.Add(this.groupBox_rangeConfig);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(510, 198);
             this.MinimumSize = new System.Drawing.Size(510, 198);
             this.Name = "EasyChartXRangeYConfigForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Set Y Axis Range";
             this.groupBox_rangeConfig.ResumeLayout(false);
             this.groupBox_rangeConfig.PerformLayout();

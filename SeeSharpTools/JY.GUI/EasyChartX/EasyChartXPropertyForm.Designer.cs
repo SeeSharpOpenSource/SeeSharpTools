@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EasyChartXPropertyForm));
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.checkBox_LegendTransparent = new System.Windows.Forms.CheckBox();
@@ -372,11 +371,11 @@
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Yaxis);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MinimizeBox = false;
             this.Name = "EasyChartXPropertyForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EasyChart Property";
+            this.Text = "EasyChartX Property";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EasyChartProperty_FormClosing);
             this.Load += new System.EventHandler(this.EasyChartProperty_Load);
             this.groupBox5.ResumeLayout(false);
