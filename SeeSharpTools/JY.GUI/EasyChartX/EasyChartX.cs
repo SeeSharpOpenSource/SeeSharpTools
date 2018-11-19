@@ -703,9 +703,6 @@ namespace SeeSharpTools.JY.GUI
             this._chart.KeyPress += (sender, args) => OnKeyPress(args);
             this._chart.Enter += (sender, args) => OnEnter(args);
             this._chart.Leave += (sender, args) => OnLeave(args);
-            this._chart.Resize += (sender, args) => OnResize(args);
-            this._chart.VisibleChanged += (sender, args) => OnVisibleChanged(args);
-            this._chart.EnabledChanged += (sender, args) => OnEnabledChanged(args);
         }
 
         #endregion  // Constructor
