@@ -197,7 +197,7 @@ namespace SeeSharpTools.JY.GUI
         }
 
         [
-        ReadOnly(true)
+        ReadOnly(true),
         Category("Appearance"),
         ]
         public Brush BackgroundBrush
@@ -441,9 +441,9 @@ namespace SeeSharpTools.JY.GUI
 
         public enum TextDirection
         {
-            RightToLeft
-                , LeftToRight
-                , Bouncing
+            RightToLeft,
+            LeftToRight,
+            Bouncing
         }
     }
 
