@@ -421,6 +421,20 @@ namespace SeeSharpTools.JY.GUI
         }
 
         /// <summary>
+        /// Axis label angle
+        /// </summary>
+        [
+            Browsable(true),
+            Category("Design"),
+            Description("Specify or get the axis label angle.")
+        ]
+        public int LabelAngle
+        {
+            get { return _baseAxis.LabelStyle.Angle; }
+            set { _baseAxis.LabelStyle.Angle = value; }
+        }
+
+        /// <summary>
         /// Is major grid enable
         /// 是否使能Major Grid
         /// </summary>
@@ -757,6 +771,7 @@ namespace SeeSharpTools.JY.GUI
             this.IsLogarithmic = template.IsLogarithmic;
             this.LabelEnabled = template.LabelEnabled;
             this.LabelFormat = template.LabelFormat;
+            this.LabelAngle = template.LabelAngle;
 
             this.MajorGridEnabled = template.MajorGridEnabled;
             this.MajorGridColor = template.MajorGridColor;
