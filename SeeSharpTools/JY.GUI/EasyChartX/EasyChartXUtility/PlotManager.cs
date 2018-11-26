@@ -119,14 +119,15 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         /// <param name="xStart"></param>
         /// <param name="xstep"></param>
         /// <param name="yData"></param>
-        public void AddPlotData(double xStart, double xstep, double[,] yData)
+        /// <param name="rowDirection"></param>
+        public void AddPlotData(double xStart, double xstep, double[,] yData, bool rowDirection)
         {
             // 如果是连续绘图且已经达到线数上限则直接返回
             if (CumulativePlot && _plotSeriesCount >= MaxSeriesCount)
             {
                 return;
             }
-            int lineNum = yData.GetLength(0);
+            int lineNum = rowDirection ? yData.GetLength(0) : yData.GetLength(1);
             _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
             if (_plotSeriesCount > MaxSeriesCount)
             {
@@ -136,7 +137,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             IsPlotting = true;
             AdaptPlotDatasCount(1);
             AdaptSeriesCount();
-            PlotDatas[PlotDatas.Count - 1].SaveData(xStart, xstep, yData, lineNum);
+            PlotDatas[PlotDatas.Count - 1].SaveData(xStart, xstep, yData, lineNum, rowDirection);
         }
 
         /*
@@ -213,7 +214,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         }
 
         // TODO 后期优化，记录当前Series的Plot范围，然后再判断是否需要重新Plot
-        // 在begin和end区间内绘制单条曲线。如果forceRefresh为true时(调用Plot方法时)始终更新绘图。
+        // 在begin和end区间内绘制单条曲线，分区视图使用。如果forceRefresh为true时(调用Plot方法时)始终更新绘图。
         // 如果forceRefresh为false时(用户进行缩放等操作时)如果判断数据区间和原来的兼容(稀疏比相同且是上次绘图范围的子集则无需更新)
         // 使用forceRefresh是为了避免在数据量过大，用户缩放后拖动滚动条会比较卡顿的问题
         internal void PlotDataInRange(double beginXValue, double endXValue, int seriesIndex, bool forceRefresh = false)
@@ -228,22 +229,24 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             bool isNeedRefreshPlot = dataEntity.FillPlotDataInRange(beginXValue, endXValue, forceRefresh, lineIndex);
             if (isNeedRefreshPlot)
             {
-                IList<double> xDataBuf = dataEntity.PlotBuf.GetXData();
-                IList<IList<double>> yDataBuf = dataEntity.PlotBuf.GetYData();
-                if (PlotSeries[seriesIndex].Points.Count == dataEntity.PlotBuf.PlotSize)
+                PlotBuffer plotBuffer = dataEntity.PlotBuf;
+                if (PlotSeries[seriesIndex].Points.Count == plotBuffer.PlotSize)
                 {
-                    for (int i = 0; i < dataEntity.PlotBuf.PlotSize; i++)
+                    for (int i = 0; i < plotBuffer.PlotSize; i++)
                     {
-                        if (PlotSeries[seriesIndex].Points[i].IsEmpty && !double.IsNaN(yDataBuf[lineIndex][i]))
+                        double yValue = plotBuffer.YPlotBuffer[lineIndex][i];
+                        PlotSeries[seriesIndex].Points[i].SetValueXY(plotBuffer.XPlotBuffer[i], yValue);
+                        if (PlotSeries[seriesIndex].Points[i].IsEmpty && !double.IsNaN(yValue))
                         {
                             PlotSeries[seriesIndex].Points[i].IsEmpty = false;
                         }
-                        PlotSeries[seriesIndex].Points[i].SetValueXY(xDataBuf[i], yDataBuf[lineIndex][i]);
                     }
                 }
                 else
                 {
-                    PlotSeries[seriesIndex].Points.DataBindXY(xDataBuf, yDataBuf[lineIndex]);
+                    IList<double> xDataBuf = plotBuffer.GetXPlotDataCollection();
+                    IList<double> yDataBuf = plotBuffer.GetYPlotDataCollection(lineIndex);
+                    PlotSeries[seriesIndex].Points.DataBindXY(xDataBuf, yDataBuf);
                 }
                 // 如果有校验Nan数据，则将标记为Nan数据的点不显示
                 if (DataCheckParams.CheckNaN)
@@ -257,7 +260,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             }
         }
 
-        // 在begin和end区间内绘制所有曲线。如果forceRefresh为true时(调用Plot方法时)始终更新绘图。
+        // 在begin和end区间内绘制所有曲线，在主视图使用。如果forceRefresh为true时(调用Plot方法时)始终更新绘图。
         // 如果forceRefresh为false时(用户进行缩放等操作时)如果判断数据区间和原来的兼容(稀疏比相同且是上次绘图范围的子集则无需更新)
         // 使用forceRefresh是为了避免在数据量过大，用户缩放后拖动滚动条会比较卡顿的问题
         internal void PlotDataInRange(double beginXValue, double endXValue, bool forceRefresh = false)
@@ -267,36 +270,55 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             {
                 // 根据begin和end的范围，将数据填充到PlotBuffer中。如果无需更新绘图则返回false。
                 bool isNeedRefreshPlot = dataEntity.FillPlotDataInRange(beginXValue, endXValue, forceRefresh, -1);
-                
+                PlotBuffer plotBuffer = dataEntity.PlotBuf;
                 if (isNeedRefreshPlot)
                 {
-                    IList<double> xDataBuf = dataEntity.PlotBuf.GetXData();
-                    IList<IList<double>> yDataBuf = dataEntity.PlotBuf.GetYData();
-                    for (int lineIndex = 0; lineIndex < dataEntity.DataInfo.LineNum; lineIndex++)
+                    bool pointCountChanged = false;
+                    for (int i = seriesIndex; i < seriesIndex + dataEntity.DataInfo.LineNum; i++)
                     {
-                        //                        PlotSeries[seriesIndex++].Points.DataBindXY(dataEntity.Buffer.XPlotBuffer,
-                        //                            dataEntity.Buffer.YPlotBuffer[j]);
-                        if (PlotSeries[seriesIndex].Points.Count == dataEntity.PlotBuf.PlotSize)
+                        if (PlotSeries[i].Points.Count != plotBuffer.PlotSize)
                         {
-                            for (int i = 0; i < dataEntity.PlotBuf.PlotSize; i++)
+                            pointCountChanged = true;
+                            break;
+                        }
+                    }
+                    //如果点的个数和上次相同，则直接使用PlotBuffer的数据直接更新点的数据
+                    if (!pointCountChanged)
+                    {
+                        for (int lineIndex = 0; lineIndex < dataEntity.DataInfo.LineNum; lineIndex++)
+                        {
+                            for (int i = 0; i < plotBuffer.PlotSize; i++)
                             {
-                                if (PlotSeries[seriesIndex].Points[i].IsEmpty && !double.IsNaN(yDataBuf[lineIndex][i]))
+                                double yValue = plotBuffer.YPlotBuffer[lineIndex][i];
+                                PlotSeries[seriesIndex].Points[i].SetValueXY(plotBuffer.XPlotBuffer[i], yValue);
+                                if (PlotSeries[seriesIndex].Points[i].IsEmpty && !double.IsNaN(yValue))
                                 {
                                     PlotSeries[seriesIndex].Points[i].IsEmpty = false;
                                 }
-                                PlotSeries[seriesIndex].Points[i].SetValueXY(xDataBuf[i], yDataBuf[lineIndex][i]);
                             }
+                            // 如果有校验Nan数据，则将标记为Nan数据的点不显示
+                            if (DataCheckParams.CheckNaN)
+                            {
+                                HideNanDataPoint(seriesIndex);
+                            }
+                            seriesIndex++;
                         }
-                        else
+                    }
+                    // 如果点的个数和上次不同，则使用数据绑定，则获取当前点的数据集合，直接绑定点的数据到Chart
+                    else
+                    {
+                        IList<double> xDataBuf = plotBuffer.GetXPlotDataCollection();
+                        IList<IList<double>> yDataBuf = plotBuffer.GetYPlotDataCollections();
+                        for (int lineIndex = 0; lineIndex < dataEntity.DataInfo.LineNum; lineIndex++)
                         {
                             PlotSeries[seriesIndex].Points.DataBindXY(xDataBuf, yDataBuf[lineIndex]);
+                            // 如果有校验Nan数据，则将标记为Nan数据的点不显示
+                            if (DataCheckParams.CheckNaN)
+                            {
+                                HideNanDataPoint(seriesIndex);
+                            }
+                            seriesIndex++;
                         }
-                        // 如果有校验Nan数据，则将标记为Nan数据的点不显示
-                        if (DataCheckParams.CheckNaN)
-                        {
-                            HideNanDataPoint(seriesIndex);
-                        }
-                        seriesIndex++;
                     }
                 }
                 else

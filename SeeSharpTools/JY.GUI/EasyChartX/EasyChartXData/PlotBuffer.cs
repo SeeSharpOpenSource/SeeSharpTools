@@ -423,7 +423,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         #region Utility
 
-        public IList<double> GetXData()
+        public IList<double> GetXPlotDataCollection()
         {
 //            if (ReferenceEquals(XPlotBuffer, _xPlotBuffer))
 //            {
@@ -436,7 +436,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             return (XPlotBuffer as List<double>).GetRange(0, _plotSize);
         }
 
-        public IList<IList<double>> GetYData()
+        public IList<IList<double>> GetYPlotDataCollections()
         {
             if (ReferenceEquals(YPlotBuffer, _yPlotBuffer))
             {
@@ -447,6 +447,19 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                 }
             }
             return _yShallowBuffer;
+        }
+
+        public IList<double> GetYPlotDataCollection(int lineIndex)
+        {
+            if (ReferenceEquals(YPlotBuffer, _yPlotBuffer))
+            {
+                List<double> yPlotData = _yPlotBuffer[lineIndex] as List<double>;
+                return yPlotData.GetRange(0, _plotSize);
+            }
+            else
+            {
+                return _yShallowBuffer[lineIndex];
+            }
         }
 
         private static int GetSparseRatio(int count, out int plotCount)
