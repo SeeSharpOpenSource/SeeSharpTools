@@ -739,7 +739,8 @@ namespace SeeSharpTools.JY.GUI
         /// <param name="yData"> waveforms to plot, each line in y[,] represents a single waveform</param>
         /// <param name="xStart">offset value for generating x sequence using "offset + (Increment * i)"</param>
         /// <param name="xIncrement">increment value for generating x sequence using "offset + (Increment * i)"</param>
-        public void Plot(double[,] yData, double xStart = 0, double xIncrement = 1)
+        /// <param name="rowDirection">Specify whether plot data by rows.</param>
+        public void Plot(double[,] yData, double xStart = 0, double xIncrement = 1, bool rowDirection = true)
         {
             // Plot的流程
             // 1. 将绘图数据保存到plotmanager的PlotDatas的DataEntity结构中
@@ -747,8 +748,7 @@ namespace SeeSharpTools.JY.GUI
             // 3. 根据待绘制的数据更新坐标轴和游标部分与数据相关的配置
             // 4. 根据坐标轴当前的缩放范围进行绘图
             int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xStart, xIncrement, yData);
-
+            _plotManager.AddPlotData(xStart, xIncrement, yData, rowDirection);
             AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
@@ -917,7 +917,8 @@ namespace SeeSharpTools.JY.GUI
         /// <param name="yData"> waveforms to plot, each line in y[,] represents a single waveform. Supported data type: float/int/uint/short/ushort.</param>
         /// <param name="xStart">offset value for generating x sequence using "offset + (Increment * i)"</param>
         /// <param name="xIncrement">increment value for generating x sequence using "offset + (Increment * i)"</param>
-        public void Plot<TDataType>(TDataType[,] yData, double xStart = 0, double xIncrement = 1)
+        /// <param name="rowDirection">Specify whether plot data by rows.</param>
+        public void Plot<TDataType>(TDataType[,] yData, double xStart = 0, double xIncrement = 1, bool rowDirection = true)
         {
             if (null == _convertor)
             {
@@ -930,8 +931,7 @@ namespace SeeSharpTools.JY.GUI
             double[,] convertedYData = _convertor.Convert(yData, yData.GetLength(0), yData.GetLength(1));
 
             int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xStart, xIncrement, convertedYData);
-
+            _plotManager.AddPlotData(xStart, xIncrement, convertedYData, rowDirection);
             AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();

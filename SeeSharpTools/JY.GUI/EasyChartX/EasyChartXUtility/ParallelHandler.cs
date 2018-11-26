@@ -9,7 +9,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 {
     internal class ParallelHandler
     {
-        const int MinParallelCalcCount = 4000;
+        const int MinParallelCalcCount = 8000;
 
         private readonly ParallelOptions _option;
         private readonly object _parallelLock = new object();
@@ -493,5 +493,53 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         {
             return (count - 1) / _option.MaxDegreeOfParallelism + 1;
         }
+
+        #region Transpose function
+
+        private double[,] _transposeSrc;
+        private double[] _transposeDst;
+
+        public void Transpose(double[,] src, double[] dst)
+        {
+            int sampleCount = src.GetLength(0);
+            if (src.Length <= MinParallelCalcCount)
+            {
+                _blockSize = sampleCount;
+                TransposeSingleBlock(0, null);
+            }
+            else
+            {
+                _transposeSrc = src;
+                _transposeDst = dst;
+                _blockSize = GetBlockSize(sampleCount);
+                // 将m行n列的矩阵分解为m/x行n列的矩阵分别转置，x为并行度
+                Parallel.For(0, _option.MaxDegreeOfParallelism, TransposeSingleBlock);
+                _transposeSrc = null;
+                _transposeDst = null;
+            }
+        }
+
+        private void TransposeSingleBlock(int blockIndex, object state)
+        {
+            int startRowIndex = blockIndex*_blockSize;
+            int endRowIndex = startRowIndex + _blockSize;
+            int sampleCount = _transposeSrc.GetLength(0);
+            if (endRowIndex > sampleCount)
+            {
+                endRowIndex = sampleCount;
+            }
+            int lineCount = _transposeSrc.GetLength(1);
+            for (int colIndex = 0; colIndex < lineCount; colIndex++)
+            {
+                int writeIndex = lineCount*sampleCount + startRowIndex;
+                for (int rowIndex = startRowIndex; rowIndex < endRowIndex; rowIndex++)
+                {
+                    _transposeDst[writeIndex++] = _transposeSrc[rowIndex, colIndex];
+                }
+            }
+        }
+
+        #endregion
+
     }
 }

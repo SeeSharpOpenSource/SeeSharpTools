@@ -106,7 +106,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             InitViewRange();
         }
 
-        public void SaveData(double xStart, double xIncrement, double[,] yData, int lineCount)
+        public void SaveData(double xStart, double xIncrement, double[,] yData, int lineCount, bool rowDirection)
         {
             DataInfo.XDataInputType = XDataInputType.Increment;
             //            DataInfo.XDataType = XDataType.Number;
@@ -127,7 +127,14 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             {
                 _transBuf = new double[yData.Length];
             }
-            Buffer.BlockCopy(yData, 0, _transBuf, 0, lineCount* DataInfo.Size*sizeof(double));
+            if (rowDirection || 1 == lineCount)
+            {
+                Buffer.BlockCopy(yData, 0, _transBuf, 0, lineCount * DataInfo.Size * sizeof(double));
+            }
+            else
+            {
+                Parallel.Transpose(yData, _transBuf);
+            }
             YData = SaveDataToBuf(YData, _transBuf);
 
             CheckInvalidData();
