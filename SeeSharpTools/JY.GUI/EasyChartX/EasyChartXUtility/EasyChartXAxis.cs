@@ -203,7 +203,15 @@ namespace SeeSharpTools.JY.GUI
             }
             else
             {
-                RefreshAxisRange();
+                // 如果用户配置值非法，则自动计算
+                if (_specifiedMax <= _specifiedMin)
+                {
+                    SetAxisRange(_maxData, _minData);
+                }
+                else
+                {
+                    SetAxisRange(_specifiedMax, _specifiedMin);
+                }
                 if (IsYAxis())
                 {
                     RefreshYMajorGridInterval();
