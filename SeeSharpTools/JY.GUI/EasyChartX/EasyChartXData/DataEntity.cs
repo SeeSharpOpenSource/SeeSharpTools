@@ -63,7 +63,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             XData = SaveDataToBuf(XData, xData);
             YData = SaveDataToBuf(YData, yData);
             
-            PerformDataCheck();
+            CheckInvalidData();
 
             _transBuf = null;
 
@@ -97,7 +97,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             XData?.Clear();
             YData = SaveDataToBuf(YData, yData);
 
-            PerformDataCheck();
+            CheckInvalidData();
 
             _transBuf = null;
 
@@ -130,7 +130,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             Buffer.BlockCopy(yData, 0, _transBuf, 0, lineCount* DataInfo.Size*sizeof(double));
             YData = SaveDataToBuf(YData, _transBuf);
 
-            PerformDataCheck();
+            CheckInvalidData();
 
             //            YStrData = null;
 
@@ -195,7 +195,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             }
         }
 
-        private void PerformDataCheck()
+        private void CheckInvalidData()
         {
             if (_dataCheckParams.IsCheckDisabled())
             {
@@ -586,6 +586,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             {
                 List<T> listBuf = buffer as List<T>;
                 listBuf.Clear();
+                AdaptBufferCapacity(data.Count, listBuf);
                 listBuf.AddRange(data);
             }
             return buffer;
@@ -604,6 +605,18 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                 List<double> yDataList = YData as List<double>;
                 List<double> singleLineData = yDataList.GetRange(lineIndex*DataInfo.Size, DataInfo.Size);
                 Parallel.GetMaxAndMin(singleLineData, out maxYValue, out minYValue);
+            }
+        }
+
+        private static void AdaptBufferCapacity<TType>(int size, List<TType> buffer)
+        {
+            if (buffer.Capacity < size)
+            {
+                buffer.Capacity = size;
+            }
+            else if (size < buffer.Capacity/5)
+            {
+                buffer.Capacity = size;
             }
         }
 
