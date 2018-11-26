@@ -404,12 +404,12 @@ namespace SeeSharpTools.JY.GUI
 
         private string _labelFormat;
         /// <summary>
-        /// Specify or get the axis label format. Only available for axis Y.
+        /// Specify or get the axis label format.
         /// </summary>
         [
             Browsable(true),
             Category("Design"),
-            Description("Specify or get the axis label format. Only available for axis Y.")
+            Description("Specify or get the axis label format.")
         ]
         public string LabelFormat
         {
