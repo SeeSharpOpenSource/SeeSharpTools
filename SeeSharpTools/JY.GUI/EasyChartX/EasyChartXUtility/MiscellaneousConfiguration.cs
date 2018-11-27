@@ -40,7 +40,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             get { return Constants.MaxPointsInSingleSeries; }
             set
             {
-                if (value <= 0)
+                if (value < 2)
                 {
                     return;
                 }
