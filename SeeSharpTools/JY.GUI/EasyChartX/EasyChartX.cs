@@ -232,6 +232,48 @@ namespace SeeSharpTools.JY.GUI
         }
 
         /// <summary>
+        /// Get or set the font of Legend.
+        /// </summary>
+        [
+            Browsable(true),
+            Category("Appearance"),
+            Description("Get or set the font of Legend.")
+        ]
+        public Font LegendFont
+        {
+            get
+            {
+                return _chart.Legends[0].Font;
+            }
+
+            set
+            {
+                _chart.Legends[0].Font = value;
+            }
+        }
+
+        /// <summary>
+        /// Get or set the fore color of Legend.
+        /// </summary>
+        [
+            Browsable(true),
+            Category("Appearance"),
+            Description("Get or set the fore color of Legend.")
+        ]
+        public Color LegendForeColor
+        {
+            get
+            {
+                return _chart.Legends[0].ForeColor;
+            }
+
+            set
+            {
+                _chart.Legends[0].ForeColor = value;
+            }
+        }
+
+        /// <summary>
         /// Specify or get whether legend visible.
         /// </summary>
         [
