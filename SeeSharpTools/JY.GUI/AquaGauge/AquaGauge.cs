@@ -37,8 +37,27 @@ namespace SeeSharpTools.JY.GUI
         float toAngle = 405F;
         private bool enableTransparentBackground;
         private bool requiresRedraw;
-        private Image backgroundImg;
         private Rectangle rectImg;
+
+        #region Painting items
+
+        private Image _backgroundImage;
+        private Graphics _backgroundGraphics;
+
+        private Image _pointImage;
+        private Graphics _pointerGraphics;
+
+        private SolidBrush _transparentBrush;
+        private SolidBrush _backgroundBrush;
+        private SolidBrush _slategrayBrush;
+        private SolidBrush _grayBrush;
+        private SolidBrush _foreBrush;
+        private SolidBrush _blackBrush;
+
+        #endregion
+
+
+
         #endregion
 
         public AquaGauge()
@@ -61,6 +80,16 @@ namespace SeeSharpTools.JY.GUI
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             base.BackColor = Color.Transparent;
             this.Resize += new EventHandler(AquaGauge_Resize);
+            this.FontChanged += (sender, args) =>
+            {
+                this.RefreshBrush();
+                this.Refresh();
+            };
+            this.ForeColorChanged += (sender, args) =>
+            {
+                this.RefreshBrush();
+                this.Refresh();
+            };
             this.requiresRedraw = true;
             this.Size = new Size(215,215);
             this.Max = 100;
@@ -311,41 +340,38 @@ namespace SeeSharpTools.JY.GUI
             }
 
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-            e.Graphics.FillRectangle(new SolidBrush(Color.Transparent), new Rectangle(0, 0, Width, Height));
-            if (backgroundImg == null || requiresRedraw)
+            e.Graphics.FillRectangle(_transparentBrush, new Rectangle(0, 0, Width, Height));
+            if (requiresRedraw)
             {
-                backgroundImg = new Bitmap(this.Width, this.Height);
-                Graphics g = Graphics.FromImage(backgroundImg);
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                this._backgroundGraphics.Clear(Color.Transparent);
+                _backgroundGraphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                 width = this.Width - x * 2;
                 height = this.Height - y * 2;
                 rectImg = new Rectangle(x, y, width, height);
 
                 //Draw background color
-                Brush backGroundBrush = new SolidBrush(Color.FromArgb(120, dialColor));
                 if (enableTransparentBackground && this.Parent != null)
                 {
                     float gg = width / 60;
                     //g.FillEllipse(new SolidBrush(this.Parent.BackColor), -gg, -gg, this.Width+gg*2, this.Height+gg*2);
                 }
-                g.FillEllipse(backGroundBrush, x, y, width, height);
+                _backgroundGraphics.FillEllipse(this._backgroundBrush, x, y, width, height);
 
                 //Draw Rim
-                SolidBrush outlineBrush = new SolidBrush(Color.FromArgb(100, Color.SlateGray));
-                Pen outline = new Pen(outlineBrush, (float)(width * .03));
-                g.DrawEllipse(outline, rectImg);
+                Pen outline = new Pen(this._slategrayBrush, (float)(width * .03));
+                _backgroundGraphics.DrawEllipse(outline, rectImg);
                 Pen darkRim = new Pen(Color.SlateGray);
-                g.DrawEllipse(darkRim, x, y, width, height);
+                _backgroundGraphics.DrawEllipse(darkRim, x, y, width, height);
 
                 //Draw Callibration
-                DrawCalibration(g, rectImg, ((width) / 2) + x, ((height) / 2) + y);
+                DrawCalibration(_backgroundGraphics, rectImg, ((width) / 2) + x, ((height) / 2) + y);
 
                 //Draw Colored Rim
                 Pen colorPen = new Pen(Color.FromArgb(190, Color.Gainsboro), this.Width / 40);
                 Pen blackPen = new Pen(Color.FromArgb(250, Color.Black), this.Width / 200);
                 int gap = (int)(this.Width * 0.03F);
                 Rectangle rectg = new Rectangle(rectImg.X + gap, rectImg.Y + gap, rectImg.Width - gap * 2, rectImg.Height - gap * 2);
-                g.DrawArc(colorPen, rectg, 135, 270);
+                _backgroundGraphics.DrawArc(colorPen, rectg, 135, 270);
 
                 //Draw Threshold
                 colorPen = new Pen(Color.FromArgb(200, Color.LawnGreen), this.Width / 50);
@@ -358,20 +384,20 @@ namespace SeeSharpTools.JY.GUI
                 if (stAngle <= 135) stAngle = 135;
                 float sweepAngle = ((270 * threshold) / 100);
                 if (stAngle + sweepAngle > 405) sweepAngle = 405 - stAngle;
-                g.DrawArc(colorPen, rectg, stAngle, sweepAngle);
+                _backgroundGraphics.DrawArc(colorPen, rectg, stAngle, sweepAngle);
 
                 //Draw Digital Value
                 RectangleF digiRect = new RectangleF((float)this.Width / 2F - (float)this.width / 5F, (float)this.height / 1.2F, (float)this.width / 2.5F, (float)this.Height / 9F);
                 RectangleF digiFRect = new RectangleF(this.Width / 2 - this.width / 7, (int)(this.height / 1.18), this.width / 4, this.Height / 12);
-                g.FillRectangle(new SolidBrush(Color.FromArgb(30, Color.Gray)), digiRect);
-                DisplayNumber(g, (float)this.currentValue, digiFRect);
+                _backgroundGraphics.FillRectangle(this._grayBrush, digiRect);
+                DisplayNumber(_backgroundGraphics, (float)this.currentValue, digiFRect);
 
-                SizeF textSize = g.MeasureString(this.dialText, this.Font);
+                SizeF textSize = _backgroundGraphics.MeasureString(this.dialText, this.Font);
                 RectangleF digiFRectText = new RectangleF(this.Width / 2 - textSize.Width / 2, (int)(this.height / 1.5), textSize.Width, textSize.Height);
-                g.DrawString(dialText, this.Font, new SolidBrush(this.ForeColor), digiFRectText);
+                _backgroundGraphics.DrawString(dialText, this.Font, this._foreBrush, digiFRectText);
                 requiresRedraw = false;
             }
-            e.Graphics.DrawImage(backgroundImg, rectImg);
+            e.Graphics.DrawImage(_backgroundImage, rectImg);
         }
 
         protected override CreateParams CreateParams
@@ -397,9 +423,8 @@ namespace SeeSharpTools.JY.GUI
             float radius = this.Width / 2 - (this.Width * .12F);
             float val = (float)(Max - Min);
 
-            Image img = new Bitmap(this.Width, this.Height);
-            Graphics g = Graphics.FromImage(img);
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            this._pointerGraphics.Clear(Color.Transparent);
+            this._pointerGraphics.SmoothingMode = SmoothingMode.AntiAlias;
 
             val = (float)(100 * (this.currentValue - Min)) / val;
             val = ((toAngle - fromAngle) * val) / 100;
@@ -427,8 +452,7 @@ namespace SeeSharpTools.JY.GUI
             pts[3].X = (float)(cx + (this.Width * .09F) * Math.Cos(angle));
             pts[3].Y = (float)(cy + (this.Width * .09F) * Math.Sin(angle));
 
-            Brush pointer = new SolidBrush(Color.Black);
-            g.FillPolygon(pointer, pts);
+            this._pointerGraphics.FillPolygon(this._blackBrush, pts);
 
             PointF[] shinePts = new PointF[3];
             angle = GetRadian(val);
@@ -443,14 +467,14 @@ namespace SeeSharpTools.JY.GUI
             shinePts[2].Y = cy;
 
             LinearGradientBrush gpointer = new LinearGradientBrush(shinePts[0], shinePts[2], Color.SlateGray, Color.Black);
-            g.FillPolygon(gpointer, shinePts);
+            this._pointerGraphics.FillPolygon(gpointer, shinePts);
 
             Rectangle rect = new Rectangle(x, y, width, height);
-            DrawCenterPoint(g, rect, ((width) / 2) + x, ((height) / 2) + y);
+            DrawCenterPoint(this._pointerGraphics, rect, ((width) / 2) + x, ((height) / 2) + y);
 
-            DrawGloss(g);
+            DrawGloss(this._pointerGraphics);
 
-            gr.DrawImage(img, 0, 0);
+            gr.DrawImage(this._pointImage, 0, 0);
         }
 
         /// <summary>
@@ -542,11 +566,10 @@ namespace SeeSharpTools.JY.GUI
                 StringFormat format = new StringFormat();
                 tx = (float)(cX + (radius - Width / 10) * Math.Cos(currentAngle));
                 ty = (float)(cY - shift + (radius - Width / 10) * Math.Sin(currentAngle));
-                Brush stringPen = new SolidBrush(this.ForeColor);
                 StringFormat strFormat = new StringFormat(StringFormatFlags.NoClip);
                 strFormat.Alignment = StringAlignment.Center;
                 Font f = new Font(this.Font.FontFamily, (float)(this.Width / 23), this.Font.Style);
-                g.DrawString(rulerValue.ToString() + "", f, stringPen, new PointF(tx, ty), strFormat);
+                g.DrawString(rulerValue.ToString() + "", f, this._foreBrush, new PointF(tx, ty), strFormat);
                 rulerValue += (float)((Max - Min) / (noOfParts - 1));
                 rulerValue = (float)Math.Round(rulerValue, 2);
 
@@ -823,9 +846,25 @@ namespace SeeSharpTools.JY.GUI
                 this.Width = this.Height;
                 oldWidth = this.Width;
             }
+            this._pointImage = new Bitmap(this.Width, this.Height);
+            this._pointerGraphics = Graphics.FromImage(this._pointImage);
+            this._backgroundImage = new Bitmap(this.Width, this.Height);
+            this._backgroundGraphics = Graphics.FromImage(this._backgroundImage);
+            RefreshBrush();
             requiresRedraw = true;
             this.Invalidate();
         }
+
+        private void RefreshBrush()
+        {
+            this._transparentBrush = new SolidBrush(Color.Transparent);
+            this._grayBrush = new SolidBrush(Color.FromArgb(30, Color.Gray));
+            this._blackBrush = new SolidBrush(Color.Black);
+            this._slategrayBrush = new SolidBrush(Color.FromArgb(100, Color.SlateGray));
+            this._foreBrush = new SolidBrush(this.ForeColor);
+            this._backgroundBrush = new SolidBrush(Color.FromArgb(120, dialColor));
+        }
+
         #endregion
     }
 }
