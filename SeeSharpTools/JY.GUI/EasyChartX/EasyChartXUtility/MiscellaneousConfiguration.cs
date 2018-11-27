@@ -28,24 +28,23 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         }
 
         /// <summary>
-        /// The maximum point count of series in a single view.
+        /// The maximum point count in a series.
         /// </summary>
         // TODO 该属性暂时配置对序列化
         [
             Category("Series"),
-            DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-            Description("The maximum point count of series in a single view.")
+            Description("The maximum point count in a series")
         ]
         public int MaxSeriesPointCount
         {
-            get { return _plotManager.MaxSeriesCount; }
+            get { return Constants.MaxPointsInSingleSeries; }
             set
             {
                 if (value <= 0)
                 {
                     return;
                 }
-                _plotManager.MaxSeriesCount = value;
+                Constants.MaxPointsInSingleSeries = value;
             }
         }
 

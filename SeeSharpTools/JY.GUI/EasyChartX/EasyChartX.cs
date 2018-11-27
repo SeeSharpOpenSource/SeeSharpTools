@@ -525,7 +525,7 @@ namespace SeeSharpTools.JY.GUI
             DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
             Editor(typeof(PropertyClonableClassEditor), typeof(UITypeEditor)),
             Description("Split view layout configure."),
-            EditorBrowsable(EditorBrowsableState.Always)
+            EditorBrowsable(EditorBrowsableState.Never)
         ]
         public MiscellaneousConfiguration Miscellaneous { get; internal set; }
 

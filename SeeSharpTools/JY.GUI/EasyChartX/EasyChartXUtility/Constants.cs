@@ -25,7 +25,7 @@
         // 非对数绘图时Y轴主网格的个数
         public const int DefaultYMajorGridCount = 6;
         // 单条线最多显示的点数
-        public const int MaxPointsInSingleSeries = 4000;
+        public static int MaxPointsInSingleSeries = 4000;
         // 默认每个DataEntity的线条容量
         public const int DefaultLineCapacity = 8;
         // 默认的Series的线条容量

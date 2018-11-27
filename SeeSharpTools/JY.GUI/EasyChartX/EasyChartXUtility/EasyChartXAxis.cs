@@ -119,9 +119,9 @@ namespace SeeSharpTools.JY.GUI
         {
             get
             {
-                bool isMaxAndMinValid = (double.IsNaN(_specifiedMax) && double.IsNaN(_specifiedMin)) ||
-                    (!double.IsNaN(_specifiedMax) && !double.IsNaN(_specifiedMin) && (_specifiedMax > _specifiedMin));
-                return _autoScale && isMaxAndMinValid;
+                bool isMaxAndMinValid = (!double.IsNaN(_specifiedMax) && !double.IsNaN(_specifiedMin) && 
+                    (_specifiedMax - _specifiedMin > Constants.MinLegalInterval));
+                return _autoScale || !isMaxAndMinValid;
             }
             set
             {

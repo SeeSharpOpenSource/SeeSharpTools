@@ -290,7 +290,7 @@ namespace SeeSharpTools.JY.GUI
             // TODO just for test
             if (!double.IsNaN(yValue))
             {
-                showInfo += $"  Y:{yValue}";
+                showInfo += $"{Environment.NewLine}Y:{yValue}";
             }
 
             _parentChart.ShowDynamicValue(showInfo, cursor.Control.Location, isShow);
