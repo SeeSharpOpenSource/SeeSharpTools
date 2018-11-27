@@ -122,9 +122,9 @@ namespace SeeSharpTools.JY.GUI
                 {
                     return false;
                 }
-                bool isMaxAndMinValid = (double.IsNaN(_specifiedMax) && double.IsNaN(_specifiedMin)) ||
-                    (!double.IsNaN(_specifiedMax) && !double.IsNaN(_specifiedMin) && (_specifiedMax > _specifiedMin));
-                return _autoScale && isMaxAndMinValid;
+                bool isMaxAndMinValid = (!double.IsNaN(_specifiedMax) && !double.IsNaN(_specifiedMin) && 
+                    (_specifiedMax - _specifiedMin > Constants.MinLegalInterval));
+                return _autoScale || !isMaxAndMinValid;
             }
             set
             {
@@ -207,7 +207,15 @@ namespace SeeSharpTools.JY.GUI
             }
             else
             {
-                RefreshAxisRange();
+                // 如果用户配置值非法，则自动计算
+                if (_specifiedMax <= _specifiedMin)
+                {
+                    SetAxisRange(_maxData, _minData);
+                }
+                else
+                {
+                    SetAxisRange(_specifiedMax, _specifiedMin);
+                }
                 RefreshGridsAndLabels();
             }
         }
