@@ -684,6 +684,7 @@
     <None Include="Resources\EasyButton\web.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="StripChartX\StripChartX.bmp" />
     <Content Include="ViewController\ViewController.bmp" />
     <EmbeddedResource Include="SwitchArray\SwitchArray.bmp" />
     <EmbeddedResource Include="StripChart\StripChart.bmp" />
