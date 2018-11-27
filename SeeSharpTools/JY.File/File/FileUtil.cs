@@ -276,46 +276,101 @@ namespace SeeSharpTools.JY.File
         public static TDataType[,] StreamReadFromStrFile<TDataType>(StreamReader reader, uint lineCount, string delims, 
             uint startRow, uint startColumn)
         {
-            string lineData = null;
-            int skipRowIndex = (int) startRow;
+            string lineData = null;//定义一个字符串做每一行的数据
+            int skipRowIndex = (int) startRow;//将开始的行数作为当前读取的行数索引
             do
             {
-                lineData = reader.ReadLine();
+                lineData = reader.ReadLine();//在数据流中读取一行
             } while (skipRowIndex-- > 0 && null != lineData);
             // 读取到startRow的下一行，如果为空，则返回null
             if (null == lineData)
             {
                 return null;
             }
+          
             IConvertor convertor = GetConvertor<TDataType>();
-            char[] delimArray = delims.ToCharArray();
-            string[] lineElems = lineData.Split(delimArray);
-            int colCount = lineElems.Length;
+            char[] delimArray = delims.ToCharArray();//把一个“，”复制在字符数组
+            string[] lineElems = lineData.Split(delimArray);//读到的当前行数据使用“，”分隔后，放在字符串数组中lineElems
+            int colCount = lineElems.Length; //将每一行数据的长度定义为列数
             if (startColumn >= colCount)
             {
+                //如果起始列大于列数，则抛错
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.ParamCheckError, 
                     i18n.GetStr("ParamCheck.InvalidColIndex"));
             }
             
-            TDataType[,] readDatas = new TDataType[lineCount, colCount - startColumn];
-            int rowIndex = 0;
-            uint[] columns = new uint[colCount - startColumn];
+            TDataType[,] readDatas = new TDataType[lineCount, colCount - startColumn];//定义一个行为行数，列为列数减起始列数的数组
+            int rowIndex = 0;//行索引
+            uint[] columns = new uint[colCount - startColumn];//列数长度是总列数减去起始列数
             for (int i = 0; i < columns.Length; i++)
             {
-                columns[i] = startColumn++;
+                columns[i] = startColumn++;//列的值从起始列开始增加
             }
-            CopyStrToDst(lineElems, readDatas, convertor, rowIndex++, columns);
-            lineCount--;
+            CopyStrToDst(lineElems, readDatas, convertor, rowIndex++, columns);//原数据为每行数据，读取到readData中，readdata行索引从0开始,列数组
+            lineCount--; //要读取的总行数减一
             while (null != (lineData = reader.ReadLine()) && lineCount > 0)
             {
-                lineElems = lineData.Split(delimArray);
-                CopyStrToDst(lineElems, readDatas, convertor, rowIndex++, columns);
+                //读下一行不为null，且要读取的总行数还大于零
+                lineElems = lineData.Split(delimArray); //再把该行数据用，分开
+                CopyStrToDst(lineElems, readDatas, convertor, rowIndex++, columns);//把该行数据写入readdata里
                 lineCount--;
             }
 
             if (lineCount != 0)
             {
+                //如果要读取的行数不为零，也就是读到的该行为null，调整readData的行数
                 FitArrayRowCountToData(ref readDatas, (int) (readDatas.GetLength(0) - lineCount));
+            }
+            return readDatas;
+        }
+
+        public static TDataType[,] StreamReadFromStrFile<TDataType>(StreamReader reader, uint lineCount,uint columnsCount, string delims,
+    uint startRow, uint startColumn)
+        {
+            string lineData = null;//定义一个字符串做每一行的数据
+            int skipRowIndex = (int)startRow;//将开始的行数作为当前读取的行数索引
+            do
+            {
+                lineData = reader.ReadLine();//在数据流中读取一行
+            } while (skipRowIndex-- > 0 && null != lineData);
+            // 读取到startRow的下一行，如果为空，则返回null
+            if (null == lineData)
+            {
+                return null;
+            }
+       
+            IConvertor convertor = GetConvertor<TDataType>();
+            char[] delimArray = delims.ToCharArray();//把一个“，”复制在字符数组
+            string[] lineElems = lineData.Split(delimArray);//读到的当前行数据使用“，”分隔后，放在字符串数组中lineElems
+           // int colCount = lineElems.Length; //将每一行数据的长度定义为列数
+            //if (startColumn >= colCount)
+            //{
+            //    //如果起始列大于列数，则抛错
+            //    throw new SeeSharpFileException(SeeSharpFileErrorCode.ParamCheckError,
+            //        i18n.GetStr("ParamCheck.InvalidColIndex"));
+            //}
+
+            TDataType[,] readDatas = new TDataType[lineCount, columnsCount];//定义一个行为行数，列为列数减起始列数的数组
+            int rowIndex = 0;//行索引
+            uint[] columns = new uint[columnsCount];//列数长度是总列数减去起始列数
+            for (int i = 0; i < columns.Length; i++)
+            {
+                columns[i] = startColumn++;//列的值从起始列开始增加
+            }
+            CopyStrToDst(lineElems, readDatas, convertor, rowIndex++, columns);//原数据为每行数据，读取到readData中，readdata行索引从0开始,列数组
+            lineCount--; //要读取的总行数减一
+            while (null != (lineData = reader.ReadLine()) && lineCount > 0)
+            {
+                //读下一行不为null，且要读取的总行数还大于零
+                lineElems = lineData.Split(delimArray); //再把该行数据用，分开
+                CopyStrToDst(lineElems, readDatas, convertor, rowIndex++,columns);//把该行数据写入readdata里
+                lineCount--;
+            }
+
+            if (lineCount != 0)
+            {
+                //如果要读取的行数不为零，也就是读到的该行为null，调整readData的行数
+                FitArrayRowCountToData(ref readDatas, (int)(readDatas.GetLength(0) - lineCount));
             }
             return readDatas;
         }

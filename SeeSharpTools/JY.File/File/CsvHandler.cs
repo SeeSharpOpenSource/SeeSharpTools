@@ -68,6 +68,40 @@ namespace SeeSharpTools.JY.File
         ///         <para>The start row index to read, Start from 0.</para>
         ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
         ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///      <param name="columnCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns >
+        ///         <para>The read two dimensional string array</para>
+        ///         <para>Chinese Simplified:读取后的二维string数组</para>
+        ///     </returns>
+        /// </summary>
+        public static string[,] ReadData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0,uint columnCount=0, Encoding encoding = null)
+        {
+            string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
+            return ReadData(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
+
+        /// <summary>
+        /// 在csv文件中读取数据为二维string数组，通过弹窗选择文件路径。
+        /// Read data from csv file as two dimensional string array. File path can be choosen from the GUI.
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
         ///     <param name="columns">
         ///         <para>The columns to read, start from 0.</para>
         ///         <para>Chinese Simplified:读取的列号，从0开始。</para>
@@ -90,7 +124,6 @@ namespace SeeSharpTools.JY.File
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
             return ReadData(filePath, startRow, columns, rowCount, encoding);
         }
-
         /// <summary>
         /// 在 csv文件中读取数据为二维string数组。
         /// Read data from csv file as two dimensional string array.
@@ -127,7 +160,46 @@ namespace SeeSharpTools.JY.File
 //            string[] fileDatas = FileUtil.ReadFileDataAsString(filePath);
 //            return FileUtil.GetStrData(fileDatas, Delims);
         }
+        /// <summary>
+        /// 在 csv文件中读取数据为二维string数组。
+        /// Read data from csv file as two dimensional string array.
+        ///     <param name="filePath">
+        ///         <para>The full path of the file to read.</para>
+        ///         <para>Chinese Simplified:待读取文件的完整路径。</para>
+        ///     </param>
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///      <param name="columnCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns >
+        ///         <para>The read two dimensional string array</para>
+        ///         <para>Chinese Simplified:读取后的二维string数组</para>
+        ///     </returns>
+        /// </summary>
+        public static string[,] ReadData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0,uint columnCount=0, Encoding encoding = null)
+        {
+            FileUtil.CheckFilePath(filePath, FileExtName);
+            return StreamReadData<string>(filePath, startRow, startColumn, rowCount, columnCount,encoding);
 
+            //            string[] fileDatas = FileUtil.ReadFileDataAsString(filePath);
+            //            return FileUtil.GetStrData(fileDatas, Delims);
+        }
         /// <summary>
         /// 在 csv文件中读取数据为二维string数组。
         /// Read data from csv file as two dimensional string array.
@@ -161,9 +233,8 @@ namespace SeeSharpTools.JY.File
             FileUtil.CheckFilePath(filePath, FileExtName);
             return StreamReadData<string>(filePath, startRow, columns, rowCount, encoding);
 
-            //            string[] fileDatas = FileUtil.ReadFileDataAsString(filePath);
-            //            return FileUtil.GetStrData(fileDatas, Delims);
         }
+
 
         /// <summary>
         /// 在csv文件中读取数据为二维double数组，通过弹窗选择文件路径。
@@ -180,6 +251,10 @@ namespace SeeSharpTools.JY.File
         ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
         ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
         ///     </param>
+        ///      <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when columnCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
         ///     <param name="encoding">
         ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
         ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
@@ -194,7 +269,39 @@ namespace SeeSharpTools.JY.File
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
             return ReadDoubleData(filePath, startRow, startColumn, rowCount, encoding);
         }
-
+        /// <summary>
+        /// 在csv文件中读取数据为二维double数组，通过弹窗选择文件路径。
+        /// Read data from csv file as two dimensional double array. File path can be choosen from the GUI.
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///      <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns >
+        ///         <para>The read two dimensional double array</para>
+        ///         <para>Chinese Simplified:读取后的二维double数组</para>
+        ///     </returns>
+        /// </summary>
+        public static double[,] ReadDoubleData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0,uint columnCount=0, Encoding encoding = null)
+        {
+            string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
+            return ReadDoubleData(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
         /// <summary>
         /// 在csv文件中读取数据为二维double数组，通过弹窗选择文件路径。
         /// Read data from csv file as two dimensional double array. File path can be choosen from the GUI.
@@ -260,6 +367,44 @@ namespace SeeSharpTools.JY.File
         }
 
         /// <summary>
+        /// 在csv文件中读取数据为二维double数组。
+        /// Read data from csv file as two dimensional double array.
+        ///     <param name="filePath">
+        ///         <para>The full path of the file to read.</para>
+        ///         <para>Chinese Simplified:待读取文件的完整路径。</para>
+        ///     </param>
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///       <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns >
+        ///         <para>The read two dimensional double array</para>
+        ///         <para>Chinese Simplified:读取后的二维double数组</para>
+        ///     </returns>
+        /// </summary>
+        public static double[,] ReadDoubleData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0, uint columnCount = 0, Encoding encoding = null)
+        {
+            FileUtil.CheckFilePath(filePath, FileExtName);
+            return StreamReadData<double>(filePath, startRow, startColumn, rowCount, columnCount,encoding);
+        }
+        
+        /// <summary>
         /// 在 csv文件中读取数据为二维double数组。
         /// Read data from csv file as two dimensional double array.
         ///     <param name="filePath">
@@ -292,7 +437,7 @@ namespace SeeSharpTools.JY.File
             FileUtil.CheckFilePath(filePath, FileExtName);
             return StreamReadData<double>(filePath, startRow, columns, rowCount, encoding);
         }
-
+        
         /// <summary>
         /// 在csv文件中读取数据为二维float数组，通过弹窗选择文件路径。
         /// Read data from csv file as two dimensional float array. File path can be choosen from the GUI.
@@ -322,7 +467,39 @@ namespace SeeSharpTools.JY.File
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
             return ReadFloatData(filePath, startRow, startColumn, rowCount, encoding);
         }
-
+        /// <summary>
+        /// 在csv文件中读取数据为二维float数组，通过弹窗选择文件路径。
+        /// Read data from csv file as two dimensional float array. File path can be choosen from the GUI.
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///        <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when columnCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns>
+        ///         <para>The read two dimensional float array</para>
+        ///         <para>Chinese Simplified:读取后的二维float数组</para>
+        ///     </returns>
+        /// </summary>
+        public static float[,] ReadFloatData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0, uint columnCount = 0, Encoding encoding = null)
+        {
+            string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
+            return ReadFloatData(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
         /// <summary>
         /// 在csv文件中读取数据为二维float数组，通过弹窗选择文件路径。
         /// Read data from csv file as two dimensional float array. File path can be choosen from the GUI.
@@ -388,6 +565,43 @@ namespace SeeSharpTools.JY.File
         }
 
         /// <summary>
+        /// 在csv文件中读取数据为二维float数组。
+        /// Read data from csv file as two dimensional float array.
+        ///     <param name="filePath">
+        ///         <para>The full path of the file to read.</para>
+        ///         <para>Chinese Simplified:待读取文件的完整路径。</para>
+        ///     </param>
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///        <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when columnCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns >
+        ///         <para>The read two dimensional float array</para>
+        ///         <para>Chinese Simplified:读取后的二维float数组</para>
+        ///     </returns>
+        /// </summary>
+        public static float[,] ReadFloatData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0, uint columnCount = 0, Encoding encoding = null)
+        {
+            FileUtil.CheckFilePath(filePath, FileExtName);
+            return StreamReadData<float>(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
+        /// <summary>
         /// 在 csv文件中读取数据为二维float数组。
         /// Read data from csv file as two dimensional float array.
         ///     <param name="filePath">
@@ -451,7 +665,39 @@ namespace SeeSharpTools.JY.File
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
             return ReadIntData(filePath, startRow, startColumn, rowCount, encoding);
         }
-
+        /// <summary>
+        /// 在csv文件中读取数据为二维Int数组，通过弹窗选择文件路径。
+        /// Read data from csv file as two dimensional Int array. File path can be choosen from the GUI.
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///        <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when columnCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns>
+        ///         <para>The read two dimensional Int array</para>
+        ///         <para>Chinese Simplified:读取后的二维Int数组</para>
+        ///     </returns>
+        /// </summary>
+        public static int[,] ReadIntData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0, uint columnCount = 0, Encoding encoding = null)
+        {
+            string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
+            return ReadIntData(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
         /// <summary>
         /// 在csv文件中读取数据为二维int数组，通过弹窗选择文件路径。
         /// Read data from csv file as two dimensional int array. File path can be choosen from the GUI.
@@ -515,7 +761,43 @@ namespace SeeSharpTools.JY.File
             FileUtil.CheckFilePath(filePath, FileExtName);
             return StreamReadData<int>(filePath, startRow, startColumn, rowCount, encoding);
         }
-
+        /// <summary>
+        /// 在csv文件中读取数据为二维Int数组。
+        /// Read data from csv file as two dimensional Int array.
+        ///     <param name="filePath">
+        ///         <para>The full path of the file to read.</para>
+        ///         <para>Chinese Simplified:待读取文件的完整路径。</para>
+        ///     </param>
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///        <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when columnCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns >
+        ///         <para>The read two dimensional Int array</para>
+        ///         <para>Chinese Simplified:读取后的二维Int数组</para>
+        ///     </returns>
+        /// </summary>
+        public static int[,] ReadIntData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0, uint columnCount = 0, Encoding encoding = null)
+        {
+            FileUtil.CheckFilePath(filePath, FileExtName);
+            return StreamReadData<int>(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
         /// <summary>
         /// 在 csv文件中读取数据为二维int数组。
         /// Read data from csv file as two dimensional int array.
@@ -579,7 +861,39 @@ namespace SeeSharpTools.JY.File
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
             return ReadUIntData(filePath, startRow, startColumn, rowCount, encoding);
         }
-
+        /// <summary>
+        /// 在csv文件中读取数据为二维UInt数组，通过弹窗选择文件路径。
+        /// Read data from csv file as two dimensional UInt array. File path can be choosen from the GUI.
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///        <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when columnCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns>
+        ///         <para>The read two dimensional UInt array</para>
+        ///         <para>Chinese Simplified:读取后的二维UInt数组</para>
+        ///     </returns>
+        /// </summary>
+        public static uint[,] ReadUIntData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0, uint columnCount = 0, Encoding encoding = null)
+        {
+            string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
+            return ReadUIntData(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
         /// <summary>
         /// 在csv文件中读取数据为二维uint数组，通过弹窗选择文件路径。
         /// Read data from csv file as two dimensional uint array. File path can be choosen from the GUI.
@@ -643,7 +957,43 @@ namespace SeeSharpTools.JY.File
             FileUtil.CheckFilePath(filePath, FileExtName);
             return StreamReadData<uint>(filePath, startRow, startColumn, rowCount, encoding);
         }
-
+        /// <summary>
+        /// 在csv文件中读取数据为二维UInt数组。
+        /// Read data from csv file as two dimensional UInt array.
+        ///     <param name="filePath">
+        ///         <para>The full path of the file to read.</para>
+        ///         <para>Chinese Simplified:待读取文件的完整路径。</para>
+        ///     </param>
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///        <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when columnCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns >
+        ///         <para>The read two dimensional UInt array</para>
+        ///         <para>Chinese Simplified:读取后的二维UInt数组</para>
+        ///     </returns>
+        /// </summary>
+        public static uint[,] ReadUIntData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0, uint columnCount = 0, Encoding encoding = null)
+        {
+            FileUtil.CheckFilePath(filePath, FileExtName);
+            return StreamReadData<uint>(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
         /// <summary>
         /// 在 csv文件中读取数据为二维uint数组。
         /// Read data from csv file as two dimensional uint array.
@@ -707,7 +1057,39 @@ namespace SeeSharpTools.JY.File
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
             return ReadShortData(filePath, startRow, startColumn, rowCount, encoding);
         }
-
+        /// <summary>
+        /// 在csv文件中读取数据为二维short数组，通过弹窗选择文件路径。
+        /// Read data from csv file as two dimensional short array. File path can be choosen from the GUI.
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///        <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when columnCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns>
+        ///         <para>The read two dimensional short array</para>
+        ///         <para>Chinese Simplified:读取后的二维short数组</para>
+        ///     </returns>
+        /// </summary>
+        public static short[,] ReadShortData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0, uint columnCount = 0, Encoding encoding = null)
+        {
+            string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
+            return ReadShortData(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
         /// <summary>
         /// 在csv文件中读取数据为二维short数组，通过弹窗选择文件路径。
         /// Read data from csv file as two dimensional short array. File path can be choosen from the GUI.
@@ -771,7 +1153,43 @@ namespace SeeSharpTools.JY.File
             FileUtil.CheckFilePath(filePath, FileExtName);
             return StreamReadData<short>(filePath, startRow, startColumn, rowCount, encoding);
         }
-
+        /// <summary>
+        /// 在csv文件中读取数据为二维short数组。
+        /// Read data from csv file as two dimensional short array.
+        ///     <param name="filePath">
+        ///         <para>The full path of the file to read.</para>
+        ///         <para>Chinese Simplified:待读取文件的完整路径。</para>
+        ///     </param>
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///        <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when columnCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns >
+        ///         <para>The read two dimensional short array</para>
+        ///         <para>Chinese Simplified:读取后的二维short数组</para>
+        ///     </returns>
+        /// </summary>
+        public static short[,] ReadShortData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0, uint columnCount = 0, Encoding encoding = null)
+        {
+            FileUtil.CheckFilePath(filePath, FileExtName);
+            return StreamReadData<short>(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
         /// <summary>
         /// 在 csv文件中读取数据为二维short数组。
         /// Read data from csv file as two dimensional short array.
@@ -835,7 +1253,39 @@ namespace SeeSharpTools.JY.File
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
             return ReadUShortData(filePath, startRow, startColumn, rowCount, encoding);
         }
-
+        /// <summary>
+        /// 在csv文件中读取数据为二维ushort数组，通过弹窗选择文件路径。
+        /// Read data from csv file as two dimensional ushort array. File path can be choosen from the GUI.
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///        <param name="columnCount">
+        ///         <para>The column count to read. Read all columns when columnCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns>
+        ///         <para>The read two dimensional ushort array</para>
+        ///         <para>Chinese Simplified:读取后的二维ushort数组</para>
+        ///     </returns>
+        /// </summary>
+        public static ushort[,] ReadUShortData(uint startRow = 0, uint startColumn = 0, uint rowCount = 0, uint columnCount = 0, Encoding encoding = null)
+        {
+            string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
+            return ReadUShortData(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
         /// <summary>
         /// 在csv文件中读取数据为二维ushort数组，通过弹窗选择文件路径。
         /// Read data from csv file as two dimensional ushort array. File path can be choosen from the GUI.
@@ -899,7 +1349,43 @@ namespace SeeSharpTools.JY.File
             FileUtil.CheckFilePath(filePath, FileExtName);
             return StreamReadData<ushort>(filePath, startRow, startColumn, rowCount, encoding);
         }
-
+        /// <summary>
+        /// 在csv文件中读取数据为二维ushort数组。
+        /// Read data from csv file as two dimensional ushort array.
+        ///     <param name="filePath">
+        ///         <para>The full path of the file to read.</para>
+        ///         <para>Chinese Simplified:待读取文件的完整路径。</para>
+        ///     </param>
+        ///     <param name="startRow">
+        ///         <para>The start row index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始行索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="startColumn">
+        ///         <para>The start column index to read, Start from 0.</para>
+        ///         <para>Chinese Simplified:读取的起始列索引号，从0开始。</para>
+        ///     </param>
+        ///     <param name="rowCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的行数，等于0时读取所有行。</para>
+        ///     </param>
+        ///        <param name="columnCount">
+        ///         <para>The row count to read. Read all rows when rowCount equals 0.</para>
+        ///         <para>Chinese Simplified:读取的列数，等于0时读取所有列。</para>
+        ///     </param>
+        ///     <param name="encoding">
+        ///         <para>The encoding of file. Use default encoding when encoding is null.</para>
+        ///         <para>Chinese Simplified:文件的编码格式。encoding为null时使用系统默认的编码格式。</para>
+        ///     </param>
+        ///     <returns >
+        ///         <para>The read two dimensional ushort array</para>
+        ///         <para>Chinese Simplified:读取后的二维ushort数组</para>
+        ///     </returns>
+        /// </summary>
+        public static ushort[,] ReadUShortData(string filePath, uint startRow = 0, uint startColumn = 0, uint rowCount = 0, uint columnCount = 0, Encoding encoding = null)
+        {
+            FileUtil.CheckFilePath(filePath, FileExtName);
+            return StreamReadData<ushort>(filePath, startRow, startColumn, rowCount, columnCount, encoding);
+        }
         /// <summary>
         /// 在 csv文件中读取数据为二维ushort数组。
         /// Read data from csv file as two dimensional ushort array.
@@ -1624,9 +2110,10 @@ namespace SeeSharpTools.JY.File
             {
                 if (0 == lineCount)
                 {
+                    //如果行数为0，则读取全部，即文件的总行数-起始行
                     lineCount = FileUtil.GetFileLineNum(filePath) - startRow;
                 }
-                FileUtil.InitReadStream(ref reader, filePath, encoding);
+                FileUtil.InitReadStream(ref reader, filePath, encoding);//获取文件中所有数据在reader里
                 return FileUtil.StreamReadFromStrFile<TDataType>(reader, lineCount, Delims, startRow, startColumn);
             }
             catch (SeeSharpFileException)
@@ -1636,6 +2123,38 @@ namespace SeeSharpTools.JY.File
             catch (ApplicationException ex)
             {
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, 
+                    i18n.GetFStr("Runtime.ReadFail", ex.Message), ex);
+            }
+            finally
+            {
+                FileUtil.ReleaseResource(reader);
+            }
+        }
+
+        private static TDataType[,] StreamReadData<TDataType>(string filePath, uint startRow, uint startColumn, uint lineCount, uint columnCount,Encoding encoding)
+        {
+            StreamReader reader = null;
+            try
+            {
+                if(0==columnCount)
+                {
+                    return  StreamReadData<TDataType>(filePath,startRow,startColumn, lineCount, encoding);
+                }
+                if (0 == lineCount)
+                {
+                    //如果行数为0，则读取全部，即文件的总行数-起始行
+                    lineCount = FileUtil.GetFileLineNum(filePath) - startRow;
+                }
+                FileUtil.InitReadStream(ref reader, filePath, encoding);//获取文件中所有数据在reader里
+                return FileUtil.StreamReadFromStrFile<TDataType>(reader, lineCount, columnCount, Delims, startRow, startColumn);
+            }
+            catch (SeeSharpFileException)
+            {
+                throw;
+            }
+            catch (ApplicationException ex)
+            {
+                throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError,
                     i18n.GetFStr("Runtime.ReadFail", ex.Message), ex);
             }
             finally
