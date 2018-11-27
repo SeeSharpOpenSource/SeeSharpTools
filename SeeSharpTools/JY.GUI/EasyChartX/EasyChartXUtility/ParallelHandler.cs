@@ -531,7 +531,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             int lineCount = _transposeSrc.GetLength(1);
             for (int colIndex = 0; colIndex < lineCount; colIndex++)
             {
-                int writeIndex = lineCount*sampleCount + startRowIndex;
+                int writeIndex = colIndex * sampleCount + startRowIndex;
                 for (int rowIndex = startRowIndex; rowIndex < endRowIndex; rowIndex++)
                 {
                     _transposeDst[writeIndex++] = _transposeSrc[rowIndex, colIndex];

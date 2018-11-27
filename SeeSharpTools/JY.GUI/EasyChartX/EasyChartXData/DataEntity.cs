@@ -112,7 +112,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             //            DataInfo.XDataType = XDataType.Number;
             XStart = xStart;
             XIncrement = xIncrement;
-            DataInfo.Size = yData.GetLength(1);
+            DataInfo.Size = rowDirection ? yData.GetLength(1) : yData.GetLength(0);
 
             MaxXValue = xStart + (DataInfo.Size - 1) * xIncrement;
             MinXValue = xStart;
