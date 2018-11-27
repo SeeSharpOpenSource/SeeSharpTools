@@ -101,14 +101,14 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 return;
             }
             int lineNum = ySize / xSize;
-            _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
+            _plotSeriesCount = ((!CumulativePlot) || (!IsPlotting)) ? lineNum : _plotSeriesCount + lineNum;
             if (_plotSeriesCount > MaxSeriesCount)
             {
                 ySize -= (_plotSeriesCount - MaxSeriesCount) *xSize;
                 _plotSeriesCount = MaxSeriesCount;
             }
-            IsPlotting = true;
             AdaptPlotDatasCount(1);
+            IsPlotting = true;
             AdaptSeriesCount();
             PlotDatas[PlotDatas.Count - 1].SaveData(xStart, xstep, yData, xSize, ySize);
         }
@@ -128,14 +128,14 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 return;
             }
             int lineNum = rowDirection ? yData.GetLength(0) : yData.GetLength(1);
-            _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
+            _plotSeriesCount = ((!CumulativePlot) || (!IsPlotting)) ? lineNum : _plotSeriesCount + lineNum;
             if (_plotSeriesCount > MaxSeriesCount)
             {
                 lineNum -= _plotSeriesCount - MaxSeriesCount;
                 _plotSeriesCount = MaxSeriesCount;
             }
-            IsPlotting = true;
             AdaptPlotDatasCount(1);
+            IsPlotting = true;
             AdaptSeriesCount();
             PlotDatas[PlotDatas.Count - 1].SaveData(xStart, xstep, yData, lineNum, rowDirection);
         }
@@ -172,14 +172,14 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 return;
             }
             int lineNum = ySize / xSize;
-            _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
+            _plotSeriesCount = ((!CumulativePlot) || (!IsPlotting)) ? lineNum : _plotSeriesCount + lineNum;
             if (_plotSeriesCount > MaxSeriesCount)
             {
                 ySize -= (_plotSeriesCount - MaxSeriesCount) *xSize;
                 _plotSeriesCount = MaxSeriesCount;
             }
-            IsPlotting = true;
             AdaptPlotDatasCount(1);
+            IsPlotting = true;
             AdaptSeriesCount();
             PlotDatas[PlotDatas.Count - 1].SaveData(xData, yData, xSize, ySize);
         }
@@ -197,14 +197,14 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 return;
             }
             int lineNum = xData.Count;
-            _plotSeriesCount = !CumulativePlot ? lineNum : _plotSeriesCount + lineNum;
+            _plotSeriesCount = ((!CumulativePlot) || (!IsPlotting)) ? lineNum : _plotSeriesCount + lineNum;
             if (_plotSeriesCount > MaxSeriesCount)
             {
                 lineNum -= _plotSeriesCount - MaxSeriesCount;
                 _plotSeriesCount = MaxSeriesCount;
             }
-            IsPlotting = true;
             AdaptPlotDatasCount(lineNum);
+            IsPlotting = true;
             AdaptSeriesCount();
             int plotDataIndex = PlotDatas.Count - lineNum;
             for (int i = 0; i < lineNum; i++)
@@ -370,7 +370,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         internal void AdaptPlotDatasCount(int plotDataCount)
         {
             // 如果是累积绘图则绘图个数是当前DataEntity个数与待添加DataEntity个数之和
-            if (CumulativePlot)
+            if (CumulativePlot && IsPlotting)
             {
                 plotDataCount += PlotDatas.Count;
             }
