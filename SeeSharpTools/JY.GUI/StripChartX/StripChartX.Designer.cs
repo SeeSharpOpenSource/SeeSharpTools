@@ -31,9 +31,9 @@ namespace SeeSharpTools.JY.GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this._chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ChartFunctionMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItem_xAxisZoom = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,28 +87,29 @@ namespace SeeSharpTools.JY.GUI
             // 
             // _chart
             // 
-            chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisX2.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea2.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisY2.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.Name = "ChartArea1";
-            this._chart.ChartAreas.Add(chartArea2);
+            this._chart.AllowDrop = true;
+            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisX2.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisY2.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.Name = "ChartArea1";
+            this._chart.ChartAreas.Add(chartArea1);
             this._chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.BackColor = System.Drawing.Color.Transparent;
-            legend2.Font = new System.Drawing.Font("Microsoft YaHei", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            legend2.IsTextAutoFit = false;
-            legend2.Name = "Legend1";
-            this._chart.Legends.Add(legend2);
+            legend1.BackColor = System.Drawing.Color.Transparent;
+            legend1.Font = new System.Drawing.Font("Microsoft YaHei", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            legend1.IsTextAutoFit = false;
+            legend1.Name = "Legend1";
+            this._chart.Legends.Add(legend1);
             this._chart.Location = new System.Drawing.Point(0, 0);
             this._chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._chart.Name = "_chart";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this._chart.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this._chart.Series.Add(series1);
             this._chart.Size = new System.Drawing.Size(506, 334);
             this._chart.TabIndex = 2;
             this._chart.AxisViewChanged += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ViewEventArgs>(this.Chart_AxisViewChanged);
@@ -138,132 +139,132 @@ namespace SeeSharpTools.JY.GUI
             this.toolStripSeparator_series,
             this.tabCursorToolStripMenuItem});
             this.ChartFunctionMenu.Name = "contextMenuStripXYzoom";
-            this.ChartFunctionMenu.Size = new System.Drawing.Size(170, 364);
+            this.ChartFunctionMenu.Size = new System.Drawing.Size(170, 342);
             // 
             // ToolStripMenuItem_xAxisZoom
             // 
             this.ToolStripMenuItem_xAxisZoom.Checked = true;
             this.ToolStripMenuItem_xAxisZoom.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ToolStripMenuItem_xAxisZoom.Name = "ToolStripMenuItem_xAxisZoom";
-            this.ToolStripMenuItem_xAxisZoom.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_xAxisZoom.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_xAxisZoom.Text = "Zoom X Axis";
             this.ToolStripMenuItem_xAxisZoom.Click += new System.EventHandler(this.Zoom_XAxisToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem_yAxisZoom
             // 
             this.ToolStripMenuItem_yAxisZoom.Name = "ToolStripMenuItem_yAxisZoom";
-            this.ToolStripMenuItem_yAxisZoom.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_yAxisZoom.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_yAxisZoom.Text = "Zoom Y Axis";
             this.ToolStripMenuItem_yAxisZoom.Click += new System.EventHandler(this.Zoom_YAxisToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem_windowZoom
             // 
             this.ToolStripMenuItem_windowZoom.Name = "ToolStripMenuItem_windowZoom";
-            this.ToolStripMenuItem_windowZoom.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_windowZoom.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_windowZoom.Text = "Zoom Window";
             this.ToolStripMenuItem_windowZoom.Click += new System.EventHandler(this.Zoom_WindowtoolStripMenuItem_Click);
             // 
             // ToolStripMenuItem_zoomReset
             // 
             this.ToolStripMenuItem_zoomReset.Name = "ToolStripMenuItem_zoomReset";
-            this.ToolStripMenuItem_zoomReset.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_zoomReset.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_zoomReset.Text = "Zoom Reset";
             this.ToolStripMenuItem_zoomReset.Click += new System.EventHandler(this.Zoom_ResettoolStripMenuItem_Click);
             // 
             // ToolStripMenuItem_showValue
             // 
             this.ToolStripMenuItem_showValue.Name = "ToolStripMenuItem_showValue";
-            this.ToolStripMenuItem_showValue.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_showValue.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_showValue.Text = "Show Value";
             this.ToolStripMenuItem_showValue.Click += new System.EventHandler(this.Show_XYValuetoolStripMenuItem_Click);
             // 
             // toolStripMenuItem_view
             // 
             this.toolStripMenuItem_view.Name = "toolStripMenuItem_view";
-            this.toolStripMenuItem_view.Size = new System.Drawing.Size(155, 6);
+            this.toolStripMenuItem_view.Size = new System.Drawing.Size(166, 6);
             // 
             // ToolStripMenuItem_legendVisible
             // 
             this.ToolStripMenuItem_legendVisible.Checked = true;
             this.ToolStripMenuItem_legendVisible.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ToolStripMenuItem_legendVisible.Name = "ToolStripMenuItem_legendVisible";
-            this.ToolStripMenuItem_legendVisible.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_legendVisible.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_legendVisible.Text = "Legend Visible";
             this.ToolStripMenuItem_legendVisible.Click += new System.EventHandler(this.legendVisibleToolStripMenuItem_Click);
             // 
             // toolStripMenuItem_splitView
             // 
             this.toolStripMenuItem_splitView.Name = "toolStripMenuItem_splitView";
-            this.toolStripMenuItem_splitView.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItem_splitView.Size = new System.Drawing.Size(169, 22);
             this.toolStripMenuItem_splitView.Text = "Split View";
             this.toolStripMenuItem_splitView.Click += new System.EventHandler(this.toolStripMenuItem_splitView_Click);
             // 
             // toolStripSeparator_apperance
             // 
             this.toolStripSeparator_apperance.Name = "toolStripSeparator_apperance";
-            this.toolStripSeparator_apperance.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator_apperance.Size = new System.Drawing.Size(166, 6);
             // 
             // ToolStripMenuItem_saveAsPicture
             // 
             this.ToolStripMenuItem_saveAsPicture.Name = "ToolStripMenuItem_saveAsPicture";
-            this.ToolStripMenuItem_saveAsPicture.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_saveAsPicture.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_saveAsPicture.Text = "Save As Image";
             this.ToolStripMenuItem_saveAsPicture.Click += new System.EventHandler(this.SavePicToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem_saveAsCsv
             // 
             this.ToolStripMenuItem_saveAsCsv.Name = "ToolStripMenuItem_saveAsCsv";
-            this.ToolStripMenuItem_saveAsCsv.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_saveAsCsv.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_saveAsCsv.Text = "Save as Csv";
             this.ToolStripMenuItem_saveAsCsv.Click += new System.EventHandler(this.saveAsCSVToolStripMenuItem_Click);
             // 
             // toolStripSeparator_save
             // 
             this.toolStripSeparator_save.Name = "toolStripSeparator_save";
-            this.toolStripSeparator_save.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator_save.Size = new System.Drawing.Size(166, 6);
             // 
             // ToolStripMenuItem_yAxisAutoScale
             // 
             this.ToolStripMenuItem_yAxisAutoScale.Checked = true;
             this.ToolStripMenuItem_yAxisAutoScale.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ToolStripMenuItem_yAxisAutoScale.Name = "ToolStripMenuItem_yAxisAutoScale";
-            this.ToolStripMenuItem_yAxisAutoScale.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_yAxisAutoScale.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_yAxisAutoScale.Text = "Auto Y Range";
             this.ToolStripMenuItem_yAxisAutoScale.Click += new System.EventHandler(this.YAutoScaleToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem_yAxisRangeConfig
             // 
             this.ToolStripMenuItem_yAxisRangeConfig.Name = "ToolStripMenuItem_yAxisRangeConfig";
-            this.ToolStripMenuItem_yAxisRangeConfig.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_yAxisRangeConfig.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_yAxisRangeConfig.Text = "Specify Y Range";
             this.ToolStripMenuItem_yAxisRangeConfig.Click += new System.EventHandler(this.setYAxisRangeToolStripMenuItem_Click);
             // 
             // toolStripSeparator_range
             // 
             this.toolStripSeparator_range.Name = "toolStripSeparator_range";
-            this.toolStripSeparator_range.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator_range.Size = new System.Drawing.Size(166, 6);
             // 
             // ToolStripMenuItem_showSeriesParent
             // 
             this.ToolStripMenuItem_showSeriesParent.Name = "ToolStripMenuItem_showSeriesParent";
-            this.ToolStripMenuItem_showSeriesParent.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_showSeriesParent.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_showSeriesParent.Text = "Show Series";
             // 
             // ToolStripMenuItem_cursorSeriesParent
             // 
             this.ToolStripMenuItem_cursorSeriesParent.Name = "ToolStripMenuItem_cursorSeriesParent";
-            this.ToolStripMenuItem_cursorSeriesParent.Size = new System.Drawing.Size(158, 22);
+            this.ToolStripMenuItem_cursorSeriesParent.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_cursorSeriesParent.Text = "Cursor Series";
             // 
             // toolStripSeparator_series
             // 
             this.toolStripSeparator_series.Name = "toolStripSeparator_series";
-            this.toolStripSeparator_series.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator_series.Size = new System.Drawing.Size(166, 6);
             // 
             // tabCursorToolStripMenuItem
             // 
             this.tabCursorToolStripMenuItem.Name = "tabCursorToolStripMenuItem";
-            this.tabCursorToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.tabCursorToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.tabCursorToolStripMenuItem.Text = "Tab Cursor";
             this.tabCursorToolStripMenuItem.Click += new System.EventHandler(this.tabCursorToolStripMenuItem_Click);
             // 
@@ -308,7 +309,7 @@ namespace SeeSharpTools.JY.GUI
             // LinethinToolStripMenuItem
             // 
             this.LinethinToolStripMenuItem.Name = "LinethinToolStripMenuItem";
-            this.LinethinToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.LinethinToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.LinethinToolStripMenuItem.Tag = "Thin";
             this.LinethinToolStripMenuItem.Text = "Thin";
             this.LinethinToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesLineWidth);
@@ -316,7 +317,7 @@ namespace SeeSharpTools.JY.GUI
             // LinemiddleToolStripMenuItem
             // 
             this.LinemiddleToolStripMenuItem.Name = "LinemiddleToolStripMenuItem";
-            this.LinemiddleToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.LinemiddleToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.LinemiddleToolStripMenuItem.Tag = "Middle";
             this.LinemiddleToolStripMenuItem.Text = "Middle";
             this.LinemiddleToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesLineWidth);
@@ -324,7 +325,7 @@ namespace SeeSharpTools.JY.GUI
             // LinethickToolStripMenuItem
             // 
             this.LinethickToolStripMenuItem.Name = "LinethickToolStripMenuItem";
-            this.LinethickToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.LinethickToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.LinethickToolStripMenuItem.Tag = "Thick";
             this.LinethickToolStripMenuItem.Text = "Thick";
             this.LinethickToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesLineWidth);
@@ -343,7 +344,7 @@ namespace SeeSharpTools.JY.GUI
             // InterFastlineToolStripMenuItem
             // 
             this.InterFastlineToolStripMenuItem.Name = "InterFastlineToolStripMenuItem";
-            this.InterFastlineToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.InterFastlineToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.InterFastlineToolStripMenuItem.Tag = "FastLine";
             this.InterFastlineToolStripMenuItem.Text = "FastLine";
             this.InterFastlineToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesLineType);
@@ -351,7 +352,7 @@ namespace SeeSharpTools.JY.GUI
             // InterpointToolStripMenuItem
             // 
             this.InterpointToolStripMenuItem.Name = "InterpointToolStripMenuItem";
-            this.InterpointToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.InterpointToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.InterpointToolStripMenuItem.Tag = "Point";
             this.InterpointToolStripMenuItem.Text = "Point";
             this.InterpointToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesLineType);
@@ -359,7 +360,7 @@ namespace SeeSharpTools.JY.GUI
             // InterstepLineToolStripMenuItem
             // 
             this.InterstepLineToolStripMenuItem.Name = "InterstepLineToolStripMenuItem";
-            this.InterstepLineToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.InterstepLineToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.InterstepLineToolStripMenuItem.Tag = "StepLine";
             this.InterstepLineToolStripMenuItem.Text = "StepLine";
             this.InterstepLineToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesLineType);
@@ -367,7 +368,7 @@ namespace SeeSharpTools.JY.GUI
             // InterLineToolStripMenuItem
             // 
             this.InterLineToolStripMenuItem.Name = "InterLineToolStripMenuItem";
-            this.InterLineToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.InterLineToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.InterLineToolStripMenuItem.Tag = "Line";
             this.InterLineToolStripMenuItem.Text = "Line";
             this.InterLineToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesLineType);
@@ -392,7 +393,7 @@ namespace SeeSharpTools.JY.GUI
             // PointStylenoneToolStripMenuItem
             // 
             this.PointStylenoneToolStripMenuItem.Name = "PointStylenoneToolStripMenuItem";
-            this.PointStylenoneToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.PointStylenoneToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.PointStylenoneToolStripMenuItem.Tag = "None";
             this.PointStylenoneToolStripMenuItem.Text = "None";
             this.PointStylenoneToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesMarkerType);
@@ -400,7 +401,7 @@ namespace SeeSharpTools.JY.GUI
             // PointStylesquareToolStripMenuItem
             // 
             this.PointStylesquareToolStripMenuItem.Name = "PointStylesquareToolStripMenuItem";
-            this.PointStylesquareToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.PointStylesquareToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.PointStylesquareToolStripMenuItem.Tag = "Square";
             this.PointStylesquareToolStripMenuItem.Text = "Square";
             this.PointStylesquareToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesMarkerType);
@@ -408,7 +409,7 @@ namespace SeeSharpTools.JY.GUI
             // PointStylecircleToolStripMenuItem
             // 
             this.PointStylecircleToolStripMenuItem.Name = "PointStylecircleToolStripMenuItem";
-            this.PointStylecircleToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.PointStylecircleToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.PointStylecircleToolStripMenuItem.Tag = "Circle";
             this.PointStylecircleToolStripMenuItem.Text = "Circle";
             this.PointStylecircleToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesMarkerType);
@@ -416,7 +417,7 @@ namespace SeeSharpTools.JY.GUI
             // PointStylediamodToolStripMenuItem
             // 
             this.PointStylediamodToolStripMenuItem.Name = "PointStylediamodToolStripMenuItem";
-            this.PointStylediamodToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.PointStylediamodToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.PointStylediamodToolStripMenuItem.Tag = "Diamond";
             this.PointStylediamodToolStripMenuItem.Text = "Diamond";
             this.PointStylediamodToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesMarkerType);
@@ -424,7 +425,7 @@ namespace SeeSharpTools.JY.GUI
             // PointStyletriangleToolStripMenuItem
             // 
             this.PointStyletriangleToolStripMenuItem.Name = "PointStyletriangleToolStripMenuItem";
-            this.PointStyletriangleToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.PointStyletriangleToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.PointStyletriangleToolStripMenuItem.Tag = "Triangle";
             this.PointStyletriangleToolStripMenuItem.Text = "Triangle";
             this.PointStyletriangleToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesMarkerType);
@@ -432,7 +433,7 @@ namespace SeeSharpTools.JY.GUI
             // PointStylecrossToolStripMenuItem
             // 
             this.PointStylecrossToolStripMenuItem.Name = "PointStylecrossToolStripMenuItem";
-            this.PointStylecrossToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.PointStylecrossToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.PointStylecrossToolStripMenuItem.Tag = "Cross";
             this.PointStylecrossToolStripMenuItem.Text = "Cross";
             this.PointStylecrossToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesMarkerType);
@@ -440,7 +441,7 @@ namespace SeeSharpTools.JY.GUI
             // PointStylestart4ToolStripMenuItem
             // 
             this.PointStylestart4ToolStripMenuItem.Name = "PointStylestart4ToolStripMenuItem";
-            this.PointStylestart4ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.PointStylestart4ToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.PointStylestart4ToolStripMenuItem.Tag = "Star4";
             this.PointStylestart4ToolStripMenuItem.Text = "Star4";
             this.PointStylestart4ToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesMarkerType);
@@ -448,7 +449,7 @@ namespace SeeSharpTools.JY.GUI
             // PointStylestart5ToolStripMenuItem
             // 
             this.PointStylestart5ToolStripMenuItem.Name = "PointStylestart5ToolStripMenuItem";
-            this.PointStylestart5ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.PointStylestart5ToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.PointStylestart5ToolStripMenuItem.Tag = "Star5";
             this.PointStylestart5ToolStripMenuItem.Text = "Star5";
             this.PointStylestart5ToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesMarkerType);
@@ -456,7 +457,7 @@ namespace SeeSharpTools.JY.GUI
             // PointStylestart6ToolStripMenuItem
             // 
             this.PointStylestart6ToolStripMenuItem.Name = "PointStylestart6ToolStripMenuItem";
-            this.PointStylestart6ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.PointStylestart6ToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.PointStylestart6ToolStripMenuItem.Tag = "Star6";
             this.PointStylestart6ToolStripMenuItem.Text = "Star6";
             this.PointStylestart6ToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesMarkerType);
@@ -464,7 +465,7 @@ namespace SeeSharpTools.JY.GUI
             // PointStylestart10ToolStripMenuItem
             // 
             this.PointStylestart10ToolStripMenuItem.Name = "PointStylestart10ToolStripMenuItem";
-            this.PointStylestart10ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.PointStylestart10ToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.PointStylestart10ToolStripMenuItem.Tag = "Star10";
             this.PointStylestart10ToolStripMenuItem.Text = "Star10";
             this.PointStylestart10ToolStripMenuItem.Click += new System.EventHandler(this.SetSeriesMarkerType);

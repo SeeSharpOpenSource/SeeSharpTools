@@ -728,6 +728,7 @@ namespace SeeSharpTools.JY.GUI
         {
             // 触发用户鼠标点击事件
             this._chart.Click += (sender, args) => OnClick(args);
+            this._chart.DoubleClick += (sender, args) => OnDoubleClick(args);
             this._chart.MouseClick += (sender, args) => OnMouseClick(args);
             this._chart.MouseDoubleClick += (sender, args) => OnMouseDoubleClick(args);
             this._chart.MouseUp += (sender, args) => OnMouseUp(args);
