@@ -61,7 +61,7 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
-        private Color _color = Color.Red;
+        private Color _color = Color.DeepSkyBlue;
         /// <summary>
         /// Specify whether cursor zoom function enabled
         /// </summary>
