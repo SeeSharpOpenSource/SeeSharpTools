@@ -87,6 +87,71 @@
     <Compile Include="ButtonSwitch\Renderers\ToggleSwitchRendererBase.cs" />
     <Compile Include="Common\i18n\I18nEntity.cs" />
     <Compile Include="Common\i18n\I18nLocalWrapper.cs" />
+    <Compile Include="DigitalChart\DigitalChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DigitalChart\DigitalChart.Designer.cs">
+      <DependentUpon>DigitalChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DigitalChart\DigitalChartData\DataEntity.cs" />
+    <Compile Include="DigitalChart\DigitalChartData\DataEntityInfo.cs" />
+    <Compile Include="DigitalChart\DigitalChartData\PlotBuffer.cs" />
+    <Compile Include="DigitalChart\DigitalChartData\PlotBufferBase.cs" />
+    <Compile Include="DigitalChart\DigitalChartData\ShallowPlotBuffer.cs" />
+    <Compile Include="DigitalChart\DigitalChartData\XDataInputType.cs" />
+    <Compile Include="DigitalChart\DigitalChartData\XDataType.cs" />
+    <Compile Include="DigitalChart\DigitalChartDesigner.cs" />
+    <Compile Include="DigitalChart\DigitalChartEditor\DigitalChartLineSeries.cs" />
+    <Compile Include="DigitalChart\DigitalChartEditor\DigitalChartLineSeriesEditor.cs" />
+    <Compile Include="DigitalChart\DigitalChartEditor\DigitalChartTabCursorCollectionEditorTabCursorCollectionEditor.cs" />
+    <Compile Include="DigitalChart\DigitalChartEditor\DigitalChartTabCursorDesignTimeCollection.cs" />
+    <Compile Include="DigitalChart\DigitalChartEvents\DigitalChartCursorEventArgs.cs" />
+    <Compile Include="DigitalChart\DigitalChartEvents\DigitalChartPlotEventArgs.cs" />
+    <Compile Include="DigitalChart\DigitalChartEvents\DigitalChartTabCursorEventArgs.cs" />
+    <Compile Include="DigitalChart\DigitalChartEvents\DigitalChartViewEventArgs.cs" />
+    <Compile Include="DigitalChart\DigitalChartPropertyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DigitalChart\DigitalChartPropertyForm.Designer.cs">
+      <DependentUpon>DigitalChartPropertyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DigitalChart\DigitalChartRangeYConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DigitalChart\DigitalChartRangeYConfigForm.Designer.cs">
+      <DependentUpon>DigitalChartRangeYConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DigitalChart\DigitalChartTabCursorUtility\DigitalChartTabCursor.cs" />
+    <Compile Include="DigitalChart\DigitalChartTabCursorUtility\DigitalChartTabCursorCollection.cs" />
+    <Compile Include="DigitalChart\DigitalChartTabCursorUtility\DigitalChartTabCursorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DigitalChart\DigitalChartTabCursorUtility\DigitalChartTabCursorControl.Designer.cs">
+      <DependentUpon>DigitalChartTabCursorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DigitalChart\DigitalChartTabCursorUtility\DigitalChartTabCursorInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DigitalChart\DigitalChartTabCursorUtility\DigitalChartTabCursorInfoForm.Designer.cs">
+      <DependentUpon>DigitalChartTabCursorInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DigitalChart\DigitalChartTabCursorUtility\PositionAdapter.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\AxisSynchronizer.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\ChartViewManager.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\Constants.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\DataCheckParameters.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\DataConvertor.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\DigitalChartAxis.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\DigitalChartCursor.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\DigitalChartPlotArea.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\DigitalChartPlotAreaCollection.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\DigitalChartSeries.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\DigitalChartSeriesCollection.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\LayoutDirection.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\MiscellaneousConfiguration.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\ParallelHandler.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\PlotManager.cs" />
+    <Compile Include="DigitalChart\DigitalChartUtility\Utility.cs" />
     <Compile Include="EasyButton\EasyButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -490,6 +555,23 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DigitalChart\DigitalChart.resx">
+      <DependentUpon>DigitalChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DigitalChart\DigitalChartPropertyForm.resx">
+      <DependentUpon>DigitalChartPropertyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DigitalChart\DigitalChartRangeYConfigForm.resx">
+      <DependentUpon>DigitalChartRangeYConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DigitalChart\DigitalChartTabCursorUtility\DigitalChartTabCursorControl.resx">
+      <DependentUpon>DigitalChartTabCursorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DigitalChart\DigitalChartTabCursorUtility\DigitalChartTabCursorInfoForm.resx">
+      <DependentUpon>DigitalChartTabCursorInfoForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="EasyButton\EasyButton.resx">
       <DependentUpon>EasyButton.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -684,6 +766,7 @@
     <None Include="Resources\EasyButton\web.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DigitalChart\DigitalChart.bmp" />
     <Content Include="StripChartX\StripChartX.bmp" />
     <Content Include="ViewController\ViewController.bmp" />
     <EmbeddedResource Include="SwitchArray\SwitchArray.bmp" />
