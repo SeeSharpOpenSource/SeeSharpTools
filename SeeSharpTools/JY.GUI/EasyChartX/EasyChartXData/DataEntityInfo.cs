@@ -19,7 +19,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             this.LineNum = 0;
         }
 
-        public bool IsEqual(DataEntityInfo src)
+        public bool Equals(DataEntityInfo src)
         {
             return this.IsDeepCopy == src.IsDeepCopy && this.XDataInputType == src.XDataInputType &&
                    this.LineNum == src.LineNum &&

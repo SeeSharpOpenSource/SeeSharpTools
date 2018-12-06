@@ -18,7 +18,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             this.DataType = null;
         }
 
-        public bool IsEqual(DataEntityInfo src)
+        public bool Equals(DataEntityInfo src)
         {
             return this.XType == src.XType && ReferenceEquals(DataType, src.DataType) && 
                    this.LineCount == src.LineCount && this.Capacity == src.Capacity;

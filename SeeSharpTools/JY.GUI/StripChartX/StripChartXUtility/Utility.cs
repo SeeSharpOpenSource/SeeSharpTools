@@ -72,7 +72,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 {
                     double midRoundValue = CeilRound((maxYValue + minYValue)/2, roundSegment);
                     double roundRange = CeilRound(range/2 + expandRange, roundSegment* yMajorGridCount / 2);
-
+                    // 因为MidRound是向上取整，所以最小值有可能低于这个范围，所以可能需要对该值进行修正
+                    while (minYValue < midRoundValue - roundRange)
+                    {
+                        roundRange *= 1.2;
+                    }
                     maxYValue = midRoundValue + roundRange;
                     minYValue = midRoundValue - roundRange;
                 }

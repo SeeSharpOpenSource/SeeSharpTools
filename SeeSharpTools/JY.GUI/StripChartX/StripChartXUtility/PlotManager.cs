@@ -140,7 +140,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 LineCount = lineCount,
                 XType = XDataType
             };
-            if (null == DataEntity || !DataEntity.DataInfo.IsEqual(dataEntityInfo))
+            if (null == DataEntity || !DataEntity.DataInfo.Equals(dataEntityInfo))
             {
                 switch (XDataType)
                 {
