@@ -109,6 +109,7 @@ namespace SeeSharpTools.JY.GUI
             this._chart.TabIndex = 2;
             this._chart.AxisViewChanged += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ViewEventArgs>(this.Chart_AxisViewChanged);
             this._chart.MouseDown += new System.Windows.Forms.MouseEventHandler(this._chart_MouseDown);
+            this._chart.MouseUp += new System.Windows.Forms.MouseEventHandler(this._chart_MouseUp);
             // 
             // EasyChartXFunctionMenu
             // 

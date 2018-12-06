@@ -1275,6 +1275,7 @@ namespace SeeSharpTools.JY.GUI
                 switch (eventArgs.Button)
                 {
                     case MouseButtons.Left:
+                        this.Cursor = System.Windows.Forms.Cursors.Hand;
                         if (IsPlotting() && IsCursorMode(_hitPlotArea))
                         {
                             ShowCursorDataValue();
@@ -1286,6 +1287,14 @@ namespace SeeSharpTools.JY.GUI
                     default:
                         break;
                 }
+            }
+        }
+
+        private void _chart_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (System.Windows.Forms.Cursors.Default != this.Cursor)
+            {
+                this.Cursor = System.Windows.Forms.Cursors.Default;
             }
         }
 
@@ -2085,5 +2094,7 @@ namespace SeeSharpTools.JY.GUI
             Range
         }
         #endregion
+
+        
     }
 }
