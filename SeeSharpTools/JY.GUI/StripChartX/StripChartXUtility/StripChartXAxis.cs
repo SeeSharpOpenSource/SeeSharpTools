@@ -251,7 +251,7 @@ namespace SeeSharpTools.JY.GUI
         /// Specify whether auto scale enabled
         /// </summary>
         [
-            Browsable(true),
+            Browsable(false),
             Category("Design"),
             Description("Specify or get whether enable scale view when plot.")
         ]
