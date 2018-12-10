@@ -961,7 +961,7 @@ namespace SeeSharpTools.JY.GUI
             }
 
             // 最后一个做特殊处理
-            labelPosition = 0;
+            labelPosition = ViewMaximum;
             CustomLabels[MajorGridCount].FromPosition = labelPosition - labelRangeSize;
             CustomLabels[MajorGridCount].ToPosition = labelPosition + labelRangeSize;
             // 最后一个点使用
