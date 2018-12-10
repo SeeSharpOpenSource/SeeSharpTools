@@ -135,10 +135,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             }
             if (!_singleSamplePlotMode)
             {
-                for (int i = 0; i < sampleCount; i++)
-                {
-                    _blockCounts.Add(sampleCount);
-                }
+                _blockCounts.Add(sampleCount);
             }
             int samplesToRemove = RefreshSamplesInChart(sampleCount);
             RemoveXDataExceedDisplayPoints(samplesToRemove);
