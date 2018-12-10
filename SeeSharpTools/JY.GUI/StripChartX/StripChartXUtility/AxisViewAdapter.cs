@@ -56,29 +56,30 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         //
         public void GetXAxisRange(out double xMin, out double xMax)
         {
+            const int maxXValue = -1;
             int samplesInChart = _plotManager.DataEntity.SamplesInChart;
             switch (_viewManager.ScrollType)
             {
                 case StripChartX.StripScrollType.Cumulation:
                     // 如果是累积模式，X轴的起始位置就是当前的位置，终止位置时当前位置加1。
                     xMin = -1*samplesInChart;
-                    xMax = -1;
+                    xMax = maxXValue;
                     break;
                 case StripChartX.StripScrollType.Scroll:
                     // 如果是滚动模式，X轴的起始位置取决于当前点数是否达到DisplayPoints，终止位置为当前结束位置加1
                     xMin = -1*_plotManager.DisplayPoints;
-                    xMax = -1;
+                    xMax = maxXValue;
                     break;
                 default:
                     xMin = -1 * _plotManager.DisplayPoints;
-                    xMax = -1;
+                    xMax = maxXValue;
                     break;
             }
             // 如果点数过少，默认显示两个点
             if (xMax - xMin < 2)
             {
                 xMin = -3;
-                xMax = -1;
+                xMax = maxXValue;
             }
         }
 

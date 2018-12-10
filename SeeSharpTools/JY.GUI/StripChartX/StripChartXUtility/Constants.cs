@@ -86,7 +86,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         public const float YBoundRatio = 5f;
         // 默认的DisplaySamples
         public const int DefaultDisplaySamples = 4000;
-
+        // 
+        public const double XGridIntervalOffset = 1E-10;
         public static readonly HashSet<Type> ValidDataType;
 
         static Constants()

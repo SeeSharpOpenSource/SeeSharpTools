@@ -923,6 +923,11 @@ namespace SeeSharpTools.JY.GUI
             if (!IsLogarithmic)
             {
                 interval = (viewMax - viewMin) / _majorGridCount;
+                //为了避免X轴最右边主网格因为浮点数计算导致的抖动问题，对interval做一个极小的偏置，保证该网格的正常显示
+                if (IsXAxis())
+                {
+                    interval -= Constants.XGridIntervalOffset;
+                }
             }
             else
             {
