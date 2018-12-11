@@ -35,6 +35,8 @@ namespace SeeSharpTools.JY.GUI
         private readonly ChartViewManager _chartViewManager;
         // 绘制线条的管理类
         private readonly PlotManager _plotManager;
+        // 绘制数据标记的类
+        private readonly DataMarkerPainter _dataMarkerPainter;
         // 当前选择的线条
         private EasyChartXSeries _hitSeries;
         // 当前激活的绘图区
@@ -695,7 +697,7 @@ namespace SeeSharpTools.JY.GUI
             _tabCursorForm = null;
             TabCursors = new TabCursorCollection(this, _chart, _chartViewManager.MainPlotArea);
             this.TabCursorContainer = new TabCursorDesignTimeCollection(TabCursors);
-
+            this._dataMarkerPainter = new DataMarkerPainter(this, _chart, _chartViewManager.MainPlotArea);
 
             _plotManager.AdaptSeriesCount();
             //更新
@@ -1094,11 +1096,26 @@ namespace SeeSharpTools.JY.GUI
         public void Clear()
         {
 //            BindPlotSeriesAndChartView();
+            this._dataMarkerPainter.Hide();
             OnBeforePlot(true);
             _plotManager.Clear();
             _chartViewManager.Clear();
             EasyChartXValueDisplayToolTip.RemoveAll();
             OnAfterPlot(true);
+        }
+
+        /// <summary>
+        /// 添加数据标识
+        /// </summary>
+        /// <param name="xValue"></param>
+        /// <param name="yValue"></param>
+        /// <param name="markerColor"></param>
+        /// <param name="markerType"></param>
+        /// <param name="xAxis"></param>
+        /// <param name="yAxis"></param>
+        public void AddDataMarker(IList<double> xValue, IList<double> yValue, Color markerColor, DataMarkerType markerType, EasyChartXAxis.PlotAxis xAxis, EasyChartXAxis.PlotAxis yAxis)
+        {
+            this._dataMarkerPainter.Show(xValue, yValue, markerColor, markerType, xAxis, yAxis);
         }
 
         /// <summary>
@@ -1949,6 +1966,8 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         internal void PlotDataInRange()
         {
+            this._dataMarkerPainter.Hide();
+
             OnBeforePlot(false);
             // 如果不是分区视图则统一绘制，如果是分区视图则分别绘制每条线
             if (!_chartViewManager.IsSplitView)

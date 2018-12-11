@@ -15,9 +15,21 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
         private readonly ElementPosition _areaPosition;
         private readonly ElementPosition _plotPosition;
 
+        /// <summary>
+        /// 绘图区真实的起始X起点
+        /// </summary>
         public double PlotRealX { get; private set; }
+        /// <summary>
+        /// 绘图区真实的起始Y起点
+        /// </summary>
         public double PlotRealY { get; private set; }
+        /// <summary>
+        /// 绘图区真实的起始宽度
+        /// </summary>
         public double PlotRealWidth { get; private set; }
+        /// <summary>
+        /// 绘图区真实的起始高度
+        /// </summary>
         public int PlotRealHeight { get; private set; }
         
         private double _maxX;
