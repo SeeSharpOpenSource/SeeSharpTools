@@ -28,7 +28,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
             }
             int middlePoint = (MarkerSize - 1)/2;
             _points[0].X = middlePoint;
-            _points[0].Y = 0;
+            _points[0].Y = -1;
 
             _points[1].X = MarkerSize;
             _points[1].Y = middlePoint;

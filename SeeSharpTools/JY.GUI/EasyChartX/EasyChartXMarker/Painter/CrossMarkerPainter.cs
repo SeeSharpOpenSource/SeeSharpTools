@@ -26,17 +26,17 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
             {
                 this._pen = new Pen(color);
             }
-            _points[0].X = 0;
-            _points[0].Y = 0;
+            _points[0].X = -1;
+            _points[0].Y = -1;
 
             _points[1].X = MarkerSize;
             _points[1].Y = MarkerSize;
 
-            _points[2].X = 0;
+            _points[2].X = -1;
             _points[2].Y = MarkerSize;
 
             _points[3].X = MarkerSize;
-            _points[3].Y = 0;
+            _points[3].Y = -1;
         }
 
         public override void PaintMarker(object sender, PaintEventArgs args)

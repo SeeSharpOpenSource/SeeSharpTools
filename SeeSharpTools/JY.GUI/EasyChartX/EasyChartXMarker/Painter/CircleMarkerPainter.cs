@@ -22,8 +22,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
             {
                 this._brush = new SolidBrush(color);
             }
-            this._rectangle.X = 0;
-            this._rectangle.Y = 0;
+            this._rectangle.X = -1;
+            this._rectangle.Y = -1;
             this._rectangle.Height = MarkerSize;
             this._rectangle.Width = MarkerSize;
         }
