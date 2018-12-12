@@ -1105,22 +1105,26 @@ namespace SeeSharpTools.JY.GUI
         }
 
         /// <summary>
-        /// 添加数据标识
+        /// 在当前绘图上添加数据标记，这些标记在Plot或者Clear后会被清空
         /// </summary>
-        /// <param name="xValue"></param>
-        /// <param name="yValue"></param>
-        /// <param name="markerColor"></param>
-        /// <param name="markerType"></param>
-        /// <param name="xAxis"></param>
-        /// <param name="yAxis"></param>
-        public void AddDataMarker(IList<double> xValue, IList<double> yValue, Color markerColor, DataMarkerType markerType, EasyChartXAxis.PlotAxis xAxis, EasyChartXAxis.PlotAxis yAxis)
+        /// <param name="xValue">被标记点的X轴坐标</param>
+        /// <param name="yValue">被被标记点的Y轴坐标</param>
+        /// <param name="markerColor">标记的颜色</param>
+        /// <param name="markerType">标记的类型</param>
+        /// <param name="xAxis">标记对应的X坐标轴：主坐标轴/副坐标轴</param>
+        /// <param name="yAxis">标记对应的Y坐标轴：主坐标轴/副坐标轴</param>
+        public void AddDataMarker(IList<double> xValue, IList<double> yValue, Color markerColor, DataMarkerType markerType = DataMarkerType.Square, 
+            EasyChartXAxis.PlotAxis xAxis = EasyChartXAxis.PlotAxis.Primary, EasyChartXAxis.PlotAxis yAxis = EasyChartXAxis.PlotAxis.Primary)
         {
             this._dataMarkerManager.Show(xValue, yValue, markerColor, markerType, xAxis, yAxis);
         }
 
+        /// <summary>
+        /// 清除Marker
+        /// </summary>
         public void ClearMarker()
         {
-//            this._dataMarkerManager.Clear();
+            this._dataMarkerManager.Clear();
         }
 
         /// <summary>
