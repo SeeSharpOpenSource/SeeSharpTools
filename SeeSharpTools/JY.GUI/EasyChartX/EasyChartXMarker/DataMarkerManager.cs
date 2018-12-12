@@ -97,7 +97,7 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
             const int defaultMarkerSeries = 4;
             this._painters = new List<MarkerPainter>(defaultMarkerSeries);
 
-            this._markerSize = 5;
+            this._markerSize = 7;
 
             this._shownCount = 0;
 
