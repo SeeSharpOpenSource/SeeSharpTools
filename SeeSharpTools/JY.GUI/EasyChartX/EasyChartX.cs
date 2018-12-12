@@ -703,7 +703,7 @@ namespace SeeSharpTools.JY.GUI
             //更新
             _plotManager.AdaptPlotDatasCount(_plotManager.SeriesCount);
 
-            this.Miscellaneous = new MiscellaneousConfiguration(this, _chartViewManager, _plotManager);
+            this.Miscellaneous = new MiscellaneousConfiguration(this, _chartViewManager, _plotManager, _dataMarkerManager);
 
             AdaptPlotSeriesAndChartView();
             Clear();
@@ -1308,7 +1308,10 @@ namespace SeeSharpTools.JY.GUI
                         }
                         break;
                     case MouseButtons.Right:
-                        ShowContextMenu(eventArgs);
+                        if (Miscellaneous.ShowFunctionMenu)
+                        {
+                            ShowFunctionMenu(eventArgs);
+                        }
                         break;
                     default:
                         break;
@@ -1407,7 +1410,7 @@ namespace SeeSharpTools.JY.GUI
             return string.Format(Constants.DataValueFormat, xValue, yValue, Environment.NewLine);
         }
 
-        private void ShowContextMenu(MouseEventArgs eventArgs)
+        private void ShowFunctionMenu(MouseEventArgs eventArgs)
         {
             //更新菜单项勾选状态
             RefreshContextMenuItems();

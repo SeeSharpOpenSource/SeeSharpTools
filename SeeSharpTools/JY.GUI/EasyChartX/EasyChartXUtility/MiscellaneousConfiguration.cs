@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using SeeSharpTools.JY.GUI.TabCursorUtility;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 {
@@ -7,6 +8,37 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
     /// </summary>
     public class MiscellaneousConfiguration : PropertyClonableClass
     {
+        /// <summary>
+        /// Get or set the data marker size.
+        /// </summary>
+        [
+            Browsable(true),
+            Category("Appearance"),
+            Description("Get or set the data marker size.")
+        ]
+        public int MarkerSize
+        {
+            get
+            {
+                return _markerManager.MarkerSize;
+            }
+
+            set
+            {
+                _markerManager.MarkerSize = value;
+            }
+        }
+
+        /// <summary>
+        /// Get or set whether show function menu when right mouse button pressed.
+        /// </summary>
+        [
+            Browsable(true),
+            Category("Behavior"),
+            Description("Get or set whether show function menu when right mouse button pressed.")
+        ]
+        public bool ShowFunctionMenu { get; set; }
+
         /// <summary>
         /// The maximum series count that can be plot.
         /// </summary>
@@ -198,12 +230,17 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         private readonly EasyChartX _parentChart;
         private readonly PlotManager _plotManager;
         private readonly ChartViewManager _viewManager;
+        private readonly DataMarkerManager _markerManager;
 
-        internal MiscellaneousConfiguration(EasyChartX parentChart, ChartViewManager viewManager, PlotManager plotManager)
+        internal MiscellaneousConfiguration(EasyChartX parentChart, ChartViewManager viewManager, PlotManager plotManager, 
+            DataMarkerManager markerManager)
         {
             this._parentChart = parentChart;
             this._plotManager = plotManager;
             this._viewManager = viewManager;
+            this._markerManager = markerManager;
+
+            this.ShowFunctionMenu = true;
         }
     }
 }
