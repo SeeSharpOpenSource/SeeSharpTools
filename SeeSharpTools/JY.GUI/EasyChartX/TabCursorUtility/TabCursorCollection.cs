@@ -3,12 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.EasyChartXUtility;
 using SeeSharpTools.JY.GUI.TabCursorUtility;
 
 namespace SeeSharpTools.JY.GUI
@@ -293,7 +289,7 @@ namespace SeeSharpTools.JY.GUI
                 showInfo += $"{Environment.NewLine}Y:{yValue}";
             }
 
-            _parentChart.ShowDynamicValue(showInfo, cursor.Control.Location, isShow);
+            _parentChart.ShowMarkerValue(showInfo, cursor.Control.Location, isShow);
         }
 
         private void SetCursorXBoundry(TabCursor item)

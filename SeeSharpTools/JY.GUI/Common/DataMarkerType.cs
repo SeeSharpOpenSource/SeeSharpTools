@@ -1,5 +1,8 @@
 ﻿namespace SeeSharpTools.JY.GUI
 {
+    /// <summary>
+    /// 数据标识的类型
+    /// </summary>
     public enum DataMarkerType
     {
         /// <summary>

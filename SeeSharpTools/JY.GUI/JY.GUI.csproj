@@ -105,14 +105,17 @@
     <Compile Include="EasyChartX\EasyChartXEditor\TabCursorCollectionEditor.cs" />
     <Compile Include="EasyChartX\EasyChartXEditor\TabCursorDesignTimeCollection.cs" />
     <Compile Include="EasyChartX\EasyChartXEvents\EasyChartXPlotEventArgs.cs" />
-    <Compile Include="EasyChartX\TabCursorUtility\DataMarkerPainter.cs" />
+    <Compile Include="EasyChartX\EasyChartXMarker\DataMarkerManager.cs" />
     <Compile Include="Common\DataMarkerType.cs" />
-    <Compile Include="EasyChartX\TabCursorUtility\MarkerControls\MarkerControl.cs">
-      <SubType>Component</SubType>
+    <Compile Include="EasyChartX\EasyChartXMarker\MarkerControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EasyChartX\TabCursorUtility\MarkerControls\SquareMarker.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="EasyChartX\EasyChartXMarker\Painter\CrossMarkerPainter.cs" />
+    <Compile Include="EasyChartX\EasyChartXMarker\Painter\TriangleMarkerPainter.cs" />
+    <Compile Include="EasyChartX\EasyChartXMarker\Painter\MarkerPainter.cs" />
+    <Compile Include="EasyChartX\EasyChartXMarker\Painter\CircleMarkerPainter.cs" />
+    <Compile Include="EasyChartX\EasyChartXMarker\Painter\DiamondMarkerPainter.cs" />
+    <Compile Include="EasyChartX\EasyChartXMarker\Painter\SquareMarkerPainter.cs" />
     <Compile Include="StripChartX\StripChartX.cs">
       <SubType>UserControl</SubType>
     </Compile>
