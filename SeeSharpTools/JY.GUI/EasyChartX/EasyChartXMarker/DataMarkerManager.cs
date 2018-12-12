@@ -163,9 +163,17 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
             {
                 return;
             }
+            bool markerRefreshed = false;
             for (int i = 0; i < _shownCount; i++)
             {
-                _painters[i].MoveAndShow();
+                markerRefreshed |= _painters[i].MoveAndShow();
+            }
+            // 如果marker被更新，则需要刷新X轴的Label(如果不更新会在一次缩放后不再更新X轴的Label，具体原因不明)
+            if (markerRefreshed)
+            {
+                _parentPlotArea.AxisX.RefreshLabels();
+                // 因为目前副X坐标轴被封闭，所以暂时清理副坐标轴
+//                _parentPlotArea.AxisX2.RefreshLabels();
             }
         }
     }

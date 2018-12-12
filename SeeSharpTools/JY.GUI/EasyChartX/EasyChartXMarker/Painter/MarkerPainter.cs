@@ -111,16 +111,18 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
             }
         }
 
-        public void MoveAndShow()
+        // 移动和显示Marker，如果有更新则返回true，没有更新位置则返回false
+        public bool MoveAndShow()
         {
             bool positionChanged = _adapter.RefreshPosition();
             bool viewRangeChanged = InitializeMoveParameter();
             // 如果图表位置和图像范围都没有变化，则无需更新位置
             if (!positionChanged && !viewRangeChanged)
             {
-                return;
+                return false;
             }
             RefreshMarkerPosition();
+            return true;
         }
 
         public void RefreshMarkerPosition()
@@ -140,7 +142,10 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
                 }
                 location.X = (int)Math.Round((xValue - _xMin) * _xAxisRatio + _xOffset);
                 location.Y = (int)Math.Round((yValue - _yMax) * _yAxisRatio + _yOffset);
-                markerControl.Location = location;
+                if (location.X != markerControl.Location.X || location.Y != markerControl.Location.Y)
+                {
+                    markerControl.Location = location;
+                }
                 if (!markerControl.Visible)
                 {
                     markerControl.Visible = true;
