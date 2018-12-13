@@ -70,6 +70,9 @@
         // 默认的X轴最大最小值
         public const double DefaultXMax = 1000;
         public const double DefaultXMin = 0;
+        // 对数坐标时默认的最小坐标轴值
+        public const int DefaultMinLogarithmic = 1;
+        public const double LogarithmicInterval = 1E-40;
         // 分区视图时X轴和Y轴的边界比例(百分比)
         public const float XBoundRatio = 5f;
         public const float YBoundRatio = 5f;

@@ -46,21 +46,21 @@ namespace SeeSharpTools.JY.GUI
             if (IsXAxis())
             {
                 this._maxData = Constants.DefaultXMax;
-                this._minData = Constants.DefaultXMin;
-                this._specifiedMax = Constants.DefaultXMax;
-                this._specifiedMin = Constants.DefaultXMin;
+                this._minData = IsLogarithmic ? Constants.DefaultMinLogarithmic : Constants.DefaultXMin;
+                this._specifiedMax = _maxData;
+                this._specifiedMin = _minData;
                 this.ViewMaximum = Constants.DefaultXMax;
-                this.ViewMinimum = Constants.DefaultXMin;
+                this.ViewMinimum = _minData;
                 this._majorGridCount = -1;
             }
             else
             {
                 this._maxData = Constants.DefaultYMax;
-                this._minData = Constants.DefaultYMin;
-                this._specifiedMax = Constants.DefaultYMax;
-                this._specifiedMin = Constants.DefaultYMin;
-                this.ViewMaximum = Constants.DefaultYMax;
-                this.ViewMinimum = Constants.DefaultYMin;
+                this._minData = IsLogarithmic ? Constants.DefaultMinLogarithmic :Constants.DefaultYMin;
+                this._specifiedMax = _maxData;
+                this._specifiedMin = _minData;
+                this.ViewMaximum = _maxData;
+                this.ViewMinimum = _minData;
                 this._majorGridCount = Constants.DefaultYMajorGridCount;
             }
             RefreshAxisRange();
@@ -154,7 +154,7 @@ namespace SeeSharpTools.JY.GUI
             get { return _parentChart.IsPlotting() ? _baseAxis.Maximum : _specifiedMax; }
             set
             {
-                if (double.IsNaN(value))
+                if (double.IsNaN(value) || (IsLogarithmic && value <= 0))
                 {
                     return;
                 }
@@ -180,7 +180,7 @@ namespace SeeSharpTools.JY.GUI
             get { return _parentChart.IsPlotting() ? _baseAxis.Minimum : _specifiedMin; }
             set
             {
-                if (double.IsNaN(value))
+                if (double.IsNaN(value) || (IsLogarithmic && value <= 0))
                 {
                     return;
                 }
@@ -327,10 +327,20 @@ namespace SeeSharpTools.JY.GUI
             set
             {
                 // TODO 暂时修改该接口，只支持Y轴的对数显示
-                if (null != _baseAxis && IsYAxis())
+                if (null == _baseAxis)
                 {
-                    _baseAxis.IsLogarithmic = value;
+                    return;
                 }
+                
+                if (!_parentChart.IsPlotting() && Minimum <= 0)
+                {
+                    if (Maximum <= Constants.DefaultMinLogarithmic)
+                    {
+                        Maximum = IsXAxis() ? Constants.DefaultXMax : Constants.DefaultYMax;
+                    }
+                    Minimum = Constants.DefaultMinLogarithmic;
+                }
+                _baseAxis.IsLogarithmic = value;
             }
         }
 

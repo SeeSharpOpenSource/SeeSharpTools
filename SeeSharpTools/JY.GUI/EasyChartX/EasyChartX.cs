@@ -1220,7 +1220,14 @@ namespace SeeSharpTools.JY.GUI
                 {
                     changedAxis = _chartViewManager.MainPlotArea.AxisX;
                     changedAxis.RefreshXLabelFormat();
-                    _plotManager.PlotDataInRange(axis.ScaleView.ViewMinimum, axis.ScaleView.ViewMaximum, false);
+                    double viewMinimum = axis.ScaleView.ViewMinimum;
+                    double viewMaximum = axis.ScaleView.ViewMaximum;
+                    if (changedAxis.IsLogarithmic)
+                    {
+                        viewMaximum = Math.Pow(10, viewMaximum);
+                        viewMinimum = Math.Pow(10, viewMinimum);
+                    }
+                    _plotManager.PlotDataInRange(viewMinimum, viewMaximum, false);
                 }
                 // 分区视图，副绘图区的缩放事件
                 else if (_chartViewManager.IsSplitView)
@@ -1230,7 +1237,14 @@ namespace SeeSharpTools.JY.GUI
                     {
                         changedAxis = _chartViewManager.SplitPlotAreas[seriesIndex].AxisX;
                         changedAxis.RefreshXLabelFormat();
-                        _plotManager.PlotDataInRange(axis.ScaleView.ViewMinimum, axis.ScaleView.ViewMaximum, seriesIndex, false);
+                        double viewMinimum = axis.ScaleView.ViewMinimum;
+                        double viewMaximum = axis.ScaleView.ViewMaximum;
+                        if (changedAxis.IsLogarithmic)
+                        {
+                            viewMaximum = Math.Pow(10, viewMaximum);
+                            viewMinimum = Math.Pow(10, viewMinimum);
+                        }
+                        _plotManager.PlotDataInRange(viewMinimum, viewMaximum, seriesIndex, false);
                         // 分区模式下，视图更新需要手动刷新Label
                         changedAxis.RefreshLabels();
                     }

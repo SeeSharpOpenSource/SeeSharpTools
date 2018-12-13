@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
+using SeeSharpTools.JY.GUI.EasyChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -228,6 +229,11 @@ namespace SeeSharpTools.JY.GUI
         {
             if (_autoInterval)
             {
+                // 基于效率考量应该在获取interval的地方更改，暂时先在这里配置
+                if (_baseAxis.IsLogarithmic)
+                {
+                    interval = Constants.LogarithmicInterval;
+                }
                 _baseCursor.Interval = interval;
                 _baseAxis.ScaleView.SmallScrollSize = interval;
                 _baseAxis.ScaleView.SmallScrollMinSize = interval;
