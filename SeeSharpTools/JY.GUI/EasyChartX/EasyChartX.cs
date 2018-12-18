@@ -1276,7 +1276,24 @@ namespace SeeSharpTools.JY.GUI
                     }
                 }
             }
+            if (null != changedAxis && changedAxis.IsLogarithmic)
+            {
+                changedAxis.RefreshAxisRange();
+            }
             OnAxisViewChanged(changedAxis, true, true);
+        }
+
+        // AxisViewChanging事件，只有任意PlotArea存在对数坐标时使能
+        // Chart的对数坐标使用规则：如果坐标轴取消缩放，则应该在AxisViewChanging事件中将坐标轴配置为真实值；如果在缩放中状态，则需要将坐标轴范围配置为对数值
+        private void ResetLogXAxisWhenViewZoomReset(object sender, ViewEventArgs args)
+        {
+            EasyChartXPlotArea plotArea = GetPlotAreaByBase(args.ChartArea);
+            if (null != plotArea && args.Axis.IsLogarithmic)
+            {
+                EasyChartXAxis axis = plotArea.GetAxisByBase(args.Axis);
+                axis.IsLogScaleView = !double.IsNaN(args.NewPosition);
+                axis.RefreshAxisRange();
+            }
         }
 
         private void _chart_MouseDown(object sender, MouseEventArgs eventArgs)
@@ -1995,11 +2012,16 @@ namespace SeeSharpTools.JY.GUI
             this._dataMarkerManager.Hide();
 
             OnBeforePlot(false);
-            // 如果不是分区视图则统一绘制，如果是分区视图则分别绘制每条线
+            // 如果不是分区视图则统一绘制，如果是分区视图则分别绘制每条线。目前只支持一条X轴
             if (!_chartViewManager.IsSplitView)
             {
                 double beginX = _chartViewManager.MainPlotArea.AxisX.ViewMinimum;
                 double endX = _chartViewManager.MainPlotArea.AxisX.ViewMaximum;
+                if (_chartViewManager.MainPlotArea.AxisX.IsLogScaleView)
+                {
+                    beginX = Math.Pow(10, beginX);
+                    endX = Math.Pow(10, endX);
+                }
                 _plotManager.PlotDataInRange(beginX, endX, true);
             }
             else
@@ -2008,10 +2030,63 @@ namespace SeeSharpTools.JY.GUI
                 {
                     double beginX = _chartViewManager.SplitPlotAreas[i].AxisX.ViewMinimum;
                     double endX = _chartViewManager.SplitPlotAreas[i].AxisX.ViewMaximum;
+                    if (_chartViewManager.SplitPlotAreas[i].AxisX.IsLogScaleView)
+                    {
+                        beginX = Math.Pow(10, beginX);
+                        endX = Math.Pow(10, endX);
+                    }
                     _plotManager.PlotDataInRange(beginX, endX, i, true);
                 }
             }
             OnAfterPlot(false);
+        }
+
+        /// <summary>
+        /// 更新对数坐标的AxisViewChanging事件：存在对数坐标时添加，否则不添加
+        /// </summary>
+        internal void RefreshLogAxisChangingEvents(bool addOperation)
+        {
+            if (addOperation)
+            {
+                this._chart.AxisViewChanging += ResetLogXAxisWhenViewZoomReset;
+            }
+            else
+            {
+                this._chart.AxisViewChanging -= ResetLogXAxisWhenViewZoomReset;
+            }
+        }
+
+        internal bool ExistLogAxis()
+        {
+            bool existLogAxis = false;
+            existLogAxis |= _chartViewManager.MainPlotArea.AxisX.IsLogarithmic;
+            existLogAxis |= _chartViewManager.MainPlotArea.AxisY.IsLogarithmic;
+            existLogAxis |= _chartViewManager.MainPlotArea.AxisX2.IsLogarithmic;
+            existLogAxis |= _chartViewManager.MainPlotArea.AxisY2.IsLogarithmic;
+            foreach (EasyChartXPlotArea splitPlotArea in SplitPlotArea)
+            {
+                existLogAxis |= splitPlotArea.AxisX.IsLogarithmic;
+                existLogAxis |= splitPlotArea.AxisY.IsLogarithmic;
+                existLogAxis |= splitPlotArea.AxisX2.IsLogarithmic;
+                existLogAxis |= splitPlotArea.AxisY2.IsLogarithmic;
+            }
+            return existLogAxis;
+        }
+
+        private EasyChartXPlotArea GetPlotAreaByBase(ChartArea baseArea)
+        {
+            EasyChartXPlotArea plotArea = null;
+            int index = -1;
+            if (ReferenceEquals(_chartViewManager.MainPlotArea.ChartArea, baseArea) && !_chartViewManager.IsSplitView)
+            {
+                plotArea = _chartViewManager.MainPlotArea;
+            }
+            else if (0 <= (index = _chartViewManager.SplitPlotAreas.FindIndexByBaseChartArea(baseArea)) &&
+                     _chartViewManager.IsSplitView)
+            {
+                plotArea = _chartViewManager.SplitPlotAreas[index];
+            }
+            return plotArea;
         }
 
         private bool IsCursorMode(EasyChartXPlotArea plotArea)

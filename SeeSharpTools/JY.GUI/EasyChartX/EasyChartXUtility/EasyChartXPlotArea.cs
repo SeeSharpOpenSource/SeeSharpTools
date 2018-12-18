@@ -445,5 +445,28 @@ namespace SeeSharpTools.JY.GUI
                 AxisY2.CancelScaleView();
             }
         }
+
+        internal EasyChartXAxis GetAxisByBase(Axis baseAxis)
+        {
+            string axisName = baseAxis.Name;
+            EasyChartXAxis axis = null;
+            if (AxisX.Name.Equals(axisName))
+            {
+                axis = AxisX;
+            }
+            else if (AxisY.Name.Equals(axisName))
+            {
+                axis = AxisY;
+            }
+            else if (AxisX2.Name.Equals(axisName))
+            {
+                axis = AxisX2;
+            }
+            else if (AxisY2.Name.Equals(axisName))
+            {
+                axis = AxisY2;
+            }
+            return axis;
+        }
     }
 }

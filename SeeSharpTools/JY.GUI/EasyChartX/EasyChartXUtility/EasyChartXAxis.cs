@@ -19,7 +19,12 @@ namespace SeeSharpTools.JY.GUI
         private double _maxData;
         private double _minData;
 
-        #region Constrctor
+        /// <summary>
+        /// 当前坐标轴是否为对数坐标，且处于缩放状态。该状态为true时坐标轴范围使用对数值，false时使用真实值
+        /// </summary>
+        internal bool IsLogScaleView { get; set; }
+
+        #region Constructor
 
         /// <summary>
         /// Constructor for design
@@ -31,6 +36,7 @@ namespace SeeSharpTools.JY.GUI
             this._autoScale = true;
             this.AutoZoomReset = false;
             this.InitWithScaleView = false;
+            this.IsLogScaleView = false;
         }
 
         internal void Initialize(EasyChartX baseEasyChart, EasyChartXPlotArea basePlotArea, Axis baseAxis)
@@ -327,11 +333,10 @@ namespace SeeSharpTools.JY.GUI
             set
             {
                 // TODO 暂时修改该接口，只支持Y轴的对数显示
-                if (null == _baseAxis)
+                if (null == _baseAxis || value == _baseAxis.IsLogarithmic)
                 {
                     return;
                 }
-                
                 if (!_parentChart.IsPlotting() && Minimum <= 0)
                 {
                     if (Maximum <= Constants.DefaultMinLogarithmic)
@@ -339,6 +344,14 @@ namespace SeeSharpTools.JY.GUI
                         Maximum = IsXAxis() ? Constants.DefaultXMax : Constants.DefaultYMax;
                     }
                     Minimum = Constants.DefaultMinLogarithmic;
+                }
+                if (value && !_parentChart.ExistLogAxis())
+                {
+                    _parentChart.RefreshLogAxisChangingEvents(true);
+                }
+                else if (!value && _parentChart.ExistLogAxis())
+                {
+                    _parentChart.RefreshLogAxisChangingEvents(false);
                 }
                 _baseAxis.IsLogarithmic = value;
             }
@@ -622,6 +635,11 @@ namespace SeeSharpTools.JY.GUI
             {
                 RefreshYMajorGridInterval(true);
             }
+            if (IsLogarithmic)
+            {
+                this.IsLogScaleView = false;
+                RefreshAxisRange();
+            }
             _baseAxis.ScaleView.ZoomReset(resetTimes);
             if (_parentChart.IsPlotting())
             {
@@ -736,6 +754,12 @@ namespace SeeSharpTools.JY.GUI
 
         private void SetAxisRange(double max, double min)
         {
+            // 坐标轴为对数显示且处于缩放时，坐标轴的大小值需要使用对数计算
+            if (IsLogScaleView)
+            {
+                max = Math.Log10(max);
+                min = Math.Log10(min);
+            }
             if (max > _baseAxis.Minimum || double.IsNaN(_baseAxis.Minimum))
             {
                 _baseAxis.Maximum = max;
