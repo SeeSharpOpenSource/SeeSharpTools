@@ -31,8 +31,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             this._indexOffset = 0;
             this._dataCheckParams = dataCheckParams;
             // 计算限制型配置并行度为内核个数
-//            _option.MaxDegreeOfParallelism = Environment.ProcessorCount;
-            _option.MaxDegreeOfParallelism = 1;
+            _option.MaxDegreeOfParallelism = Environment.ProcessorCount;
+//            _option.MaxDegreeOfParallelism = 1;
 
             this._maxDatas = new double[_option.MaxDegreeOfParallelism];
             this._minDatas = new double[_option.MaxDegreeOfParallelism];
@@ -518,10 +518,6 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 }
                 xDataBuf[bufIndex] = startXValue;
                 xDataBuf[bufIndex + 1] = middleXValue;
-                if (startXValue > 12000)
-                {
-                    Console.WriteLine("test");
-                }
                 int lineIndexOffset = 0;
                 for (int lineIndex = 0; lineIndex < _dataEntity.DataInfo.LineNum; lineIndex++)
                 {
@@ -563,71 +559,65 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             if (Math.Abs(xDataBuf[startBufIndex + 1] - xDataBuf[startBufIndex]) < Constants.MinPositiveDoubleValue ||
                 Math.Abs(xDataBuf[startBufIndex + 2] - xDataBuf[startBufIndex + 1]) < Constants.MinPositiveDoubleValue)
             {
-                FitNearSameValuePoint(xDataBuf, yDataBuf, startBufIndex, endBufIndex);
+                // 先拟合X轴的数据，获取X轴最终拟合到的位置，然后再去拟合Y轴的数据
+                int fitEndIndex = FitNearSameValuePoint(xDataBuf, startBufIndex, endBufIndex);
+                foreach (IList<double> yPlotBuf in yDataBuf)
+                {
+                    FitNearSameValuePoint(yPlotBuf, startBufIndex, fitEndIndex);
+                }
             }
         }
 
         // 对数展开时X轴最左边经常会出现多个点画一个数据的问题，暂时通过线性拟合去修改这个问题，对这些点做插值操作
-        private void FitNearSameValuePoint(IList<double> xPlotBuf, IList<IList<double>> yDataBuf, int startBufIndex, int endBufIndex)
+        private int FitNearSameValuePoint(IList<double> plotBuf, int startBufIndex, int endBufIndex)
         {
             int startSameValueIndex = startBufIndex;
-            double currentValue = xPlotBuf[startBufIndex];
+            double currentValue = plotBuf[startBufIndex];
             bool inSameValueRegion = false;
             int diffValueCount = 0;
             for (int i = startBufIndex + 1; i < endBufIndex; i++)
             {
-                if (Math.Abs(xPlotBuf[i] - currentValue) > Constants.MinPositiveDoubleValue)
+                if (Math.Abs(plotBuf[i] - currentValue) > Constants.MinPositiveDoubleValue)
                 {
                     // 如果有连续两个值不同则说明已经过了需要拟合的阶段，直接返回
                     if (++diffValueCount > 2)
                     {
-                        return;
+                        return i;
                     }
                     if (inSameValueRegion)
                     {
                         // 如果重叠点小于等于两个，将不需要拟合
                         if (i - startSameValueIndex <= 2)
                         {
-                            return;
+                            return i;
                         }
-                        DoLinearFit(xPlotBuf, yDataBuf, startSameValueIndex, i);
+                        DoLinearFit(plotBuf, startSameValueIndex, i);
                         inSameValueRegion = false;
                         startSameValueIndex = i;
                     }
-                    currentValue = xPlotBuf[i];
+                    currentValue = plotBuf[i];
                 }
                 else if (!inSameValueRegion)
                 {
                     startSameValueIndex = i - 1;
-                    currentValue = xPlotBuf[i];
+                    currentValue = plotBuf[i];
                     inSameValueRegion = true;
                     diffValueCount = 0;
                 }
             }
+            return endBufIndex;
         }
 
-        private void DoLinearFit(IList<double> xPlotBuf, IList<IList<double>> yDataBuf, int startIndex, int endIndex)
+        private void DoLinearFit(IList<double> plotBuf, int startIndex, int endIndex)
         {
-            double startValue = xPlotBuf[startIndex];
-            double endValue = xPlotBuf[endIndex];
+            double startValue = plotBuf[startIndex];
+            double endValue = plotBuf[endIndex];
             double step = (endValue - startValue)/(endIndex - startIndex);
             double value = startValue;
             for (int i = startIndex + 1; i < endIndex; i++)
             {
                 value += step;
-                xPlotBuf[i] = value;
-            }
-            foreach (IList<double> yPlotBuf in yDataBuf)
-            {
-                startValue = yPlotBuf[startIndex];
-                endValue = yPlotBuf[endIndex];
-                step = (endValue - startValue)/(endIndex - startIndex);
-                value = startValue;
-                for (int i = startIndex + 1; i < endIndex; i++)
-                {
-                    value += step;
-                    yPlotBuf[i] = value;
-                }
+                plotBuf[i] = value;
             }
         }
 
