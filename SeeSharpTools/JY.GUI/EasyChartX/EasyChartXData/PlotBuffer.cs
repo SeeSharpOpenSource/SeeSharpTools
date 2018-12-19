@@ -99,7 +99,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         #region Step方式传入X的绘图
 
-        public bool FillPlotDataToBuffer(int startIndex, int count, bool forceRefresh)
+        public bool FillPlotDataToBuffer(int startIndex, int count, bool forceRefresh, bool isLogView)
         {
             bool isNeedRefreshPlot = false;
             if (count <= Constants.MaxPointsInSingleSeries)
@@ -112,7 +112,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             {
                 XPlotBuffer = _xPlotBuffer;
                 YPlotBuffer = _yPlotBuffer;
-                isNeedRefreshPlot = FillPlotDataWithSparse(startIndex, count, forceRefresh);
+                isNeedRefreshPlot = FillPlotDataWithSparse(startIndex, count, forceRefresh, isLogView);
             }
             return isNeedRefreshPlot;
         }
@@ -152,7 +152,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             return isNeedRefreshPlot;
         }
 
-        private bool FillPlotDataWithSparse(int startIndex, int count, bool forceRefresh)
+        private bool FillPlotDataWithSparse(int startIndex, int count, bool forceRefresh, bool isLogView)
         {
             int newSparseRatio = GetSparseRatio(count, out _plotSize);
             bool isNeedRefreshPlot = IsNeedRefreshPlot(newSparseRatio, forceRefresh);
@@ -162,12 +162,12 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                 switch (FitType)
                 {
                     case EasyChartX.FitType.None:
-                        _dataEntity.Parallel.FillNoneFitPlotData(startIndex);
+                        _dataEntity.Parallel.FillNoneFitPlotData(startIndex, isLogView);
                         break;
                     case EasyChartX.FitType.Range:
                         // 使用半拟合时PlotSize必须为2的整数倍
                         _plotSize = (_plotSize / 2) * 2;
-                        _dataEntity.Parallel.FillRangeFitPlotData(startIndex);
+                        _dataEntity.Parallel.FillRangeFitPlotData(startIndex, isLogView);
                         break;
                     default:
                         break;
@@ -179,12 +179,12 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         #region Array方式传入X数据的绘图
 
-        public bool FillPlotDataToBuffer(List<int> startIndexes, List<int> counts, bool forceRefresh)
+        public bool FillPlotDataToBuffer(List<int> startIndexes, List<int> counts, bool forceRefresh, bool isLogView)
         {
             // 如果只有一个数据段需要绘图，则和Step输入的绘图方式相同
             if (1 == startIndexes.Count)
             {
-                return FillPlotDataToBuffer(startIndexes[0], counts[0], forceRefresh);
+                return FillPlotDataToBuffer(startIndexes[0], counts[0], forceRefresh, isLogView);
             }
 
             bool isNeedRefreshPlot = false;
@@ -200,7 +200,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             {
                 XPlotBuffer = _xPlotBuffer;
                 YPlotBuffer = _yPlotBuffer;
-                isNeedRefreshPlot = FillPlotDataWithSparse(startIndexes, counts, forceRefresh);
+                isNeedRefreshPlot = FillPlotDataWithSparse(startIndexes, counts, forceRefresh, isLogView);
             }
             return isNeedRefreshPlot;
         }
@@ -275,8 +275,9 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             return isNeedRefreshPlot;
         }
 
+        // TODO 这种情况目前不处理，后续维护
         // Array类型入参的暂时不执行插值处理
-        private bool FillPlotDataWithSparse(List<int> startIndexes, List<int> counts, bool forceRefresh)
+        private bool FillPlotDataWithSparse(List<int> startIndexes, List<int> counts, bool forceRefresh, bool isLogView)
         {
             int totalCounts = counts.Sum();
             int segmentCount = startIndexes.Count;
@@ -334,7 +335,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         #region 所有点的绘图
 
-        public bool FillPlotDataToBuffer(bool forceRefresh)
+        public bool FillPlotDataToBuffer(bool forceRefresh, bool isLogView)
         {
             bool isNeedRefreshPlot = false;
             if (_dataEntity.DataInfo.Size <= Constants.MaxPointsInSingleSeries)
@@ -347,7 +348,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             {
                 XPlotBuffer = _xPlotBuffer;
                 YPlotBuffer = _yPlotBuffer;
-                isNeedRefreshPlot = FillPlotDataWithSparse(forceRefresh);
+                isNeedRefreshPlot = FillPlotDataWithSparse(forceRefresh, isLogView);
             }
             return isNeedRefreshPlot;
         }
@@ -386,7 +387,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             return isNeedRefreshPlot;
         }
 
-        private bool FillPlotDataWithSparse(bool forceRefresh)
+        private bool FillPlotDataWithSparse(bool forceRefresh, bool isLogView)
         {
             int newSparseRatio = GetSparseRatio(_dataEntity.DataInfo.Size, out _plotSize);
             bool isNeedRefreshPlot = IsNeedRefreshPlot(newSparseRatio, forceRefresh);
@@ -397,19 +398,19 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                 switch (FitType)
                 {
                     case EasyChartX.FitType.None:
-                        _dataEntity.Parallel.FillNoneFitPlotData(0);
+                        _dataEntity.Parallel.FillNoneFitPlotData(0, isLogView);
                         break;
                     case EasyChartX.FitType.Range:
                         // Array方式入参时不实用拟合算法
                         if (XDataInputType.Array == _dataEntity.DataInfo.XDataInputType)
                         {
-                            _dataEntity.Parallel.FillNoneFitPlotData(0);
+                            _dataEntity.Parallel.FillNoneFitPlotData(0, isLogView);
                         }
                         else
                         {
                             // 使用半拟合时PlotSize必须为2的整数倍
                             _plotSize = (_plotSize / 2) * 2;
-                            _dataEntity.Parallel.FillRangeFitPlotData(0);
+                            _dataEntity.Parallel.FillRangeFitPlotData(0, isLogView);
                         }
                         break;
                     default:

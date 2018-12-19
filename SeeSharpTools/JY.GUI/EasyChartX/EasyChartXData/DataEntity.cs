@@ -307,7 +307,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                 _invalidYData[realIndex];
         }
 
-        public bool FillPlotDataInRange(double xStart, double xEnd, bool forceRefresh, int seriesIndex)
+        public bool FillPlotDataInRange(double xStart, double xEnd, bool forceRefresh, int seriesIndex, bool isLogView)
         {
             if (double.IsNaN(xStart))
             {
@@ -330,7 +330,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                 PlotBuf.PlotXEnd = _viewEnd[seriesIndex];
                 PlotBuf.SparseRatio = _sparseRatio[seriesIndex];
             }
-            bool isNeedRefreshPlot = FillPlotDataInRange(xStart, xEnd, forceRefresh);
+            bool isNeedRefreshPlot = FillPlotDataInRange(xStart, xEnd, forceRefresh, isLogView);
             if (isNeedRefreshPlot)
             {
                 if (seriesIndex < 0)
@@ -352,9 +352,9 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             return isNeedRefreshPlot;
         }
 
-        private bool FillPlotDataInRange(double xStart, double xEnd, bool forceRefresh)
+        private bool FillPlotDataInRange(double xStart, double xEnd, bool forceRefresh, bool isLogView)
         {
-//            double expandRange = (MaxXValue - MinXValue) * Constants.ScaleDataExpandRatio;
+            // TODO 暂未处理对数情况
             double expandRange = (xEnd - xStart) * Constants.ScaleDataExpandRatio;
             PlotBuf.CurrentXStart = xStart - expandRange;
             PlotBuf.CurrentXEnd = xEnd + expandRange;
@@ -379,24 +379,24 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             if (PlotBuf.CurrentXStart - MinXValue < Constants.MinDoubleValue && 
                 MaxXValue - PlotBuf.CurrentXEnd < Constants.MinDoubleValue)
             {
-                isNeedRefreshPlot = PlotBuf.FillPlotDataToBuffer(forceRefresh);
+                isNeedRefreshPlot = PlotBuf.FillPlotDataToBuffer(forceRefresh, isLogView);
             }
             else
             {
                 switch (DataInfo.XDataInputType)
                 {
                     case XDataInputType.Increment:
-                        isNeedRefreshPlot = FillIncrementPlotDataInRange(forceRefresh);
+                        isNeedRefreshPlot = FillIncrementPlotDataInRange(forceRefresh, isLogView);
                         break;
                     case XDataInputType.Array:
-                        isNeedRefreshPlot = FillArrayPlotDataInRange(forceRefresh);
+                        isNeedRefreshPlot = FillArrayPlotDataInRange(forceRefresh, isLogView);
                         break;
                 }
             }
             return isNeedRefreshPlot;
         }
 
-        private bool FillIncrementPlotDataInRange(bool forceRefresh)
+        private bool FillIncrementPlotDataInRange(bool forceRefresh, bool isLogView)
         {
             int startIndex = (int)((PlotBuf.CurrentXStart - XStart) / XIncrement);
             int endIndex = (int) ((PlotBuf.CurrentXEnd - XStart)/XIncrement);
@@ -408,10 +408,10 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                 }
                 return forceRefresh;
             }
-            return PlotBuf.FillPlotDataToBuffer(startIndex, endIndex - startIndex + 1, forceRefresh);
+            return PlotBuf.FillPlotDataToBuffer(startIndex, endIndex - startIndex + 1, forceRefresh, isLogView);
         }
 
-        private bool FillArrayPlotDataInRange(bool forceRefresh)
+        private bool FillArrayPlotDataInRange(bool forceRefresh, bool isLogView)
         {
             // 如果不在数据最大值最小值范围内则暂时为两个Buffer写入空数据
             if (MaxXValue < PlotBuf.CurrentXStart || MinXValue > PlotBuf.CurrentXEnd)
@@ -449,13 +449,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             {
                 counts.Add(DataInfo.Size - startIndexes[startIndexes.Count - 1]);
             }
-            return PlotBuf.FillPlotDataToBuffer(startIndexes, counts, forceRefresh);
+            return PlotBuf.FillPlotDataToBuffer(startIndexes, counts, forceRefresh, isLogView);
         }
-
-        //        public List<double> GetYData(int lineIndex)
-        //        {
-        //            return YData.GetRange(lineIndex * Size, Size);
-        //        }
         
         public bool IsEqual(DataEntity dataEntity)
         {

@@ -321,7 +321,7 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         [
             // TODO 暂时封闭IsLogarithmic配置
-            Browsable(false),
+            Browsable(true),
             Category("Design"),
             Description("Set or get the axis maximum value."),
             // TODO 暂时封闭IsLogarithmic的代码支持
@@ -943,7 +943,15 @@ namespace SeeSharpTools.JY.GUI
             }
             else
             {
-                _baseAxis.Interval = (Math.Log10(viewMax) - Math.Log10(viewMin)) / _majorGridCount;
+                double max = IsLogScaleView ? _baseAxis.Maximum : Math.Log10(_baseAxis.Maximum);
+                double min = IsLogScaleView ? _baseAxis.Minimum : Math.Log10(_baseAxis.Minimum);
+                double interval = Math.Round((max - min) / _majorGridCount);
+                if (interval < Constants.MinDoubleValue)
+                {
+                    interval = 1;
+                }
+                _baseAxis.Interval = interval;
+                _baseAxis.IntervalOffset = Math.Ceiling(min / interval) * interval - min;
                 SetLabelFormat(viewMin);
             }
 //            _baseAxis.CustomLabels.Clear();

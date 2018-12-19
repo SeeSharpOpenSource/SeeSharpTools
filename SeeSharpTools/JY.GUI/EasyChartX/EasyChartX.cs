@@ -1227,7 +1227,7 @@ namespace SeeSharpTools.JY.GUI
                         viewMaximum = Math.Pow(10, viewMaximum);
                         viewMinimum = Math.Pow(10, viewMinimum);
                     }
-                    _plotManager.PlotDataInRange(viewMinimum, viewMaximum, false);
+                    _plotManager.PlotDataInRange(viewMinimum, viewMaximum, false, changedAxis.IsLogarithmic);
                 }
                 // 分区视图，副绘图区的缩放事件
                 else if (_chartViewManager.IsSplitView)
@@ -1244,7 +1244,7 @@ namespace SeeSharpTools.JY.GUI
                             viewMaximum = Math.Pow(10, viewMaximum);
                             viewMinimum = Math.Pow(10, viewMinimum);
                         }
-                        _plotManager.PlotDataInRange(viewMinimum, viewMaximum, seriesIndex, false);
+                        _plotManager.PlotDataInRange(viewMinimum, viewMaximum, seriesIndex, false, changedAxis.IsLogarithmic);
                         // 分区模式下，视图更新需要手动刷新Label
                         changedAxis.RefreshLabels();
                     }
@@ -2022,7 +2022,7 @@ namespace SeeSharpTools.JY.GUI
                     beginX = Math.Pow(10, beginX);
                     endX = Math.Pow(10, endX);
                 }
-                _plotManager.PlotDataInRange(beginX, endX, true);
+                _plotManager.PlotDataInRange(beginX, endX, true, _chartViewManager.MainPlotArea.AxisX.IsLogarithmic);
             }
             else
             {
@@ -2035,7 +2035,7 @@ namespace SeeSharpTools.JY.GUI
                         beginX = Math.Pow(10, beginX);
                         endX = Math.Pow(10, endX);
                     }
-                    _plotManager.PlotDataInRange(beginX, endX, i, true);
+                    _plotManager.PlotDataInRange(beginX, endX, i, true, _chartViewManager.SplitPlotAreas[i].AxisX.IsLogarithmic);
                 }
             }
             OnAfterPlot(false);

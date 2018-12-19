@@ -32,6 +32,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             this._dataCheckParams = dataCheckParams;
             // 计算限制型配置并行度为内核个数
             _option.MaxDegreeOfParallelism = Environment.ProcessorCount;
+//            _option.MaxDegreeOfParallelism = 1;
 
             this._maxDatas = new double[_option.MaxDegreeOfParallelism];
             this._minDatas = new double[_option.MaxDegreeOfParallelism];
@@ -302,32 +303,58 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         
         #region No Fit
 
-        public void FillNoneFitPlotData(int startIndex)
+        public void FillNoneFitPlotData(int startIndex, bool isLogView)
         {
             int plotIndex = 0;
             if (XDataInputType.Increment == _dataEntity.DataInfo.XDataInputType)
             {
-                for (int index = 0; index < _buffer.PlotSize; index++)
+                if (!isLogView)
                 {
-                    int pointIndex = (startIndex + index*_buffer.SparseRatio);
-                    _buffer.XPlotBuffer[plotIndex] = _dataEntity.XStart + pointIndex*_dataEntity.XIncrement;
-                    for (int i = 0; i < _dataEntity.DataInfo.LineNum; i++)
+                    for (int index = 0; index < _buffer.PlotSize; index++)
                     {
-                        _buffer.YPlotBuffer[i][plotIndex] = _dataEntity.YData[pointIndex];
-                        pointIndex += _dataEntity.DataInfo.Size;
+                        int pointIndex = (startIndex + index * _buffer.SparseRatio);
+                        _buffer.XPlotBuffer[plotIndex] = _dataEntity.XStart + pointIndex * _dataEntity.XIncrement;
+                        for (int i = 0; i < _dataEntity.DataInfo.LineNum; i++)
+                        {
+                            _buffer.YPlotBuffer[i][plotIndex] = _dataEntity.YData[pointIndex];
+                            pointIndex += _dataEntity.DataInfo.Size;
+                        }
+                        plotIndex++;
                     }
-                    plotIndex++;
+                }
+                else
+                {
+                    double startXValue = _dataEntity.XStart + startIndex * _dataEntity.XIncrement;
+                    if (startXValue < Constants.MinPositiveDoubleValue)
+                    {
+                        startXValue = Constants.MinPositiveDoubleValue;
+                    }
+                    double axisValue = Math.Log10(startXValue);
+                    double axisEndValue = Math.Log10(startXValue + _buffer.SparseRatio*_buffer.PlotSize*_dataEntity.XIncrement);
+                    double stepRatio = (axisEndValue - axisValue)/_buffer.PlotSize;
+                    for (int index = 0; index < _buffer.PlotSize; index++)
+                    {
+                        int pointIndex = (int)Math.Round(Math.Pow(10, axisValue));
+                        _buffer.XPlotBuffer[plotIndex] = _dataEntity.XStart + pointIndex * _dataEntity.XIncrement;
+                        for (int i = 0; i < _dataEntity.DataInfo.LineNum; i++)
+                        {
+                            _buffer.YPlotBuffer[i][plotIndex] = _dataEntity.YData[pointIndex];
+                            pointIndex += _dataEntity.DataInfo.Size;
+                        }
+                        axisValue += stepRatio;
+                    }
                 }
             }
             else
             {
+                // TODO Array方式入参的对数非拟合算法暂未实现
                 for (int index = 0; index < _buffer.PlotSize; index++)
                 {
-                    int pointIndex = (startIndex + index*_buffer.SparseRatio);
+                    int pointIndex = (startIndex + index * _buffer.SparseRatio);
                     _buffer.XPlotBuffer[plotIndex] = (_dataEntity.XData[pointIndex]);
                     for (int i = 0; i < _dataEntity.DataInfo.LineNum; i++)
                     {
-                        _buffer.YPlotBuffer[i][plotIndex] = _dataEntity.YData[i*_dataEntity.DataInfo.Size + pointIndex];
+                        _buffer.YPlotBuffer[i][plotIndex] = _dataEntity.YData[i * _dataEntity.DataInfo.Size + pointIndex];
                     }
                     plotIndex++;
                 }
@@ -338,14 +365,38 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 
         #region Range Fit
 
-        public void FillRangeFitPlotData(int indexOffset)
+        private bool _isLogView;
+        private double _logBlockSize;
+
+        public void FillRangeFitPlotData(int indexOffset, bool isLogView)
         {
             //将PlotSize的数据分为2*_option.MaxDegreeOfParallelism段，每段最长为_segmentSize
-            _blockSize = GetBlockSize(this._dataEntity.PlotBuf.PlotSize/2);
+            this._isLogView = isLogView;
+            _blockSize = GetBlockSize(this._dataEntity.PlotBuf.PlotSize / 2);
+            if (isLogView)
+            {
+                double startXValue = _dataEntity.XStart + indexOffset*_dataEntity.XIncrement;
+                if (startXValue < Constants.MinPositiveDoubleValue)
+                {
+                    startXValue = Constants.MinPositiveDoubleValue;
+                }
+                double axisStartValue = Math.Log10(startXValue);
+                // 因为按块稀疏点，导致最后一个段不会被计算到，所以需要给PlotSize+1
+                double axisEndValue = Math.Log10(startXValue + _buffer.SparseRatio*(_buffer.PlotSize + 1)*_dataEntity.XIncrement);
+                // 多加一个常数，减少因为误差导致的点数少计算的问题
+                this._logBlockSize = (axisEndValue - axisStartValue)/_option.MaxDegreeOfParallelism + Constants.MinDoubleValue;
+            }
             this._indexOffset = indexOffset;
             if (XDataInputType.Increment == this._dataEntity.DataInfo.XDataInputType)
             {
-                Parallel.For(0, _option.MaxDegreeOfParallelism, _option, FillRangeFitStepXData);
+                if (!isLogView)
+                {
+                    Parallel.For(0, _option.MaxDegreeOfParallelism, _option, FillRangeFitStepXData);
+                }
+                else
+                {
+                    Parallel.For(0, _option.MaxDegreeOfParallelism, _option, FillLogRangeFitStepXData);
+                }
             }
             else
             {
@@ -413,6 +464,110 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                     {
                         yDataBuf[lineIndex][startBufIndex] = maxValue;
                         yDataBuf[lineIndex][startBufIndex + 1] = minValue;
+                    }
+                    lineIndexOffset += _dataEntity.DataInfo.Size;
+                }
+            }
+        }
+
+        private void FillLogRangeFitStepXData(int blockIndex)
+        {
+            // 一个拟合对在真是数据中的索引起始位置
+            int start = _blockSize * blockIndex;
+            // 一个拟合对在真是数据中的索引结束位置，不包含该位置
+            int end = _blockSize * (blockIndex + 1);
+            if (end > this._buffer.PlotSize / 2)
+            {
+                end = this._buffer.PlotSize / 2;
+            }
+
+            IList<double> xDataBuf = _buffer.XPlotBuffer;
+            IList<IList<double>> yDataBuf = _buffer.YPlotBuffer;
+
+            double axisOffset = Math.Log10(_dataEntity.XStart + this._indexOffset * _dataEntity.XIncrement) + _logBlockSize*blockIndex;
+//            double startXValue = Math.Pow(10, axisOffset);
+//            double endXValue = Math.Pow(10, axisOffset + _logBlockSize);
+//
+//            if (startXValue < _dataEntity.MinXValue)
+//            {
+//                startXValue = _dataEntity.MinXValue;
+//            }
+//            // 因为endXValue是不包含的，所以需要用最后一个点的下一个去判断
+//            if (endXValue > _dataEntity.MaxXValue + _dataEntity.XIncrement)
+//            {
+//                endXValue = _dataEntity.MaxXValue + _dataEntity.XIncrement;
+//            }
+//            // 一个拟合对在真是数据中的索引起始位置，该数值必须是偶数
+//            int startXIndex = (int)Math.Round((startXValue - _dataEntity.XStart)/_dataEntity.XIncrement);
+//            // 一个拟合对在真是数据中的索引结束位置，不包含该位置
+//            int endXIndex = (int) Math.Round((int)(endXValue - _dataEntity.XStart)/_dataEntity.XIncrement);
+//            if (endXIndex > _dataEntity.DataInfo.Size)
+//            {
+//                endXIndex = _dataEntity.PlotBuf.PlotSize;
+//            }
+            double startXValue, endXValue;
+            int startXIndex, endXIndex;
+            int pairCount = end - start;
+            // 两个相邻的数据作为拟合对。
+            int pairIndex = 0;
+            for (int plotIndex = start; plotIndex < end; plotIndex++)
+            {
+                // 待写入缓存的索引位置
+                int bufIndex = plotIndex*2;
+                startXValue = Math.Round(Math.Pow(10, axisOffset + pairIndex*_logBlockSize/pairCount));
+                endXValue = Math.Round(Math.Pow(10, axisOffset + (pairIndex + 2)*_logBlockSize/pairCount));
+                double middleXValue = Math.Round(Math.Pow(10, axisOffset + (pairIndex + 1)*_logBlockSize/pairCount));
+                pairIndex++;
+                // 真实数据的起始索引
+                startXIndex = (int)Math.Round((startXValue - _dataEntity.XStart) / _dataEntity.XIncrement);
+                if (startXIndex < 0)
+                {
+                    startXIndex = 0;
+                }
+                // 真实数据的终止索引位置，不包含该点
+                endXIndex = (int)Math.Round((int)(endXValue - _dataEntity.XStart) / _dataEntity.XIncrement);
+                if (endXIndex > _dataEntity.DataInfo.Size)
+                {
+                    endXIndex = _dataEntity.DataInfo.Size;
+                }
+                // 如果两个值相等，说明范围太小，应该用StartXIndex对应的值去填充
+                if (startXIndex == endXIndex)
+                {
+                    endXIndex = startXIndex + 1;
+                }
+                xDataBuf[bufIndex] = startXValue;
+                xDataBuf[bufIndex + 1] = middleXValue;
+
+                int lineIndexOffset = 0;
+                for (int lineIndex = 0; lineIndex < _dataEntity.DataInfo.LineNum; lineIndex++)
+                {
+                    double maxValue = _dataEntity.YData[startXIndex + lineIndexOffset];
+                    double minValue = _dataEntity.YData[startXIndex + lineIndexOffset];
+                    int maxIndex = startXIndex;
+                    int minIndex = startXIndex;
+                    for (int pointIndex = startXIndex + 1; pointIndex < endXIndex; pointIndex++)
+                    {
+                        double value = _dataEntity.YData[pointIndex + lineIndexOffset];
+                        if (value > maxValue)
+                        {
+                            maxIndex = pointIndex;
+                            maxValue = value;
+                        }
+                        else if (value < minValue)
+                        {
+                            minIndex = pointIndex;
+                            minValue = value;
+                        }
+                    }
+                    if (maxIndex > minIndex)
+                    {
+                        yDataBuf[lineIndex][bufIndex] = minValue;
+                        yDataBuf[lineIndex][bufIndex + 1] = maxValue;
+                    }
+                    else
+                    {
+                        yDataBuf[lineIndex][bufIndex] = maxValue;
+                        yDataBuf[lineIndex][bufIndex + 1] = minValue;
                     }
                     lineIndexOffset += _dataEntity.DataInfo.Size;
                 }

@@ -217,7 +217,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         // 在begin和end区间内绘制单条曲线，分区视图使用。如果forceRefresh为true时(调用Plot方法时)始终更新绘图。
         // 如果forceRefresh为false时(用户进行缩放等操作时)如果判断数据区间和原来的兼容(稀疏比相同且是上次绘图范围的子集则无需更新)
         // 使用forceRefresh是为了避免在数据量过大，用户缩放后拖动滚动条会比较卡顿的问题
-        internal void PlotDataInRange(double beginXValue, double endXValue, int seriesIndex, bool forceRefresh = false)
+        internal void PlotDataInRange(double beginXValue, double endXValue, int seriesIndex, bool forceRefresh, bool isLogView)
         {
             int lineIndex;
             DataEntity dataEntity = GetDataEntityBySeriesIndex(seriesIndex, out lineIndex);
@@ -226,7 +226,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 return;
             }
 
-            bool isNeedRefreshPlot = dataEntity.FillPlotDataInRange(beginXValue, endXValue, forceRefresh, lineIndex);
+            bool isNeedRefreshPlot = dataEntity.FillPlotDataInRange(beginXValue, endXValue, forceRefresh, lineIndex, isLogView);
             if (isNeedRefreshPlot)
             {
                 PlotBuffer plotBuffer = dataEntity.PlotBuf;
@@ -263,13 +263,13 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         // 在begin和end区间内绘制所有曲线，在主视图使用。如果forceRefresh为true时(调用Plot方法时)始终更新绘图。
         // 如果forceRefresh为false时(用户进行缩放等操作时)如果判断数据区间和原来的兼容(稀疏比相同且是上次绘图范围的子集则无需更新)
         // 使用forceRefresh是为了避免在数据量过大，用户缩放后拖动滚动条会比较卡顿的问题
-        internal void PlotDataInRange(double beginXValue, double endXValue, bool forceRefresh = false)
+        internal void PlotDataInRange(double beginXValue, double endXValue, bool forceRefresh, bool isLogView)
         {
             int seriesIndex = 0;
             foreach (DataEntity dataEntity in PlotDatas)
             {
                 // 根据begin和end的范围，将数据填充到PlotBuffer中。如果无需更新绘图则返回false。
-                bool isNeedRefreshPlot = dataEntity.FillPlotDataInRange(beginXValue, endXValue, forceRefresh, -1);
+                bool isNeedRefreshPlot = dataEntity.FillPlotDataInRange(beginXValue, endXValue, forceRefresh, -1, isLogView);
                 PlotBuffer plotBuffer = dataEntity.PlotBuf;
                 if (isNeedRefreshPlot)
                 {
