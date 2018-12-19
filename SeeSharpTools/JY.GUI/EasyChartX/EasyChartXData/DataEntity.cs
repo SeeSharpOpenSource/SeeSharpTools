@@ -354,10 +354,18 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         private bool FillPlotDataInRange(double xStart, double xEnd, bool forceRefresh, bool isLogView)
         {
-            // TODO 暂未处理对数情况
-            double expandRange = (xEnd - xStart) * Constants.ScaleDataExpandRatio;
-            PlotBuf.CurrentXStart = xStart - expandRange;
-            PlotBuf.CurrentXEnd = xEnd + expandRange;
+            if (!isLogView)
+            {
+                double expandRange = (xEnd - xStart) * Constants.ScaleDataExpandRatio;
+                PlotBuf.CurrentXStart = xStart - expandRange;
+                PlotBuf.CurrentXEnd = xEnd + expandRange;
+            }
+            else
+            {
+                double logRange = Math.Log10(xEnd) - Math.Log10(xStart);
+                PlotBuf.CurrentXStart = Math.Pow(10, Math.Log10(xStart) - logRange*Constants.ScaleDataExpandRatio);
+                PlotBuf.CurrentXEnd = Math.Pow(10, Math.Log10(xEnd) + logRange*Constants.ScaleDataExpandRatio);
+            }
 
             // 如果超出数据边界则清空绘图区
             if (PlotBuf.CurrentXStart >= MaxXValue || PlotBuf.CurrentXEnd <= MinXValue)
