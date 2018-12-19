@@ -31,8 +31,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             this._indexOffset = 0;
             this._dataCheckParams = dataCheckParams;
             // 计算限制型配置并行度为内核个数
-            _option.MaxDegreeOfParallelism = Environment.ProcessorCount;
-//            _option.MaxDegreeOfParallelism = 1;
+//            _option.MaxDegreeOfParallelism = Environment.ProcessorCount;
+            _option.MaxDegreeOfParallelism = 1;
 
             this._maxDatas = new double[_option.MaxDegreeOfParallelism];
             this._minDatas = new double[_option.MaxDegreeOfParallelism];
@@ -485,28 +485,9 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             IList<IList<double>> yDataBuf = _buffer.YPlotBuffer;
 
             double axisOffset = Math.Log10(_dataEntity.XStart + this._indexOffset * _dataEntity.XIncrement) + _logBlockSize*blockIndex;
-//            double startXValue = Math.Pow(10, axisOffset);
-//            double endXValue = Math.Pow(10, axisOffset + _logBlockSize);
-//
-//            if (startXValue < _dataEntity.MinXValue)
-//            {
-//                startXValue = _dataEntity.MinXValue;
-//            }
-//            // 因为endXValue是不包含的，所以需要用最后一个点的下一个去判断
-//            if (endXValue > _dataEntity.MaxXValue + _dataEntity.XIncrement)
-//            {
-//                endXValue = _dataEntity.MaxXValue + _dataEntity.XIncrement;
-//            }
-//            // 一个拟合对在真是数据中的索引起始位置，该数值必须是偶数
-//            int startXIndex = (int)Math.Round((startXValue - _dataEntity.XStart)/_dataEntity.XIncrement);
-//            // 一个拟合对在真是数据中的索引结束位置，不包含该位置
-//            int endXIndex = (int) Math.Round((int)(endXValue - _dataEntity.XStart)/_dataEntity.XIncrement);
-//            if (endXIndex > _dataEntity.DataInfo.Size)
-//            {
-//                endXIndex = _dataEntity.PlotBuf.PlotSize;
-//            }
             double startXValue, endXValue;
             int startXIndex, endXIndex;
+            endXValue = Math.Round(Math.Pow(10, axisOffset));
             int pairCount = end - start;
             // 两个相邻的数据作为拟合对。
             int pairIndex = 0;
@@ -514,9 +495,9 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             {
                 // 待写入缓存的索引位置
                 int bufIndex = plotIndex*2;
-                startXValue = Math.Round(Math.Pow(10, axisOffset + pairIndex*_logBlockSize/pairCount));
-                endXValue = Math.Round(Math.Pow(10, axisOffset + (pairIndex + 2)*_logBlockSize/pairCount));
-                double middleXValue = Math.Round(Math.Pow(10, axisOffset + (pairIndex + 1)*_logBlockSize/pairCount));
+                startXValue = endXValue;
+                endXValue = Math.Round(Math.Pow(10, axisOffset + (pairIndex + 1)*_logBlockSize/pairCount));
+                double middleXValue = Math.Round(Math.Pow(10, axisOffset + (pairIndex + 0.5)*_logBlockSize/pairCount));
                 pairIndex++;
                 // 真实数据的起始索引
                 startXIndex = (int)Math.Round((startXValue - _dataEntity.XStart) / _dataEntity.XIncrement);
@@ -537,7 +518,10 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 }
                 xDataBuf[bufIndex] = startXValue;
                 xDataBuf[bufIndex + 1] = middleXValue;
-
+                if (startXValue > 12000)
+                {
+                    Console.WriteLine("test");
+                }
                 int lineIndexOffset = 0;
                 for (int lineIndex = 0; lineIndex < _dataEntity.DataInfo.LineNum; lineIndex++)
                 {
@@ -570,6 +554,79 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                         yDataBuf[lineIndex][bufIndex + 1] = minValue;
                     }
                     lineIndexOffset += _dataEntity.DataInfo.Size;
+                }
+            }
+            int startBufIndex = 2*start;
+            int endBufIndex = 2*end;
+
+            // 如果相邻三个点的值不同，则认为该数据无需执行拟合操作
+            if (Math.Abs(xDataBuf[startBufIndex + 1] - xDataBuf[startBufIndex]) < Constants.MinPositiveDoubleValue ||
+                Math.Abs(xDataBuf[startBufIndex + 2] - xDataBuf[startBufIndex + 1]) < Constants.MinPositiveDoubleValue)
+            {
+                FitNearSameValuePoint(xDataBuf, yDataBuf, startBufIndex, endBufIndex);
+            }
+        }
+
+        // 对数展开时X轴最左边经常会出现多个点画一个数据的问题，暂时通过线性拟合去修改这个问题，对这些点做插值操作
+        private void FitNearSameValuePoint(IList<double> xPlotBuf, IList<IList<double>> yDataBuf, int startBufIndex, int endBufIndex)
+        {
+            int startSameValueIndex = startBufIndex;
+            double currentValue = xPlotBuf[startBufIndex];
+            bool inSameValueRegion = false;
+            int diffValueCount = 0;
+            for (int i = startBufIndex + 1; i < endBufIndex; i++)
+            {
+                if (Math.Abs(xPlotBuf[i] - currentValue) > Constants.MinPositiveDoubleValue)
+                {
+                    // 如果有连续两个值不同则说明已经过了需要拟合的阶段，直接返回
+                    if (++diffValueCount > 2)
+                    {
+                        return;
+                    }
+                    if (inSameValueRegion)
+                    {
+                        // 如果重叠点小于等于两个，将不需要拟合
+                        if (i - startSameValueIndex <= 2)
+                        {
+                            return;
+                        }
+                        DoLinearFit(xPlotBuf, yDataBuf, startSameValueIndex, i);
+                        inSameValueRegion = false;
+                        startSameValueIndex = i;
+                    }
+                    currentValue = xPlotBuf[i];
+                }
+                else if (!inSameValueRegion)
+                {
+                    startSameValueIndex = i - 1;
+                    currentValue = xPlotBuf[i];
+                    inSameValueRegion = true;
+                    diffValueCount = 0;
+                }
+            }
+        }
+
+        private void DoLinearFit(IList<double> xPlotBuf, IList<IList<double>> yDataBuf, int startIndex, int endIndex)
+        {
+            double startValue = xPlotBuf[startIndex];
+            double endValue = xPlotBuf[endIndex];
+            double step = (endValue - startValue)/(endIndex - startIndex);
+            double value = startValue;
+            for (int i = startIndex + 1; i < endIndex; i++)
+            {
+                value += step;
+                xPlotBuf[i] = value;
+            }
+            foreach (IList<double> yPlotBuf in yDataBuf)
+            {
+                startValue = yPlotBuf[startIndex];
+                endValue = yPlotBuf[endIndex];
+                step = (endValue - startValue)/(endIndex - startIndex);
+                value = startValue;
+                for (int i = startIndex + 1; i < endIndex; i++)
+                {
+                    value += step;
+                    yPlotBuf[i] = value;
                 }
             }
         }
