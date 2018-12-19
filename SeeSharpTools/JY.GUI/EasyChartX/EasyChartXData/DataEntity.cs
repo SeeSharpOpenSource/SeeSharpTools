@@ -416,7 +416,13 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                 }
                 return forceRefresh;
             }
-            return PlotBuf.FillPlotDataToBuffer(startIndex, endIndex - startIndex + 1, forceRefresh, isLogView);
+            // 每个视图最少画三个点
+            int plotCount = endIndex - startIndex + 3;
+            if (plotCount > DataInfo.Size - startIndex)
+            {
+                plotCount = DataInfo.Size - startIndex;
+            }
+            return PlotBuf.FillPlotDataToBuffer(startIndex, plotCount, forceRefresh, isLogView);
         }
 
         private bool FillArrayPlotDataInRange(bool forceRefresh, bool isLogView)
