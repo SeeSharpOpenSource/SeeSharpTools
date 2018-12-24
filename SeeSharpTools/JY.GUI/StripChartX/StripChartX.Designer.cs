@@ -98,7 +98,7 @@ namespace SeeSharpTools.JY.GUI
             this._chart.ChartAreas.Add(chartArea1);
             this._chart.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.BackColor = System.Drawing.Color.Transparent;
-            legend1.Font = new System.Drawing.Font("Microsoft YaHei", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            legend1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             legend1.IsTextAutoFit = false;
             legend1.Name = "Legend1";
             this._chart.Legends.Add(legend1);
