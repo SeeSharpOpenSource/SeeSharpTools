@@ -323,9 +323,7 @@ namespace SeeSharpTools.JY.GUI
             // TODO 暂时封闭IsLogarithmic配置
             Browsable(true),
             Category("Design"),
-            Description("Set or get the axis maximum value."),
-            // TODO 暂时封闭IsLogarithmic的代码支持
-            EditorBrowsable(EditorBrowsableState.Never)
+            Description("Specify whether the axis show as logarithmic."),
         ]
         public bool IsLogarithmic
         {
