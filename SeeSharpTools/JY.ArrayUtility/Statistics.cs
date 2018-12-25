@@ -51,12 +51,12 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <typeparam name="TDataType">Supported data type: double/float/int.</typeparam>
         /// <returns>The mean value of array data.</returns>
-        public static double Mean<TDataType>(TDataType[,] data, int index, Direction direction = Direction.Column)
+        public static double Mean<TDataType>(TDataType[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return Mean(GetDirectionData(data, index, direction));
+            return Mean(GetDirectionData(data, index, majorOrder));
         }
 
         /// <summary>
@@ -96,12 +96,12 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <typeparam name="TDataType">Supported data type: double/float/int.</typeparam>
         /// <returns>The harmonic mean value of array data.</returns>
-        public static double HarmonicMean<TDataType>(TDataType[,] data, int index, Direction direction = Direction.Column)
+        public static double HarmonicMean<TDataType>(TDataType[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return HarmonicMean(GetDirectionData(data, index, direction));
+            return HarmonicMean(GetDirectionData(data, index, majorOrder));
         }
 
         /// <summary>
@@ -141,12 +141,12 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <typeparam name="TDataType">Supported data type: double/float/int.</typeparam>
         /// <returns>The root mean value of array data.</returns>
-        public static double RootMeanSqaure<TDataType>(TDataType[,] data, int index, Direction direction = Direction.Column)
+        public static double RootMeanSqaure<TDataType>(TDataType[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return RootMeanSqaure(GetDirectionData(data, index, direction));
+            return RootMeanSqaure(GetDirectionData(data, index, majorOrder));
         }
 
 
@@ -187,12 +187,12 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <typeparam name="TDataType">Supported data type: double/float/int.</typeparam>
         /// <returns>The harmonic mean value of array data.</returns>
-        public static double GeometricMean<TDataType>(TDataType[,] data, int index, Direction direction = Direction.Column)
+        public static double GeometricMean<TDataType>(TDataType[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return GeometricMean(GetDirectionData(data, index, direction));
+            return GeometricMean(GetDirectionData(data, index, majorOrder));
         }
 
         #endregion
@@ -225,11 +225,11 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <returns>{minimum, lower-quartile, median, upper-quartile, maximum}</returns>
-        public static double[] FiveSummaryPercentile(double[,] data, int index, Direction direction = Direction.Column)
+        public static double[] FiveSummaryPercentile(double[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return FiveSummaryPercentile(GetDirectionData(data, index, direction));
+            return FiveSummaryPercentile(GetDirectionData(data, index, majorOrder));
         }
 
         /// <summary>
@@ -237,11 +237,11 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <returns>{minimum, lower-quartile, median, upper-quartile, maximum}</returns>
-        public static float[] FiveSummaryPercentile(float[,] data, int index, Direction direction = Direction.Column)
+        public static float[] FiveSummaryPercentile(float[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return FiveSummaryPercentile(GetDirectionData(data, index, direction));
+            return FiveSummaryPercentile(GetDirectionData(data, index, majorOrder));
         }
 
         /// <summary>
@@ -272,11 +272,11 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="place">The place to calculate percentile. Invalid value from 0 to 100.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <returns>The percentile value of array data in specific place.</returns>
-        public static double Percentile(double[,] data, int place, int index, Direction direction = Direction.Column)
+        public static double Percentile(double[,] data, int place, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return Percentile(GetDirectionData(data, index, direction), place);
+            return Percentile(GetDirectionData(data, index, majorOrder), place);
         }
 
         /// <summary>
@@ -285,11 +285,11 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="place">The place to calculate percentile. Invalid value from 0 to 100.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <returns>The percentile value of array data in specific place.</returns>
-        public static float Percentile(float[,] data, int place, int index, Direction direction = Direction.Column)
+        public static float Percentile(float[,] data, int place, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return Percentile(GetDirectionData(data, index, direction), place);
+            return Percentile(GetDirectionData(data, index, majorOrder), place);
         }
 
         /// <summary>
@@ -318,11 +318,11 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <returns>The median value of array data.</returns>
-        public static double Median(double[,] data, int index, Direction direction = Direction.Column)
+        public static double Median(double[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return Median(GetDirectionData(data, index, direction));
+            return Median(GetDirectionData(data, index, majorOrder));
         }
 
         /// <summary>
@@ -330,11 +330,11 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <returns>The median value of array data.</returns>
-        public static float Median(float[,] data, int index, Direction direction = Direction.Column)
+        public static float Median(float[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return Median(GetDirectionData(data, index, direction));
+            return Median(GetDirectionData(data, index, majorOrder));
         }
 
         #endregion
@@ -375,13 +375,13 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <param name="data">The data sample sequence.</param>
         /// <param name="x">The value where to estimate the CDF at.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <typeparam name="TDataType"></typeparam>
         /// <returns>The empirical cumulative distribution function (CDF) at x.</returns>
         public static double EmpiricalCDF<TDataType>(TDataType[,] data, double x, int index,
-            Direction direction = Direction.Column)
+            MajorOrder majorOrder = MajorOrder.Column)
         {
-            return EmpiricalCDF(GetDirectionData(data, index, direction), x);
+            return EmpiricalCDF(GetDirectionData(data, index, majorOrder), x);
         }
 
         /// <summary>
@@ -399,11 +399,11 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <returns>The kurtosis value of array data.</returns>
-        public static double Kurtosis(double[,] data, int index, Direction direction = Direction.Column)
+        public static double Kurtosis(double[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return GetDirectionData(data, index, direction).Kurtosis();
+            return GetDirectionData(data, index, majorOrder).Kurtosis();
         }
 
         /// <summary>
@@ -421,11 +421,11 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <returns>The skewness value of array data.</returns>
-        public static double Skewness(double[,] data, int index, Direction direction = Direction.Column)
+        public static double Skewness(double[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return GetDirectionData(data, index, direction).Skewness();
+            return GetDirectionData(data, index, majorOrder).Skewness();
         }
 
         #endregion
@@ -470,12 +470,12 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <typeparam name="TDataType">Supported data type: double/float/int.</typeparam>
         /// <returns>The standard deviation value of array data in specific place.</returns>
-        public static double StandardDeviation<TDataType>(TDataType[,] data, int index, Direction direction = Direction.Column)
+        public static double StandardDeviation<TDataType>(TDataType[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return StandardDeviation(GetDirectionData(data, index, direction));
+            return StandardDeviation(GetDirectionData(data, index, majorOrder));
         }
 
         /// <summary>
@@ -516,12 +516,12 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// </summary>
         /// <param name="data">The array data to calculate statistic value.</param>
         /// <param name="index">The column or row index of matrix to calculate statistic value.</param>
-        /// <param name="direction">Galculate matrix statistic value by column of row.</param>
+        /// <param name="majorOrder">Galculate matrix statistic value by column of row.</param>
         /// <typeparam name="TDataType">Supported data type: double/float/int.</typeparam>
         /// <returns>The variance value of array data in specific place.</returns>
-        public static double Variance<TDataType>(TDataType[,] data, int index, Direction direction = Direction.Column)
+        public static double Variance<TDataType>(TDataType[,] data, int index, MajorOrder majorOrder = MajorOrder.Column)
         {
-            return Variance(GetDirectionData(data, index, direction));
+            return Variance(GetDirectionData(data, index, majorOrder));
         }
 
 
@@ -574,26 +574,26 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <typeparam name="TDataType">Supported data type: double/float/int.</typeparam>
         /// <returns>The covariance value of two array data in specific place.</returns>
         public static double Covariance<TDataType>(TDataType[,] data1, TDataType[,] data2, int index1, int index2, 
-            Direction direction1 = Direction.Column, Direction direction2 = Direction.Column)
+            MajorOrder direction1 = MajorOrder.Column, MajorOrder direction2 = MajorOrder.Column)
         {
             return Covariance(GetDirectionData(data1, index1, direction1), GetDirectionData(data2, index2, direction2));
         }
 
         #endregion
 
-        private static TDataType[] GetDirectionData<TDataType>(TDataType[,] data, int index, Direction direction)
+        private static TDataType[] GetDirectionData<TDataType>(TDataType[,] data, int index, MajorOrder majorOrder)
         {
             TDataType[] directionData = null;
-            switch (direction)
+            switch (majorOrder)
             {
-                case Direction.Column:
+                case MajorOrder.Column:
                     directionData = new TDataType[data.GetLength(0)];
                     for (int i = 0; i < data.GetLength(0); i++)
                     {
                         directionData[index] = data[i, index];
                     }
                     break;
-                case Direction.Row:
+                case MajorOrder.Row:
                     directionData = new TDataType[data.GetLength(1)];
                     int rowSize = data.GetLength(1)*Marshal.SizeOf(typeof(TDataType));
                     Buffer.BlockCopy(data, index*rowSize, directionData, 0, rowSize);

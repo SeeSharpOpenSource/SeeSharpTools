@@ -1,14 +1,18 @@
 ﻿namespace SeeSharpTools.JY.ArrayUtility
 {
-    public enum Direction
+    /// <summary>
+    /// 计算的方向，按行计算/按列计算
+    /// </summary>
+    public enum MajorOrder
     {
         /// <summary>
-        /// Column
+        /// 按列计算
         /// </summary>
         Column = 0,
-         /// <summary>
-         /// Row
-         /// </summary>
-        Row = 1,
+
+        /// <summary>
+        /// 按行计算
+        /// </summary>
+        Row = 1
     }
 }
