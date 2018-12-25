@@ -87,6 +87,7 @@
     <Compile Include="ButtonSwitch\Renderers\ToggleSwitchRendererBase.cs" />
     <Compile Include="Common\i18n\I18nEntity.cs" />
     <Compile Include="Common\i18n\I18nLocalWrapper.cs" />
+    <Compile Include="Common\MajorOrder.cs" />
     <Compile Include="EasyButton\EasyButton.cs">
       <SubType>Component</SubType>
     </Compile>
