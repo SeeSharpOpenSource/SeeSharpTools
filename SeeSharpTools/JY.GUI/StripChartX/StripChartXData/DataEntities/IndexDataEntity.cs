@@ -13,11 +13,13 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
         private readonly PlotBuffer<TDataType> _plotBuffer;
 
         private readonly List<OverLapWrapBuffer<TDataType>> _yBuffers;
+        private readonly PlotManager _plotManager;
 
         public IndexDataEntity(PlotManager plotManager, DataEntityInfo dataInfo) : base(plotManager, dataInfo)
         {
-            this._startIndex = plotManager.StartIndex;
-            this._nextIndex = plotManager.StartIndex;
+            _plotManager = plotManager;
+            this._startIndex = _plotManager.StartIndex;
+            this._nextIndex = _plotManager.StartIndex;
             
             this._plotBuffer = new PlotBuffer<TDataType>(DataInfo.LineCount, DataInfo.Capacity);
 
@@ -26,6 +28,13 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             {
                 _yBuffers.Add(new OverLapWrapBuffer<TDataType>(DataInfo.Capacity));
             }
+        }
+
+        public override void Initialize(int sampleCount)
+        {
+            base.Initialize(sampleCount);
+            this._startIndex = _plotManager.StartIndex;
+            this._nextIndex = _plotManager.StartIndex;
         }
 
         public override int PlotCount

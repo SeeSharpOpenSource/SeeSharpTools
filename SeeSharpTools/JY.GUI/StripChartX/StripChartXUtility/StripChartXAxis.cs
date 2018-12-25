@@ -970,7 +970,11 @@ namespace SeeSharpTools.JY.GUI
             CustomLabels[MajorGridCount].FromPosition = labelPosition - labelRangeSize;
             CustomLabels[MajorGridCount].ToPosition = labelPosition + labelRangeSize;
             // 最后一个点使用
-            CustomLabels[MajorGridCount].Text = _parentChart.GetXLabelValue(-1);
+            if (labelPosition > -1)
+            {
+                labelPosition = -1;
+            }
+            CustomLabels[MajorGridCount].Text = _parentChart.GetXLabelValue(labelPosition);
         }
 
 
