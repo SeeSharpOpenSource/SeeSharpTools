@@ -69,6 +69,7 @@ This library provides some useful DSP algorithms. Some of these algorithms are b
 - **SignlaProcessing:** *[static class]* Provides common data-validating functions and interpolation algorithms.
 - **SquarewaveMeasurements:** *[static class]* Provides common sqaure wave measurement algorithms.
 - **Synchronizer:** *[static class]* Provides function to synchronize the data for asynchronized data acquisition.
+- **PeakValleyAnalysis** *[static class]* Provides peak and valley detection algorithms. This function is based on matlab runtime engine and a **MCR** should be installed when using this class.
 
 ---
 ### SeeSharpTools.JY.DSP.Utility.Fundamental
@@ -110,6 +111,8 @@ The classes in this library is listed below:
 - **PathControl:** Directory selection or input control.
 - **ScrollingText:** Text display control with special scrolling effect.
 - **ViewController** Useful component to batch-change property for designated controls in winform panel. The control can switch property "Enable" and "Visible" for now.
+- **StripChartX** New version of history graph control(StripChart) with Higher efficiency, Optimized interface, More configurabe parameters, User experience improvement.
+- **ButtonSwitchArray** Control array for bool set value input.
 
 ---
 ### SeeSharpTools.JY.Graph3D
@@ -168,6 +171,17 @@ This library provides the data transfer function through TCP protocol. The class
 This library provides common database function for mainstream Database including: Mysql, SQL server, Access and etc. The classes in this library is listed below:
 
 - **DbOperation:** Provides common database function like Add, Deletion, Modification for mainstream DataBase.
+
+---
+### SeeSharpTools.JY.Mathematics
+This library provides common used mathematic algorithms for array data. Threee engines (Math.Net, MKL, IPP) can be used. When Math.Net is used, these functions can be used with no extra libraries except SeeSharpTools; When MKL or IPP is used, the MKL library or IPP library should be installed which you can get from JYTEK website. Each engines has different performance, and the detailed test result is listed in "SeeSharpTools User Mannual". The classes in this library is listed below:
+
+- **ArrayArithmetics:** *[static class]* This class provides array arithmatical algorithms like Abisolute/Add/Subtract/Mulityply/Subtract calculation, trigonometric function, exponent/logarithm calculatoin and etc.
+- **ArrayOperation:** *[static class]* This class provides common used array operation functions including Concatenate /Copy /GetSubset /Insert /Inverse /Transpose and etc.
+- **Fitting:** *[static class]* This class provides common used fitting algorithms including linear fitting, exponential fitting, polynomial fitting.
+- **Interpolation:** *[static class]* This class provides common used interpolation algorithms including: Cubic-Spline interpolation, Linear interpolation, Log-Linear interpolation, Polynomial interpolation, Step interpolation.
+- **LinearAlgebra:** *[static class]* This class provides common used linear algebra algorithms including: dot calculation, norm calculation.
+- **Statistics:** *[static class] This class provides common used statistic algorithms including: histogram calculation, Kurtosis calculation, Mean value calculation, Median value calculation, Percentile value calculation, RMS calculation, Skewness calculation, Standard Deviation calculation and Variance calculation.
 
 ---
 ### SeeSharpTools.JY.Audio(Obsoleted)
