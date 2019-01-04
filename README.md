@@ -22,7 +22,8 @@
 | SeeSharpTools.JY.Sensors            | Sensor value convert functions                                    |
 | SeeSharpTools.JY.TCP                | TCP communication library                                         |
 | SeeSharpTools.JY.Database           | Database operating utilities                                      |
-| SeeSharpTools.JY.Audio(Obsoleted)              | Audio-related waveform generation and related algorithms(Beta)|
+| SeeSharpTools.JY.Mathematics        | Common used mathematic algorithms for array data.                 |
+| SeeSharpTools.JY.Audio(Obsoleted)   | Audio-related waveform generation and related algorithms(Beta)    |
 
 &ensp;&ensp;For more detail about these libraries, please check "SeeSharpTools User Mannual" located at repository gitpage: [https://seesharpopensource.github.io/SeeSharpTools/](https://seesharpopensource.github.io/SeeSharpTools/). Developers can get the latest release of SeeSharpTools and other software dependencies from JYTEK weibsite: [http://www.jytek.com/seesharptools](http://www.jytek.com/seesharptools).
 
