@@ -223,6 +223,8 @@ namespace SeeSharpTools.JY.GUI
                     RefreshYMajorGridInterval();
                 }
             }
+            // 如果不强制更新坐标轴Label，在手动配置时经常会出现Label错位的问题
+            _baseAxis.CustomLabels.Clear();
         }
 
         private double _specifiedMin;

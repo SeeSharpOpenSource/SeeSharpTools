@@ -40,8 +40,8 @@ namespace SeeSharpTools.JY.GUI
             _model = new IndustrySwitch();
             Dimension = 1;
             
-            ControlWidth = 50;
-            ControlHeight = 80;
+            ControlWidth = 80;
+            ControlHeight = 30;
             Direction = true;
 
             flpanel.AutoScroll = true;

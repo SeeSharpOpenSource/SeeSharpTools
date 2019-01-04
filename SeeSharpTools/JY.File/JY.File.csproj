@@ -76,6 +76,7 @@
     <Compile Include="File\IniFileParser\StreamIniDataParser.cs" />
     <Compile Include="File\IniFileParser\StringIniParser.cs" />
     <Compile Include="File\IniHandler.cs" />
+    <Compile Include="File\MajorOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

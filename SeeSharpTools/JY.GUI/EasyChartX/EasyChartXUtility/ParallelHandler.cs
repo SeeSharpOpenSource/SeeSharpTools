@@ -704,6 +704,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         public void Transpose(double[,] src, double[] dst)
         {
             int sampleCount = src.GetLength(0);
+            _transposeSrc = src;
+            _transposeDst = dst;
             if (src.Length <= MinParallelCalcCount)
             {
                 _blockSize = sampleCount;
@@ -711,14 +713,12 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             }
             else
             {
-                _transposeSrc = src;
-                _transposeDst = dst;
                 _blockSize = GetBlockSize(sampleCount);
                 // 将m行n列的矩阵分解为m/x行n列的矩阵分别转置，x为并行度
                 Parallel.For(0, _option.MaxDegreeOfParallelism, TransposeSingleBlock);
-                _transposeSrc = null;
-                _transposeDst = null;
             }
+            _transposeSrc = null;
+            _transposeDst = null;
         }
 
         private void TransposeSingleBlock(int blockIndex, object state)

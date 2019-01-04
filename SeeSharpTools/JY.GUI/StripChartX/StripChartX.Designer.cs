@@ -139,7 +139,7 @@ namespace SeeSharpTools.JY.GUI
             this.toolStripSeparator_series,
             this.tabCursorToolStripMenuItem});
             this.ChartFunctionMenu.Name = "contextMenuStripXYzoom";
-            this.ChartFunctionMenu.Size = new System.Drawing.Size(170, 342);
+            this.ChartFunctionMenu.Size = new System.Drawing.Size(170, 364);
             // 
             // ToolStripMenuItem_xAxisZoom
             // 
@@ -216,6 +216,7 @@ namespace SeeSharpTools.JY.GUI
             this.ToolStripMenuItem_saveAsCsv.Name = "ToolStripMenuItem_saveAsCsv";
             this.ToolStripMenuItem_saveAsCsv.Size = new System.Drawing.Size(169, 22);
             this.ToolStripMenuItem_saveAsCsv.Text = "Save as Csv";
+            this.ToolStripMenuItem_saveAsCsv.Visible = false;
             this.ToolStripMenuItem_saveAsCsv.Click += new System.EventHandler(this.saveAsCSVToolStripMenuItem_Click);
             // 
             // toolStripSeparator_save

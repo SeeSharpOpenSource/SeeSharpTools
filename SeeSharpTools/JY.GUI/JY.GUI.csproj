@@ -69,6 +69,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AquaGauge\AquaGaugeDesigner.cs" />
+    <Compile Include="ButtonSwitchArray\ButtonSwitchArray.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ButtonSwitchArray\ButtonSwitchArray.Designer.cs">
+      <DependentUpon>ButtonSwitchArray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ButtonSwitchArray\ButtonSwitchArrayDesigner.cs" />
     <Compile Include="ButtonSwitch\ButtonSwitch.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -502,6 +509,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ButtonSwitchArray\ButtonSwitchArray.resx">
+      <DependentUpon>ButtonSwitchArray.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EasyButton\EasyButton.resx">
       <DependentUpon>EasyButton.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -696,8 +706,10 @@
     <None Include="Resources\EasyButton\web.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="StripChartX\StripChartX.bmp" />
-    <Content Include="ViewController\ViewController.bmp" />
+    <EmbeddedResource Include="StripChartX\StripChartX.bmp" />
+    <EmbeddedResource Include="ButtonSwitchArray\ButtonSwitchArray.bmp" />
+    <EmbeddedResource Include="ButtonSwitch\ButtonSwitch.PNG" />
+    <EmbeddedResource Include="ViewController\ViewController.bmp" />
     <EmbeddedResource Include="SwitchArray\SwitchArray.bmp" />
     <EmbeddedResource Include="StripChart\StripChart.bmp" />
     <EmbeddedResource Include="Thermometer\Thermometer.bmp" />
@@ -716,7 +728,6 @@
     <EmbeddedResource Include="SegmentBright\SegmentBright.bmp" />
     <EmbeddedResource Include="Segment\SevenSegment.bmp" />
     <EmbeddedResource Include="Slide\Slide.bmp" />
-    <EmbeddedResource Include="ButtonSwitch\ButtonSwitch.PNG" />
     <EmbeddedResource Include="EasyButton\EasyButton.PNG" />
     <EmbeddedResource Include="AquaGauge\Industry1AquaGauge.PNG" />
     <EmbeddedResource Include="PressureGauge\PressureGauge.bmp" />

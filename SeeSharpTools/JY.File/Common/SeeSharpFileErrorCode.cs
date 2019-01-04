@@ -31,5 +31,10 @@ namespace SeeSharpTools.JY.File.Common
         /// Unsupported data type
         /// </summary>
         public const int UnsupportedDataType = -104;
+
+        /// <summary>
+        /// Data length mismatch
+        /// </summary>
+        public const int DataLengthMismatch = -105;
     }
 }

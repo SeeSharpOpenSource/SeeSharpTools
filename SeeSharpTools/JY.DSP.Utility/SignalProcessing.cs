@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using MathNet.Numerics;
+using MathNet.Numerics.Statistics;
+using SeeSharpTools.JY.ArrayUtility;
 
 namespace SeeSharpTools.JY.DSP.Utility
 {
@@ -175,6 +177,37 @@ namespace SeeSharpTools.JY.DSP.Utility
             }
         }
 
+        /// <summary>
+        /// 计算出信号的AC成分以及DC成分(单位：RMS)
+        /// </summary>
+        /// <param name="signalData">信号来源</param>
+        /// <param name="acTerm">AC成分</param>
+        /// <param name="dcTerm">DC成分</param>
+        public static void EstimateACDC(double[] signalData, out double acTerm, out double dcTerm)
+        {
+            double[] inputData = new double[signalData.Length];
+            double[] acData = new double[signalData.Length];
+            double[] hann_weighting = Window.Hann(signalData.Length);
+            double coeff_cg = 0.5;// cg=0.5, compensation for Hanning windowing
+            double coeff_enbw = 1.5;// enbw=1.5, compensation for Hanning windowing
+
+            //DC term extraction
+            //Hanning windowing the signal
+            ArrayCalculation.Multiply(hann_weighting, signalData, ref inputData);
+            //Get the mean value and compensated by the cg coeff
+            dcTerm = Statistics.Mean(inputData) / coeff_cg;
+
+            //AC term extraction
+            Buffer.BlockCopy(signalData, 0, inputData, 0, signalData.Length * sizeof(double));
+            //Substract from the dc term
+            ArrayCalculation.SubtractOffset(ref inputData, dcTerm);
+            //Hanning windowing the signal
+            ArrayCalculation.Multiply(hann_weighting, inputData, ref acData);
+            //Get the variance data, compensated by coeff , and sqrt to derive ac term
+            acTerm=Math.Sqrt(Statistics.Variance(acData) / (coeff_cg * coeff_cg * coeff_enbw));
+
+
+        }
     }
     /// <summary>
     /// 内插类型
@@ -202,4 +235,6 @@ namespace SeeSharpTools.JY.DSP.Utility
         /// </summary>
         Step
     }
+
+    
 }

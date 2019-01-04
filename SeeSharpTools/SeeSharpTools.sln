@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JY.ArrayUtility", "JY.ArrayUtility\JY.ArrayUtility.csproj", "{ACE70850-CF35-46FE-964F-67DE1CBCD7A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JY.DSP.Fundamental", "JY.DSP.Fundamental\JY.DSP.Fundamental.csproj", "{DF51E595-D154-4838-BA34-44820E6B0A7D}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SeeSharpTools Installer", "SeeSharpTools Installer\SeeSharpTools Installer.vdproj", "{0F64EC9E-4606-4A32-A348-6A349731F7C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JY.Report", "JY.Report\JY.Report.csproj", "{7E875F92-BDFE-4CFA-BABF-8C82DBC51EC7}"
 EndProject
@@ -37,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JY.Sensors", "JY.Sensors\JY
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JY.TCP", "JY.TCP\JY.TCP.csproj", "{E57315EB-7DAA-42B2-A541-9573D97B36F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JY.Mathematics", "JY.Mathematics\JY.Mathematics.csproj", "{872E01FA-95CD-41C8-9B9C-C09FE142F324}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,13 @@ Global
 		{DF51E595-D154-4838-BA34-44820E6B0A7D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DF51E595-D154-4838-BA34-44820E6B0A7D}.Release|x86.ActiveCfg = Release|Any CPU
 		{DF51E595-D154-4838-BA34-44820E6B0A7D}.Release|x86.Build.0 = Release|Any CPU
+		{0F64EC9E-4606-4A32-A348-6A349731F7C1}.Debug|Any CPU.ActiveCfg = Debug
+		{0F64EC9E-4606-4A32-A348-6A349731F7C1}.Debug|Any CPU.Build.0 = Debug
+		{0F64EC9E-4606-4A32-A348-6A349731F7C1}.Debug|x86.ActiveCfg = Debug
+		{0F64EC9E-4606-4A32-A348-6A349731F7C1}.Debug|x86.Build.0 = Debug
+		{0F64EC9E-4606-4A32-A348-6A349731F7C1}.Release|Any CPU.ActiveCfg = Release
+		{0F64EC9E-4606-4A32-A348-6A349731F7C1}.Release|x86.ActiveCfg = Release
+		{0F64EC9E-4606-4A32-A348-6A349731F7C1}.Release|x86.Build.0 = Release
 		{7E875F92-BDFE-4CFA-BABF-8C82DBC51EC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E875F92-BDFE-4CFA-BABF-8C82DBC51EC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E875F92-BDFE-4CFA-BABF-8C82DBC51EC7}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -181,6 +192,14 @@ Global
 		{E57315EB-7DAA-42B2-A541-9573D97B36F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E57315EB-7DAA-42B2-A541-9573D97B36F9}.Release|x86.ActiveCfg = Release|Any CPU
 		{E57315EB-7DAA-42B2-A541-9573D97B36F9}.Release|x86.Build.0 = Release|Any CPU
+		{872E01FA-95CD-41C8-9B9C-C09FE142F324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{872E01FA-95CD-41C8-9B9C-C09FE142F324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{872E01FA-95CD-41C8-9B9C-C09FE142F324}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{872E01FA-95CD-41C8-9B9C-C09FE142F324}.Debug|x86.Build.0 = Debug|Any CPU
+		{872E01FA-95CD-41C8-9B9C-C09FE142F324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{872E01FA-95CD-41C8-9B9C-C09FE142F324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{872E01FA-95CD-41C8-9B9C-C09FE142F324}.Release|x86.ActiveCfg = Release|Any CPU
+		{872E01FA-95CD-41C8-9B9C-C09FE142F324}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

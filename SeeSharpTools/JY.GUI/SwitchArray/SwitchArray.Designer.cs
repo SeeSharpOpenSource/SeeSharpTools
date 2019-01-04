@@ -35,19 +35,17 @@
             // 
             this.flpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpanel.Location = new System.Drawing.Point(0, 0);
-            this.flpanel.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.flpanel.Name = "flpanel";
-            this.flpanel.Size = new System.Drawing.Size(626, 852);
+            this.flpanel.Size = new System.Drawing.Size(289, 426);
             this.flpanel.TabIndex = 0;
             // 
             // SwitchArray
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flpanel);
-            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "SwitchArray";
-            this.Size = new System.Drawing.Size(626, 852);
+            this.Size = new System.Drawing.Size(289, 426);
             this.ResumeLayout(false);
 
         }

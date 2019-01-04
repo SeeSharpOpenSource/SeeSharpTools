@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{872E01FA-95CD-41C8-9B9C-C09FE142F324}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SeeSharpTools.JY.Mathematics</RootNamespace>
+    <AssemblyName>SeeSharpTools.JY.Mathematics</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Release\SeeSharpTools.JY.Mathematics.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MathNet.Numerics, Version=4.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SeeSharpTools Installer\Resources\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArrayArithmetic\ArrayArithmetic.cs" />
+    <Compile Include="ArrayOperation\ArrayOperationProvider.cs" />
+    <Compile Include="ArrayOperation\ArrayOperation.cs" />
+    <Compile Include="Calculus\Calculus.cs" />
+    <Compile Include="Calculus\CalculusProvider.cs" />
+    <Compile Include="Fitting\Fitting.cs" />
+    <Compile Include="Fitting\FittingProvider.cs" />
+    <Compile Include="Interfaces\IArrayArithmetic.cs" />
+    <Compile Include="Interfaces\IArrayOperation.cs" />
+    <Compile Include="Interfaces\ICalculus.cs" />
+    <Compile Include="Interfaces\IFitting.cs" />
+    <Compile Include="Interfaces\IInterpolation.cs" />
+    <Compile Include="Interfaces\ILinearAlgebra.cs" />
+    <Compile Include="Interpolation\Interpolation.cs" />
+    <Compile Include="Interfaces\IStatistics.cs" />
+    <Compile Include="Interpolation\InterpolationProvider.cs" />
+    <Compile Include="LinearAlgebra\LinearAlgebra.cs" />
+    <Compile Include="LinearAlgebra\LinearAlgebraProvider.cs" />
+    <Compile Include="Provider\IPP\IPPNative.cs" />
+    <Compile Include="ArrayArithmetic\ArrayArithmeticProvider.cs" />
+    <Compile Include="Provider\IPP\ProviderIPP.cs" />
+    <Compile Include="Provider\MKL\ProviderMKL.cs" />
+    <Compile Include="Statistics\StatisticsProvider.cs" />
+    <Compile Include="Statistics\Statistics.cs" />
+    <Compile Include="Provider\MKL\MKLNative.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider\Engine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JY.ArrayUtility\JY.ArrayUtility.csproj">
+      <Project>{ace70850-cf35-46fe-964f-67de1cbcd7a7}</Project>
+      <Name>JY.ArrayUtility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
