@@ -1,0 +1,1815 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:等线;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@等线";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:等线;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:24.0pt;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:等线;}
+.MsoChpDefault
+	{font-family:等线;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	layout-grid:15.6pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=ZH-CN style='text-justify-trim:punctuation'>
+
+<div class=WordSection1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US
+style='font-family:"Arial",sans-serif'>JY.Mathematics</span>类库提供各种数学计算类库，包含数组操作、数组计算、统计、微积分、曲线拟合、内插算法、线性代数等静态类库。</p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US
+style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse'>
+ <tr style='height:14.5pt'>
+  <td width="100%" colspan=2 style='width:100.0%;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>ArrayArithmetic</span></b><b><span
+  style='font-size:10.5pt;font-family:宋体;color:black'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>方法名</span></b></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Absolute</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>绝对值</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Acos</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>反余弦</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Add</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>数组相加</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Asin</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>反正弦</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Atan</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>反正切</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Cos</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>余弦</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Divide</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>数组相除</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Exp</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>自然指数</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>FindMaxMin</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>找最大最小值</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Initialize</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>初始化</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Ln</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>自然对数</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Log</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>对数</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Multiply</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>数组相乘</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Pow</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>指数</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Product</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>数组相乘后相加</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Sin</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>正弦</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Sqrt</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>平方根</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Substract</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>数组相减</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Sum</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>求和</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Tan</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>正切</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US
+style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse'>
+ <tr style='height:14.5pt'>
+  <td width="100%" colspan=2 style='width:100.0%;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>ArrayOperation</span></b><b><span
+  style='font-size:10.5pt;font-family:宋体;color:black'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>方法名</span></b></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Concatenate</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>拼接</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>ConvertTo</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>转换</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Copy</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>拷贝</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Delete</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>删除</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>GetSubset</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>获取部分</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Insert</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>插入</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Inverse</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>反转</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>ReplaceSubset</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>置换部分</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Transpose</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>转置</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US
+style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse'>
+ <tr style='height:14.5pt'>
+  <td width="100%" colspan=2 style='width:100.0%;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Statistics</span></b><b><span
+  style='font-size:10.5pt;font-family:宋体;color:black'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>方法名</span></b></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Histogram</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Histogram</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Kurtosis</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Kurtosis</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Mean</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Mean</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Median</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Median</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Percentile</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Percentile</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>RMS</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>RMS</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Skewness</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Skewness</span></p>
+  </td>
+ </tr>
+ <tr style='height:24.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:24.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>StandardDeviation</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:24.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>StandardDeviation</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Variance</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Variance</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse'>
+ <tr style='height:14.5pt'>
+  <td width="100%" colspan=2 style='width:100.0%;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>LinearAlgebra</span></b><b><span
+  style='font-size:10.5pt;font-family:宋体;color:black'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>方法名</span></b></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Dot</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Dot</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Norm</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Norm</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse'>
+ <tr style='height:14.5pt'>
+  <td width="100%" colspan=2 style='width:100.0%;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Statistics</span></b><b><span
+  style='font-size:10.5pt;font-family:宋体;color:black'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>方法名</span></b></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Interpolate_CubicSpline</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Interpolate_CubicSpline</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Interpolate_Linear</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Interpolate_Linear</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Interpolate_LogLinear</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Interpolate_LogLinear</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Interpolate_Polynomial</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Interpolate_Polynomial</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="28%" style='width:28.96%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Interpolate_Step</span></p>
+  </td>
+  <td width="71%" style='width:71.04%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Interpolate_Step</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse'>
+ <tr style='height:14.5pt'>
+  <td width="100%" colspan=2 style='width:100.0%;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Fitting</span></b><b><span
+  style='font-size:10.5pt;font-family:宋体;color:black'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="34%" style='width:34.1%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>方法名</span></b></p>
+  </td>
+  <td width="65%" style='width:65.9%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="34%" style='width:34.1%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>ExponentialFitting</span></p>
+  </td>
+  <td width="65%" style='width:65.9%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>指数拟合</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="34%" style='width:34.1%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>LinearFitting</span></p>
+  </td>
+  <td width="65%" style='width:65.9%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>线性拟合</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="34%" style='width:34.1%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>TransposePolynomialFitting</span></p>
+  </td>
+  <td width="65%" style='width:65.9%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>多项式拟合</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse'>
+ <tr style='height:14.5pt'>
+  <td width="100%" colspan=2 style='width:100.0%;border:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Calculus</span></b><b><span
+  style='font-size:10.5pt;font-family:宋体;color:black'>类</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="35%" style='width:35.8%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>方法名</span></b></p>
+  </td>
+  <td width="64%" style='width:64.2%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=ZH-TW style='font-size:10.5pt;font-family:宋体;color:black'>功能概要</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="35%" style='width:35.8%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Derivative_2ndOrderCentral</span></p>
+  </td>
+  <td width="64%" style='width:64.2%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>二次微分</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="35%" style='width:35.8%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Derivative_4thOrderCentral</span></p>
+  </td>
+  <td width="64%" style='width:64.2%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>四次微分</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="35%" style='width:35.8%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Derivative_Backward</span></p>
+  </td>
+  <td width="64%" style='width:64.2%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>反向微分</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="35%" style='width:35.8%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Derivative_Forward</span></p>
+  </td>
+  <td width="64%" style='width:64.2%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>顺向微分</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="35%" style='width:35.8%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Integral_Bode</span></p>
+  </td>
+  <td width="64%" style='width:64.2%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Bode</span><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>积分</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="35%" style='width:35.8%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Integral_Simpsons</span></p>
+  </td>
+  <td width="64%" style='width:64.2%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Simpson</span><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>积分</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="35%" style='width:35.8%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Integral_Simpsons38</span></p>
+  </td>
+  <td width="64%" style='width:64.2%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:9.0pt;font-family:宋体;color:black'>Simpson3/8</span><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>积分</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.5pt'>
+  <td width="35%" style='width:35.8%;border:solid #4F81BD 1.0pt;border-top:
+  none;background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Arial",sans-serif;color:black'>Integral_Trapezodial</span></p>
+  </td>
+  <td width="64%" style='width:64.2%;border-top:none;border-left:none;
+  border-bottom:solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;
+  background:white;padding:0cm 5.4pt 0cm 5.4pt;height:14.5pt'>
+  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
+  style='font-size:9.0pt;font-family:宋体;color:black'>梯形积分</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-indent:24.0pt'><span lang=EN-US
+style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:24.0pt'><span lang=EN-US
+style='font-family:"Arial",sans-serif'>JY.Mathematics</span>里头特定含式支持基于<span
+lang=EN-US style='font-family:"Arial",sans-serif'>intel</span>技术的加速运算能力，操作方法以及支持列表如下<span
+lang=EN-US style='font-family:"Arial",sans-serif'>:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>【使用<span
+lang=EN-US style='font-family:"Arial",sans-serif'>Intel IPP</span>加速】</p>
+
+<p class=MsoListParagraph style='margin-left:45.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-family:"Arial",sans-serif'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>安装<span lang=EN-US style='font-family:"Arial",sans-serif'>intel
+IPP</span>软件包（从<span lang=EN-US style='font-family:"Arial",sans-serif'>intel</span>网站上下载）</p>
+
+<p class=MsoListParagraph style='margin-left:45.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-family:"Arial",sans-serif'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>将生成目录新增一个<span lang=EN-US style='font-family:"Arial",sans-serif'>”IntelIPP”</span>文件夹</p>
+
+<p class=MsoListParagraph style='margin-left:45.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-family:"Arial",sans-serif'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>将<span lang=EN-US style='font-family:"Arial",sans-serif'>intel</span>软件包中的<span
+lang=EN-US style='font-family:"Arial",sans-serif'>dll</span>拷贝到<span
+lang=EN-US style='font-family:"Arial",sans-serif'>”IntelIPP”</span>目录底下。如果需要<span
+lang=EN-US style='font-family:"Arial",sans-serif'>x86</span>的程序就拷贝<span
+lang=EN-US style='font-family:"Arial",sans-serif'>x86 </span>的<span lang=EN-US
+style='font-family:"Arial",sans-serif'>dll, x64</span>的程序就拷贝<span lang=EN-US
+style='font-family:"Arial",sans-serif'>x64</span>的<span lang=EN-US
+style='font-family:"Arial",sans-serif'>dll</span>。<span lang=EN-US
+style='font-family:"Arial",sans-serif'><br>
+x86</span>路径<span lang=EN-US style='font-family:"Arial",sans-serif'><br>
+</span><span lang=EN-US style='font-size:10.0pt;font-family:"Arial",sans-serif'>C:\Program
+Files
+(x86)\IntelSWTools\compilers_and_libraries_2017.4.210\windows\redist\ia32\ipp</span></p>
+
+<p class=MsoListParagraph style='margin-left:48.0pt'><span lang=EN-US
+style='font-family:"Arial",sans-serif'>x64</span>路径<span lang=EN-US
+style='font-family:"Arial",sans-serif'><br>
+</span><span lang=EN-US style='font-size:10.0pt;font-family:"Arial",sans-serif'>C:\Program
+Files
+(x86)\IntelSWTools\compilers_and_libraries_2017.4.210\windows\redist\intel64\ipp
+</span></p>
+
+<p class=MsoListParagraph style='margin-left:45.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-family:"Arial",sans-serif'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>在代码中加入一行</p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Engine.Provider = ProviderEngine.IntelIPP</span></p>
+
+<p class=MsoListParagraph style='margin-left:45.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-family:"Arial",sans-serif'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>支持含式列表如下</p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse'>
+ <tr style='height:17.5pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  background:#FFF2CC;padding:0cm 5.4pt 0cm 5.4pt;height:17.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.0pt;color:black'>ArrayArithmetics</span></b></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border:solid windowtext 1.0pt;
+  border-left:none;background:#FFF2CC;padding:0cm 5.4pt 0cm 5.4pt;height:17.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.0pt;color:black'>ArrayOperation</span></b></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border:solid windowtext 1.0pt;
+  border-left:none;background:#FFF2CC;padding:0cm 5.4pt 0cm 5.4pt;height:17.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.0pt;color:black'>Statistics</span></b></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border:solid windowtext 1.0pt;
+  border-left:none;background:#FFF2CC;padding:0cm 5.4pt 0cm 5.4pt;height:17.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.0pt;color:black'>LinearAlgebra</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Absolute</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Inverse</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Mean</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Dot</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Acos</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>StandardDeviation</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Add</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Asin</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Atan</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Cos</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Divide</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Exp</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>FindMaxMin</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Initialize</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Ln</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Log</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Multiply</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Pow</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Product</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Sin</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Sqrt</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Substract</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Sum</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="27%" nowrap style='width:27.84%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Tan</span></p>
+  </td>
+  <td width="25%" nowrap style='width:25.94%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="22%" nowrap style='width:22.88%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="23%" nowrap style='width:23.34%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>【使用<span
+lang=EN-US style='font-family:"Arial",sans-serif'>Intel MKL</span>加速】<span
+lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
+
+<p class=MsoListParagraph style='margin-left:69.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-family:"Arial",sans-serif'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>安装<span lang=EN-US style='font-family:"Arial",sans-serif'>MKL
+runtime</span>软件包（从简仪科技网站上下载）</p>
+
+<p class=MsoListParagraph style='margin-left:69.0pt;text-indent:-21.0pt'><span
+lang=EN-US style='font-family:"Arial",sans-serif'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>在代码中加入一行</p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Engine.Provider = ProviderEngine.IntelMKL</span></p>
+
+<div align=center>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse'>
+ <tr style='height:17.5pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  background:#FFF2CC;padding:0cm 5.4pt 0cm 5.4pt;height:17.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.0pt;color:black'>ArrayArithmetics</span></b></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border:solid windowtext 1.0pt;
+  border-left:none;background:#FFF2CC;padding:0cm 5.4pt 0cm 5.4pt;height:17.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.0pt;color:black'>Statistics</span></b></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border:solid windowtext 1.0pt;
+  border-left:none;background:#FFF2CC;padding:0cm 5.4pt 0cm 5.4pt;height:17.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  lang=EN-US style='font-size:10.0pt;color:black'>LinearAlgebra</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Absolute</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Kurtosis</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Dot</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Acos</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Skewness</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Add</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Asin</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Atan</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Cos</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Exp</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>FindMaxMin</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Ln</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Log</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Multiply</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Pow</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Sin</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Sqrt</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Substract</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Sum</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+ <tr style='height:14.0pt'>
+  <td width="37%" nowrap style='width:37.58%;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:black'>Tan</span></p>
+  </td>
+  <td width="30%" nowrap style='width:30.9%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+  <td width="31%" nowrap style='width:31.52%;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:14.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>　</span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
