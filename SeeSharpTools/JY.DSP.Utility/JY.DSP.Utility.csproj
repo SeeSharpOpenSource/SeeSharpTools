@@ -32,9 +32,16 @@
     <DocumentationFile>bin\Release\SeeSharpTools.JY.DSP.Utility.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FindPeaksAndValleysMatlab">
+      <HintPath>..\SeeSharpTools Installer\Resources\FindPeaksAndValleysMatlab.dll</HintPath>
+    </Reference>
     <Reference Include="MathNet.Numerics, Version=4.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SeeSharpTools Installer\Resources\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="MWArray, Version=2.17.0.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SeeSharpTools Installer\Resources\MWArray.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HarmonicAnalysis.cs" />
+    <Compile Include="PeakValleyAnalysis.cs" />
     <Compile Include="PhaseAnalizer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -69,6 +77,10 @@
     <None Include="Resources\Coefficient.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JY.ArrayUtility\JY.ArrayUtility.csproj">
+      <Project>{ace70850-cf35-46fe-964f-67de1cbcd7a7}</Project>
+      <Name>JY.ArrayUtility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JY.DSP.Fundamental\JY.DSP.Fundamental.csproj">
       <Project>{df51e595-d154-4838-ba34-44820e6b0a7d}</Project>
       <Name>JY.DSP.Fundamental</Name>

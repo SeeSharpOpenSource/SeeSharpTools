@@ -47,12 +47,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SeeSharpTools Installer\Resources\DSPMatlab.dll</HintPath>
     </Reference>
-    <Reference Include="DSPMatlab_X64">
-      <HintPath>..\SeeSharpTools Installer\Resources\DSPMatlab_X64.dll</HintPath>
-    </Reference>
-    <Reference Include="DSPMatlab_X86">
-      <HintPath>..\SeeSharpTools Installer\Resources\DSPMatlab_X86.dll</HintPath>
-    </Reference>
     <Reference Include="MWArray, Version=2.14.0.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SeeSharpTools Installer\Resources\MWArray.dll</HintPath>

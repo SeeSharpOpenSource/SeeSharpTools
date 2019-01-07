@@ -8,6 +8,7 @@ namespace SeeSharpTools.JY.GUI
 {
     //  [Designer(typeof(GaugeLinearDesigner))]
     [DefaultEvent("ValueChanged")]
+    [ToolboxBitmap(typeof(GaugeLinear), "GaugeLinear.GaugeLinear.bmp")]
     public partial class GaugeLinear : UserControl
     {
 

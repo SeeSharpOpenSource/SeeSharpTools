@@ -499,6 +499,7 @@ namespace SeeSharpTools.JY.Report
                 result = dummy / 26;
                 residue = dummy % 26;
                 if (residue == 0)
+
                 {
                     result--;
                     residue = 26;
@@ -506,6 +507,7 @@ namespace SeeSharpTools.JY.Report
                 list.Add(Convert.ToChar(residue + 64));
                 dummy = result;
             } while (result != 0);
+            list.Reverse();
             char[] chars = list.ToArray();
             return new string(list.ToArray());
         }
@@ -1577,7 +1579,7 @@ namespace SeeSharpTools.JY.Report
                 int startColIdx = StringToRC(dataRangeStart)[1];
                 int endRowIdx = StringToRC(dataRangeEnd)[0];
                 int endColIdx = StringToRC(dataRangeEnd)[1];
-                chartRange = GetRange(startRowIdx, startColIdx + 1, endRowIdx, endColIdx);
+                chartRange = GetRange(startRowIdx, startColIdx , endRowIdx, endColIdx);
                 chartPage.SetSourceData(chartRange, Excel.XlRowCol.xlColumns);
                 for (int i = 0; i < chartPage.SeriesCollection().Count; i++)
                 {

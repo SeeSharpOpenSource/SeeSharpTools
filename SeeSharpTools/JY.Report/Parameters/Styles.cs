@@ -66,7 +66,7 @@ namespace SeeSharpTools.JY.Report
     {
         public ExcelChartStyle()
         {
-            ChartStyle = OfficeChartStyle.xlXYScatterLines;
+            ChartStyle = OfficeChartStyle.xlLine;
             FirstColumnAsXAxis = true;
             ChartWidth = 320;
             ChartHeight = 180;

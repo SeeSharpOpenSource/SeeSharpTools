@@ -1,3 +1,37 @@
+--------------------版本  1.4.4---2018/12/20
+1.增加功能
+	---ExcelReport新增RowCount和ColumnCount属性，获取当前工作表的行数列数
+	---ArrayManipulation增加Concatenate方法，用以实现数组的拼接
+	---ArrayManipulation多个方法新增MajorOrder入参，用以配置数组操作的方向(按行或按列)
+	---SignalProcessing类新增EstimateACDC方法
+	---JY.DSP.Utility模块新增PeakValleyAnalysis类(基于MCR)，实现波峰波谷监测
+	---新增JY.Mathematics数学计算类库，支持不同软件加速技术(Intel IPP, Intel MKL)
+	---JY.Mathemetics类库添加数组操作、数组计算、内插、微积分、曲线拟合、统计、线性代数
+	---JY.TCP模块新增读写double/float/byte/string类型的数据
+	---CsvHandler新增读取n列和n行的泛型接口，支持配置编码格式，原来的其他接口标记为废弃(功能仍然可用)
+	---EasyChartX的TabCursor新增支持跟踪Y轴数据
+	---EasyChartX新增Miscellaneous属性(杂项配置)，包括分区视图的布局/最多线条个数/单个Sereis最大点数/数据校验等配置
+	---EasyChartX新增对Byte数组的支持
+	---EasyChartX新增对所有鼠标操作相关事件的支持
+	---EasyChartX的二维数组重载的Plot方法新增MajorOrder参数，用以配置是否转置数据
+	---EasyChartX新增Marker功能，可以对某些特殊点进行标记
+	---EasyChartX新增支持对数坐标，X轴和Y轴都可以使用
+	---Tank控件新增Reversed属性，用于配置水柱的方向是否取反。
+	---新增小型记录仪控件StripChartX，该控件是StripChart的更新版本，功能和EasyChartX对齐
+	---新增ButtonSwitchArray控件
+	
+2.更新bug
+	---修复EasyChartX的Y轴在非自动范围模式下，某些场景配置的范围未生效的bug
+	---修复EasyChartX在部分场景下Y轴AutoScale为true时计算的范围小于Y轴数据范围的bug
+	---修复BinHandler在Append模式下报错的bug
+	---修正SignalProcess类CheckThreshold方法判定波谷的逻辑
+	---优化Phase类的CalcPhaseShift的算法
+	---修正AquaGauge控件在频繁修改Value时导致大量GC的bug
+
+3.其他修改
+	---EasyChartX修改未绘图时配置坐标轴范围的策略：用户配置的数据合法时无论是否开启AutoScale，该配置都会生效
+	---EasyChartX在未绘图时右键可以显示功能菜单(部分和数据相关的菜单项不使能)
+
 --------------------版本  1.4.3---2018/7/25
 1.增加功能
 	---EasyChartX新增X轴游标，用户可以选择定位到X轴上的点

@@ -76,7 +76,6 @@ namespace SeeSharpTools.JY.ArrayUtility
                 }
             };
         }
-
         /// <summary>
         /// 将一维数组_src1和一维数组_src2连接为长度为_src1和_src2长度之和的一维数组
         /// </summary>
@@ -106,10 +105,8 @@ namespace SeeSharpTools.JY.ArrayUtility
                 if (i == 0) { for (int j = 0; j < _dst.GetLength(0); j++) { _dst[j, i] = _src1[j]; } }
                 else { for (int j = 0; j < _dst.GetLength(0); j++) { _dst[j, i] = _src2[j]; } }
             }
-
-
         }
-
+        
         /// <summary>
         /// 将二维数组_src1和一维数组_src2连接为列数为_src1列数+1，行数为_src1长度和_src2行数最小值的二维数组
         /// </summary>
@@ -125,6 +122,182 @@ namespace SeeSharpTools.JY.ArrayUtility
                 for (int i = 0; i < _dst.GetLength(0); i++)
                 {
                     _dst[i, j] = _src1[i, j];
+                }
+            }
+        }
+
+        /// <summary>
+        /// 将一维数组_src1和一维数组_src2连接为列数(行数)为2，行数(列数)为_src1和_src2最小长度的二维数组
+        /// </summary>
+        /// <param name="_src1"></param>
+        /// <param name="_src2"></param>
+        /// <param name="_dst"></param>
+        /// <param name="majorOrder"></param>
+        /// <returns></returns>
+        public static void Concatenate<T>(T[] _src1, T[] _src2, ref T[,] _dst, MajorOrder majorOrder )
+        {
+            if (majorOrder == MajorOrder.Column)
+            {
+                if (_dst.GetLength(0) != _src1.Length || _dst.GetLength(0) != _src2.Length) throw new InvalidOperationException("输入参数不匹配");
+
+                for (int i = 0; i < _dst.GetLength(1); i++)
+                {
+                    if (i == 0)
+                    {
+                        for (int j = 0; j < _dst.GetLength(0); j++)
+                        {
+                            _dst[j, i] = _src1[j];
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 0; j < _dst.GetLength(0); j++)
+                        {
+                            _dst[j, i] = _src2[j];
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (_dst.GetLength(1) != _src1.Length || _dst.GetLength(1) != _src2.Length) throw new InvalidOperationException("输入参数不匹配");
+
+                for (int i = 0; i < _dst.GetLength(0); i++)
+                {
+                    if (i == 0)
+                    {
+                        for (int j = 0; j < _dst.GetLength(1); j++)
+                        {
+                            _dst[i, j] = _src1[j];
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 0; j < _dst.GetLength(1); j++)
+                        {
+                            _dst[i, j] = _src2[j];
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 将二维数组_src1和一维数组_src2连接为列(行)数为_src1列(行)数+1，行(列)数为_src1长度和_src2行(列)数最小值的二维数组
+        /// </summary>
+        /// <param name="_src1"></param>
+        /// <param name="_src2"></param>
+        /// <param name="_dst"></param>
+        /// <param name="majorOrder"></param>
+        /// <returns></returns>
+        public static void Concatenate<T>(T[,] _src1, T[] _src2, ref T[,] _dst, MajorOrder majorOrder)
+        {
+            if(majorOrder == MajorOrder.Column)
+            {
+                if (_dst.GetLength(0) != _src1.GetLength(0)|| _dst.GetLength(0) != _src2.Length||_dst.GetLength(1)!=_src1.GetLength(1)+1) throw new InvalidOperationException("输入参数不匹配");
+
+                for (int j = 0; j < _dst.GetLength(0); j++){ _dst[j, _src1.GetLength(1)] = _src2[j]; }  //一维数组贴在最后一列
+                for (int j = 0; j < _dst.GetLength(1) - 1; j++)
+                {
+                    for (int i = 0; i < _dst.GetLength(0); i++)
+                    {
+                        _dst[i, j] = _src1[i,j];
+                    }
+                }
+            }
+            else
+            {
+                if (_dst.GetLength(1) != _src1.GetLength(1) || _dst.GetLength(1) != _src2.Length||_dst.GetLength(0) != _src1.GetLength(0) + 1) throw new InvalidOperationException("输入参数不匹配");
+                for (int j = 0; j < _dst.GetLength(1); j++) { _dst[_src1.GetLength(0),j] = _src2[j]; } //一维数组贴在最后一行
+                for (int j = 0; j < _dst.GetLength(0) - 1; j++)
+                {
+                    for (int i = 0; i < _dst.GetLength(1); i++)
+                    {
+                        _dst[j, i] = _src1[j, i];
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// 将二维数组_src1和一维数组_src2连接为列(行)数为_src1列(行)数+1，行(列)数为_src1长度和_src2行(列)数最小值的二维数组
+        /// </summary>
+        /// <param name="_src1"></param>
+        /// <param name="_src2"></param>
+        /// <param name="_dst"></param>
+        /// <param name="majorOrder"></param>
+        /// <returns></returns>
+        public static void Concatenate<T>(T[] _src1, T[,] _src2, ref T[,] _dst, MajorOrder majorOrder)
+        {
+            if (majorOrder == MajorOrder.Column)
+            {
+                if (_dst.GetLength(0) != _src1.Length || _dst.GetLength(0) != _src2.GetLength(0) || _dst.GetLength(1) != _src2.GetLength(1) + 1) throw new InvalidOperationException("输入参数不匹配");
+
+                for (int j = 0; j < _dst.GetLength(0); j++) { _dst[j,0] = _src1[j]; }  //一维数组贴在第一列
+                for (int j = 1; j < _dst.GetLength(1); j++)
+                {
+                    for (int i = 0; i < _dst.GetLength(0); i++)
+                    {
+                        _dst[i, j] = _src2[i, j-1];
+                    }
+                }
+            }
+            else
+            {
+                if (_dst.GetLength(1) != _src1.Length || _dst.GetLength(1) != _src2.GetLength(1) || _dst.GetLength(0) != _src2.GetLength(0) + 1) throw new InvalidOperationException("输入参数不匹配");
+                for (int j = 0; j < _dst.GetLength(1); j++) {_dst[ 0,j] = _src1[j]; } //一维数组贴在第一行
+                for (int j = 1; j < _dst.GetLength(0); j++)
+                {
+                    for (int i = 0; i < _dst.GetLength(1); i++)
+                    {
+                        _dst[j, i] = _src2[j-1, i];
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// 将二维数组_src1和二维数组_src2连接为列(行)数为_src1列(行)数+1，行(列)数为_src1长度和_src2行(列)数最小值的二维数组
+        /// </summary>
+        /// <param name="_src1"></param>
+        /// <param name="_src2"></param>
+        /// <param name="_dst"></param>
+        /// <param name="majorOrder"></param>
+        /// <returns></returns>
+        public static void Concatenate<T>(T[,] _src1, T[,] _src2, ref T[,] _dst, MajorOrder majorOrder)
+        {
+            if (majorOrder == MajorOrder.Column)
+            {
+                if (_dst.GetLength(0) != _src1.GetLength(0) || _dst.GetLength(0) != _src2.GetLength(0)||_dst.GetLength(1)!=_src1.GetLength(1)+_src2.GetLength(1)) throw new InvalidOperationException("输入参数不匹配");
+                for (int j = 0; j <_src1.GetLength(1); j++)
+                {
+                    for (int i = 0; i < _dst.GetLength(0); i++)
+                    {
+                        _dst[i, j] = _src1[i, j];
+                    }
+                }
+                for (int j = _src1.GetLength(1); j < _dst.GetLength(1); j++)
+                {
+                    for (int i = 0; i < _dst.GetLength(0); i++)
+                    {
+                        _dst[i, j] = _src2[i, j-_src1.GetLength(1)];
+                    }
+                }
+            }
+            else
+            {
+                if (_dst.GetLength(1) != _src1.GetLength(1) || _dst.GetLength(1) != _src2.GetLength(1) || _dst.GetLength(0) != _src1.GetLength(0) + _src2.GetLength(0)) throw new InvalidOperationException("输入参数不匹配");
+                for (int j = 0; j < _src1.GetLength(0); j++)
+                {
+                    for (int i = 0; i < _src1.GetLength(1); i++)
+                    {
+                        _dst[j, i] = _src1[j, i];
+                    }
+                }
+                for (int j = _src1.GetLength(0); j < _dst.GetLength(0); j++)
+                {
+                    for (int i = 0; i < _dst.GetLength(1); i++)
+                    {
+                        _dst[j, i] = _src2[j-_src1.GetLength(0), i];
+                    }
                 }
             }
         }
@@ -157,10 +330,7 @@ namespace SeeSharpTools.JY.ArrayUtility
                 }
             }
         }
-
-
-
-
+        
         ///// <summary>
         ///// <para>Copying a portion of array a[] to array b[], starting at specified startIndex, number of elements equals to length of b[].</para>
         ///// <para>Chinese Simplified: 将一维数组a[]中从指定起始位置起的后续元素拷贝至一维数组b[]，起始索引值由startIndex给出，元素个数由数组b的长度给出。</para>
