@@ -9,9 +9,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JYTEK")]
-[assembly: AssemblyProduct("JY Database Class Library")]
+[assembly: AssemblyProduct("SeeSharpTools.JY.Database")]
 [assembly: AssemblyCopyright("Copyright © JYTEK 2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("SeeSharp")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

@@ -32,9 +32,9 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
                 {
                     return;
                 }
-                if (0 == value % 1)
+                if (0 == value % 2)
                 {
-                    value--;
+                    value++;
                 }
                 this._markerSize = value;
             }

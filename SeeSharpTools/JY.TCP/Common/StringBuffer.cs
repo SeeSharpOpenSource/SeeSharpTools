@@ -1,42 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SeeSharpTools.JY.TCP
 {
-    class StringBuffer
+    /// <summary>
+    /// 字符串缓存空间
+    /// </summary>
+    internal class StringBuffer:IBuffer
     {
-        private int _bufferSize;       //循环队列缓冲的大小 
+        #region Private Fields
+        private int _bufferSize;       //循环队列缓冲的大小
         private List<string> _buffer;           //缓冲区
 
-        private int _WRIdx;           //队列写指针
-        private int _RDIdx;           //队列读指针
-        private volatile int _numOfElement;
+        #endregion
 
-        public StringBuffer(int bufferSize)
-        {
-            if (bufferSize <= 0) //输入的size无效，创建默认大小的缓冲区
-            {
-                bufferSize = 1024;
-            }
-            _bufferSize = bufferSize;
-
-            _buffer = new List<string>(_bufferSize); //新建对应大小的缓冲区
-
-            _WRIdx = 0;
-            _RDIdx = 0;    //初始化读写指针
-
-            _numOfElement = 0;
-        }
-
+        #region Public Properties
+        /// <summary>
+        /// 缓存空间大小
+        /// </summary>
         public int BufferSize
         {
             get { return _bufferSize; }
         }
 
         /// <summary>
-        /// 当前能容纳的点数
+        /// 缓存内未读取元素数目
         /// </summary>
         public int NumOfElement
         {
@@ -48,6 +35,26 @@ namespace SeeSharpTools.JY.TCP
                 }
             }
         }
+
+        #endregion
+        #region Ctor
+        public StringBuffer(int bufferSize)
+        {
+            if (bufferSize <= 0) //输入的size无效，创建默认大小的缓冲区
+            {
+                bufferSize = 1024;
+            }
+            _bufferSize = bufferSize;
+
+            _buffer = new List<string>(_bufferSize); //新建对应大小的缓冲区
+        }
+
+        #endregion
+
+        #region Public Methods
+        /// <summary>
+        /// 清除缓存内所有内容
+        /// </summary>
         public void Clear()
         {
             lock (this)
@@ -55,6 +62,12 @@ namespace SeeSharpTools.JY.TCP
                 _buffer.Clear();
             }
         }
+        
+        /// <summary>
+        /// 写入缓存
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public int Enqueue(string element)
         {
             lock (this)
@@ -64,6 +77,11 @@ namespace SeeSharpTools.JY.TCP
             }
         }
 
+        /// <summary>
+        /// 从缓存读出
+        /// </summary>
+        /// <param name="reqElem"></param>
+        /// <returns></returns>
         public int Dequeue(ref string reqElem)
         {
             lock (this)
@@ -74,5 +92,16 @@ namespace SeeSharpTools.JY.TCP
             }
         }
 
+        #endregion
+
+        #region Override Methods
+        public override bool Equals(object obj)
+        {
+            var buffer = obj as StringBuffer;
+            return buffer != null &&
+                   NumOfElement == buffer.NumOfElement;
+        }
+
+        #endregion
     }
 }

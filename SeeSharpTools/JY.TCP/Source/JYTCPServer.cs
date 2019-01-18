@@ -1,143 +1,104 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
+using System.Net;
 using System.Net.Sockets;
 
 namespace SeeSharpTools.JY.TCP
 {
     /// <summary>
-    /// 
+    ///服务器端
     /// </summary>
     public class JYTCPServer
     {
+        #region Private Fields
+        private int _bufferSize;
+        private ChannelDataType _dataType;
+        private JYAsyncTcpServer _server;
+        private bool isStart = false;
+        private List<ClientInformation> _clientsInfo;
+        private IBuffer buffer;
+
+        #endregion
+
+        #region Ctor
         /// <summary>
-        /// 构造函数
+        /// 服务器构造函数
         /// </summary>
-        /// <param name="listenPort">监听的端口</param>
-        public JYTCPServer(int listenPort, ChannelDataType dataType = ChannelDataType.DataStream)
+        /// <param name="listenPort">监听的端口号</param>
+        /// <param name="dataType">缓存区存放资料的类型</param>
+        /// <param name="bufferSize">缓存区大小</param>
+        public JYTCPServer(int listenPort, ChannelDataType dataType = ChannelDataType.DataStream, int bufferSize = 131072)
         {
-            _server = new JYAsyncTcpServer(listenPort);
+            LocalIP = Dns.GetHostAddresses(Dns.GetHostName()).Where(x => x.AddressFamily == AddressFamily.InterNetwork).First();
+            _server = new JYAsyncTcpServer(LocalIP, listenPort);
+            _server.ReceiveBufferSize = (uint)bufferSize;
+            _clientsInfo = new List<ClientInformation>();
             _dataType = dataType;
             if (_server == null)
             {
                 throw new Exception("监听端口创建失败！");
             }
-
-            _bufferSize = 1024 * 1024 * 10;//10MB
-
         }
 
+        /// <summary>
+        /// 析构函数
+        /// </summary>
         ~JYTCPServer()
         {
             Stop();
         }
-        #region------------------Private----------------------
-        private int _bufferSize;
-        private ChannelDataType _dataType;
-        /// <summary>
-        /// 服务器连接句柄
-        /// </summary>
-        JYAsyncTcpServer _server;
-
-        
-        /// <summary>
-        /// 标识开始
-        /// </summary>
-        private bool isStart = false;
-
-        private Dictionary<TcpClient,CircularBuffer<byte>> _channelDataBuffer;
-        private Dictionary<TcpClient, StringBuffer> _channelStringBuffer;
-
 
         #endregion
 
-        #region------------------Public-----------------------
-
+        #region Public Properties
         /// <summary>
-        /// 缓冲区大小，字节数
+        /// 缓存区大小
         /// </summary>
         public int BufferSize
         {
-            get { return _bufferSize; }
+            get { return (int)_server.ReceiveBufferSize; }
             set
             {
-                _bufferSize = value;
+                _server.ReceiveBufferSize = (uint)value;
             }
         }
 
-
-        public TcpClient[] ConnectedClients
+        public List<ClientInformation> ConnectedClients
         {
             get
             {
                 if (isStart)
                 {
-                    switch (_dataType)
-                    {
-                        case ChannelDataType.DataStream:
-                            return _channelDataBuffer.Keys.ToArray();
-                        case ChannelDataType.String:
-                            return _channelStringBuffer.Keys.ToArray();
-                        default:
-                            return null;
-                    }
+                    return _clientsInfo;
                 }
                 else
                 {
                     return null;
                 }
             }
-
-        }
-    
-
-        private bool _isClientConnect;
-
-        /// <summary>
-        /// 客户端是否链接成功
-        /// </summary>
-        public bool IsClientConnect
-        {
-            get { return _isClientConnect; }
-
-            set { _isClientConnect = value; }
         }
 
+        public IPAddress LocalIP { get; set; }
         #endregion
 
-        #region----------------------PublicMethod------------------------
+        #region Public Methods
 
-        public int AvailableSamplesInBuffer(TcpClient client)
-        {
-            switch (_dataType)
-            {
-                case ChannelDataType.DataStream:
-                    return _channelDataBuffer[client].NumOfElement;
-                case ChannelDataType.String:
-                    return _channelStringBuffer[client].NumOfElement;
-                default:
-                    return -1;
-            }
-        }
         /// <summary>
         /// 开始
         /// </summary>
         public void Start()
         {
-            _isClientConnect = false;
-            _channelDataBuffer = new Dictionary<TcpClient, CircularBuffer<byte>>();
-            _channelStringBuffer = new Dictionary<TcpClient, StringBuffer>();
-
             switch (_dataType)
             {
                 case ChannelDataType.DataStream:
                     _server.DatagramReceived += _server_DatagramReceived;
                     break;
+
                 case ChannelDataType.String:
                     _server.PlaintextReceived += _server_PlaintextReceived;
                     break;
+
                 default:
                     break;
             }
@@ -150,46 +111,6 @@ namespace SeeSharpTools.JY.TCP
             isStart = true;
         }
 
-        private void _server_PlaintextReceived(object sender, TcpDatagramReceivedEventArgs<string> e)
-        {
-            _channelStringBuffer[e.TcpClient].Enqueue(e.Datagram);
-        }
-
-        private void _server_ClientDisconnected(object sender, TcpClientDisconnectedEventArgs e)
-        {
-            _isClientConnect = false;
-            switch (_dataType)
-            {
-                case ChannelDataType.DataStream:
-                    _channelDataBuffer.Remove(e.TcpClient);
-                    break;
-                case ChannelDataType.String:
-                    _channelStringBuffer.Remove(e.TcpClient);
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
-        private void _server_ClientConnected(object sender, TcpClientConnectedEventArgs e)
-        {
-            switch (_dataType)
-            {
-                case ChannelDataType.DataStream:
-                    _channelDataBuffer.Add(e.TcpClient,new CircularBuffer<byte>((int)_server.ReceiveBufferSize));
-                    break;
-                case ChannelDataType.String:
-                    _channelStringBuffer.Add(e.TcpClient, new StringBuffer((int)_server.ReceiveBufferSize));
-                    break;
-                default:
-                    break;
-            }
-            _isClientConnect = true;
-        }
-
-
-
         /// <summary>
         /// 停止
         /// </summary>
@@ -199,173 +120,238 @@ namespace SeeSharpTools.JY.TCP
             isStart = false;
         }
 
+        /// <summary>
+        /// 从String缓存读取一个字符串（如果选择DataStream模式，请选择ReadDataStream方法)
+        /// </summary>
+        /// <param name="Buf"></param>
+        /// <param name="client"></param>
         public void ReadString(ref string Buf, TcpClient client)
         {
             if (!isStart)
             {
                 throw new Exception(" 服务器未开始，不能读取！");
             }
-            if (_channelStringBuffer[client].NumOfElement > 0)
+            buffer = _clientsInfo.Find(x => x.Client == client).Buffer;
+            if (buffer.NumOfElement > 0)
             {
-                _channelStringBuffer[client].Dequeue(ref Buf);
-
-            }
-
-
-        }
-
-
-        /// <summary>
-        /// 读取一维数组数据
-        /// </summary>
-        /// <param name="Buf">用户内存</param>
-        /// <param name="TimeOut">超时时间</param>
-        public void ReadData(ref byte[] Buf, TcpClient client)
-        {
-            if (!isStart)
-            {
-                throw new Exception(" 服务器未开始，不能读取！");
-            }
-            if (_channelDataBuffer.Count != 0 && client != null && _channelDataBuffer.Keys.Contains(client))
-            {
-
-                if (Buf != null && _channelDataBuffer[client].NumOfElement >= (Buf.Length * sizeof(byte)))
+                if (_dataType == ChannelDataType.String)
                 {
-                    var dataBuf = new byte[Buf.Length * sizeof(byte)];
-                    _channelDataBuffer[client].Dequeue(ref dataBuf, dataBuf.Length);
-                    Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
-                    dataBuf = null;
-                    GC.Collect();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 读取一维数组数据
-        /// </summary>
-        /// <param name="Buf">用户内存</param>
-        /// <param name="TimeOut">超时时间</param>
-        public void ReadData(ref double[] Buf, TcpClient client)
-        {
-            if(!isStart)
-            {
-                throw new Exception(" 服务器未开始，不能读取！");
-            }
-            if (_channelDataBuffer.Count != 0 && client != null && _channelDataBuffer.Keys.Contains(client))
-            {
-                if (Buf != null && _channelDataBuffer[client].NumOfElement >= (Buf.Length * sizeof(double)))
-                {
-                    var dataBuf = new byte[Buf.Length * sizeof(double)];
-                    _channelDataBuffer[client].Dequeue(ref dataBuf, dataBuf.Length);
-                    Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
-                    dataBuf = null;
-                    GC.Collect();
-                }
-            }
-            
-        }
-
-        /// <summary>
-        /// 读取一维数组数据
-        /// </summary>
-        /// <param name="Buf">用户内存</param>
-        /// <param name="TimeOut">超时时间</param>
-        public void ReadData(ref float[] Buf, TcpClient client)
-        {
-            if (!isStart)
-            {
-                throw new Exception(" 服务器未开始，不能读取！");
-            }
-            if (_channelDataBuffer.Count != 0 && client != null && _channelDataBuffer.Keys.Contains(client))
-            {
-
-                if ( Buf != null && _channelDataBuffer[client].NumOfElement >= (Buf.Length * sizeof(float)))
-                {
-                    var dataBuf = new byte[Buf.Length * sizeof(float)];
-                    _channelDataBuffer[client].Dequeue(ref dataBuf, dataBuf.Length);
-                    Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
-                    dataBuf = null;
-                    GC.Collect();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 读取二维数组数据
-        /// </summary>
-        /// <param name="Buf">用户内存</param>
-        /// <param name="TimeOut">超时时间</param>
-        public void ReadData(ref double[,] Buf, TcpClient client)
-        {
-            if (!isStart)
-            {
-                throw new Exception(" 服务器未开始，不能读取！");
-            }
-            if (_channelDataBuffer.Count != 0 && client != null && _channelDataBuffer.Keys.Contains(client))
-            {
-
-                if ( Buf != null && _channelDataBuffer[client].NumOfElement >= (Buf.Length * sizeof(double)))
-                {
-                    var dataBuf = new byte[Buf.Length * sizeof(double)];
-                    _channelDataBuffer[client].Dequeue(ref dataBuf, dataBuf.Length);
-                    Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
-                    dataBuf = null;
-                    GC.Collect();
-                }
-            }
-            }
-
-        /// <summary>
-        /// 读取二维数组数据
-        /// </summary>
-        /// <param name="Buf">用户内存</param>
-        /// <param name="TimeOut">超时时间</param>
-        public void ReadData(ref float[,] Buf, TcpClient client)
-        {
-            if (!isStart)
-            {
-                throw new Exception(" 服务器未开始，不能读取！");
-            }
-            if (_channelDataBuffer.Count != 0 && client != null && _channelDataBuffer.Keys.Contains(client))
-            {
-
-                if ( Buf != null && _channelDataBuffer[client].NumOfElement >= (Buf.Length * sizeof(float)))
-                {
-                    var dataBuf = new byte[Buf.Length * sizeof(float)];
-                    _channelDataBuffer[client].Dequeue(ref dataBuf, dataBuf.Length);
-                    Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
-                    dataBuf = null;
-                    GC.Collect();
-                }
-            }
-        }
-
-        public void SendData(string dataBuf,TcpClient client=null)
-        {
-            if (isStart && dataBuf.Length != 0)
-            {
-                if (client != null)
-                {
-                    _server.Send(client, dataBuf);
+                    ((StringBuffer)buffer).Dequeue(ref Buf);
                 }
                 else
                 {
-                    _server.SendAll(dataBuf);
+                    throw new Exception("Please Use ReadDataStream() method for channel type of DataStream");
                 }
             }
-
-
         }
 
+        /// <summary>
+        /// 从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
+        /// </summary>
+        /// <param name="Buf">用户内存</param>
+        /// <param name="TimeOut">超时时间</param>
+        public void ReadDataStream(ref byte[] Buf, TcpClient client)
+        {
+            if (!isStart)
+            {
+                throw new Exception(" 服务器未开始，不能读取！");
+            }
+            buffer = _clientsInfo.Find(x => x.Client == client).Buffer;
+            if (_clientsInfo.Count != 0 && client != null && buffer!=null)
+            {
+                if (Buf != null && buffer.NumOfElement >= (Buf.Length * sizeof(byte)))
+                {
+                    if (_dataType == ChannelDataType.DataStream)
+                    {
+                        var dataBuf = new byte[Buf.Length * sizeof(byte)];
+                        ((CircularBuffer<byte>)buffer).Dequeue(ref dataBuf, dataBuf.Length);
+                        Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
+                        dataBuf = null;
+                        GC.Collect();
+                    }
+                    else
+                    {
+                        throw new Exception("Please Use ReadString() method for channel type of String");
+                    }
+                }
+            }
+        }
 
         /// <summary>
-        /// 发送数据
+        /// 从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
         /// </summary>
-        /// <param name="dataBuf">发送数据</param>
-        public void SendData(byte[] dataBuf, TcpClient client = null)
+        /// <param name="Buf">用户内存</param>
+        /// <param name="TimeOut">超时时间</param>
+        public void ReadDataStream(ref double[] Buf, TcpClient client)
+        {
+            if (!isStart)
+            {
+                throw new Exception(" 服务器未开始，不能读取！");
+            }
+            buffer = _clientsInfo.Find(x => x.Client == client).Buffer;
+
+            if (_clientsInfo.Count != 0 && client != null && buffer != null)
+            {
+                if (Buf != null && buffer.NumOfElement >= (Buf.Length * sizeof(double)))
+                {
+                    if (_dataType == ChannelDataType.DataStream)
+                    {
+                        var dataBuf = new byte[Buf.Length * sizeof(double)];
+                        ((CircularBuffer<byte>)buffer).Dequeue(ref dataBuf, dataBuf.Length);
+                        Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
+                        dataBuf = null;
+                        GC.Collect();
+                    }
+                    else
+                    {
+                        throw new Exception("Please Use ReadString() method for channel type of String");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
+        /// </summary>
+        /// <param name="Buf">用户内存</param>
+        /// <param name="TimeOut">超时时间</param>
+        public void ReadDataStream(ref float[] Buf, TcpClient client)
+        {
+            if (!isStart)
+            {
+                throw new Exception(" 服务器未开始，不能读取！");
+            }
+            buffer = _clientsInfo.Find(x => x.Client == client).Buffer;
+
+            if (_clientsInfo.Count != 0 && client != null && buffer != null)
+            {
+                if (Buf != null && buffer.NumOfElement >= (Buf.Length * sizeof(float)))
+                {
+                    if (_dataType == ChannelDataType.DataStream)
+                    {
+                        var dataBuf = new byte[Buf.Length * sizeof(float)];
+                        ((CircularBuffer<byte>)buffer).Dequeue(ref dataBuf, dataBuf.Length);
+                        Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
+                        dataBuf = null;
+                        GC.Collect();
+                    }
+                    else
+                    {
+                        throw new Exception("Please Use ReadString() method for channel type of String");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 从DataStream缓存读取二维数组数据（如果选择String模式，请选择ReadString方法)
+        /// </summary>
+        /// <param name="Buf">用户内存</param>
+        /// <param name="TimeOut">超时时间</param>
+        public void ReadDataStream(ref double[,] Buf, TcpClient client)
+        {
+            if (!isStart)
+            {
+                throw new Exception(" 服务器未开始，不能读取！");
+            }
+            buffer = _clientsInfo.Find(x => x.Client == client).Buffer;
+
+            if (_clientsInfo.Count != 0 && client != null && buffer != null)
+            {
+                if (Buf != null && buffer.NumOfElement >= (Buf.Length * sizeof(double)))
+                {
+                    if (_dataType == ChannelDataType.DataStream)
+                    {
+                        var dataBuf = new byte[Buf.Length * sizeof(double)];
+                        ((CircularBuffer<byte>)buffer).Dequeue(ref dataBuf, dataBuf.Length);
+                        Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
+                        dataBuf = null;
+                        GC.Collect();
+                    }
+                    else
+                    {
+                        throw new Exception("Please Use ReadString() method for channel type of String");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 从DataStream缓存读取二维数组数据（如果选择String模式，请选择ReadString方法)
+        /// </summary>
+        /// <param name="Buf">用户内存</param>
+        /// <param name="TimeOut">超时时间</param>
+        public void ReadDataStream(ref float[,] Buf, TcpClient client)
+        {
+            if (!isStart)
+            {
+                throw new Exception(" 服务器未开始，不能读取！");
+            }
+            buffer = _clientsInfo.Find(x => x.Client == client).Buffer;
+
+            if (_clientsInfo.Count != 0 && client != null && buffer != null)
+            {
+                if (Buf != null && buffer.NumOfElement >= (Buf.Length * sizeof(float)))
+                {
+                    if (_dataType == ChannelDataType.DataStream)
+                    {
+                        var dataBuf = new byte[Buf.Length * sizeof(float)];
+                        ((CircularBuffer<byte>)buffer).Dequeue(ref dataBuf, dataBuf.Length);
+                        Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
+                        dataBuf = null;
+                        GC.Collect();
+                    }
+                    else
+                    {
+                        throw new Exception("Please Use ReadString() method for channel type of String");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 发送字符串数据（如果选择DataStream模式，请选择ReadDataStream方法，client=null是广播发送)
+        /// </summary>
+        /// <param name="dataBuf"></param>
+        /// <param name="client"></param>
+        public void SendString(string dataBuf, TcpClient client = null)
         {
             if (isStart && dataBuf.Length != 0)
             {
+                if (_dataType == ChannelDataType.String)
+                {
+                    if (client != null)
+                    {
+                        _server.Send(client, dataBuf);
+                    }
+                    else
+                    {
+                        _server.SendAll(dataBuf);
+                    }
+                }
+                else
+                {
+                    throw new Exception("Please Use SendDataStream() method for channel type of DataStream");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 发送数据(如果选择String模式，请选择ReadString方法，client=null是广播发送)
+        /// </summary>
+        /// <param name="dataBuf"></param>
+        /// <param name="client"></param>
+        public void SendDataStream(byte[] dataBuf, TcpClient client = null)
+        {
+            if (isStart && dataBuf.Length != 0)
+            {
+                if (_dataType == ChannelDataType.DataStream)
+                {
+                }
+                else
+                {
+                    throw new Exception("Please Use SendString() method for channel type of String");
+                }
                 var buffer = new byte[dataBuf.Length * sizeof(byte)];
                 Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
                 if (client != null)
@@ -378,110 +364,192 @@ namespace SeeSharpTools.JY.TCP
                 }
                 GC.Collect();
             }
-
-
         }
 
         /// <summary>
-        /// 发送数据
+        /// 发送数据(如果选择String模式，请选择ReadString方法，client=null是广播发送)
         /// </summary>
-        /// <param name="dataBuf">发送数据</param>
-        public void SendData(double[] dataBuf, TcpClient client = null)
-        {
-            if (isStart&&dataBuf.Length!=0)
-            {
-                var buffer = new byte[dataBuf.Length * sizeof(double)];
-                Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
-                if (client != null)
-                {
-                    _server.Send(client, buffer);
-                }
-                else
-                {
-                    _server.SendAll(buffer);
-                }
-                GC.Collect();
-            }
-
-
-        }
-
-        /// <summary>
-        /// 发送数据
-        /// </summary>
-        /// <param name="dataBuf">发送数据</param>
-        public void SendData(float[] dataBuf, TcpClient client = null)
+        /// <param name="dataBuf"></param>
+        /// <param name="client"></param>
+        public void SendDataStream(double[] dataBuf, TcpClient client = null)
         {
             if (isStart && dataBuf.Length != 0)
             {
-                var buffer = new byte[dataBuf.Length * sizeof(float)];
-                Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
-                if (client != null)
+                if (_dataType == ChannelDataType.DataStream)
                 {
-                    _server.Send(client, buffer);
+                    var buffer = new byte[dataBuf.Length * sizeof(double)];
+                    Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
+                    if (client != null)
+                    {
+                        _server.Send(client, buffer);
+                    }
+                    else
+                    {
+                        _server.SendAll(buffer);
+                    }
+                    GC.Collect();
                 }
                 else
                 {
-                    _server.SendAll(buffer);
+                    throw new Exception("Please Use SendString() method for channel type of String");
                 }
-                GC.Collect();
-            }
-
-
-        }
-
-        /// <summary>
-        /// 发送数据
-        /// </summary>
-        /// <param name="dataBuf">发送数据</param>
-        public void SendData(double[,] dataBuf, TcpClient client = null)
-        {
-            if (isStart && dataBuf.Length != 0)
-            {
-                var buffer = new byte[dataBuf.Length * sizeof(double)];
-                Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
-                if (client != null)
-                {
-                    _server.Send(client, buffer);
-                }
-                else
-                {
-                    _server.SendAll(buffer);
-                }
-                GC.Collect();
             }
         }
 
         /// <summary>
-        /// 发送数据
+        /// 发送数据(如果选择String模式，请选择ReadString方法，client=null是广播发送)
         /// </summary>
-        /// <param name="dataBuf">发送数据</param>
-        public void SendData(float[,] dataBuf, TcpClient client = null)
+        /// <param name="dataBuf"></param>
+        /// <param name="client"></param>
+        public void SendDataStream(float[] dataBuf, TcpClient client = null)
         {
             if (isStart && dataBuf.Length != 0)
             {
-                var buffer = new byte[dataBuf.Length * sizeof(float)];
-                Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
-                if (client != null)
+                if (_dataType == ChannelDataType.DataStream)
                 {
-                    _server.Send(client, buffer);
+                    var buffer = new byte[dataBuf.Length * sizeof(float)];
+                    Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
+                    if (client != null)
+                    {
+                        _server.Send(client, buffer);
+                    }
+                    else
+                    {
+                        _server.SendAll(buffer);
+                    }
+                    GC.Collect();
                 }
                 else
                 {
-                    _server.SendAll(buffer);
+                    throw new Exception("Please Use SendString() method for channel type of String");
                 }
-                GC.Collect();
+            }
+        }
+
+        /// <summary>
+        /// 发送数据(如果选择String模式，请选择ReadString方法，client=null是广播发送)
+        /// </summary>
+        /// <param name="dataBuf"></param>
+        /// <param name="client"></param>
+        public void SendDataStream(double[,] dataBuf, TcpClient client = null)
+        {
+            if (isStart && dataBuf.Length != 0)
+            {
+                if (_dataType == ChannelDataType.DataStream)
+                {
+                    var buffer = new byte[dataBuf.Length * sizeof(double)];
+                    Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
+                    if (client != null)
+                    {
+                        _server.Send(client, buffer);
+                    }
+                    else
+                    {
+                        _server.SendAll(buffer);
+                    }
+                    GC.Collect();
+                }
+                else
+                {
+                    throw new Exception("Please Use SendString() method for channel type of String");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 发送数据(如果选择String模式，请选择ReadString方法，client=null是广播发送)
+        /// </summary>
+        /// <param name="dataBuf"></param>
+        /// <param name="client"></param>
+        public void SendDataStream(float[,] dataBuf, TcpClient client = null)
+        {
+            if (isStart && dataBuf.Length != 0)
+            {
+                if (_dataType == ChannelDataType.DataStream)
+                {
+                    var buffer = new byte[dataBuf.Length * sizeof(float)];
+                    Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
+                    if (client != null)
+                    {
+                        _server.Send(client, buffer);
+                    }
+                    else
+                    {
+                        _server.SendAll(buffer);
+                    }
+                    GC.Collect();
+                }
+                else
+                {
+                    throw new Exception("Please Use SendString() method for channel type of String");
+                }
             }
         }
 
         #endregion
 
-        #region----------------------------PrivateMethod----------------------------------
+        #region Events
+
+        public delegate void ClientConnect(TcpClient clientInfo);
+        public event ClientConnect ClientConnected;
+
+        public delegate void ClientDisconnect(TcpClient clientInfo);
+        public event ClientDisconnect ClientDisconnected;
+
+        private void _server_PlaintextReceived(object sender, TcpDatagramReceivedEventArgs<string> e)
+        {
+            (_clientsInfo.Find(x => x.Client == e.TcpClient).Buffer as StringBuffer).Enqueue(e.Datagram);
+
+        }
+
+        private void _server_ClientDisconnected(object sender, TcpClientDisconnectedEventArgs e)
+        {
+            _clientsInfo.RemoveAt(_clientsInfo.FindIndex(x => x.Client == e.TcpClient));
+            ClientDisconnected?.Invoke(e.TcpClient);
+        }
+
+        private void _server_ClientConnected(object sender, TcpClientConnectedEventArgs e)
+        {
+            switch (_dataType)
+            {
+                case ChannelDataType.DataStream:
+                    _clientsInfo.Add(new ClientInformation() { Client = e.TcpClient, Buffer = new CircularBuffer<byte>((int)_server.ReceiveBufferSize) });
+                    break;
+
+                case ChannelDataType.String:
+                    _clientsInfo.Add(new ClientInformation() { Client = e.TcpClient, Buffer = new StringBuffer((int)_server.ReceiveBufferSize) });
+                    break;
+
+                default:
+                    break;
+            }
+            ClientConnected?.Invoke(e.TcpClient);
+        }
         private void _server_DatagramReceived(object sender, TcpDatagramReceivedEventArgs<byte[]> e)
         {
-            _channelDataBuffer[e.TcpClient].Enqueue(e.Datagram);
+            ((CircularBuffer<byte>)_clientsInfo.Find(x => x.Client == e.TcpClient).Buffer).Enqueue(e.Datagram);
         }
-        #endregion
 
+
+        #endregion
+    }
+
+    /// <summary>
+    /// ClientInformation类，存放连接成功的TCPClient资讯以及缓存对象
+    /// </summary>
+    public class ClientInformation
+    {
+        /// <summary>
+        /// 连接上的TCPClient对象
+        /// </summary>
+        public TcpClient Client { get; set; }
+        /// <summary>
+        /// 创建的缓存区对象
+        /// </summary>
+        public IBuffer Buffer { get; set; }
+        /// <summary>
+        /// 缓存区内的可读取元素数目
+        /// </summary>
+        public int AvailableSamples { get { return Buffer.NumOfElement; } }
     }
 }

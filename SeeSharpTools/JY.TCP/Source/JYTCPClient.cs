@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
+using System.Net;
 
 namespace SeeSharpTools.JY.TCP
 {
@@ -11,12 +8,26 @@ namespace SeeSharpTools.JY.TCP
     /// </summary>
     public class JYTCPClient
     {
+        #region Private Fields
+        private string _ipAddress;
+        private int _port;
+        private ChannelDataType _dataType;
+        private JYAsyncTcpClient _client;
+        private bool _isClose = false;
+        private IBuffer _buffer;
+        private int _bufferSize = 1;
+
+        #endregion
+
+        #region Ctor
         /// <summary>
-        /// 构造函数
+        /// JYTCPClient类构造函数
         /// </summary>
-        /// <param name="ipAddress">IP地址</param>
-        /// <param name="port">端口</param>
-        public JYTCPClient(String ipAddress, int port,ChannelDataType dataType= ChannelDataType.DataStream)
+        /// <param name="ipAddress">连接的远端ip位置</param>
+        /// <param name="port">连接的远端端口号</param>
+        /// <param name="dataType">TCP缓存存放的资料类型</param>
+        /// <param name="bufferSize">TCP缓存的大小</param>
+        public JYTCPClient(string ipAddress, int port, ChannelDataType dataType = ChannelDataType.DataStream, int bufferSize = 131072)
         {
             _ipAddress = ipAddress;
             _port = port;
@@ -26,23 +37,21 @@ namespace SeeSharpTools.JY.TCP
             if (_client == null)
             {
                 throw new Exception("客户端建立失败！");
-
             }
-            _bufferSize = 1024 * 1024 * 100;//10MB
-
-            _cricularBuffer = new CircularBuffer<byte>((int)_bufferSize);
-            _stringBuffer = new StringBuffer((int)_bufferSize);
+            _bufferSize = bufferSize;//默认100KB
 
             switch (_dataType)
             {
-                case ChannelDataType.DataStream:
+                case ChannelDataType.DataStream: 
+                    _buffer = new CircularBuffer<byte>((int)_bufferSize);
                     _client.DatagramReceived += _client_DatagramReceived;
-
                     break;
+
                 case ChannelDataType.String:
+                    _buffer = new StringBuffer((int)_bufferSize);
                     _client.PlaintextReceived += _client_PlaintextReceived;
-
                     break;
+
                 default:
                     break;
             }
@@ -51,47 +60,20 @@ namespace SeeSharpTools.JY.TCP
             _client.RetryInterval = 1;
         }
 
-        private void _client_PlaintextReceived(object sender, TcpDatagramReceivedEventArgs<string> e)
-        {
-            _stringBuffer.Enqueue(e.Datagram);
-        }
-
-        private void _client_DatagramReceived(object sender, TcpDatagramReceivedEventArgs<byte[]> e)
-        {
-            _cricularBuffer.Enqueue(e.Datagram);
-        }
-
-        #region-----------------------------private------------------
-
-        private string _ipAddress;
-        private int _port;
-        public event EventHandler ServerDisconnected;
-
-        private ChannelDataType _dataType;
-        /// <summary>
-        /// 客户端句柄
-        /// </summary>
-        JYAsyncTcpClient _client;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private bool _isClose = false;
-
-        /// <summary>
-        /// 内部缓冲区
-        /// </summary>
-        CircularBuffer<byte> _cricularBuffer;
-        private StringBuffer _stringBuffer;
-
-        private TcpDatagramReceivedEventArgs<byte[]> eventArgs;
-
         #endregion
-        #region-----------------------------public-------------------
 
-        private int _bufferSize;
+        #region Public Properties
+
         /// <summary>
-        /// 缓冲区大小，字节数
+        /// 返回是否已连接
+        /// </summary>
+        public bool Connected
+        {
+            get { return _client.Connected; }
+        }
+
+        /// <summary>
+        /// 缓冲区大小(选择DataStream类型时单位是字节数，String类型时单位是字符串的个数）
         /// </summary>
         public int BufferSize
         {
@@ -102,9 +84,8 @@ namespace SeeSharpTools.JY.TCP
             }
         }
 
-
         /// <summary>
-        /// 缓冲区可读取的字节数
+        /// 缓冲区可读取的元素个数
         /// </summary>
         public int AvailableSamples
         {
@@ -112,24 +93,18 @@ namespace SeeSharpTools.JY.TCP
             {
                 if (_client.Connected)
                 {
-                    switch (_dataType)
-                    {
-                        case ChannelDataType.DataStream:
-                            return _cricularBuffer.NumOfElement;
-                        case ChannelDataType.String:
-                            return _stringBuffer.NumOfElement;
-                        default:
-                            return 0;
-                    }
+                    return _buffer.NumOfElement;
                 }
                 else
                 {
                     return 0;
                 }
             }
-
         }
 
+        #endregion
+
+        #region Public Methods
         /// <summary>
         /// 开始连接服务器
         /// </summary>
@@ -144,229 +119,318 @@ namespace SeeSharpTools.JY.TCP
         /// </summary>
         public void DisConnect()
         {
-            if(_client.Connected)
+            if (_client.Connected)
             {
                 _isClose = true;
                 _client.Close();
             }
-            
         }
 
-        public void ReadString(ref string Buf, int TimeOut)
+        /// <summary>
+        /// 从String缓存读取一个字符串（如果选择DataStream模式，请选择ReadDataStream方法)
+        /// </summary>
+        /// <param name="Buf"></param>
+        public void ReadString(ref string Buf)
         {
             if (_client.Connected)
             {
-                if (_stringBuffer.NumOfElement> 0)
+                if (_dataType == ChannelDataType.String)
                 {
-                    _stringBuffer.Dequeue(ref Buf);
+                    if (_buffer.NumOfElement > 0)
+                    {
+                        ((StringBuffer)_buffer).Dequeue(ref Buf);
+                    }
+                }
+                else
+                {
+                    throw new Exception("Please Use ReadDataStream() method for channel type of DataStream");
                 }
             }
         }
 
         /// <summary>
-        /// 读取一维数组数据
+        /// 从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
         /// </summary>
         /// <param name="Buf">用户内存</param>
         /// <param name="TimeOut">超时时间</param>
-        public void ReadData(ref byte[] Buf, int TimeOut)
+        public void ReadDataStream(ref byte[] Buf)
         {
             if (_client.Connected)
             {
-                if (_cricularBuffer.NumOfElement >= (Buf.Length * sizeof(byte)))
+                if (_dataType == ChannelDataType.DataStream)
                 {
-                    var dataBuf = new byte[Buf.Length * sizeof(byte)];
-                    _cricularBuffer.Dequeue(ref dataBuf, dataBuf.Length);
-                    Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
-                    dataBuf = null;
-                    GC.Collect();
+                    if (_buffer.NumOfElement >= (Buf.Length * sizeof(byte)))
+                    {
+                        var dataBuf = new byte[Buf.Length * sizeof(byte)];
+                        ((CircularBuffer<byte>)_buffer).Dequeue(ref dataBuf, dataBuf.Length);
+                        Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
+                        dataBuf = null;
+                        GC.Collect();
+                    }
+                }
+                else
+                {
+                    throw new Exception("Please Use ReadString() method for channel type of String");
                 }
             }
         }
 
         /// <summary>
-        /// 读取一维数组数据
+        /// 从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
         /// </summary>
         /// <param name="Buf">用户内存</param>
         /// <param name="TimeOut">超时时间</param>
-        public void ReadData(ref double[] Buf, int TimeOut)
+        public void ReadDataStream(ref double[] Buf)
         {
             if (_client.Connected)
             {
-                if (_cricularBuffer.NumOfElement >= (Buf.Length * sizeof(double)))
+                if (_dataType == ChannelDataType.DataStream)
                 {
-                    var dataBuf = new byte[Buf.Length * sizeof(double)];
-                    _cricularBuffer.Dequeue(ref dataBuf, dataBuf.Length);
-                    Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
-                    dataBuf = null;
-                    GC.Collect();
+                    if (_buffer.NumOfElement >= (Buf.Length * sizeof(double)))
+                    {
+                        var dataBuf = new byte[Buf.Length * sizeof(double)];
+                        ((CircularBuffer<byte>)_buffer).Dequeue(ref dataBuf, dataBuf.Length);
+                        Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
+                        dataBuf = null;
+                        GC.Collect();
+                    }
+                }
+                else
+                {
+                    throw new Exception("Please Use ReadString() method for channel type of String");
                 }
             }
         }
 
         /// <summary>
-        /// 读取一维数组数据
+        /// 从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
         /// </summary>
         /// <param name="Buf">用户内存</param>
         /// <param name="TimeOut">超时时间</param>
-        public void ReadData(ref float[] Buf, int TimeOut)
+        public void ReadDataStream(ref float[] Buf)
         {
             if (_client.Connected && Buf != null)
             {
-                if (_cricularBuffer.NumOfElement >= (Buf.Length * sizeof(float)))
+                if (_dataType == ChannelDataType.DataStream)
                 {
-                    var dataBuf = new byte[Buf.Length * sizeof(float)];
-                    _cricularBuffer.Dequeue(ref dataBuf, dataBuf.Length);
-                    Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
-                    dataBuf = null;
-                    GC.Collect();
+                    if (_buffer.NumOfElement >= (Buf.Length * sizeof(float)))
+                    {
+                        var dataBuf = new byte[Buf.Length * sizeof(float)];
+                        ((CircularBuffer<byte>)_buffer).Dequeue(ref dataBuf, dataBuf.Length);
+                        Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
+                        dataBuf = null;
+                        GC.Collect();
+                    }
+                }
+                else
+                {
+                    throw new Exception("Please Use ReadString() method for channel type of String");
                 }
             }
         }
 
         /// <summary>
-        /// 读取二维数组数据
+        /// 从DataStream缓存读取二维数组数据（如果选择String模式，请选择ReadString方法)
         /// </summary>
         /// <param name="Buf">用户内存</param>
         /// <param name="TimeOut">超时时间</param>
-        public void ReadData(ref double[,] Buf, int TimeOut)
+        public void ReadDataStream(ref double[,] Buf)
         {
             if (_client.Connected && Buf != null)
             {
-                if (_cricularBuffer.NumOfElement >= (Buf.Length * sizeof(double)))
+                if (_dataType == ChannelDataType.DataStream)
                 {
-                    var dataBuf = new byte[Buf.Length * sizeof(double)];
-                    _cricularBuffer.Dequeue(ref dataBuf, dataBuf.Length);
-                    Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
-                    dataBuf = null;
-                    GC.Collect();
+                    if (_buffer.NumOfElement >= (Buf.Length * sizeof(double)))
+                    {
+                        var dataBuf = new byte[Buf.Length * sizeof(double)];
+                        ((CircularBuffer<byte>)_buffer).Dequeue(ref dataBuf, dataBuf.Length);
+                        Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
+                        dataBuf = null;
+                        GC.Collect();
+                    }
+                }
+                else
+                {
+                    throw new Exception("Please Use ReadString() method for channel type of String");
                 }
             }
-
         }
 
         /// <summary>
-        /// 读取二维数组数据
+        /// 从DataStream缓存读取二维数组数据（如果选择String模式，请选择ReadString方法)
         /// </summary>
         /// <param name="Buf">用户内存</param>
         /// <param name="TimeOut">超时时间</param>
-        public void ReadData(ref float[,] Buf, int TimeOut)
+        public void ReadDataStream(ref float[,] Buf)
         {
-            if (_client.Connected&&Buf!=null)
+            if (_client.Connected && Buf != null)
             {
-                if (_cricularBuffer.NumOfElement >= (Buf.Length * sizeof(float)))
+                if (_dataType == ChannelDataType.DataStream)
                 {
-                    var dataBuf = new byte[Buf.Length * sizeof(float)];
-                    _cricularBuffer.Dequeue(ref dataBuf, dataBuf.Length);
-                    Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
-                    dataBuf = null;
-                    GC.Collect();
+                    if (_buffer.NumOfElement >= (Buf.Length * sizeof(float)))
+                    {
+                        var dataBuf = new byte[Buf.Length * sizeof(float)];
+                        ((CircularBuffer<byte>)_buffer).Dequeue(ref dataBuf, dataBuf.Length);
+                        Buffer.BlockCopy(dataBuf, 0, Buf, 0, dataBuf.Length);
+                        dataBuf = null;
+                        GC.Collect();
+                    }
+                }
+                else
+                {
+                    throw new Exception("Please Use ReadString() method for channel type of String");
                 }
             }
-
-        }
-
-        public void SendData(string dataBuf)
-        {
-            if (_client.Connected && dataBuf.Length != 0)
-            {
-                _client.Send(dataBuf);
-            }
-
-        }
-
-
-        /// <summary>
-        /// 发送数据
-        /// </summary>
-        /// <param name="dataBuf">发送数据</param>
-        public void SendData(byte[] dataBuf)
-        {
-            if (_client.Connected && dataBuf.Length != 0)
-            {
-                var buffer = new byte[dataBuf.Length * sizeof(byte)];
-                Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
-                _client.Send(buffer);
-                GC.Collect();
-            }
-
-
         }
 
         /// <summary>
-        /// 发送数据
+        /// 发送字符串数据（如果选择DataStream模式，请选择ReadDataStream方法)
         /// </summary>
-        /// <param name="dataBuf">发送数据</param>
-        public void SendData(double[] dataBuf)
-        {
-            if(_client.Connected&&dataBuf.Length!=0)
-            {
-                var buffer = new byte[dataBuf.Length * sizeof(double)];
-                Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
-                _client.Send(buffer);
-                GC.Collect();
-            }
-
-
-        }
-
-        /// <summary>
-        /// 发送数据
-        /// </summary>
-        /// <param name="dataBuf">发送数据</param>
-        public void SendData(float[] dataBuf)
+        /// <param name="dataBuf"></param>
+        public void SendString(string dataBuf)
         {
             if (_client.Connected && dataBuf.Length != 0)
             {
-                var buffer = new byte[dataBuf.Length * sizeof(float)];
-                Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
-                _client.Send(buffer);
-                GC.Collect();
-            }
-
-
-        }
-
-        /// <summary>
-        /// 发送数据
-        /// </summary>
-        /// <param name="dataBuf">发送数据</param>
-        public void SendData(double[,] dataBuf)
-        {
-            if (_client.Connected && dataBuf.Length != 0)
-            {
-                var buffer = new byte[dataBuf.Length * sizeof(double)];
-                Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
-                _client.Send(buffer);
-                GC.Collect();
+                if (_dataType == ChannelDataType.String)
+                {
+                    _client.Send(dataBuf);
+                }
+                else
+                {
+                    throw new Exception("Please Use SendDataStream() method for channel type of DataStream");
+                }
             }
         }
 
         /// <summary>
-        /// 发送数据
+        /// 发送数据(如果选择String模式，请选择ReadString方法)
         /// </summary>
         /// <param name="dataBuf">发送数据</param>
-        public void SendData(float[,] dataBuf)
+        public void SendDataStream(byte[] dataBuf)
         {
             if (_client.Connected && dataBuf.Length != 0)
             {
-                var buffer = new byte[dataBuf.Length * sizeof(float)];
-                Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
-                _client.Send(buffer);
-                GC.Collect();
+                if (_dataType == ChannelDataType.DataStream)
+                {
+                    var buffer = new byte[dataBuf.Length * sizeof(byte)];
+                    Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
+                    _client.Send(buffer);
+                    GC.Collect();
+                }
+                else
+                {
+                    throw new Exception("Please Use SendString() method for channel type of String");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 发送数据(如果选择String模式，请选择ReadString方法)
+        /// </summary>
+        /// <param name="dataBuf">发送数据</param>
+        public void SendDataStream(double[] dataBuf)
+        {
+            if (_client.Connected && dataBuf.Length != 0)
+            {
+                if (_dataType == ChannelDataType.DataStream)
+                {
+                    var buffer = new byte[dataBuf.Length * sizeof(double)];
+                    Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
+                    _client.Send(buffer);
+                    GC.Collect();
+                }
+                else
+                {
+                    throw new Exception("Please Use SendString() method for channel type of String");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 发送数据(如果选择String模式，请选择ReadString方法)
+        /// </summary>
+        /// <param name="dataBuf">发送数据</param>
+        public void SendDataStream(float[] dataBuf)
+        {
+            if (_client.Connected && dataBuf.Length != 0)
+            {
+                if (_dataType == ChannelDataType.DataStream)
+                {
+                    var buffer = new byte[dataBuf.Length * sizeof(float)];
+                    Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
+                    _client.Send(buffer);
+                    GC.Collect();
+                }
+                else
+                {
+                    throw new Exception("Please Use SendString() method for channel type of String");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 发送数据(如果选择String模式，请选择ReadString方法)
+        /// </summary>
+        /// <param name="dataBuf">发送数据</param>
+        public void SendDataStream(double[,] dataBuf)
+        {
+            if (_client.Connected && dataBuf.Length != 0)
+            {
+                if (_dataType == ChannelDataType.DataStream)
+                {
+                    var buffer = new byte[dataBuf.Length * sizeof(double)];
+                    Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
+                    _client.Send(buffer);
+                    GC.Collect();
+                }
+                else
+                {
+                    throw new Exception("Please Use SendString() method for channel type of String");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 发送数据(如果选择String模式，请选择ReadString方法)
+        /// </summary>
+        /// <param name="dataBuf">发送数据</param>
+        public void SendDataStream(float[,] dataBuf)
+        {
+            if (_client.Connected && dataBuf.Length != 0)
+            {
+                if (_dataType == ChannelDataType.DataStream)
+                {
+                    var buffer = new byte[dataBuf.Length * sizeof(float)];
+                    Buffer.BlockCopy(dataBuf, 0, buffer, 0, buffer.Length);
+                    _client.Send(buffer);
+                    GC.Collect();
+                }
+                else
+                {
+                    throw new Exception("Please Use SendString() method for channel type of String");
+                }
             }
         }
 
         #endregion
-        #region-----------------------------publicMethod---------------
+
+        #region Events
         /// <summary>
-        /// 链接是否成功
+        /// 服务器断线事件
         /// </summary>
-        public bool Connected
+        public event EventHandler ServerDisconnected;
+
+        private TcpDatagramReceivedEventArgs<byte[]> eventArgs;
+
+        private void _client_PlaintextReceived(object sender, TcpDatagramReceivedEventArgs<string> e)
         {
-            get { return _client.Connected; }
+            ((StringBuffer)_buffer).Enqueue(e.Datagram);
         }
-        #endregion
-        #region-----------------------------privateMethod--------------
+
+        private void _client_DatagramReceived(object sender, TcpDatagramReceivedEventArgs<byte[]> e)
+        {
+            ((CircularBuffer<byte>)_buffer).Enqueue(e.Datagram);
+        }
         private void _client_ServerDisconnected(object sender, TcpServerDisconnectedEventArgs e)
         {
             if (!_isClose)
@@ -374,9 +438,8 @@ namespace SeeSharpTools.JY.TCP
                 ServerDisconnected?.Invoke(sender, e);
             }
         }
+
         #endregion
+
     }
-
-
-
 }

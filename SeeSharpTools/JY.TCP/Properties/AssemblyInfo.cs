@@ -1,17 +1,16 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("JYTCP")]
+[assembly: AssemblyTitle("TCP Communication Utilities")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JYTEK")]
-[assembly: AssemblyProduct("JYTCP")]
-[assembly: AssemblyCopyright("Copyright © JYTEK  2018")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyProduct("SeeSharpTools.JY.TCP")]
+[assembly: AssemblyCopyright("Copyright © JYTEK  2016")]
+[assembly: AssemblyTrademark("SeeSharp")]
 [assembly: AssemblyCulture("")]
 
 //将 ComVisible 设置为 false 将使此程序集中的类型
@@ -22,7 +21,7 @@ using System.Runtime.InteropServices;
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
 [assembly: Guid("e57315eb-7daa-42b2-a541-9573d97b36f9")]
 
-// 程序集的版本信息由下列四个值组成: 
+// 程序集的版本信息由下列四个值组成:
 //
 //      主版本
 //      次版本
@@ -32,5 +31,5 @@ using System.Runtime.InteropServices;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.4.4.475")]
-[assembly: AssemblyFileVersion("1.4.4.475")]
+[assembly: AssemblyVersion("1.4.4.514")]
+[assembly: AssemblyFileVersion("1.4.4.514")]

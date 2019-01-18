@@ -46,22 +46,22 @@ namespace SeeSharpTools.JY.Sensors
         /// Convert Voltage Array of RTD into Temperature Array
         /// </summary>
         /// <param name="temperature">Temperature Array Measured(the default unit is ℃) </param>
-        /// <param name="voltValues">Voltage Array of RTD(the default unit is V) </param>
+        /// <param name="resValues">Resistance Array of RTD(Unit:Ohm) </param>
         /// <returns></returns>
-        public static double[] Convert(double[] voltValues)
+        public static double[] Convert(double[] resValues, RTDType type)
         {
-            return Array.ConvertAll(voltValues, new Converter<double, double>(x => (-1 * coeff_a + Math.Sqrt(Math.Pow(coeff_a, 2) - 40 * coeff_b * (0.1 - x))) / (2 * coeff_b)));
+            return Array.ConvertAll(resValues, new Converter<double, double>(x => RTD3851ValueConvertor.ConvertResistanceToTemperature(x,type)));
         }
 
         /// <summary>
         /// Convert Voltage Value of RTD into Temperature Value
         /// </summary>
         /// <param name="temperature">Temperature Value Measured(the default unit is ℃)</param>
-        /// <param name="voltValues">Voltage Value of RTD(the default unit is V)</param>
+        /// <param name="resValue">Resistance Value of RTD(Unit:Ohm)</param>
         /// <returns></returns>
-        public static double Convert(double voltValues)
+        public static double Convert(double resValue, RTDType type)
         {
-            return (-1 * coeff_a + Math.Sqrt(Math.Pow(coeff_a, 2) - 40 * coeff_b * (0.1 - voltValues))) / (2 * coeff_b);
+            return RTD3851ValueConvertor.ConvertResistanceToTemperature(resValue, type);
         }
 
         #endregion Static Methods

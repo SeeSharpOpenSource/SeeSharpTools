@@ -9,6 +9,7 @@ using System.Drawing.Design;
 using System.IO;
 using System.Linq;
 using System.Text;
+using SeeSharpTools.JY.GUI.Common.i18n;
 using SeeSharpTools.JY.GUI.EasyChartXData;
 using SeeSharpTools.JY.GUI.EasyChartXEditor;
 using SeeSharpTools.JY.GUI.TabCursorUtility;
@@ -943,7 +944,7 @@ namespace SeeSharpTools.JY.GUI
             }
             if (!_convertor.IsValidType(typeof(TDataType)))
             {
-                return;
+                throw new InvalidDataException(I18nEntity.GetInstance("GUI").GetStr("ParamCheck.InvalidDataType"));
             }
             double[] convertedYData = _convertor.Convert(yData, yData.Length);
 
@@ -971,7 +972,7 @@ namespace SeeSharpTools.JY.GUI
             }
             if (!_convertor.IsValidType(typeof(TDataType)))
             {
-                return;
+                throw new InvalidDataException(I18nEntity.GetInstance("GUI").GetStr("ParamCheck.InvalidDataType"));
             }
             double[,] convertedYData = _convertor.Convert(yData, yData.GetLength(0), yData.GetLength(1));
 
@@ -995,7 +996,7 @@ namespace SeeSharpTools.JY.GUI
             }
             if (!_convertor.IsValidType(typeof(TDataType1)) || !_convertor.IsValidType(typeof(TDataType2)))
             {
-                return;
+                throw new InvalidDataException(I18nEntity.GetInstance("GUI").GetStr("ParamCheck.InvalidDataType"));
             }
             double[] convertedXData = _convertor.Convert(xData, xData.Length);
             double[] convertedYData = _convertor.Convert(yData, yData.Length);
@@ -1021,7 +1022,7 @@ namespace SeeSharpTools.JY.GUI
             }
             if (!_convertor.IsValidType(typeof(TDataType1)) || !_convertor.IsValidType(typeof(TDataType2)))
             {
-                return;
+                throw new InvalidDataException(I18nEntity.GetInstance("GUI").GetStr("ParamCheck.InvalidDataType"));
             }
             double[][] convertedXData = _convertor.Convert(xData);
             double[][] convertedYData = _convertor.Convert(yData);

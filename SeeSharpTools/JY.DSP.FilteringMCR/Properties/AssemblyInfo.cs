@@ -9,9 +9,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JYTEK")]
-[assembly: AssemblyProduct("JY DSP FilteringMCR Class Library")]
+[assembly: AssemblyProduct("SeeSharpTools.JY.DSP.FilteringMCR")]
 [assembly: AssemblyCopyright("Copyright © JYTEK 2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("SeeSharp")]
 [assembly: AssemblyCulture("")]
 
 //将 ComVisible 设置为 false 将使此程序集中的类型

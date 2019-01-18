@@ -354,6 +354,12 @@ namespace SeeSharpTools.JY.GUI
                     _parentChart.RefreshLogAxisChangingEvents(false);
                 }
                 _baseAxis.IsLogarithmic = value;
+                RefreshAxisRange();
+                if (IsYAxis())
+                {
+                    RefreshYMajorGridInterval();
+                }
+                RefreshLabels();
             }
         }
 

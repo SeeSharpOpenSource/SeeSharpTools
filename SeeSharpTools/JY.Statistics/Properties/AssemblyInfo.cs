@@ -4,13 +4,13 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("JY DSP Fundamental Class Library")]
+[assembly: AssemblyTitle("JY Statistic Algorithm Class Library")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JYTEK")]
-[assembly: AssemblyProduct("JY DSP Fundamental Class Library")]
+[assembly: AssemblyProduct("SeeSharpTools.JY.Statistics")]
 [assembly: AssemblyCopyright("Copyright © JYTEK 2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("SeeSharp")]
 [assembly: AssemblyCulture("")]
 
 //将 ComVisible 设置为 false 将使此程序集中的类型

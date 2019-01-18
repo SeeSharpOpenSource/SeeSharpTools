@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
-using System.Reflection;
+
 namespace SeeSharpTools.JY.TCP
 {
     /// <summary>
@@ -21,7 +21,8 @@ namespace SeeSharpTools.JY.TCP
         private int retries = 0;
         private byte[] buffer;
         private byte[] receivedBytes = new byte[1];
-        #endregion
+
+        #endregion Fields
 
         #region Ctors
 
@@ -72,8 +73,9 @@ namespace SeeSharpTools.JY.TCP
         /// <param name="remoteHostName">远端服务器主机名</param>
         /// <param name="remotePort">远端服务器端口</param>
         public JYAsyncTcpClient(string remoteHostName, int remotePort)
-          : this(Dns.GetHostAddresses(remoteHostName).Where(x => x.AddressFamily!= AddressFamily.InterNetworkV6).ToArray(), remotePort)
+          : this(GetIP(remoteHostName), remotePort)
         {
+
         }
 
         /// <summary>
@@ -84,7 +86,7 @@ namespace SeeSharpTools.JY.TCP
         /// <param name="localEP">本地客户端终结点</param>
         public JYAsyncTcpClient(
           string remoteHostName, int remotePort, IPEndPoint localEP)
-          : this(Dns.GetHostAddresses(remoteHostName).Where(x=> x.AddressFamily != AddressFamily.InterNetworkV6).ToArray(), remotePort, localEP)
+          : this(GetIP(remoteHostName), remotePort, localEP)
         {
         }
 
@@ -118,14 +120,14 @@ namespace SeeSharpTools.JY.TCP
             }
             else
             {
-                this.tcpClient = new TcpClient( );
+                this.tcpClient = new TcpClient();
             }
 
             Retries = 3;
             RetryInterval = 5;
         }
 
-        #endregion
+        #endregion Ctors
 
         #region Properties
 
@@ -133,22 +135,27 @@ namespace SeeSharpTools.JY.TCP
         /// 是否已与服务器建立连接
         /// </summary>
         public bool Connected { get { return tcpClient.Client.Connected; } }
+
         /// <summary>
         /// 远端服务器的IP地址列表
         /// </summary>
         public IPAddress[] Addresses { get; private set; }
+
         /// <summary>
         /// 远端服务器的端口
         /// </summary>
         public int Port { get; private set; }
+
         /// <summary>
         /// 连接重试次数
         /// </summary>
         public int Retries { get; set; }
+
         /// <summary>
         /// 连接重试间隔
         /// </summary>
         public int RetryInterval { get; set; }
+
         /// <summary>
         /// 远端服务器终结点
         /// </summary>
@@ -156,18 +163,35 @@ namespace SeeSharpTools.JY.TCP
         {
             get { return new IPEndPoint(Addresses[0], Port); }
         }
+
         /// <summary>
         /// 本地客户端终结点
         /// </summary>
         protected IPEndPoint LocalIPEndPoint { get; private set; }
+
         /// <summary>
         /// 通信所使用的编码
         /// </summary>
         public Encoding Encoding { get; set; }
 
-        #endregion
+        #endregion Properties
+        
+        #region Private Methods
 
-        #region Connect
+        private static IPAddress[] GetIP(string machineName)
+        {
+            if ("localhost"==machineName.ToLower())
+            {
+                return Dns.GetHostAddresses(Dns.GetHostByName("localhost").HostName).Where(x => x.AddressFamily != AddressFamily.InterNetworkV6).ToArray();
+            }
+            else
+            {
+               return  Dns.GetHostAddresses(machineName).Where(x => x.AddressFamily != AddressFamily.InterNetworkV6).ToArray();
+            }
+        }
+        #endregion
+        
+        #region Connect related
 
         /// <summary>
         /// 连接到服务器
@@ -196,15 +220,14 @@ namespace SeeSharpTools.JY.TCP
                 retries = 0;
                 tcpClient.Close();
                 RaiseServerDisconnected(Addresses, Port);
-                
             }
 
             return this;
         }
 
-        #endregion
+        #endregion Connect related
 
-        #region Connect
+        #region Async Methods
 
         private void HandleTcpServerConnected(IAsyncResult ar)
         {
@@ -220,13 +243,13 @@ namespace SeeSharpTools.JY.TCP
                 if (retries > 0)
                 {
                     //Logger.Debug(string.Format(CultureInfo.InvariantCulture,
-                     // "Connect to server with retry {0} failed.", retries));
+                    // "Connect to server with retry {0} failed.", retries));
                 }
 
                 retries++;
                 if (retries > Retries)
                 {
-                    // we have failed to connect to all the IP Addresses, 
+                    // we have failed to connect to all the IP Addresses,
                     // connection has failed overall.
                     RaiseServerExceptionOccurred(Addresses, Port, ex);
                     return;
@@ -250,7 +273,6 @@ namespace SeeSharpTools.JY.TCP
 
         private void HandleDatagramReceived(IAsyncResult ar)
         {
-
             if (!tcpClient.Connected)
             {
                 return;
@@ -278,7 +300,7 @@ namespace SeeSharpTools.JY.TCP
 
             // received byte and trigger event notification
             buffer = (byte[])ar.AsyncState;
-            if (receivedBytes.Length!=numberOfReadBytes)
+            if (receivedBytes.Length != numberOfReadBytes)
             {
                 receivedBytes = new byte[numberOfReadBytes];
             }
@@ -291,14 +313,17 @@ namespace SeeSharpTools.JY.TCP
               buffer, 0, buffer.Length, HandleDatagramReceived, buffer);
         }
 
-        #endregion
+
+        #endregion Connect
 
         #region Events
+
 
         /// <summary>
         /// 接收到数据报文事件
         /// </summary>
         public event EventHandler<TcpDatagramReceivedEventArgs<byte[]>> DatagramReceived;
+
         /// <summary>
         /// 接收到数据报文明文事件
         /// </summary>
@@ -327,10 +352,12 @@ namespace SeeSharpTools.JY.TCP
         /// 与服务器的连接已建立事件
         /// </summary>
         public event EventHandler<TcpServerConnectedEventArgs> ServerConnected;
+
         /// <summary>
         /// 与服务器的连接已断开事件
         /// </summary>
         public event EventHandler<TcpServerDisconnectedEventArgs> ServerDisconnected;
+
         /// <summary>
         /// 与服务器的连接发生异常事件
         /// </summary>
@@ -365,7 +392,7 @@ namespace SeeSharpTools.JY.TCP
             }
         }
 
-        #endregion
+        #endregion Events
 
         #region Send
 
@@ -403,12 +430,12 @@ namespace SeeSharpTools.JY.TCP
             Send(this.Encoding.GetBytes(datagram));
         }
 
-        #endregion
+        #endregion Send
 
         #region IDisposable Members
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, 
+        /// Performs application-defined tasks associated with freeing,
         /// releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()
@@ -420,8 +447,8 @@ namespace SeeSharpTools.JY.TCP
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
         /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed 
-        /// and unmanaged resources; <c>false</c> 
+        /// <param name="disposing"><c>true</c> to release both managed
+        /// and unmanaged resources; <c>false</c>
         /// to release only unmanaged resources.
         /// </param>
         protected virtual void Dispose(bool disposing)
@@ -449,9 +476,8 @@ namespace SeeSharpTools.JY.TCP
             }
         }
 
-        #endregion
+        #endregion IDisposable Members
     }
-
 
     /// <summary>
     /// 与服务器的连接已建立事件参数
@@ -476,6 +502,7 @@ namespace SeeSharpTools.JY.TCP
         /// 服务器IP地址列表
         /// </summary>
         public IPAddress[] Addresses { get; private set; }
+
         /// <summary>
         /// 服务器端口
         /// </summary>
@@ -524,6 +551,7 @@ namespace SeeSharpTools.JY.TCP
         /// 服务器IP地址列表
         /// </summary>
         public IPAddress[] Addresses { get; private set; }
+
         /// <summary>
         /// 服务器端口
         /// </summary>
@@ -549,5 +577,3 @@ namespace SeeSharpTools.JY.TCP
         }
     }
 }
-
-

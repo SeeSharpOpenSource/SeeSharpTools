@@ -18,7 +18,7 @@ namespace SeeSharpTools.JY.TCP
         private List<TcpClientState> clients;
         private bool disposed = false;
         private byte[] receivedBytes = new byte[1];
-        #endregion
+        #endregion Fields
 
         #region Ctors
 
@@ -29,6 +29,7 @@ namespace SeeSharpTools.JY.TCP
         public JYAsyncTcpServer(int listenPort)
           : this(IPAddress.Any, listenPort)
         {
+            
         }
 
         /// <summary>
@@ -52,13 +53,13 @@ namespace SeeSharpTools.JY.TCP
             this.Encoding = Encoding.Default;
 
             clients = new List<TcpClientState>();
-            
+
             listener = new TcpListener(Address, Port);
-            
+
             //listener.AllowNatTraversal(true);
         }
 
-        #endregion
+        #endregion Ctors
 
         #region Properties
 
@@ -66,14 +67,17 @@ namespace SeeSharpTools.JY.TCP
         /// 服务器是否正在运行
         /// </summary>
         public bool IsRunning { get; private set; }
+
         /// <summary>
         /// 监听的IP地址
         /// </summary>
         public IPAddress Address { get; private set; }
+
         /// <summary>
         /// 监听的端口
         /// </summary>
         public int Port { get; private set; }
+
         /// <summary>
         /// 通信使用的编码
         /// </summary>
@@ -84,7 +88,7 @@ namespace SeeSharpTools.JY.TCP
         /// </summary>
         public uint ReceiveBufferSize { get; set; }
 
-        #endregion
+        #endregion Properties
 
         #region Server
 
@@ -142,12 +146,11 @@ namespace SeeSharpTools.JY.TCP
                     }
                     this.clients.Clear();
                 }
-
             }
             return this;
         }
 
-        #endregion
+        #endregion Server
 
         #region Receive
 
@@ -232,7 +235,7 @@ namespace SeeSharpTools.JY.TCP
             }
         }
 
-        #endregion
+        #endregion Receive
 
         #region Events
 
@@ -240,6 +243,7 @@ namespace SeeSharpTools.JY.TCP
         /// 接收到数据报文事件
         /// </summary>
         public event EventHandler<TcpDatagramReceivedEventArgs<byte[]>> DatagramReceived;
+
         /// <summary>
         /// 接收到数据报文明文事件
         /// </summary>
@@ -266,6 +270,7 @@ namespace SeeSharpTools.JY.TCP
         /// 与客户端的连接已建立事件
         /// </summary>
         public event EventHandler<TcpClientConnectedEventArgs> ClientConnected;
+
         /// <summary>
         /// 与客户端的连接已断开事件
         /// </summary>
@@ -289,7 +294,7 @@ namespace SeeSharpTools.JY.TCP
                  new AsyncCallback(HandleTcpClientAccepted), listener);
         }
 
-        #endregion
+        #endregion Events
 
         #region Send
 
@@ -314,8 +319,6 @@ namespace SeeSharpTools.JY.TCP
                 tcpClient.GetStream().BeginWrite(
               datagram, 0, datagram.Length, HandleDatagramWritten, tcpClient);
             }
-            
-            
         }
 
         private void HandleDatagramWritten(IAsyncResult ar)
@@ -360,12 +363,12 @@ namespace SeeSharpTools.JY.TCP
             SendAll(this.Encoding.GetBytes(datagram));
         }
 
-        #endregion
+        #endregion Send
 
         #region IDisposable Members
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, 
+        /// Performs application-defined tasks associated with freeing,
         /// releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()
@@ -377,8 +380,8 @@ namespace SeeSharpTools.JY.TCP
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
         /// </summary>
-        /// <param name="disposing"><c>true</c> to release 
-        /// both managed and unmanaged resources; <c>false</c> 
+        /// <param name="disposing"><c>true</c> to release
+        /// both managed and unmanaged resources; <c>false</c>
         /// to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
@@ -405,7 +408,7 @@ namespace SeeSharpTools.JY.TCP
             }
         }
 
-        #endregion
+        #endregion IDisposable Members
     }
 
     /// <summary>
@@ -449,7 +452,6 @@ namespace SeeSharpTools.JY.TCP
         }
     }
 
-
     /// <summary>
     /// 与客户端的连接已建立事件参数
     /// </summary>
@@ -488,6 +490,7 @@ namespace SeeSharpTools.JY.TCP
                 throw new ArgumentNullException("tcpClient");
             this.TcpClient = tcpClient;
         }
+
         /// <summary>
         /// 客户端
         /// </summary>
@@ -520,10 +523,12 @@ namespace SeeSharpTools.JY.TCP
         /// 服务器IP地址列表
         /// </summary>
         public IPAddress[] Addresses { get; private set; }
+
         /// <summary>
         /// 服务器端口
         /// </summary>
         public int Port { get; private set; }
+
         /// <summary>
         /// 内部异常
         /// </summary>
@@ -549,7 +554,6 @@ namespace SeeSharpTools.JY.TCP
         }
     }
 
-
     /// <summary>
     /// 接收到数据报文事件参数
     /// </summary>
@@ -571,6 +575,7 @@ namespace SeeSharpTools.JY.TCP
         /// 客户端
         /// </summary>
         public TcpClient TcpClient { get; private set; }
+
         /// <summary>
         /// 报文
         /// </summary>

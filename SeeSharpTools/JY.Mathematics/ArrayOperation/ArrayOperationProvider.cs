@@ -59,7 +59,7 @@ namespace SeeSharpTools.JY.Mathematics.Provider
         {
             int size = Marshal.SizeOf(src[0]);
 
-            Buffer.BlockCopy(src, 0, dest, 0, size * (index - 1));
+            Buffer.BlockCopy(src, 0, dest, 0, size * (index <= 1 ? 1 : index - 1));
             Buffer.BlockCopy(src, (index + 1) * size, dest, index * size, (src.Length - index - 1) * size);
         }
 

@@ -43,8 +43,10 @@
     <Compile Include="CustomScaling\CustomScaling.cs" />
     <Compile Include="LoadCell\LoadCell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RTD\Interpolation.cs" />
     <Compile Include="RTD\RTD.cs" />
     <Compile Include="Displacement sensor\DisplacementSensor.cs" />
+    <Compile Include="RTD\RTDValueConvertor.cs" />
     <Compile Include="Thermistor\Thermistor.cs" />
     <Compile Include="Thermocouple\TC_TypeT.cs" />
     <Compile Include="Thermocouple\TC_TypeS.cs" />

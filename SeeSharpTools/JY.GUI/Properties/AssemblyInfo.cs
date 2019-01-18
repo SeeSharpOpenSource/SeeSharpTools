@@ -9,9 +9,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JYTEK")]
-[assembly: AssemblyProduct("JY GUI  Class Library")]
+[assembly: AssemblyProduct("SeeSharpTools.JY.GUI")]
 [assembly: AssemblyCopyright("Copyright © JYTEK 2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("SeeSharp")]
 [assembly: AssemblyCulture("")]
 
 //将 ComVisible 设置为 false 将使此程序集中的类型
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.4.4.505")]
-[assembly: AssemblyFileVersion("1.4.4.505")]
+[assembly: AssemblyVersion("1.4.4.533")]
+[assembly: AssemblyFileVersion("1.4.4.533")]

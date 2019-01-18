@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeeSharpTools.JY.TCP
 {
@@ -11,7 +7,7 @@ namespace SeeSharpTools.JY.TCP
     /// 循环缓冲队列类，旧版本，托管内存
     /// </summary>
     /// <typeparam name="T">泛型</typeparam>
-    internal class CircularBuffer<T>
+    internal class CircularBuffer<T>:IBuffer
     {
         private readonly int _sizeOfT; //T的Size，创建队列的时候初始化
         private T[] _buffer;           //缓冲区
@@ -20,12 +16,12 @@ namespace SeeSharpTools.JY.TCP
         private int _RDIdx;           //队列读指针
 
         private volatile int _numOfElement;
+
         /// <summary>
         /// 当前的元素个数
         /// </summary>
         public int NumOfElement
         {
-
             get
             {
                 lock (this)
@@ -35,7 +31,8 @@ namespace SeeSharpTools.JY.TCP
             }
         }
 
-        private int _bufferSize;       //循环队列缓冲的大小 
+        private int _bufferSize;       //循环队列缓冲的大小
+
         /// <summary>
         /// 缓冲区的大小
         /// </summary>
@@ -401,6 +398,4 @@ namespace SeeSharpTools.JY.TCP
             }
         }
     }
-
-
 }
