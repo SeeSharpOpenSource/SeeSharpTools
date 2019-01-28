@@ -1,0 +1,6 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Localization\bin\Release\SeeSharpTools.JY.Localization.XML
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Localization\bin\Release\SeeSharpTools.JY.Localization.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Localization\bin\Release\SeeSharpTools.JY.Localization.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Localization\obj\Release\SeeSharpTools.JY.Localization.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Localization\obj\Release\SeeSharpTools.JY.Localization.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Localization\obj\Release\JY.Localization.csprojResolveAssemblyReference.cache

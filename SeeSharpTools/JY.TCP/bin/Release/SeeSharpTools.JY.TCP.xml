@@ -1,0 +1,893 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.TCP</name>
+    </assembly>
+    <members>
+        <member name="T:SeeSharpTools.JY.TCP.CircularBuffer`1">
+            <summary>
+            循环缓冲队列类，旧版本，托管内存
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.CircularBuffer`1.NumOfElement">
+            <summary>
+            当前的元素个数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.CircularBuffer`1.BufferSize">
+            <summary>
+            缓冲区的大小
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.CircularBuffer`1.CurrentCapacity">
+            <summary>
+            当前能容纳的点数
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.CircularBuffer`1.#ctor(System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="bufferSize"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.CircularBuffer`1.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.CircularBuffer`1.AdjustSize(System.Int32)">
+            <summary>
+            调整缓冲区大小，数据会被清空
+            </summary>
+            <param name="size"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.CircularBuffer`1.Clear">
+            <summary>
+            清空缓冲区内的数据
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.CircularBuffer`1.Enqueue(`0)">
+            <summary>
+            向缓冲队列中放入一个数据
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.CircularBuffer`1.Enqueue(`0[])">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.CircularBuffer`1.Enqueue(`0[],System.Int32)">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.CircularBuffer`1.Enqueue(`0[0:,0:])">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.CircularBuffer`1.Dequeue(`0@)">
+            <summary>
+            从缓冲队列中取一个数据
+            </summary>
+            <returns>失败：-1，1：返回一个数据</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.CircularBuffer`1.Dequeue(`0[]@,System.Int32)">
+            <summary>
+            从缓冲队列中取出指定长度的数据
+            </summary>
+            <param name="reqBuffer">请求读取缓冲区</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.CircularBuffer`1.Dequeue(`0[0:,0:]@,System.Int32)">
+            <summary>
+            从缓冲队列中取出指定长度的数据
+            </summary>
+            <param name="reqBuffer">请求读取缓冲区</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.ChannelDataType">
+            <summary>
+            资料通道类型
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.TCP.ChannelDataType.DataStream">
+            <summary>
+            资料串流（字节类型）
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.TCP.ChannelDataType.String">
+            <summary>
+            字符串类型
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.IBuffer">
+            <summary>
+            缓存的接口定义
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.IBuffer.BufferSize">
+            <summary>
+            返回缓存的大小
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.IBuffer.NumOfElement">
+            <summary>
+            返回缓存内未读取的元素数目
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.StringBuffer">
+            <summary>
+            字符串缓存空间
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.StringBuffer.BufferSize">
+            <summary>
+            缓存空间大小
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.StringBuffer.NumOfElement">
+            <summary>
+            缓存内未读取元素数目
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.StringBuffer.Clear">
+            <summary>
+            清除缓存内所有内容
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.StringBuffer.Enqueue(System.String)">
+            <summary>
+            写入缓存
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.StringBuffer.Dequeue(System.String@)">
+            <summary>
+            从缓存读出
+            </summary>
+            <param name="reqElem"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.JYAsyncTcpClient">
+            <summary>
+            异步TCP客户端
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.#ctor(System.Net.IPEndPoint)">
+            <summary>
+            异步TCP客户端
+            </summary>
+            <param name="remoteEP">远端服务器终结点</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.#ctor(System.Net.IPEndPoint,System.Net.IPEndPoint)">
+            <summary>
+            异步TCP客户端
+            </summary>
+            <param name="remoteEP">远端服务器终结点</param>
+            <param name="localEP">本地客户端终结点</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.#ctor(System.Net.IPAddress,System.Int32)">
+            <summary>
+            异步TCP客户端
+            </summary>
+            <param name="remoteIPAddress">远端服务器IP地址</param>
+            <param name="remotePort">远端服务器端口</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.#ctor(System.Net.IPAddress,System.Int32,System.Net.IPEndPoint)">
+            <summary>
+            异步TCP客户端
+            </summary>
+            <param name="remoteIPAddress">远端服务器IP地址</param>
+            <param name="remotePort">远端服务器端口</param>
+            <param name="localEP">本地客户端终结点</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.#ctor(System.String,System.Int32)">
+            <summary>
+            异步TCP客户端
+            </summary>
+            <param name="remoteHostName">远端服务器主机名</param>
+            <param name="remotePort">远端服务器端口</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.#ctor(System.String,System.Int32,System.Net.IPEndPoint)">
+            <summary>
+            异步TCP客户端
+            </summary>
+            <param name="remoteHostName">远端服务器主机名</param>
+            <param name="remotePort">远端服务器端口</param>
+            <param name="localEP">本地客户端终结点</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.#ctor(System.Net.IPAddress[],System.Int32)">
+            <summary>
+            异步TCP客户端
+            </summary>
+            <param name="remoteIPAddresses">远端服务器IP地址列表</param>
+            <param name="remotePort">远端服务器端口</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.#ctor(System.Net.IPAddress[],System.Int32,System.Net.IPEndPoint)">
+            <summary>
+            异步TCP客户端
+            </summary>
+            <param name="remoteIPAddresses">远端服务器IP地址列表</param>
+            <param name="remotePort">远端服务器端口</param>
+            <param name="localEP">本地客户端终结点</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpClient.Connected">
+            <summary>
+            是否已与服务器建立连接
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpClient.Addresses">
+            <summary>
+            远端服务器的IP地址列表
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpClient.Port">
+            <summary>
+            远端服务器的端口
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpClient.Retries">
+            <summary>
+            连接重试次数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpClient.RetryInterval">
+            <summary>
+            连接重试间隔
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpClient.RemoteIPEndPoint">
+            <summary>
+            远端服务器终结点
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpClient.LocalIPEndPoint">
+            <summary>
+            本地客户端终结点
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpClient.Encoding">
+            <summary>
+            通信所使用的编码
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.Connect">
+            <summary>
+            连接到服务器
+            </summary>
+            <returns>异步TCP客户端</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.Close">
+            <summary>
+            关闭与服务器的连接
+            </summary>
+            <returns>异步TCP客户端</returns>
+        </member>
+        <member name="E:SeeSharpTools.JY.TCP.JYAsyncTcpClient.DatagramReceived">
+            <summary>
+            接收到数据报文事件
+            </summary>
+        </member>
+        <member name="E:SeeSharpTools.JY.TCP.JYAsyncTcpClient.PlaintextReceived">
+            <summary>
+            接收到数据报文明文事件
+            </summary>
+        </member>
+        <member name="E:SeeSharpTools.JY.TCP.JYAsyncTcpClient.ServerConnected">
+            <summary>
+            与服务器的连接已建立事件
+            </summary>
+        </member>
+        <member name="E:SeeSharpTools.JY.TCP.JYAsyncTcpClient.ServerDisconnected">
+            <summary>
+            与服务器的连接已断开事件
+            </summary>
+        </member>
+        <member name="E:SeeSharpTools.JY.TCP.JYAsyncTcpClient.ServerExceptionOccurred">
+            <summary>
+            与服务器的连接发生异常事件
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.Send(System.Byte[])">
+            <summary>
+            发送报文
+            </summary>
+            <param name="datagram">报文</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.Send(System.String)">
+            <summary>
+            发送报文
+            </summary>
+            <param name="datagram">报文</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing,
+            releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpClient.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed
+            and unmanaged resources; <c>false</c>
+            to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.TcpServerConnectedEventArgs">
+            <summary>
+            与服务器的连接已建立事件参数
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.TcpServerConnectedEventArgs.#ctor(System.Net.IPAddress[],System.Int32)">
+            <summary>
+            与服务器的连接已建立事件参数
+            </summary>
+            <param name="ipAddresses">服务器IP地址列表</param>
+            <param name="port">服务器端口</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpServerConnectedEventArgs.Addresses">
+            <summary>
+            服务器IP地址列表
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpServerConnectedEventArgs.Port">
+            <summary>
+            服务器端口
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.TcpServerConnectedEventArgs.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.TcpServerDisconnectedEventArgs">
+            <summary>
+            与服务器的连接已断开事件参数
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.TcpServerDisconnectedEventArgs.#ctor(System.Net.IPAddress[],System.Int32)">
+            <summary>
+            与服务器的连接已断开事件参数
+            </summary>
+            <param name="ipAddresses">服务器IP地址列表</param>
+            <param name="port">服务器端口</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpServerDisconnectedEventArgs.Addresses">
+            <summary>
+            服务器IP地址列表
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpServerDisconnectedEventArgs.Port">
+            <summary>
+            服务器端口
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.TcpServerDisconnectedEventArgs.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.JYAsyncTcpServer">
+            <summary>
+            异步TCP服务器
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.#ctor(System.Int32)">
+            <summary>
+            异步TCP服务器
+            </summary>
+            <param name="listenPort">监听的端口</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.#ctor(System.Net.IPEndPoint)">
+            <summary>
+            异步TCP服务器
+            </summary>
+            <param name="localEP">监听的终结点</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.#ctor(System.Net.IPAddress,System.Int32)">
+            <summary>
+            异步TCP服务器
+            </summary>
+            <param name="localIPAddress">监听的IP地址</param>
+            <param name="listenPort">监听的端口</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpServer.IsRunning">
+            <summary>
+            服务器是否正在运行
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpServer.Address">
+            <summary>
+            监听的IP地址
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpServer.Port">
+            <summary>
+            监听的端口
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpServer.Encoding">
+            <summary>
+            通信使用的编码
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYAsyncTcpServer.ReceiveBufferSize">
+            <summary>
+            接收数据缓冲区大小
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.Start">
+            <summary>
+            启动服务器
+            </summary>
+            <returns>异步TCP服务器</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.Start(System.Int32)">
+            <summary>
+            启动服务器
+            </summary>
+            <param name="backlog">
+            服务器所允许的挂起连接序列的最大长度
+            </param>
+            <returns>异步TCP服务器</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.Stop">
+            <summary>
+            停止服务器
+            </summary>
+            <returns>异步TCP服务器</returns>
+        </member>
+        <member name="E:SeeSharpTools.JY.TCP.JYAsyncTcpServer.DatagramReceived">
+            <summary>
+            接收到数据报文事件
+            </summary>
+        </member>
+        <member name="E:SeeSharpTools.JY.TCP.JYAsyncTcpServer.PlaintextReceived">
+            <summary>
+            接收到数据报文明文事件
+            </summary>
+        </member>
+        <member name="E:SeeSharpTools.JY.TCP.JYAsyncTcpServer.ClientConnected">
+            <summary>
+            与客户端的连接已建立事件
+            </summary>
+        </member>
+        <member name="E:SeeSharpTools.JY.TCP.JYAsyncTcpServer.ClientDisconnected">
+            <summary>
+            与客户端的连接已断开事件
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.Send(System.Net.Sockets.TcpClient,System.Byte[])">
+            <summary>
+            发送报文至指定的客户端
+            </summary>
+            <param name="tcpClient">客户端</param>
+            <param name="datagram">报文</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.Send(System.Net.Sockets.TcpClient,System.String)">
+            <summary>
+            发送报文至指定的客户端
+            </summary>
+            <param name="tcpClient">客户端</param>
+            <param name="datagram">报文</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.SendAll(System.Byte[])">
+            <summary>
+            发送报文至所有客户端
+            </summary>
+            <param name="datagram">报文</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.SendAll(System.String)">
+            <summary>
+            发送报文至所有客户端
+            </summary>
+            <param name="datagram">报文</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing,
+            releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYAsyncTcpServer.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing"><c>true</c> to release
+            both managed and unmanaged resources; <c>false</c>
+            to release only unmanaged resources.</param>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.TcpClientState">
+            <summary>
+            Internal class to join the TCP client and buffer together
+            for easy management in the server
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.TcpClientState.#ctor(System.Net.Sockets.TcpClient,System.Byte[])">
+            <summary>
+            Constructor for a new Client
+            </summary>
+            <param name="tcpClient">The TCP client</param>
+            <param name="buffer">The byte array buffer</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpClientState.TcpClient">
+            <summary>
+            Gets the TCP Client
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpClientState.Buffer">
+            <summary>
+            Gets the Buffer.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpClientState.NetworkStream">
+            <summary>
+            Gets the network stream
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.TcpClientConnectedEventArgs">
+            <summary>
+            与客户端的连接已建立事件参数
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.TcpClientConnectedEventArgs.#ctor(System.Net.Sockets.TcpClient)">
+            <summary>
+            与客户端的连接已建立事件参数
+            </summary>
+            <param name="tcpClient">客户端</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpClientConnectedEventArgs.TcpClient">
+            <summary>
+            客户端
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.TcpClientDisconnectedEventArgs">
+            <summary>
+            与客户端的连接已断开事件参数
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.TcpClientDisconnectedEventArgs.#ctor(System.Net.Sockets.TcpClient)">
+            <summary>
+            与客户端的连接已断开事件参数
+            </summary>
+            <param name="tcpClient">客户端</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpClientDisconnectedEventArgs.TcpClient">
+            <summary>
+            客户端
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.TcpServerExceptionOccurredEventArgs">
+            <summary>
+            与服务器的连接发生异常事件参数
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.TcpServerExceptionOccurredEventArgs.#ctor(System.Net.IPAddress[],System.Int32,System.Exception)">
+            <summary>
+            与服务器的连接发生异常事件参数
+            </summary>
+            <param name="ipAddresses">服务器IP地址列表</param>
+            <param name="port">服务器端口</param>
+            <param name="innerException">内部异常</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpServerExceptionOccurredEventArgs.Addresses">
+            <summary>
+            服务器IP地址列表
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpServerExceptionOccurredEventArgs.Port">
+            <summary>
+            服务器端口
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpServerExceptionOccurredEventArgs.Exception">
+            <summary>
+            内部异常
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.TcpServerExceptionOccurredEventArgs.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.TcpDatagramReceivedEventArgs`1">
+            <summary>
+            接收到数据报文事件参数
+            </summary>
+            <typeparam name="T">报文类型</typeparam>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.TcpDatagramReceivedEventArgs`1.#ctor(System.Net.Sockets.TcpClient,`0)">
+            <summary>
+            接收到数据报文事件参数
+            </summary>
+            <param name="tcpClient">客户端</param>
+            <param name="datagram">报文</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpDatagramReceivedEventArgs`1.TcpClient">
+            <summary>
+            客户端
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.TcpDatagramReceivedEventArgs`1.Datagram">
+            <summary>
+            报文
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.JYTCPClient">
+            <summary>
+            客户端
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.#ctor(System.String,System.Int32,SeeSharpTools.JY.TCP.ChannelDataType,System.Int32)">
+            <summary>
+            JYTCPClient类构造函数
+            </summary>
+            <param name="ipAddress">连接的远端ip位置</param>
+            <param name="port">连接的远端端口号</param>
+            <param name="dataType">TCP缓存存放的资料类型</param>
+            <param name="bufferSize">TCP缓存的大小</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYTCPClient.Connected">
+            <summary>
+            返回是否已连接
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYTCPClient.BufferSize">
+            <summary>
+            缓冲区大小(选择DataStream类型时单位是字节数，String类型时单位是字符串的个数）
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYTCPClient.AvailableSamples">
+            <summary>
+            缓冲区可读取的元素个数
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.Connect">
+            <summary>
+            开始连接服务器
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.DisConnect">
+            <summary>
+            关闭与服务器连接
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.ReadString(System.String@)">
+            <summary>
+            从String缓存读取一个字符串（如果选择DataStream模式，请选择ReadDataStream方法)
+            </summary>
+            <param name="Buf"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.ReadDataStream(System.Byte[]@)">
+            <summary>
+            从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="Buf">用户内存</param>
+            <param name="TimeOut">超时时间</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.ReadDataStream(System.Double[]@)">
+            <summary>
+            从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="Buf">用户内存</param>
+            <param name="TimeOut">超时时间</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.ReadDataStream(System.Single[]@)">
+            <summary>
+            从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="Buf">用户内存</param>
+            <param name="TimeOut">超时时间</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.ReadDataStream(System.Double[0:,0:]@)">
+            <summary>
+            从DataStream缓存读取二维数组数据（如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="Buf">用户内存</param>
+            <param name="TimeOut">超时时间</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.ReadDataStream(System.Single[0:,0:]@)">
+            <summary>
+            从DataStream缓存读取二维数组数据（如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="Buf">用户内存</param>
+            <param name="TimeOut">超时时间</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.SendString(System.String)">
+            <summary>
+            发送字符串数据（如果选择DataStream模式，请选择ReadDataStream方法)
+            </summary>
+            <param name="dataBuf"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.SendDataStream(System.Byte[])">
+            <summary>
+            发送数据(如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="dataBuf">发送数据</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.SendDataStream(System.Double[])">
+            <summary>
+            发送数据(如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="dataBuf">发送数据</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.SendDataStream(System.Single[])">
+            <summary>
+            发送数据(如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="dataBuf">发送数据</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.SendDataStream(System.Double[0:,0:])">
+            <summary>
+            发送数据(如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="dataBuf">发送数据</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPClient.SendDataStream(System.Single[0:,0:])">
+            <summary>
+            发送数据(如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="dataBuf">发送数据</param>
+        </member>
+        <member name="E:SeeSharpTools.JY.TCP.JYTCPClient.ServerDisconnected">
+            <summary>
+            服务器断线事件
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.JYTCPServer">
+             <summary>
+            服务器端
+             </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.#ctor(System.Int32,SeeSharpTools.JY.TCP.ChannelDataType,System.Int32)">
+            <summary>
+            服务器构造函数
+            </summary>
+            <param name="listenPort">监听的端口号</param>
+            <param name="dataType">缓存区存放资料的类型</param>
+            <param name="bufferSize">缓存区大小</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.Finalize">
+            <summary>
+            析构函数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.JYTCPServer.BufferSize">
+            <summary>
+            缓存区大小
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.Start">
+            <summary>
+            开始
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.Stop">
+            <summary>
+            停止
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.ReadString(System.String@,System.Net.Sockets.TcpClient)">
+            <summary>
+            从String缓存读取一个字符串（如果选择DataStream模式，请选择ReadDataStream方法)
+            </summary>
+            <param name="Buf"></param>
+            <param name="client"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.ReadDataStream(System.Byte[]@,System.Net.Sockets.TcpClient)">
+            <summary>
+            从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="Buf">用户内存</param>
+            <param name="TimeOut">超时时间</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.ReadDataStream(System.Double[]@,System.Net.Sockets.TcpClient)">
+            <summary>
+            从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="Buf">用户内存</param>
+            <param name="TimeOut">超时时间</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.ReadDataStream(System.Single[]@,System.Net.Sockets.TcpClient)">
+            <summary>
+            从DataStream缓存读取一维数组数据（如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="Buf">用户内存</param>
+            <param name="TimeOut">超时时间</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.ReadDataStream(System.Double[0:,0:]@,System.Net.Sockets.TcpClient)">
+            <summary>
+            从DataStream缓存读取二维数组数据（如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="Buf">用户内存</param>
+            <param name="TimeOut">超时时间</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.ReadDataStream(System.Single[0:,0:]@,System.Net.Sockets.TcpClient)">
+            <summary>
+            从DataStream缓存读取二维数组数据（如果选择String模式，请选择ReadString方法)
+            </summary>
+            <param name="Buf">用户内存</param>
+            <param name="TimeOut">超时时间</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.SendString(System.String,System.Net.Sockets.TcpClient)">
+            <summary>
+            发送字符串数据（如果选择DataStream模式，请选择ReadDataStream方法，client=null是广播发送)
+            </summary>
+            <param name="dataBuf"></param>
+            <param name="client"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.SendDataStream(System.Byte[],System.Net.Sockets.TcpClient)">
+            <summary>
+            发送数据(如果选择String模式，请选择ReadString方法，client=null是广播发送)
+            </summary>
+            <param name="dataBuf"></param>
+            <param name="client"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.SendDataStream(System.Double[],System.Net.Sockets.TcpClient)">
+            <summary>
+            发送数据(如果选择String模式，请选择ReadString方法，client=null是广播发送)
+            </summary>
+            <param name="dataBuf"></param>
+            <param name="client"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.SendDataStream(System.Single[],System.Net.Sockets.TcpClient)">
+            <summary>
+            发送数据(如果选择String模式，请选择ReadString方法，client=null是广播发送)
+            </summary>
+            <param name="dataBuf"></param>
+            <param name="client"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.SendDataStream(System.Double[0:,0:],System.Net.Sockets.TcpClient)">
+            <summary>
+            发送数据(如果选择String模式，请选择ReadString方法，client=null是广播发送)
+            </summary>
+            <param name="dataBuf"></param>
+            <param name="client"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.TCP.JYTCPServer.SendDataStream(System.Single[0:,0:],System.Net.Sockets.TcpClient)">
+            <summary>
+            发送数据(如果选择String模式，请选择ReadString方法，client=null是广播发送)
+            </summary>
+            <param name="dataBuf"></param>
+            <param name="client"></param>
+        </member>
+        <member name="T:SeeSharpTools.JY.TCP.ClientInformation">
+            <summary>
+            ClientInformation类，存放连接成功的TCPClient资讯以及缓存对象
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.ClientInformation.Client">
+            <summary>
+            连接上的TCPClient对象
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.ClientInformation.Buffer">
+            <summary>
+            创建的缓存区对象
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.TCP.ClientInformation.AvailableSamples">
+            <summary>
+            缓存区内的可读取元素数目
+            </summary>
+        </member>
+    </members>
+</doc>

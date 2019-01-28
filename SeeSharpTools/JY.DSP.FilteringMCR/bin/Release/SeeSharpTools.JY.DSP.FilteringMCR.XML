@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.DSP.FilteringMCR</name>
+    </assembly>
+    <members>
+        <member name="T:SeeSharpTools.JY.DSP.FilteringMCR.FilterType">
+            <summary>
+            Filter type: Lowpass/Highpass/Bandpass/Bandstop
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter">
+            <summary>
+            IIR Filter Class
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.DesignMethod">
+            <summary>
+            Filter design method: InvChebyshev/Butterworth/Elliptic
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.Initialize">
+            <summary>
+            Initialize Matlab Engine.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.ProcessLowpass(System.Double[],System.Double,System.Double,System.Double,SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.DesignMethod,System.Double,System.Double)">
+            <summary>
+            IIR lowpass filter, design and process
+            </summary>
+            <param name="inputData">Input waform data</param>
+            <param name="fPass">Passband frequency</param>
+            <param name="fStop">Stopband frequency</param>
+            <param name="sampleRate">Samplerate</param>
+            <param name="method">Design method</param>
+            <param name="passbandRipple_dB">PassbandRipple(dB)</param>
+            <param name="stopbandAttenuation_dB">StopbandAttenuation(dB)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.ProcessHighpass(System.Double[],System.Double,System.Double,System.Double,SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.DesignMethod,System.Double,System.Double)">
+            <summary>
+            IIR highpass filter, design and process
+            </summary>
+            <param name="inputData">Input waform data</param>
+            <param name="fPass">Passband frequency</param>
+            <param name="fStop">Stopband frequency</param>
+            <param name="sampleRate">Samplerate</param>
+            <param name="method">Design method</param>
+            <param name="passbandRipple_dB">PassbandRipple(dB)</param>
+            <param name="stopbandAttenuation_dB">StopbandAttenuation(dB)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.ProcessBandpass(System.Double[],System.Double,System.Double,System.Double,System.Double,System.Double,SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.DesignMethod,System.Double,System.Double)">
+            <summary>
+            IIR passband filter, design and process
+            </summary>
+            <param name="inputData">Input waform data</param>
+            <param name="fPass1">Passband left frequency</param>
+            <param name="fPass2">Passband right frequency</param>
+            <param name="fStop1">Stopband left frequency</param>
+            <param name="fStop2">Stopband right frequency</param>
+            <param name="sampleRate">Samplerate</param>
+            <param name="method">Design method</param>
+            <param name="passbandRipple_dB">PassbandRipple(dB)</param>
+            <param name="stopbandAttenuation_dB">StopbandAttenuation(dB)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.ProcessBandstop(System.Double[],System.Double,System.Double,System.Double,System.Double,System.Double,SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.DesignMethod,System.Double,System.Double)">
+            <summary>
+            IIR bandstop filter, design and process
+            </summary>
+            <param name="inputData">Input waform data</param>
+            <param name="fPass1">Passband left frequency</param>
+            <param name="fPass2">Passband right frequency</param>
+            <param name="fStop1">Stopband left frequency</param>
+            <param name="fStop2">Stopband right frequency</param>
+            <param name="sampleRate">Samplerate</param>
+            <param name="method">Design method</param>
+            <param name="passbandRipple_dB">PassbandRipple(dB)</param>
+            <param name="stopbandAttenuation_dB">StopbandAttenuation(dB)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.Filter(System.Double[],SeeSharpTools.JY.DSP.FilteringMCR.IIRFilter.DesignMethod,SeeSharpTools.JY.DSP.FilteringMCR.FilterType,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Filter
+            </summary>
+            <param name="inputData">Input waform data</param>
+            <param name="mode">Folter design method</param>
+            <param name="type">Filter type</param>
+            <param name="fpass1">PassBand left frequency</param>
+            <param name="fstop1">StopBand left frequency</param>
+            <param name="fpass2">PassBand right frequency</param>
+            <param name="fstop2">StopBand right frequency</param>
+            <param name="fs">Samplerate</param>
+            <param name="rp">Passband ripple</param>
+            <param name="rs">Stopband attenuation</param>
+            <returns>Output waveform data</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.FilteringMCR.FIRFilter">
+            <summary>
+            FIR filter class
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.FilteringMCR.FIRFilter.DesignMethod">
+            <summary>
+            FIR Design Method: Kaiser
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.FIRFilter.Initialize">
+            <summary>
+            Initialize Matlab Engine.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.FIRFilter.ProcessLowpass(System.Double[],System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            FIR lowpass filter, design and process
+            </summary>
+            <param name="inputData">Input waform data</param>
+            <param name="fPass">Passband frequency</param>
+            <param name="fStop">Stopband frequency</param>
+            <param name="sampleRate">Samplerate</param>
+            <param name="passbandRipple_dB">PassbandRipple(dB)</param>
+            <param name="stopbandAttenuation_dB">StopbandAttenuation(dB)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.FIRFilter.ProcessHighpass(System.Double[],System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            FIR highpass filter, design and process
+            </summary>
+            <param name="inputData">Input waform data</param>
+            <param name="fPass">Passband frequency</param>
+            <param name="fStop">Stopband frequency</param>
+            <param name="sampleRate">Samplerate</param>
+            <param name="passbandRipple_dB">PassbandRipple(dB)</param>
+            <param name="stopbandAttenuation_dB">StopbandAttenuation(dB)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.FIRFilter.ProcessBandpass(System.Double[],System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            FIR bandpass filter, design and process
+            </summary>
+            <param name="inputData">Input waform data</param>
+            <param name="fPass1">Passband left frequency</param>
+            <param name="fPass2">Passband right frequency</param>
+            <param name="fStop1">Stopband left frequency</param>
+            <param name="fStop2">Stopband right frequency</param>
+            <param name="sampleRate">Samplerate</param>
+            <param name="passbandRipple_dB">PassbandRipple(dB)</param>
+            <param name="stopbandAttenuation_dB">StopbandAttenuation(dB)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.FIRFilter.ProcessBandstop(System.Double[],System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            FIR bandpass filter, design and process
+            </summary>
+            <param name="inputData">Input waform data</param>
+            <param name="fPass1">Passband left frequency</param>
+            <param name="fPass2">Passband right frequency</param>
+            <param name="fStop1">Stopband left frequency</param>
+            <param name="fStop2">Stopband right frequency</param>
+            <param name="sampleRate">Samplerate</param>
+            <param name="passbandRipple_dB">PassbandRipple(dB)</param>
+            <param name="stopbandAttenuation_dB">StopbandAttenuation(dB)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.FIRFilter.Kaiser(System.Double[],System.Double[],System.Double[],System.Double[],System.Double)">
+            <summary>
+            Kaiser Window Filter
+            </summary>
+            <param name="inputData">Input waform data</param>
+            <param name="f">Band edges</param>
+            <param name="a"> Desired amplitude on the bands define by f</param>
+            <param name="dev">Passband ripple and stopband attenuation</param>
+            <param name="fs">Samplerate</param>
+            <returns>Output waveform data</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.FilteringMCR.JYSpectrum">
+            <summary>
+            JY Spectrum Class
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.FilteringMCR.JYSpectrum.DataUnit">
+            <summary>
+            DateUnit: V/Vrms/DBV
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.JYSpectrum.Initialize">
+            <summary>
+            Initialize Matlab Engine
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.FilteringMCR.JYSpectrum.FFTSpectrum(System.Double[],System.Int32,System.Double@,SeeSharpTools.JY.DSP.FilteringMCR.JYSpectrum.DataUnit)">
+            <summary>
+            FFT Spectrum 
+            </summary>
+            <param name="Wave">Input Wave</param>
+            <param name="SampleRate">Sampling Rate</param>
+            <param name="df">Frequency interval</param>
+            <param name="Unit">Date Unit: V/Vrms/DBV</param>
+            <returns>Spectrum result</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.DSP.Utility</name>
+    </assembly>
+    <members>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.HarmonicAnalysis">
+            <summary>
+            HarmonicAnalysis Class
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.HarmonicAnalysis.ToneAnalysis(System.Double[],System.Double,System.Int32,System.Boolean)">
+            <summary>
+            Tone Analysis
+            </summary>
+            <param name="timewaveform">Waveform in time space</param>
+            <param name="dt"> Interval time of waveform </param>
+            <param name="highestHarmonic">HighestHamonic level</param>
+            <param name="resultInDB">If return result in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.HarmonicAnalysis.CaculateRMSNoiseInTargetBand(System.Double[],System.Double,System.Double,System.Double)">
+            <summary>
+            Caculate RMS Noise In Target Band
+            </summary>
+            <param name="timewaveform">Waveform in time space</param>
+            <param name="dt"> Interval time of waveform </param>
+            <param name="startFrequency">Start frequency</param>
+            <param name="stopFrequency">Stop frequency</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.HarmonicAnalysis.CaculateRMSNoiseInTargetBand(System.Double[],System.Double)">
+            <summary>
+            Caculate RMS Noise In Target Band
+            </summary>
+            <param name="timewaveform">Waveform in time space</param>
+            <param name="dt">Interval time of waveform</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.HarmonicAnalysis.ComponentsLevelCaculation(System.Double[],System.Double,System.Double@,System.Double@,System.Double[]@,System.Int32)">
+            <summary>
+            Calculates the THD and level of all components of the input signal.
+            THD in value, not %
+            component levels in voltage peak which is 1.414*rms
+            component[0]=DC level; [1]=fundamental frequency level; ...
+            if the specified highest harmonic is higher than nyquest freq, 
+            the exceeded frequency components will be 0; 
+            </summary>
+            <param name="timewaveform">the waveform of input signal assuming in voltage</param>
+            <param name="dt">sampling interval of timewaveform (s)</param>
+            <param name="detectedFundamentalFreq">the calculated peak tone frequency in the range of search</param>
+            <param name="THD">total harmonic distortion in scale = sqrt(sum(harmonics power) / fundamental power)</param>
+            <param name="componentsLevel">in voltage peak which is 1.414*rms, [0]for DC [1] for fundamental</param>
+            <param name="highestHarmonic">the highest order to analysis, if too high, the exceeded harmonics level will be 0</param>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.ToneAnalysisResult">
+            <summary>
+            Tone Analysis Result
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.ToneAnalysisResult.THD">
+            <summary>
+            THD
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.ToneAnalysisResult.THDplusN">
+            <summary>
+            THD + Noise
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.ToneAnalysisResult.SINAD">
+            <summary>
+            SINAD
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.ToneAnalysisResult.SNR">
+            <summary>
+            SNR
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.ToneAnalysisResult.NoiseFloor">
+            <summary>
+            Noise Floor
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.ToneAnalysisResult.ENOB">
+            <summary>
+            Effictive number of bits
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis">
+            <summary>
+            Peak and valley analysis
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.FindPeaks(System.Double[],System.Double,System.Double[]@,System.Double[]@)">
+            <summary>
+            Find peaks
+            </summary>
+            <param name="data">input values</param>
+            <param name="minPeakProminence">min peak prominence</param>
+            <param name="index">indexes of peaks</param>
+            <param name="value">values of peaks</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.FindValleys(System.Double[],System.Double,System.Double[]@,System.Double[]@)">
+            <summary>
+            Find valleys
+            </summary>
+            <param name="data">input values</param>
+            <param name="minPeakProminence">min peak prominence</param>
+            <param name="index">indexes of valleys</param>
+            <param name="value">values of valleys</param>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.PeakSpectrum">
+            <summary>
+            PeakSpectrum measurement class
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakSpectrum.PeakSpectrumAnalysis(System.Double[],System.Double,System.Double@,System.Double@)">
+            <summary>
+            Get the fundamental frequency and array of harmonic power.
+            </summary>
+            <param name="timewaveform">the waveform of input signal assuming in voltage</param>
+            <param name="dt">sampling interval of timewaveform (s)</param>
+            <param name="peakFreq">the calculated peak tone frequency</param>
+            <param name="peakAmp">the calculated peak tone voltage peak amplitude, which is 1.414*RMS</param>
+            i.e. peakSignal=peakAmp*sin(2*pi*peakFreq*t)
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Phase">
+            <summary>
+            Phase measurement class
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Phase.CalPhaseShift(System.Double[],System.Double[])">
+            <summary>
+            Calculate the phase shift between two input waveform arrays, return value will be between -180° and 180°.
+            </summary>
+            <param name="signal1">waveform array1</param>
+            <param name="signal2">waveform array2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Phase.CalPhaseShift(System.Single[],System.Single[])">
+            <summary>
+            Calculate the phase shift between two input waveform arrays, return value will be between -180° and 180°.
+            </summary>
+            <param name="signal1">waveform array1</param>
+            <param name="signal2">waveform array2</param>
+            <returns>phase shift in unit of degree</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Phase.MathDotNetHilbert(System.Double[])">
+            <summary>
+            Hilbert transform by Math.Net
+            </summary>
+            <param name="xreal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Phase.MathDotNetHilbert(System.Single[])">
+            <summary>
+            Hilbert transform by Math.Net
+            </summary>
+            <param name="xreal"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.DSP.Utility.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.DSP.Utility.Properties.Resources.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.DSP.Utility.Properties.Resources.Coefficient">
+             <summary>
+               查找类似 1000.000000000000000
+            171769.000000000000000
+            -0.000000000036738
+            -0.000000000037107
+            -0.000000000037476
+            -0.000000000037846
+            -0.000000000038216
+            -0.000000000038587
+            -0.000000000038958
+            -0.000000000039329
+            -0.000000000039700
+            -0.000000000040071
+            -0.000000000040443
+            -0.000000000040815
+            -0.000000000041188
+            -0.000000000041560
+            -0.000000000041933
+            -0.000000000042306
+            -0.000000000042680
+            -0.000000000043054
+            -0.000000000043427
+            -0.000000000043802
+            -0.000000000044176
+            -0.000000000044551
+            -0.000000000044925
+            -0.000 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+             </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.SignalProcessing">
+            <summary>
+            信号处理类库，包含峰值检测、过零点检测以及自定义上下限范围检测
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.SignalProcessing.CheckThreshold(System.Double[],System.Double,System.Boolean)">
+            <summary>
+            列举出超过阈值/低于阈值的集合
+            </summary>
+            <param name="data">输入数组</param>
+            <param name="threshold">阈值</param>
+            <param name="isAboveLevel">T:侦测波峰；F:侦测波谷</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.SignalProcessing.CheckCrossZeroPoints(System.Double[],System.Boolean)">
+            <summary>
+            过零点检测，列举出过零点的值（和下一点作比较）
+            </summary>
+            <param name="data">输入数组</param>
+            <param name="isAbove">T:大于零点；F:小于零点</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.SignalProcessing.CheckInRange(System.Double[],System.Double[],System.Double[])">
+            <summary>
+            自定义上下限范围检测(三个数组长度需要一样，大于上限返回1,小于下限返回-1,在范围内返回0）
+            </summary>
+            <param name="data">输入数组</param>
+            <param name="highLimit">上限数组</param>
+            <param name="lowLimit">下限数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.SignalProcessing.Interpolate(System.Double[],System.Double[],System.Double,SeeSharpTools.JY.DSP.Utility.IntepolationType)">
+            <summary>
+            内插值计算，指定xValues以及yValues，经过大小排序后返回指定xPoint资料的内插值。默认使用线性内插
+            </summary>
+            <param name="xValues">数据点</param>
+            <param name="yValues">数据值</param>
+            <param name="xPoint">指定的数据点</param>
+            <param name="type">内插类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.SignalProcessing.EstimateACDC(System.Double[],System.Double@,System.Double@)">
+            <summary>
+            计算出信号的AC成分以及DC成分(单位：RMS)
+            </summary>
+            <param name="signalData">信号来源</param>
+            <param name="acTerm">AC成分</param>
+            <param name="dcTerm">DC成分</param>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.IntepolationType">
+            <summary>
+            内插类型
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.IntepolationType.Linear">
+            <summary>
+            Linear
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.IntepolationType.CubicSpline">
+            <summary>
+            CubicSpline
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.IntepolationType.LogLinear">
+            <summary>
+            LogLinear
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.IntepolationType.Polynomial">
+            <summary>
+            Polynomial
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.IntepolationType.Step">
+            <summary>
+            Step
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.SquarewaveMeasurements">
+            <summary>
+            Squarewave Measurements Class
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.SquarewaveMeasurements.SetWaveform(System.Double[])">
+            <summary>
+            Set 1st square waveform.
+            </summary>
+            <param name="inputWaveform">Input square waveform.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.SquarewaveMeasurements.GetHighStateLevel">
+            <summary>
+            Get high state level of square waveform.
+            (1st square waveform.)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.SquarewaveMeasurements.GetLowStateLevel">
+            <summary>
+            Get low state level of square waveform.
+            (1st square waveform.)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.SquarewaveMeasurements.GetPeriod">
+            <summary>
+            Get period of squere waveform.
+            (1st squere waveform.)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.SquarewaveMeasurements.SetWaveform2(System.Double[])">
+            <summary>
+            Set 2nd square waveform.
+            </summary>
+            <param name="inputWaveform"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.SquarewaveMeasurements.GetPhase">
+            <summary>
+            Get phase between 1st and 2nd square waveform.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Synchronizer">
+            <summary>
+            Synchronizer class
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Synchronizer.Sync(System.Double[0:,0:])">
+            <summary>
+            <para>Synchronize method that makes all the input channels simultaneous.</para>
+            <para>This method only applies to bandlimited signal such as sinusoidal waveform.</para>
+            <para>Note: </para>
+            <para>1 Array size should be numberOfChannels * SamplesPerChannel.</para>
+            <para>2 Size of return array will be smaller than input array because of settlepoints truncation.</para>
+            </summary>
+            <param name="data">input data</param>
+            <returns>syncdata after resample and filtering</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Synchronizer.Sync(System.Double[0:,0:],System.Double)">
+            <summary>
+            <para>Synchronize method that makes all the input channels simultaneous.</para>
+            <para>This method only applies to bandlimited signal such as sinusoidal waveform.</para>
+            <para>Note: </para>
+            <para>1 Array size should be numberOfChannels * SamplesPerChannel.</para>
+            <para>2 Size of return array will be smaller than input array because of settlepoints truncation.</para>
+            </summary>
+            <param name="data">input data</param>
+            <param name="shiftPoints">number of points you want to shift</param>
+            <returns>syncdata after resample and filtering</returns>
+        </member>
+    </members>
+</doc>

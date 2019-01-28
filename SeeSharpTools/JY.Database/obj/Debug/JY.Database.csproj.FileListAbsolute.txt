@@ -1,0 +1,10 @@
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.Database\bin\Debug\SeeSharpTools.JY.Database.XML
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.Database\bin\Debug\SeeSharpTools.JY.Database.dll
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.Database\bin\Debug\SeeSharpTools.JY.Database.pdb
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.Database\obj\Debug\SeeSharpTools.JY.Database.dll
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.Database\obj\Debug\SeeSharpTools.JY.Database.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Database\bin\Debug\SeeSharpTools.JY.Database.XML
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Database\bin\Debug\SeeSharpTools.JY.Database.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Database\bin\Debug\SeeSharpTools.JY.Database.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Database\obj\Debug\SeeSharpTools.JY.Database.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Database\obj\Debug\SeeSharpTools.JY.Database.pdb

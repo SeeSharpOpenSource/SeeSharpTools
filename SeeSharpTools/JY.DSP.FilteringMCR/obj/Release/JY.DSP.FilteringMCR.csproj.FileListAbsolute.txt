@@ -1,0 +1,8 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.FilteringMCR\bin\Release\SeeSharpTools.JY.DSP.FilteringMCR.XML
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.FilteringMCR\bin\Release\SeeSharpTools.JY.DSP.FilteringMCR.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.FilteringMCR\bin\Release\SeeSharpTools.JY.DSP.FilteringMCR.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.FilteringMCR\bin\Release\DSPMatlab.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.FilteringMCR\bin\Release\MWArray.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.FilteringMCR\obj\Release\SeeSharpTools.JY.DSP.FilteringMCR.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.FilteringMCR\obj\Release\SeeSharpTools.JY.DSP.FilteringMCR.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.FilteringMCR\obj\Release\JY.DSP.FilteringMCR.csprojResolveAssemblyReference.cache

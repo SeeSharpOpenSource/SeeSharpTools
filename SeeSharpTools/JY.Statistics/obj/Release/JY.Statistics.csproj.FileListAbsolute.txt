@@ -1,0 +1,14 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\bin\Release\NativeDLLs\ia32\ippcore.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\bin\Release\NativeDLLs\ia32\ipps.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\bin\Release\NativeDLLs\ia32\ippvm.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\bin\Release\NativeDLLs\ia32\ippvmg9.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\bin\Release\NativeDLLs\intel64\ippcore.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\bin\Release\NativeDLLs\intel64\ipps.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\bin\Release\NativeDLLs\intel64\ippvm.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\bin\Release\SeeSharpTools.JY.Statistics.xml
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\bin\Release\SeeSharpTools.JY.Statistics.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\bin\Release\SeeSharpTools.JY.Statistics.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\bin\Release\MathNet.Numerics.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\obj\Release\SeeSharpTools.JY.Statistics.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\obj\Release\SeeSharpTools.JY.Statistics.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Statistics\obj\Release\JY.Statistics.csprojResolveAssemblyReference.cache

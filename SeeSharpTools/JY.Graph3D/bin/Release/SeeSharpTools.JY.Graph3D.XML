@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.Graph3D</name>
+    </assembly>
+    <members>
+        <member name="F:SeeSharpTools.JY.Graph3D.SurfaceGraph._cubeGridVisible">
+            <summary>
+            cube grid for surface graph
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Graph3D.SurfaceGraph._axesLineVisible">
+            <summary>
+            axes line for surface graph
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Graph3D.SurfaceGraph._backColor">
+            <summary>
+            Color for background and Cube
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Graph3D.SurfaceGraph._xAxisText">
+            <summary>
+            Title for X/Y/Z axes
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Graph3D.SurfaceGraph._wireframeVisible">
+            <summary>
+            Wireframe for surface graph
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Graph3D.SurfaceGraph._colorbarVisible">
+            <summary>
+            Properties of colorbar
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.#ctor">
+            <summary>
+            Initialize the graph components
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.UpdateFlag(System.Boolean)">
+            <summary>
+            Determine if the graph should be update depending on the run-time status
+            </summary>
+            <param name="flag"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.Plot(System.Double[0:,0:])">
+            <summary>
+            Plot with assigned double data (2 dimension)
+            </summary>
+            <param name="z"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.Plot(SeeSharpTools.JY.Graph3D.stdWfm)">
+            <summary>
+            Plot with built-in waveform in the library
+            </summary>
+            <param name="builtInWfmIndex"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.Clear">
+            <summary>
+            Clear the waveform 
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.UpdateGraph">
+            <summary>
+            Update the surface Graph
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.ColorBarUpdate">
+            <summary>
+            Update the colorbar of the surface graph
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.AutoScaleColorRange">
+            <summary>
+            Autoscale the range of the colorbar
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.hScrollBar_Phi_Scroll(System.Object,System.Windows.Forms.ScrollEventArgs)">
+            <summary>
+            Change the Phi angle of perspective view
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.vScrollBar_Rho_Scroll(System.Object,System.Windows.Forms.ScrollEventArgs)">
+            <summary>
+            Change the Rho angle of perspective view
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.numericUpDown_distance_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            Distance of the perspective View
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.numericUpDown_rho_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            Rho angle of the perspective View
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.numericUpDown_phi_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            Phi angle of the perspective View
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.UpdatePointOfView">
+            <summary>
+            Update the perspective view parameters and replot
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.checkBox_showCB_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Show Colorbar button
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.checkBox_2DMode_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Switch the 2D/3D graph mode
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.ApplyProperties">
+            <summary>
+            Apply Parameters when replot the graph
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Graph3D.SurfaceGraph.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Graph3D.SurfaceGraph.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+    </members>
+</doc>

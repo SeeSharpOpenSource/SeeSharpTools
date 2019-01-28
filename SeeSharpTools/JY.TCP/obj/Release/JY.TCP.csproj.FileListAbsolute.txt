@@ -1,0 +1,5 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.TCP\bin\Release\SeeSharpTools.JY.TCP.xml
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.TCP\bin\Release\SeeSharpTools.JY.TCP.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.TCP\bin\Release\SeeSharpTools.JY.TCP.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.TCP\obj\Release\SeeSharpTools.JY.TCP.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.TCP\obj\Release\SeeSharpTools.JY.TCP.pdb

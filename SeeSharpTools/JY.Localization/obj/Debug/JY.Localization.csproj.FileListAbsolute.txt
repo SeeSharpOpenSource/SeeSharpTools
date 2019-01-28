@@ -1,0 +1,9 @@
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.Localization\bin\Debug\SeeSharpTools.JY.Localization.dll
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.Localization\bin\Debug\SeeSharpTools.JY.Localization.pdb
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.Localization\obj\Debug\SeeSharpTools.JY.Localization.dll
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.Localization\obj\Debug\SeeSharpTools.JY.Localization.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Localization\bin\Debug\SeeSharpTools.JY.Localization.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Localization\bin\Debug\SeeSharpTools.JY.Localization.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Localization\obj\Debug\SeeSharpTools.JY.Localization.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Localization\obj\Debug\SeeSharpTools.JY.Localization.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Localization\obj\Debug\JY.Localization.csprojResolveAssemblyReference.cache

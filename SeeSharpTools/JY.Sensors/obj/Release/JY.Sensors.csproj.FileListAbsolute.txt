@@ -1,0 +1,4 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Sensors\bin\Release\SeeSharpTools.JY.Sensors.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Sensors\bin\Release\SeeSharpTools.JY.Sensors.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Sensors\obj\Release\SeeSharpTools.JY.Sensors.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Sensors\obj\Release\SeeSharpTools.JY.Sensors.pdb

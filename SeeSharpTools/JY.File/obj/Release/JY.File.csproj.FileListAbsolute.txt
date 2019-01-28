@@ -1,0 +1,14 @@
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.File\bin\Release\SeeSharpTools.JY.File.XML
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.File\bin\Release\SeeSharpTools.JY.File.dll
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.File\bin\Release\SeeSharpTools.JY.File.pdb
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.File\obj\Release\JY.File.csprojResolveAssemblyReference.cache
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.File\obj\Release\JY.File.csproj.ResolveComReference.cache
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.File\obj\Release\SeeSharpTools.JY.File.dll
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.File\obj\Release\SeeSharpTools.JY.File.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.File\bin\Release\SeeSharpTools.JY.File.XML
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.File\bin\Release\SeeSharpTools.JY.File.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.File\bin\Release\SeeSharpTools.JY.File.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.File\obj\Release\JY.File.csproj.ResolveComReference.cache
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.File\obj\Release\SeeSharpTools.JY.File.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.File\obj\Release\SeeSharpTools.JY.File.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.File\obj\Release\JY.File.csprojResolveAssemblyReference.cache

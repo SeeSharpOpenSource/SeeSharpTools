@@ -1,0 +1,1153 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.ArrayUtility</name>
+    </assembly>
+    <members>
+        <member name="T:SeeSharpTools.JY.ArrayUtility.ArrayManipulation">
+            <summary>
+            <para>Get/Replace subset of a 1D/2D array.
+                For 1D array, subset is a portion of the 1D array, specified by "Start Index" and "Length", 
+                For 2D array, subset is one row or one column of 2D array, specified by "Index of Row/Column" and "Row/Column selector".
+            </para>
+            <para>
+            Transpose 2D array. 
+                Rearrange 2D array a[,] with M rows N columns to b[,] with N rows M columns, where b[i,j] = a[j,i].
+            </para>
+            <para>Chinese Simplified: 一维及二维数组的数据提取和更新，二维数组转置。</para>
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.IndexType">
+            <summary>
+            Index type for accessing a 2D array, could be by row or by column.
+            Chinese Simplified: 二维数组的索引方式，row为按行索引，column为按列索引。
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.IndexType.row">
+            <summary>
+            accesing one row of a 2D array.
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.IndexType.column">
+            <summary>
+            accessing one column of a 2D array.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.Insert_1D_Array``1(``0[],``0,System.Int32,``0[]@)">
+            <summary>
+            Insert 1 element in a 1_D Array
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="_src"></param>
+            <param name="_insertElement"></param>
+            <param name="index"></param>
+            <param name="_dst"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.Insert_2D_Array``1(``0[0:,0:],``0[],System.Int32,``0[0:,0:]@)">
+            <summary>
+            Insert 1 Array in a 2D_Array
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="_src"></param>
+            <param name="_insertArray"></param>
+            <param name="_columnIndex"></param>
+            <param name="_dst"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.Connect_1D_Array``1(``0[],``0[],``0[]@)">
+            <summary>
+            将一维数组_src1和一维数组_src2连接为长度为_src1和_src2长度之和的一维数组
+            </summary>
+            <param name="_src1"></param>
+            <param name="_src2"></param>
+            <param name="_dst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.Connected_2D_Array``1(``0[],``0[],``0[0:,0:]@)">
+            <summary>
+            将一维数组_src1和一维数组_src2连接为列数为2，行数为_src1和_src2最小长度的二维数组
+            </summary>
+            <param name="_src1"></param>
+            <param name="_src2"></param>
+            <param name="_dst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.ArrayConnect2``1(``0[0:,0:],``0[],``0[0:,0:]@)">
+            <summary>
+            将二维数组_src1和一维数组_src2连接为列数为_src1列数+1，行数为_src1长度和_src2行数最小值的二维数组
+            </summary>
+            <param name="_src1"></param>
+            <param name="_src2"></param>
+            <param name="_dst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.Concatenate``1(``0[],``0[],``0[0:,0:]@,SeeSharpTools.JY.ArrayUtility.MajorOrder)">
+            <summary>
+            将一维数组_src1和一维数组_src2连接为列数(行数)为2，行数(列数)为_src1和_src2最小长度的二维数组
+            </summary>
+            <param name="_src1"></param>
+            <param name="_src2"></param>
+            <param name="_dst"></param>
+            <param name="majorOrder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.Concatenate``1(``0[0:,0:],``0[],``0[0:,0:]@,SeeSharpTools.JY.ArrayUtility.MajorOrder)">
+            <summary>
+            将二维数组_src1和一维数组_src2连接为列(行)数为_src1列(行)数+1，行(列)数为_src1长度和_src2行(列)数最小值的二维数组
+            </summary>
+            <param name="_src1"></param>
+            <param name="_src2"></param>
+            <param name="_dst"></param>
+            <param name="majorOrder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.Concatenate``1(``0[],``0[0:,0:],``0[0:,0:]@,SeeSharpTools.JY.ArrayUtility.MajorOrder)">
+            <summary>
+            将二维数组_src1和一维数组_src2连接为列(行)数为_src1列(行)数+1，行(列)数为_src1长度和_src2行(列)数最小值的二维数组
+            </summary>
+            <param name="_src1"></param>
+            <param name="_src2"></param>
+            <param name="_dst"></param>
+            <param name="majorOrder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.Concatenate``1(``0[0:,0:],``0[0:,0:],``0[0:,0:]@,SeeSharpTools.JY.ArrayUtility.MajorOrder)">
+            <summary>
+            将二维数组_src1和二维数组_src2连接为列(行)数为_src1列(行)数+1，行(列)数为_src1长度和_src2行(列)数最小值的二维数组
+            </summary>
+            <param name="_src1"></param>
+            <param name="_src2"></param>
+            <param name="_dst"></param>
+            <param name="majorOrder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.Convert2StringArray``1(``0[],System.String[]@)">
+            <summary>
+            Convert 1_D array 2 StringArray
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="_src"></param>
+            <param name="_dst"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.Convert2StringArray``1(``0[0:,0:],System.String[0:,0:]@)">
+            <summary>
+            Convert 2_D array 2 StringArray
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="_src"></param>
+            <param name="_dst"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.GetArraySubset``1(``0[],System.Int32,``0[]@)">
+            <summary>
+            <para>Copying a portion of array a[] to array b[], starting at specified startIndex, number of elements equals to length of b[].</para>
+            <para>Chinese Simplified: 将一维数组a[]中从指定起始位置起的后续元素拷贝至一维数组b[]，起始索引值由startIndex给出，元素个数由数组b的长度给出。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="startIndex">
+            <para>index of the first element to copy.</para>
+            <para>Chinese Simplified: 起始索引值。</para>
+            </param>
+            <param name="b">
+            <para>output sequence containing copied elements.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.GetArraySubset``1(``0[0:,0:],System.Int32,``0[]@,SeeSharpTools.JY.ArrayUtility.ArrayManipulation.IndexType)">
+            <summary>
+            <para>Copying one row or column of array a[,] to b[], the row/column to copy is specified by index of row/column.</para>
+            <para>Chinese Simplified: 将二维数组a[,]的指定行或列拷贝至一维数组b[]，行(或列)索引值由index给出，按行索引或按列索引由indexType给出。</para>
+            </summary>
+            <param name="a">
+            <para>input 2D array.</para>
+            <para>Chinese Simplified: 原始二维数组。</para>
+            </param>
+            <param name="index">
+            <para>index of the row or column to copy.</para>
+            <para>Chinese Simplified: 行或列索引值，从0开始。</para>
+            <param name="b">
+            <para>output sequence containing copied row or column.</para>
+            <para>Chinese Simplified: 返回的指定行或列一维数组。</para>
+            </param>
+            </param>
+            <param name="indexType">
+            <para>specifies whether to copy row or column, the default is by row.</para>
+            <para>Chinese Simplified: 设定获取行还是列。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.ReplaceArraySubset``1(``0[],``0[]@,System.Int32)">
+            <summary>
+            <para>Replace a portion of b[] with all elements of array a[], starting at specified startIndex, number of elements equals to length of a[].</para>
+            <para>Chinese Simplified: 将一维数组a[]的所有元素拷贝至一维数组b[]中的指定位置，替换原有元素，起始索引值由startIndex给出。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence. </para>
+            <para>Chinese Simplified: 输入一维数组。</para>
+            </param>
+            <param name="b">
+            <para>input and output sequence, a portion of it will be replaced with elements in a[].</para>
+            <para>Chinese Simplified: 更新后的一维数组。</para>
+            </param>
+            <param name="startIndex">
+            <para>index of the first element in b[] to be replaced.</para>
+            <para>Chinese Simplified: 起始索引值。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.ReplaceArraySubset``1(``0[],``0[0:,0:]@,System.Int32,SeeSharpTools.JY.ArrayUtility.ArrayManipulation.IndexType)">
+            <summary>
+            <para>Replace one row or column of b[,] with all elements of array a[], the row/column to be replaced is specified by index of row/column.</para>
+            <para>Chinese Simplified: 将一维数组a[]的所有元素拷贝至二维数组b[,]中的指定行或列，替换该行或列的元素，行数(列数)由index给出，按行索引或按列索引由indexType给出。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入一维数组。</para>
+            </param>
+            <param name="b">
+            <para>input and output 2D array, one row or column of it will be replaced with elements in a[].</para>
+            <para>Chinese Simplified: 更新后的二维数组。</para>
+            </param>
+            <param name="index">
+            <para>index of the row or column to copy.</para>
+            <para>Chinese Simplified: 行或列索引值，从0开始。</para>
+            </param>
+            <param name="indexType">
+            <para>specifies whether to replace row or column, the default is by row.</para>
+            <para>Chinese Simplified: 设定替换行还是列。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayManipulation.Transpose``1(``0[0:,0:],``0[0:,0:]@)">
+            <summary>
+            <para>Rearrange 2D array a[,] with M rows N columns to b[,] with N rows M columns, where b[i,j] = a[j,i].</para>
+            <para>Chinese Simplified: 二维数组行列转置，即将N行M列的数组转换为M行N列。</para>
+            </summary>
+            <param name="a">
+            <para>input 2D array.</para>
+            <para>Chinese Simplified: 原始二维数组。</para>
+            </param>
+            <param name="b">
+            <para>output transposed 2D array.</para>
+            <para>Chinese Simplified: 转置后的二维数组。</para>
+            </param>
+        </member>
+        <member name="T:SeeSharpTools.JY.ArrayUtility.ArrayCalculation">
+             <summary>
+             <para>Add/Subtract/Mutiply all elements in a 1D/2D numeric array with a value.</para>
+             <para>Add/Subtract/Multiply two 1D numeric array with same length, element by element in sequence.</para>
+             <para>Calculate Sum/Average/RMS/Absolute value of a 1D numeric array.</para>
+             <para>Compare if two 1D numeric array are the same.</para>
+             <para>一维或二维数值数组与单一数值的加、减、乘运算。</para>
+            <para> 两个等长一维数值数组之间逐个元素的加、减、乘运算。</para>
+             <para>一维数值数组的和、平均值、均方根值、绝对值的计算。</para>
+             <para>比较两个一维数组是否相同。</para>
+             </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.InitializeArray(System.Double[]@,System.Double)">
+            <summary>
+            InitializeArray
+            </summary>
+            <param name="_src"></param>
+            <param name="_initialValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.InitializeArray(System.Single[]@,System.Single)">
+            <summary>
+            InitializeArray
+            </summary>
+            <param name="_src"></param>
+            <param name="_initialValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.InitializeArray(System.Int32[]@,System.Int32)">
+            <summary>
+            InitializeArray
+            </summary>
+            <param name="_src"></param>
+            <param name="_initialValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.InitializeArray(System.Int16[]@,System.Int16)">
+            <summary>
+            InitializeArray
+            </summary>
+            <param name="_src"></param>
+            <param name="_initialValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Add(System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            <para>Add two numeric arrays with same length, element by element in sequence. a[i] + b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相加。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to add. </para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of adding.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Add(System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            <para>Add two numeric arrays with same length, element by element in sequence. a[i] + b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相加。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to add. </para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of adding.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Add(System.Int32[],System.Int32[],System.Int32[]@)">
+            <summary>
+            <para>Add two numeric arrays with same length, element by element in sequence. a[i] + b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相加。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to add. </para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of adding.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Add(System.Int16[],System.Int16[],System.Int16[]@)">
+            <summary>
+            <para>Add two numeric arrays with same length, element by element in sequence. a[i] + b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相加。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to add. </para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of adding.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AddOffset(System.Double[]@,System.Double)">
+            <summary>
+            <para>Add all elements in an numeric array with a value. a[i] = a[i] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都加上一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of adding will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to add.</para>
+            <para>Chinese Simplified: 输入的加数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AddOffset(System.Single[]@,System.Single)">
+            <summary>
+            <para>Add all elements in an numeric array with a value. a[i] = a[i] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都加上一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of adding will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to add.</para>
+            <para>Chinese Simplified: 输入的加数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AddOffset(System.Int32[]@,System.Int32)">
+            <summary>
+            <para>Add all elements in an numeric array with a value. a[i] = a[i] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都加上一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of adding will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to add.</para>
+            <para>Chinese Simplified: 输入的加数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AddOffset(System.Int16[]@,System.Int16)">
+            <summary>
+            <para>Add all elements in an numeric array with a value. a[i] = a[i] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都加上一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of adding will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to add.</para>
+            <para>Chinese Simplified: 输入的加数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AddOffset(System.Double[0:,0:]@,System.Double)">
+            <summary>
+            <para>Add all elements in an numeric array with a value. a[i,j] = a[i,j] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都加上一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of adding will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to add.</para>
+            <para>Chinese Simplified: 输入的加数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AddOffset(System.Single[0:,0:]@,System.Single)">
+            <summary>
+            <para>Add all elements in an numeric array with a value. a[i,j] = a[i,j] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都加上一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of adding will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to add.</para>
+            <para>Chinese Simplified: 输入的加数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AddOffset(System.Int32[0:,0:]@,System.Int32)">
+            <summary>
+            <para>Add all elements in an numeric array with a value. a[i,j] = a[i,j] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都加上一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of adding will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to add.</para>
+            <para>Chinese Simplified: 输入的加数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AddOffset(System.Int16[0:,0:]@,System.Int16)">
+            <summary>
+            <para>Add all elements in an numeric array with a value. a[i,j] = a[i,j] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都加上一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of adding will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to add.</para>
+            <para>Chinese Simplified: 输入的加数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Subtract(System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            <para>Subtract two numeric arrays with same length, element by element in sequence. a[i] - b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相减。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to subtract.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of subtracting.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Subtract(System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            <para>Subtract two numeric arrays with same length, element by element in sequence. a[i] - b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相减。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to subtract.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of subtracting.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Subtract(System.Int32[],System.Int32[],System.Int32[]@)">
+            <summary>
+            <para>Subtract two numeric arrays with same length, element by element in sequence. a[i] - b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相减。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to subtract.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of subtracting.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Subtract(System.Int16[],System.Int16[],System.Int16[]@)">
+            <summary>
+            <para>Subtract two numeric arrays with same length, element by element in sequence. a[i] - b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相减。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to subtract.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of subtracting.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.SubtractOffset(System.Double[]@,System.Double)">
+            <summary>
+            <para>Subtract all elements in an numeric array with a value. a[i] = a[i] - offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都减去一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of subtracting will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to subtract.</para>
+            <para>Chinese Simplified: 输入的减数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.SubtractOffset(System.Single[]@,System.Single)">
+            <summary>
+            <para>Subtract all elements in an numeric array with a value. a[i] = a[i] - offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都减去一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of subtracting will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to subtract.</para>
+            <para>Chinese Simplified: 输入的减数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.SubtractOffset(System.Int32[]@,System.Int32)">
+            <summary>
+            <para>Subtract all elements in an numeric array with a value. a[i] = a[i] - offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都减去一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of subtracting will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to subtract.</para>
+            <para>Chinese Simplified: 输入的减数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.SubtractOffset(System.Int16[]@,System.Int16)">
+            <summary>
+            <para>Subtract all elements in an numeric array with a value. a[i] = a[i] - offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都减去一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of subtracting will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to subtract.</para>
+            <para>Chinese Simplified: 输入的减数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.SubtractOffset(System.Double[0:,0:]@,System.Double)">
+            <summary>
+            <para>Subtract all elements in an numeric array with a value. a[i,j] = a[i,j] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都减去一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of subtracting will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to subtract.</para>
+            <para>Chinese Simplified: 输入的减数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.SubtractOffset(System.Single[0:,0:]@,System.Single)">
+            <summary>
+            <para>Subtract all elements in an numeric array with a value. a[i,j] = a[i,j] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都减去一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of subtracting will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to subtract.</para>
+            <para>Chinese Simplified: 输入的减数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.SubtractOffset(System.Int32[0:,0:]@,System.Int32)">
+            <summary>
+            <para>Subtract all elements in an numeric array with a value. a[i,j] = a[i,j] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都减去一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of subtracting will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to subtract.</para>
+            <para>Chinese Simplified: 输入的减数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.SubtractOffset(System.Int16[0:,0:]@,System.Int16)">
+            <summary>
+            <para>Subtract all elements in an numeric array with a value. a[i,j] = a[i,j] + offset.</para>
+            <para>Chinese Simplified: 将数组中每个元素都减去一个偏置量。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of subtracting will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="offset">
+            <para>the value to subtract.</para>
+            <para>Chinese Simplified: 输入的减数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Multiply(System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            <para>Multiply two numeric arrays with same length, element by element in sequence. a[i] * b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相乘。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to multiply.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of multiplying.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Multiply(System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            <para>Multiply two numeric arrays with same length, element by element in sequence. a[i] * b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相乘。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to multiply.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of multiplying.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Multiply(System.Int32[],System.Int32[],System.Int32[]@)">
+            <summary>
+            <para>Multiply two numeric arrays with same length, element by element in sequence. a[i] * b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相乘。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to multiply.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of multiplying.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Multiply(System.Int16[],System.Int16[],System.Int16[]@)">
+            <summary>
+            <para>Multiply two numeric arrays with same length, element by element in sequence. a[i] * b[i] = c[i]</para>
+            <para>Chinese Simplified: 将两个一维数组按照顺序进行数值相乘。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence to multiply.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="c">
+            <para>output sequence containing the result of multiplying.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.MultiplyScale(System.Double[]@,System.Double)">
+            <summary>
+            <para>Multiply all elements in an numeric array with a value. a[i] = a[i] * scale.</para>
+            <para>Chinese Simplified: 将数组中每个元素都乘以一个系数。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of multiplying will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="scale">
+            <para>the value to multiply.</para>
+            <para>Chinese Simplified: 输入的乘数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.MultiplyScale(System.Single[]@,System.Single)">
+            <summary>
+            <para>Multiply all elements in an numeric array with a value. a[i] = a[i] * scale.</para>
+            <para>Chinese Simplified: 将数组中每个元素都乘以一个系数。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of multiplying will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="scale">
+            <para>the value to multiply.</para>
+            <para>Chinese Simplified: 输入的乘数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.MultiplyScale(System.Int32[]@,System.Int32)">
+            <summary>
+            <para>Multiply all elements in an numeric array with a value. a[i] = a[i] * scale.</para>
+            <para>Chinese Simplified: 将数组中每个元素都乘以一个系数。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of multiplying will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="scale">
+            <para>the value to multiply.</para>
+            <para>Chinese Simplified: 输入的乘数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.MultiplyScale(System.Int16[]@,System.Int16)">
+            <summary>
+            <para>Multiply all elements in an numeric array with a value. a[i] = a[i] * scale.</para>
+            <para>Chinese Simplified: 将数组中每个元素都乘以一个系数。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of multiplying will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="scale">
+            <para>the value to multiply.</para>
+            <para>Chinese Simplified: 输入的乘数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.MultiplyScale(System.Double[0:,0:]@,System.Double)">
+            <summary>
+            <para>Multiply all elements in an numeric array with a value. a[i,j] = a[i,j] * scale.</para>
+            <para>Chinese Simplified: 将数组中每个元素都乘以一个系数。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of multiplying will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="scale">
+            <para>the value to multiply.</para>
+            <para>Chinese Simplified: 输入的乘数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.MultiplyScale(System.Single[0:,0:]@,System.Single)">
+            <summary>
+            <para>Multiply all elements in an numeric array with a value. a[i,j] = a[i,j] * scale.</para>
+            <para>Chinese Simplified: 将数组中每个元素都乘以一个系数。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of multiplying will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="scale">
+            <para>the value to multiply.</para>
+            <para>Chinese Simplified: 输入的乘数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.MultiplyScale(System.Int32[0:,0:]@,System.Int32)">
+            <summary>
+            <para>Multiply all elements in an numeric array with a value. a[i,j] = a[i,j] * scale.</para>
+            <para>Chinese Simplified: 将数组中每个元素都乘以一个系数。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of multiplying will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="scale">
+            <para>the value to multiply.</para>
+            <para>Chinese Simplified: 输入的乘数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.MultiplyScale(System.Int16[0:,0:]@,System.Int16)">
+            <summary>
+            <para>Multiply all elements in an numeric array with a value. a[i,j] = a[i,j] * scale.</para>
+            <para>Chinese Simplified: 将数组中每个元素都乘以一个系数。</para>
+            </summary>
+            <param name="a">
+            <para>input and output sequence, the result of multiplying will be stored in original position.</para>
+            <para>Chinese Simplified: 输入输出共用数组。</para>
+            </param>
+            <param name="scale">
+            <para>the value to multiply.</para>
+            <para>Chinese Simplified: 输入的乘数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Zero(System.Double[]@)">
+            <summary>
+            <para>Set value of all elements in an numeric array to zero.</para>
+            <para>Chinese Simplified: 将一维数组中所有元素的值置为零。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Zero(System.Single[]@)">
+            <summary>
+            <para>Set value of all elements in an numeric array to zero.</para>
+            <para>Chinese Simplified: 将一维数组中所有元素的值置为零。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Zero(System.Int32[]@)">
+            <summary>
+            <para>Set value of all elements in an numeric array to zero.</para>
+            <para>Chinese Simplified: 将二维数组中所有元素的值置为零。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Zero(System.Int16[]@)">
+            <summary>
+            <para>Set value of all elements in an numeric array to zero.</para>
+            <para>Chinese Simplified: 将一维数组中所有元素的值置为零。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Zero(System.Double[0:,0:]@)">
+            <summary>
+            <para>Set value of all elements in an numeric array to zero.</para>
+            <para>Chinese Simplified: 将二维数组中所有元素的值置为零。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Zero(System.Single[0:,0:]@)">
+            <summary>
+            <para>Set value of all elements in an numeric array to zero.</para>
+            <para>Chinese Simplified: 将二维数组中所有元素的值置为零。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Zero(System.Int32[0:,0:]@)">
+            <summary>
+            <para>Set value of all elements in an numeric array to zero.</para>
+            <para>Chinese Simplified: 将二维数组中所有元素的值置为零。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Zero(System.Int16[0:,0:]@)">
+            <summary>
+            <para>Set value of all elements in an numeric array to zero.</para>
+            <para>Chinese Simplified: 将二维数组中所有元素的值置为零。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Sum(System.Double[])">
+            <summary>
+            <para>Returns the sum of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的和。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Sum(System.Single[])">
+            <summary>
+            <para>Returns the sum of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的和。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Sum(System.Int32[])">
+            <summary>
+            <para>Returns the sum of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的和。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Sum(System.Int16[])">
+            <summary>
+            <para>Returns the sum of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的和。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Average(System.Double[])">
+            <summary>
+            <para>Returns the averaging value of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的平均值。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Average(System.Single[])">
+            <summary>
+            <para>Returns the averaging value of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的平均值。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Average(System.Int32[])">
+            <summary>
+            <para>Returns the averaging value of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的平均值。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Average(System.Int16[])">
+            <summary>
+            <para>Returns the averaging value of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的平均值。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.RMS(System.Double[])">
+            <summary>
+            <para>Returns the Root Mean Square (RMS) of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的均方根值(RMS)。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.RMS(System.Single[])">
+            <summary>
+            <para>Returns the Root Mean Square (RMS) of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的均方根值(RMS)。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.RMS(System.Int32[])">
+            <summary>
+            <para>Returns the Root Mean Square (RMS) of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的均方根值(RMS)。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.RMS(System.Int16[])">
+            <summary>
+            <para>Returns the Root Mean Square (RMS) of the input numeric sequence.</para>
+            <para>Chinese Simplified: 计算一组数的均方根值(RMS)。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AreEqual(System.Double[],System.Double[])">
+            <summary>
+            <para>Return true if two numeric arrays are the same. Otherwise, this fuction returns false.</para>
+            <para>Chinese Simplified: 比较两个一维数组中的元素是否依次相等。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence. </para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AreEqual(System.Single[],System.Single[])">
+            <summary>
+            <para>Return true if two numeric arrays are the same. Otherwise, this fuction returns false.</para>
+            <para>Chinese Simplified: 比较两个一维数组中的元素是否依次相等。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence. </para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AreEqual(System.Int32[],System.Int32[])">
+            <summary>
+            <para>Return true if two numeric arrays are the same. Otherwise, this fuction returns false.</para>
+            <para>Chinese Simplified: 比较两个一维数组中的元素是否依次相等。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence. </para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.AreEqual(System.Int16[],System.Int16[])">
+            <summary>
+            <para>Return true if two numeric arrays are the same. Otherwise, this fuction returns false.</para>
+            <para>Chinese Simplified: 比较两个一维数组中的元素是否依次相等。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>input sequence. </para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Abs(System.Double[],System.Double[]@)">
+            <summary>
+            <para>Calculate the absolute value of each element in input sequence, b[i] = |a[i]|.</para>
+            <para>Chinese Simplified: 计算输入一维数值数组中各元素的绝对值。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>output sequence containing the absolute value of input sequence.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Abs(System.Single[],System.Single[]@)">
+            <summary>
+            <para>Calculate the absolute value of each element in input sequence, b[i] = |a[i]|.</para>
+            <para>Chinese Simplified: 计算输入一维数值数组中各元素的绝对值。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>output sequence containing the absolute value of input sequence.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Abs(System.Int32[],System.Int32[]@)">
+            <summary>
+            <para>Calculate the absolute value of each element in input sequence, b[i] = |a[i]|.</para>
+            <para>Chinese Simplified: 计算输入一维数值数组中各元素的绝对值。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>output sequence containing the absolute value of input sequence.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ArrayUtility.ArrayCalculation.Abs(System.Int16[],System.Int16[]@)">
+            <summary>
+            <para>Calculate the absolute value of each element in input sequence, b[i] = |a[i]|.</para>
+            <para>Chinese Simplified: 计算输入一维数值数组中各元素的绝对值。</para>
+            </summary>
+            <param name="a">
+            <para>input sequence.</para>
+            <para>Chinese Simplified: 输入数组。</para>
+            </param>
+            <param name="b">
+            <para>output sequence containing the absolute value of input sequence.</para>
+            <para>Chinese Simplified: 输出数组。</para>
+            </param>
+        </member>
+        <member name="T:SeeSharpTools.JY.ArrayUtility.MajorOrder">
+            <summary>
+            执行数组计算时的方向，按行计算/按列计算
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.ArrayUtility.MajorOrder.Row">
+            <summary>
+            按行计算
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.ArrayUtility.MajorOrder.Column">
+            <summary>
+            按列计算
+            </summary>
+        </member>
+    </members>
+</doc>

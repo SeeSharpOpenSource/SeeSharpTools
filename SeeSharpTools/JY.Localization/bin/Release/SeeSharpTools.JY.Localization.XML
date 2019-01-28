@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.Localization</name>
+    </assembly>
+    <members>
+        <member name="M:SeeSharpTools.JY.Localization.Localization.SetAllLang(System.String)">
+            <summary>
+            Set language
+            </summary>
+            <param name="lang">language:zh-CN, en-US</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Localization.Localization.SetLang(System.String,System.Windows.Forms.Form,System.Type)">
+            <summary>
+            Set Winform display language, 
+            </summary>
+            <param name="lang">language name such as zh-CN, en-US, should be the same as reource file name</param>
+            <param name="form">the form you need to set</param>
+            <param name="formType">the type of the form </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Localization.Localization.AppLang(System.Windows.Forms.Control,System.ComponentModel.ComponentResourceManager)">
+            <summary>
+             loop set the propery of the control
+            </summary>
+            <param name="control"></param>
+            <param name="resources"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Localization.Localization.AppLang(System.Windows.Forms.ToolStripMenuItem,System.ComponentModel.ComponentResourceManager)">
+            <summary>
+            set the toolscript 
+            </summary>
+            <param name="item"></param>
+            <param name="resources"></param>
+        </member>
+    </members>
+</doc>

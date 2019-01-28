@@ -1,0 +1,7 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.ArrayUtility\bin\Release\SeeSharpTools.JY.ArrayUtility.XML
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.ArrayUtility\bin\Release\SeeSharpTools.JY.ArrayUtility.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.ArrayUtility\bin\Release\SeeSharpTools.JY.ArrayUtility.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.ArrayUtility\bin\Release\MathNet.Numerics.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.ArrayUtility\obj\Release\SeeSharpTools.JY.ArrayUtility.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.ArrayUtility\obj\Release\SeeSharpTools.JY.ArrayUtility.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.ArrayUtility\obj\Release\JY.ArrayUtility.csprojResolveAssemblyReference.cache

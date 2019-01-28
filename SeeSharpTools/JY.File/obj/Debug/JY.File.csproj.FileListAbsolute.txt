@@ -1,0 +1,7 @@
+C:\Users\jiatian\Desktop\file备份\JY.File\bin\Debug\SeeSharpTools.JY.File.xml
+C:\Users\jiatian\Desktop\file备份\JY.File\bin\Debug\SeeSharpTools.JY.File.dll
+C:\Users\jiatian\Desktop\file备份\JY.File\bin\Debug\SeeSharpTools.JY.File.pdb
+C:\Users\jiatian\Desktop\file备份\JY.File\obj\Debug\JY.File.csprojResolveAssemblyReference.cache
+C:\Users\jiatian\Desktop\file备份\JY.File\obj\Debug\JY.File.csproj.ResolveComReference.cache
+C:\Users\jiatian\Desktop\file备份\JY.File\obj\Debug\SeeSharpTools.JY.File.dll
+C:\Users\jiatian\Desktop\file备份\JY.File\obj\Debug\SeeSharpTools.JY.File.pdb

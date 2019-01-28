@@ -1,0 +1,1025 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.Report</name>
+    </assembly>
+    <members>
+        <member name="T:SeeSharpTools.JY.Report.Logger">
+            <summary>
+            Log class
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.Logger.Config">
+            <summary>
+            Get log configuration class
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.Logger.LogLevel">
+            <summary>
+            Current log level. Log information with lower level will not be recorded.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.Logger.Enabled">
+            <summary>
+            Set or get whether log enabled.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Initialize(System.String)">
+            <summary>
+            Initialize a single file log instance. Thread safe not supported.
+            </summary>
+            <param name="filePath">Log file path</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Initialize(SeeSharpTools.JY.Report.LogConfig)">
+            <summary>
+            Initialize a log instance by specified configuration.
+            </summary>
+            <param name="logConfig">The specified log configuration.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Print(System.String,SeeSharpTools.JY.Report.LogLevel,System.Object[])">
+            <summary>
+            Recored message. Message will not be recored when property LogLevel is higher than the specified log level.
+            </summary>
+            <param name="message">The message/message format to record.</param>
+            <param name="logLevel">Log level of the message.</param>
+            <param name="args">The parameters of message format.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Print(System.Exception,System.String,SeeSharpTools.JY.Report.LogLevel,System.Object[])">
+            <summary>
+            Recored message. Message will not be recored when property LogLevel is higher than the specified log level.
+            </summary>
+            <param name="exception">The exception instance to record.</param>
+            <param name="message">The message/message format to record.</param>
+            <param name="logLevel">Log level of the message.</param>
+            <param name="args">The parameters of message format.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Trace(System.String,System.Object[])">
+            <summary>
+            Recored message as 'Trace' level. Message will not be recored when property LogLevel is higher than 'Trace'.
+            </summary>
+            <param name="message">The message/message format to record.</param>
+            <param name="args">The parameters of message format.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Debug(System.String,System.Object[])">
+            <summary>
+            Record message as 'Debug' level. Message will not be recored when property LogLevel is higher than 'Debug'.
+            </summary>
+            <param name="message">The message/message format to record.</param>
+            <param name="args">The parameters of message format.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Info(System.String,System.Object[])">
+            <summary>
+            Record message as 'Info' level. Message will not be recored when property LogLevel is higher than 'Info'.
+            </summary>
+            <param name="message">The message/message format to record.</param>
+            <param name="args">The parameters of message format.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Warn(System.String,System.Object[])">
+            <summary>
+            Record message as 'Warn' level. Message will not be recored when property LogLevel is higher than 'Warn'.
+            </summary>
+            <param name="message">The message/message format to record.</param>
+            <param name="args">The parameters of message format.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Warn(System.Exception,System.String,System.Object[])">
+            <summary>
+            Record message and exception as 'Warn' level. Message will not be recored when property 
+            LogLevel is higher than 'Warn'.
+            </summary>
+            <param name="exception">The exception instance to record.</param>
+            <param name="message">The message/message format to record.</param>
+            <param name="args">The parameters of message format.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Error(System.String,System.Object[])">
+            <summary>
+            Record message as 'Error' level. Message will not be recored when property LogLevel is higher than 'Error'.
+            </summary>
+            <param name="message">The message/message format to record.</param>
+            <param name="args">The parameters of message format.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Error(System.Exception,System.String,System.Object[])">
+            <summary>
+            Record message and exception as 'Error' level. Message will not be recored when 
+            property LogLevel is higher than 'Error'.
+            </summary>
+            <param name="exception">The exception instance to record.</param>
+            <param name="message">The message/message format to record.</param>
+            <param name="args">The parameters of message format.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Fatal(System.String,System.Object[])">
+            <summary>
+            Record message as 'Fatal' level. Message will not be recored when property LogLevel 
+            is higher than 'Fatal'.
+            </summary>
+            <param name="message">The message/message format to record.</param>
+            <param name="args">The parameters of message format.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Fatal(System.Exception,System.String,System.Object[])">
+            <summary>
+            Record message and exception as 'Debug' level. Message will not be recored when property 
+            LogLevel is higher than 'Fatal'.
+            </summary>
+            <param name="exception">The exception instance to record.</param>
+            <param name="message">The message/message format to record.</param>
+            <param name="args">The parameters of message format.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.StackTrace(System.String,SeeSharpTools.JY.Report.LogLevel)">
+            <summary>
+            Record current stack trace to log. Message will not be recored when property LogLevel 
+            is higher than the specified log level in parameter.
+            </summary>
+            <param name="message">The message/message format to record.</param>
+            <param name="logLevel">The log level of current operation</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.ThreadInfo(SeeSharpTools.JY.Report.LogLevel)">
+            <summary>
+            Record current thread information to log file. Message will not be recored when property LogLevel 
+            is higher than the specified log level in parameter
+            </summary>
+            <param name="logLevel">The log level of current operation</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.HostInfo(SeeSharpTools.JY.Report.LogLevel)">
+            <summary>
+            Record Host info to log file. Message will not be recored when property LogLevel is higher 
+            than the specified log level in parameter
+            </summary>
+            <param name="logLevel">The log level of current operation</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.Logger.Close">
+            <summary>
+            Close the current log instance. Thread safe not supported.
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.LogConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.LogConfig.Type">
+            <summary>
+            The type of log.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.LogConfig.FileLog">
+            <summary>
+            The instance of file log configuration.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.LogConfig.LogFormat">
+            <summary>
+            Log format.{0} for log level; {1} for time stamp; {2} for message
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.LogConfig.ExceptionFormat">
+            <summary>
+            Exception information format.{0} for log level; {1} for time stamp; {2} for exception type {3} for exception message
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.LogConfig.StackTraceFormat">
+            <summary>
+            Stack trace information format. {0} for message.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.LogConfig.ThreadInfoFormat">
+            <summary>
+            Thread information format. {0} for thread id; {1} for thread name
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.LogConfig.TimeStampFormat">
+            <summary>
+            Time stamp format
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.LogConfig.Header">
+            <summary>
+            Log file header
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.LogConfig.FlushInterval">
+            <summary>
+            Asynchonous flush interval
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.LogConfig.#ctor">
+            <summary>
+            Create a new instance of log configuration class.
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.FileLogConfig">
+            <summary>
+            File log configuration class.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.FileLogConfig.Extension">
+            <summary>
+            The extension of log file
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.FileLogConfig.LogMode">
+            <summary>
+            The way to save log file.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.FileLogConfig.Path">
+            <summary>
+            The path of log file or log directory.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.FileLogConfig.LogNameFormat">
+            <summary>
+            The log file name format when LogMode is 'Directory'.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.FileLogConfig.MaxLogSize">
+            <summary>
+            The maximum size of single log file.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.FileLogConfig.Encode">
+            <summary>
+            The encoding of log file.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.FileLogConfig.Flush">
+            <summary>
+            Flush type of file
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.LogType">
+            <summary>
+            The type of log
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.LogType.FileLog">
+            <summary>
+            Log to file
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.FileLogMode">
+            <summary>
+            File log mode
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.FileLogMode.SingleFile">
+            <summary>
+            Save log to single file
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.FileLogMode.Directory">
+            <summary>
+            Save log files to directory
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.LogLevel">
+            <summary>
+            Log level. Fatal>Error>Warn>Info>Debug>Trace.
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.LogLevel.Trace">
+            <summary>
+            Trace log level
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.LogLevel.Debug">
+            <summary>
+            Debug log level
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.LogLevel.Info">
+            <summary>
+            Info log level
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.LogLevel.Warn">
+            <summary>
+            Warn log level
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.LogLevel.Error">
+            <summary>
+            Error log level
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.LogLevel.Fatal">
+            <summary>
+            Fatal log level
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.FlushType">
+            <summary>
+            Flush type of log file
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.FlushType.SyncFlush">
+            <summary>
+            Flush immediately when logged.
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.FlushType.AsyncFlush">
+            <summary>
+            Flush asynchronously. Faster while may lost data when process crashed.
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.WriteArrayDirection">
+            <summary>
+            一维数组写入方向
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WriteArrayDirection.Vertical">
+            <summary>
+            垂直
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WriteArrayDirection.Horizontal">
+            <summary>
+            水平
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.ExcelSaveFormat">
+            <summary>
+            Excel存档格式
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.ExcelSaveFormat.html">
+            <summary>
+            HTML格式
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.ExcelSaveFormat.csv">
+            <summary>
+            CSV格式
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.ExcelSaveFormat.text">
+            <summary>
+            TXT格式
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.ExcelSaveFormat.xml">
+            <summary>
+            XML格式
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.ExcelSaveFormat.xlsx">
+            <summary>
+            XLSX格式(Excel 2007后)
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.ExcelSaveFormat.xls">
+            <summary>
+            XLS格式(Excel1997~2003)
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.InsertionPoint">
+            <summary>
+            插入点 （套用Word)
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.InsertionPoint.EndOfDocument">
+            <summary>
+            文档最后
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.InsertionPoint.BeginningOfDoument">
+            <summary>
+            文档开头
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.WordTableStyle">
+            <summary>
+            Word表格样式
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.LightShading">
+            <summary>
+            LightShading
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.LightList">
+            <summary>
+            LightList
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.LightGrid">
+            <summary>
+            LightGrid
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.MediumShading1">
+            <summary>
+            MediumShading1
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.MediumShading2">
+            <summary>
+            MediumShading2
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.MediumList1">
+            <summary>
+            MediumList1
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.MediumList2">
+            <summary>
+            MediumList2
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.MediumGrid1">
+            <summary>
+            MediumGrid1
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.MediumGrid2">
+            <summary>
+            MediumGrid2
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.MediumGrid3">
+            <summary>
+            MediumGrid3
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.DarkList">
+            <summary>
+            DarkList
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.ColorfulShading">
+            <summary>
+            ColorfulShading
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.ColorfulList">
+            <summary>
+            ColorfulList
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.ColorfulGrid">
+            <summary>
+            ColorfulGrid
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.LightShadingAccent1">
+            <summary>
+            LightShadingAccent1
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.LightListAccent1">
+            <summary>
+            LightListAccent1
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.LightGridAccent1">
+            <summary>
+            LightGridAccent1
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.MediumShading1Accent1">
+            <summary>
+            MediumShading1Accent1
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.MediumShading2Accent1">
+            <summary>
+            MediumShading2Accent1
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordTableStyle.MediumList1Accent1">
+            <summary>
+            MediumList1Accent1
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.WordSaveFormat">
+            <summary>
+            Word存档格式
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordSaveFormat.docx">
+            <summary>
+            docx格式(Excel2007后)
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordSaveFormat.doc">
+            <summary>
+            doc格式(Word1997~2003)
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Report.WordSaveFormat.pdf">
+            <summary>
+            PDF格式
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.ExcelReport">
+            <summary>
+            <para>Excel report operation .</para>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.#ctor(System.String)">
+            <summary>
+            <param>构造函数，将一个已有Excel工作簿作为模板</param>
+            </summary>
+            <param name="templateFilePath"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.#ctor">
+            <summary>
+            构造函数，创建Excel工作簿
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.ExcelReport.DefaultFont">
+            <summary>
+            默认配置的文字外观设定
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.ExcelReport.RowCount">
+            <summary>
+            返回当前Worksheet工作表的行长度，使用ChangeCurrentWorkSheet方法切换工作表
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.ExcelReport.ColumnCount">
+            <summary>
+            返回当前Worksheet工作表的列长度，使用ChangeCurrentWorkSheet方法切换工作表
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.ChangeCurrentWorkSheet(System.Int32)">
+            <summary>
+            改变选择的工作表worksheet
+            </summary>
+            <param name="sheetIndex">工作表索引值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.Hide">
+            <summary>
+            隐藏Excel窗体
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.Show">
+            <summary>
+            显示Excel窗体
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.SaveAs(System.String,SeeSharpTools.JY.Report.ExcelSaveFormat)">
+            <summary>
+            将Excel文件另存为指定格式
+            </summary>
+            <param name="fileName">存档路径</param>
+            <param name="format">支持档案格式：HTML，CSV，TEXT，EXCEL，XML</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.Close(System.Boolean,System.String)">
+            <summary>
+            关闭excel所有进程
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.RCToString(System.Int32,System.Int32)">
+            <summary>
+            将Exccel的Row,Col栏位数字转换成字符串(如 1,1变成A1)
+            </summary>
+            <param name="row"></param>
+            <param name="col"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.StringToRC(System.String)">
+            <summary>
+            将Exccel的栏位字符串转换成Row,Col数字(如A1变成1,1)
+            </summary>
+            <param name="cell">栏位字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.LetterToInt(System.String)">
+            <summary>
+            将Excel列的字母索引值转换成整数索引值
+            </summary>
+            <param name="letter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.IntToLetter(System.Int32)">
+            <summary>
+            将Excel列的整数索引值转换为字符索引值
+            </summary>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.WriteTextToReport``1(System.String,``0,SeeSharpTools.JY.Report.ExcelFont)">
+            <summary>
+            写入文字到目前工作表中的指定栏位(透过栏位标签)，并可配置文字外观
+            </summary>
+            <param name="cellName">excel中已经配置好的栏位标签</param>
+            <param name="value">写入文字值</param>
+            <param name="font">文字外观配置</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.WriteTextToReport``1(System.Int32,System.Int32,``0,SeeSharpTools.JY.Report.ExcelFont)">
+            <summary>
+            写入文字到目前工作表中的指定栏位(行、列数字)，并可配置文字外观（例如行1列1)
+            </summary>
+            <param name="row">excel当前的栏位行数字</param>
+            <param name="col">excel当前的栏位列数字</param>
+            <param name="value">写入文字值</param>
+            <param name="font">文字外观配置</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.WriteTableToReport(System.String,System.Data.DataTable,System.Boolean)">
+            <summary>
+            写入表格到目前工作表中的指定栏位(透过栏位标签)，并可选择是否移除标题栏位
+            </summary>
+            <param name="cellName">excel中已经配置好的栏位标签</param>
+            <param name="table">写入的表格</param>
+            <param name="ignoreHeader">true：保留行列的栏位标题</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.WriteTableToReport(System.Int32,System.Int32,System.Data.DataTable,System.Boolean)">
+            <summary>
+            写入表格到目前工作表中的指定栏位(行、列数字,例如行1列1)。并可选择是否移除标题栏位
+            </summary>
+            <param name="row">excel当前的栏位行数字</param>
+            <param name="col">excel当前的栏位列数字</param>
+            <param name="table">写入的表格</param>
+            <param name="ignoreHeader">true：保留行列的栏位标题</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.WriteListToReport``1(System.String,System.Collections.Generic.IList{``0},System.Boolean)">
+            <summary>
+            写入List到目前工作表中的指定栏位(透过栏位标签)，并可选择是否移除标题栏位。List中可设置自定义类以及数字
+            </summary>
+            <param name="cellName">excel中已经配置好的栏位标签</param>
+            <param name="listData">写入的清单</param>
+            <param name="ignoreHeader">true：保留行列的栏位标题</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.WriteListToReport``1(System.Int32,System.Int32,System.Collections.Generic.IList{``0},System.Boolean)">
+            <summary>
+            写入List到目前工作表中的指定栏位(行、列数字,例如行1列1)。并可选择是否移除标题栏位。List中可设置自定义类以及数字
+            </summary>
+            <param name="row">excel当前的栏位行数字</param>
+            <param name="col">excel当前的栏位列数字</param>
+            <param name="listData">写入的清单</param>
+            <param name="ignoreHeader">true：保留行列的栏位标题</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.InsertGraph(System.String,System.String,System.String,SeeSharpTools.JY.Report.ExcelChartStyle)">
+            <summary>
+            指定资料来源（A1的格式），在当前工作表的指定栏位(透过栏位标签）插入图表
+            </summary>
+            <param name="cellName">excel中已经配置好的栏位标签</param>
+            <param name="dataRangeStart">资料来源的起始栏位(格式为A1)</param>
+            <param name="dataRangeEnd">资料来源的结束栏位(格式为A1)</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.InsertGraph(System.Int32,System.Int32,System.String,System.String,SeeSharpTools.JY.Report.ExcelChartStyle)">
+            <summary>
+            指定资料来源（A1的格式），在当前工作表的指定栏位(行、列数字）插入图表,（例如行1列1)
+            </summary>
+            <param name="row">excel当前的栏位行数字</param>
+            <param name="col">excel当前的栏位列数字</param>
+            <param name="dataRangeStart">资料来源的起始栏位(格式为A1)</param>
+            <param name="dataRangeEnd">资料来源的结束栏位(格式为A1)</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.WriteArrayToReport``1(System.String,``0[],SeeSharpTools.JY.Report.WriteArrayDirection)">
+            <summary>
+            在当前工作表的指定栏位中写入一维数组，并可指定写入方向
+            </summary>
+            <param name="cellName">excel中已经配置好的栏位标签</param>
+            <param name="data">写入的一维数组</param>
+            <param name="direction">写入方向</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.WriteArrayToReport``1(System.Int32,System.Int32,``0[],SeeSharpTools.JY.Report.WriteArrayDirection)">
+            <summary>
+            在当前工作表的指定栏位中写入一维数组，并可指定写入方向
+            </summary>
+            <param name="row">excel当前的栏位行数字</param>
+            <param name="col">excel当前的栏位列数字</param>
+            <param name="data">写入的一维数组</param>
+            <param name="direction">写入方向</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.WriteArrayToReport``1(System.String,``0[0:,0:])">
+            <summary>
+            在当前工作表的指定栏位中写入二维数组
+            </summary>
+            <param name="cellName">excel中已经配置好的栏位标签</param>
+            <param name="data">写入的二维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.WriteArrayToReport``1(System.Int32,System.Int32,``0[0:,0:])">
+            <summary>
+            在当前工作表的指定栏位中写入二维数组
+            </summary>
+            <param name="row">excel当前的栏位行数字</param>
+            <param name="col">excel当前的栏位列数字</param>
+            <param name="data">写入的二维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.ReadSingleCell(System.Int32,System.Int32)">
+             <summary>
+            返回指定单元格的内容
+             </summary>
+             <param name="iRow">定位的行</param>
+             <param name="iCol">定位的列</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.ReadSingleCell(System.String)">
+            <summary>
+            得到指定单元格的内容
+            </summary>
+            <param name="cellName">指定的单元格比如 A1,A2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.ReadConsecutiveCells(System.String,System.String)">
+            <summary>
+            读取一个连续区域的Cell的值(矩形区域，包含一行或一列,或多行，多列)，返回一个一维字符串数组。
+            </summary>
+            <param name="startCell">StartCell是要写入区域的左上角单元格</param>
+            <param name="endCell">EndCell是要写入区域的右下角单元格</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.ReadConsecutiveCells(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            读取一个连续区域的Cell的值(矩形区域，包含一行或一列,或多行，多列)，返回一个一维字符串数组。
+            </summary>
+            <param name="startRow">定位开始Range的Cell的行</param>
+            <param name="startCol">定位开始Range的Cell的列</param>
+            <param name="endRow">定位结束Range的Cell的行</param>
+            <param name="endCol">定位结束Range的Cell的列</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.ReadRegionCells(System.String,System.String)">
+            <summary>
+            读取一个连续区域的Cell的值(矩形区域，包含一行或一列,或多行，多列)，返回一个二维字符串数组。
+            </summary>
+            <param name="startCell">startCell是要写入区域的左上角单元格</param>
+            <param name="endCell">endCell是要写入区域的右下角单元格</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.ReadRegionCells(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            读取一个连续区域的Cell的值(矩形区域，包含一行或一列,或多行，多列)，返回一个二维字符串数组。
+            </summary>
+            <param name="startRow">定位开始Range的Cell的行</param>
+            <param name="startCol">定位开始Range的Cell的列</param>
+            <param name="endRow">定位结束Range的Cell的行</param>
+            <param name="endCol">定位结束Range的Cell的列</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.ReadCurrentSheet">
+            <summary>
+            读取当前活动工作簿的所有数据
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.ReadAllSheets">
+            <summary>
+            读取一个Excel文件的多个workSheet，返回一个DataSet实例
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.GetRange(System.String)">
+            <summary>
+            获取当前工作表的指定范围
+            </summary>
+            <param name="name">栏位字符串或标签(如为空，则返回目前使用范围)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.GetRange(System.Int32,System.Int32)">
+            <summary>
+            获取当前工作表的指定范围
+            </summary>
+            <param name="startRowIdx">起始行索引(从1开始）</param>
+            <param name="startColIdx">起始列索引(从1开始）</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.GetRange(System.String,System.String)">
+            <summary>
+            获取当前工作表的指定范围
+            </summary>
+            <param name="name">栏位字符串或标签(如为空，则返回目前使用范围)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.GetRange(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取当前工作表的指定范围
+            </summary>
+            <param name="startRowIdx">起始行索引(从1开始）</param>
+            <param name="startColIdx">起始列索引(从1开始）</param>
+            <param name="endRowIdx">结束行索引(从1开始）</param>
+            <param name="endColIdx">结束列索引(从1开始）</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.ApplyFont(Microsoft.Office.Interop.Excel.Range,SeeSharpTools.JY.Report.ExcelFont)">
+            <summary>
+            写入指定范围资料的文字外观
+            </summary>
+            <param name="range">目前worksheet的制定范围</param>
+            <param name="font">文字外观配置</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.ExcelReport.GetWindowThreadProcessId(System.IntPtr,System.Int32@)">
+            <summary>
+            结束EXE进程
+            </summary>
+            <param name="hWnd"></param>
+            <param name="lpdwProcessId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.ExcelFont">
+            <summary>
+            Excel文字外观配置
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.ExcelFont.FontName">
+            <summary>
+            字型
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.ExcelFont.FontSize">
+            <summary>
+            字型大小
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.ExcelFont.IsBold">
+            <summary>
+            粗体
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.ExcelFont.IsItalic">
+            <summary>
+            斜体
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.ExcelFont.IsUnderlined">
+            <summary>
+            底线
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.ExcelFont.IsStrikedThrough">
+            <summary>
+            删除线
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.ExcelFont.FontColor">
+            <summary>
+            字体颜色
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.WordFont">
+            <summary>
+            Word文字外观配置
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.WordFont.FontName">
+            <summary>
+            字型
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.WordFont.FontSize">
+            <summary>
+            字型大小
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.WordFont.IsBold">
+            <summary>
+            粗体
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.WordFont.IsItalic">
+            <summary>
+            斜体
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.WordFont.IsUnderlined">
+            <summary>
+            底线
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.WordFont.IsStrikedThrough">
+            <summary>
+            删除线
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.WordFont.FontColor">
+            <summary>
+            字体颜色
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.Properties.Resources.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.Properties.Resources.HResultLUT">
+            <summary>
+              查找 System.Byte[] 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Report.WordReport">
+            <summary>
+            Word文档类库
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.#ctor">
+            <summary>
+            构造函式，开启新Word
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.#ctor(System.String)">
+            <summary>
+            构造函式，使用模板
+            </summary>
+            <param name="template"></param>
+        </member>
+        <member name="P:SeeSharpTools.JY.Report.WordReport.DefaultFont">
+            <summary>
+            默认的Word文字外观属性
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.Close(System.Boolean)">
+            <summary>
+            关闭Word程序
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.SaveAs(System.String,SeeSharpTools.JY.Report.WordSaveFormat)">
+            <summary>
+            另存新档
+            </summary>
+            <param name="filePath"></param>
+            <param name="format"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.Show">
+            <summary>
+            显示Word应用程序
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.Hide">
+            <summary>
+            隐藏Word应用程序
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.WriteTextToDoc(System.String,System.String,SeeSharpTools.JY.Report.WordFont)">
+            <summary>
+            在指定书签位置上插入文字
+            </summary>
+            <param name="bookmark">书签</param>
+            <param name="text">文字</param>
+            <param name="font">文字外观</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.WriteTextToDoc(SeeSharpTools.JY.Report.InsertionPoint,System.String,SeeSharpTools.JY.Report.WordFont)">
+            <summary>
+            在指定位置上插入文字
+            </summary>
+            <param name="type">插入类型</param>
+            <param name="text">文字</param>
+            <param name="font">文字外观</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.WriteTableToDoc``1(System.String,``0[0:,0:],SeeSharpTools.JY.Report.WordTableStyle)">
+            <summary>
+            在指定书签位置上插入表格
+            </summary>
+            <param name="bookmark">书签</param>
+            <param name="value">二维字符串数组</param>
+            <param name="wordStyle">文字外观</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.WriteTableToDoc``1(SeeSharpTools.JY.Report.InsertionPoint,``0[0:,0:],SeeSharpTools.JY.Report.WordTableStyle)">
+            <summary>
+            在指定位置上插入表格
+            </summary>
+            <param name="type">插入类型</param>
+            <param name="value">二维字符串数组</param>
+            <param name="wordStyle">文字外观</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.InsertGraph(System.String,System.Double[0:,0:],SeeSharpTools.JY.Report.WordChartStyle,System.String[],System.String[])">
+            <summary>
+            在指定书签位置上使用输入的二维数组插入图表
+            </summary>
+            <param name="bookmark">书签</param>
+            <param name="value">二维数组</param>
+            <param name="chartType">图表类型</param>
+            <param name="rowHeader">行标题（null表示显示index值）</param>
+            <param name="colHeader">列标题 (null表示显示Column1, Column2值)</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.InsertGraph(SeeSharpTools.JY.Report.InsertionPoint,System.Double[0:,0:],SeeSharpTools.JY.Report.WordChartStyle,System.String[],System.String[])">
+            <summary>
+            在指定位置上使用输入的二维数组插入图表
+            </summary>
+            <param name="type">插入的方式 (文件开始或文件结束位置）</param>
+            <param name="value">二维数组</param>
+            <param name="chartType">图表类型</param>
+            <param name="rowHeader">行标题（null表示显示index值）</param>
+            <param name="colHeader">列标题 (null表示显示Column1, Column2值)</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.InsertPicture(System.String,System.String,System.Single,System.Single)">
+            <summary>
+            在指定书签位置上插入图片
+            </summary>
+            <param name="bookmark">书签</param>
+            <param name="picturePath">图片档案路径</param>
+            <param name="width">图片宽度</param>
+            <param name="height">图片高度</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.InsertPicture(SeeSharpTools.JY.Report.InsertionPoint,System.String,System.Single,System.Single)">
+            <summary>
+            在指定位置上插入图片
+            </summary>
+            <param name="type">插入类型</param>
+            <param name="picturePath">图片档案路径</param>
+            <param name="width">图片宽度</param>
+            <param name="height">图片高度</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Report.WordReport.ApplyFont(Microsoft.Office.Interop.Word.Range,SeeSharpTools.JY.Report.WordFont)">
+            <summary>
+            写入指定范围资料的文字外观
+            </summary>
+            <param name="range">范围</param>
+            <param name="font">文字外观</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,9 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Mathematics\bin\Release\SeeSharpTools.JY.Mathematics.XML
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Mathematics\bin\Release\SeeSharpTools.JY.Mathematics.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Mathematics\bin\Release\SeeSharpTools.JY.Mathematics.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Mathematics\bin\Release\MathNet.Numerics.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Mathematics\bin\Release\SeeSharpTools.JY.ArrayUtility.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Mathematics\bin\Release\SeeSharpTools.JY.ArrayUtility.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Mathematics\bin\Release\SeeSharpTools.JY.ArrayUtility.xml
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Mathematics\obj\Release\SeeSharpTools.JY.Mathematics.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Mathematics\obj\Release\SeeSharpTools.JY.Mathematics.pdb

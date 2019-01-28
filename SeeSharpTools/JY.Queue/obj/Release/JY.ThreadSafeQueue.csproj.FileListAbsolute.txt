@@ -1,0 +1,12 @@
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.Queue\bin\Release\SeeSharpTools.JY.ThreadSafeQueue.XML
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.Queue\bin\Release\SeeSharpTools.JY.ThreadSafeQueue.dll
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.Queue\bin\Release\SeeSharpTools.JY.ThreadSafeQueue.pdb
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.Queue\obj\Release\JY.ThreadSafeQueue.csprojResolveAssemblyReference.cache
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.Queue\obj\Release\SeeSharpTools.JY.ThreadSafeQueue.dll
+E:\git_jytek\SeeSharpTools\SeeSharpTools\JY.Queue\obj\Release\SeeSharpTools.JY.ThreadSafeQueue.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Queue\bin\Release\SeeSharpTools.JY.ThreadSafeQueue.XML
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Queue\bin\Release\SeeSharpTools.JY.ThreadSafeQueue.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Queue\bin\Release\SeeSharpTools.JY.ThreadSafeQueue.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Queue\obj\Release\SeeSharpTools.JY.ThreadSafeQueue.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Queue\obj\Release\SeeSharpTools.JY.ThreadSafeQueue.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Queue\obj\Release\JY.ThreadSafeQueue.csprojResolveAssemblyReference.cache

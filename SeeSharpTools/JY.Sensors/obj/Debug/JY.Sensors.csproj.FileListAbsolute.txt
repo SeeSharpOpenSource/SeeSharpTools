@@ -1,0 +1,4 @@
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Sensors\bin\Debug\SeeSharpTools.JY.Sensors.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Sensors\bin\Debug\SeeSharpTools.JY.Sensors.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Sensors\obj\Debug\SeeSharpTools.JY.Sensors.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Sensors\obj\Debug\SeeSharpTools.JY.Sensors.pdb

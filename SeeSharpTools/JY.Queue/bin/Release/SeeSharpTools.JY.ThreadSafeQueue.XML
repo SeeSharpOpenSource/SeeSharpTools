@@ -1,0 +1,421 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.ThreadSafeQueue</name>
+    </assembly>
+    <members>
+        <member name="T:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1">
+            <summary>
+            Thread safe circular data queue. String type is not supported.
+            </summary>
+            <typeparam name="TDataType">Type of data in queue. String type not supported.</typeparam>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.#ctor(System.Int32)">
+            <summary>
+            Create a new instance of CircularQueue
+            </summary>
+            <param name="capacity">The maximum count of data can be stored in queue. An overflow exception will be raised when the count of queue data exceeed this value</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.PropertyReadTimeout">
+            <summary>
+            Property read timeout. Default value is -1(Infinity).
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Count">
+            <summary>
+            The data count in queue
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Capacity">
+            <summary>
+            The capacity of queue. An OverflowException will be raised when count greater than capacity.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.AvailableCapacity">
+            <summary>
+            The avaiable capacity of queue.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.AutoLock">
+            <summary>
+            Whether auto lock is enabled. When set to false, the lock should be maintained by user with methods: GetLock/TryGetLock/ReleaseLock. 
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.BlockWait">
+            <summary>
+            在数据不足或者容量不够的情况下是否阻塞操作线程执行等待。非线程安全
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Enqueue(`0,System.Int32)">
+            <summary>
+            Enqueue a single data to queue. A TimtoutException will be raised when mutex acquization failed.
+            </summary>
+            <param name="data">Data to enqueue</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Enqueue(`0[],System.Int32,System.Int32)">
+            <summary>
+            Enqueue a group of data from array to queue. A TimtoutException will be raised when mutex acquization failed.
+            </summary>
+            <param name="datas">Datas to enqueue</param>
+            <param name="enqueueCount">The number of data to enqueue. Default value is 0(Enqueue all array data element).</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Enqueue(`0[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            Enqueue a group of data from 2-dimentional array to queue. A TimtoutException will be raised when mutex acquization failed.
+            </summary>
+            <param name="datas">Datas to enqueue</param>
+            <param name="enqueueCount">The number of data to enqueue. Default value is 0(Enqueue all array data element).</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Enqueue(System.Array,System.Int32,System.Int32)">
+            <summary>
+            Enqueue a group of data(Any type except string) from array to queue. A TimtoutException will be raised when mutex acquization failed.
+            </summary>
+            <param name="datas"></param>
+            <param name="enqueueCount">The number of data to enqueue. Default value is 0(Enqueue all array data element).</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Enqueue(System.Collections.Generic.IList{`0},System.Int32,System.Int32)">
+            <summary>
+            Enqueue a group of data from IList collection to queue. A TimtoutException will be raised when mutex acquization failed.
+            </summary>
+            <param name="datas">Datas to enqueue</param>
+            <param name="enqueueCount">The number of data to enqueue. Default value is 0(Enqueue all array data element).</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.TryEnqueue(`0,System.Int32)">
+            <summary>
+            Enqueue a group of data from 2-dimentional array to queue. This method will return false when mutex acquization failed.
+            </summary>
+            <param name="data">Data to enqueue</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>True: Operation success. False: Mutex acquization failed.</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.TryEnqueue(`0[],System.Int32,System.Int32)">
+            <summary>
+            Enqueue a group of data from array to queue. This method will return false when mutex acquization failed.
+            </summary>
+            <param name="datas"></param>
+            <param name="enqueueCount">The number of data to enqueue. Default value is 0(Enqueue all array data element).</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>True: Operation success. False: Mutex acquization failed.</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.TryEnqueue(`0[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            Enqueue a group of data from 2-dimentional array to queue. This method will return false when mutex acquization failed.
+            </summary>
+            <param name="datas"></param>
+            <param name="enqueueCount">The number of data to enqueue. Default value is 0(Enqueue all array data element).</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>True: Operation success. False: Mutex acquization failed.</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.TryEnqueue(System.Array,System.Int32,System.Int32)">
+            <summary>
+            Enqueue a group of data(Any type except string) from array to queue. This method will return false when mutex acquization failed.
+            </summary>
+            <param name="datas"></param>
+            <param name="enqueueCount">The number of data to enqueue. Default value is 0(Enqueue all array data element).</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>True: Operation success. False: Mutex acquization failed.</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.TryEnqueue(System.Collections.Generic.IList{`0},System.Int32,System.Int32)">
+            <summary>
+            Enqueue a group of data from IList collection to queue. This method will return false when mutex acquization failed.
+            </summary>
+            <param name="datas"></param>
+            <param name="enqueueCount">The number of data to enqueue. Default value is 0(Enqueue all array data element).</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>True: Operation success. False: Mutex acquization failed.</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Dequeue(System.Int32)">
+            <summary>
+            Dequeue single data. A TimtoutException will be raised when mutex acquization failed.
+            </summary>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>The value of dequeued data.</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Dequeue(`0[],System.Int32,System.Int32)">
+            <summary>
+            Dequeue specified count of datas to array. A TimtoutException will be raised when mutex acquization failed.
+            </summary>
+            <param name="dequeueBuffer">Buffer that store dequeued data. Cannot be null.</param>
+            <param name="dequeueCount">The number of data to dequeue. Default value is 0(dequeueCount set to the length of dequeueBuffer.</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Dequeue(`0[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            Dequeue specified count of datas to array. A TimtoutException will be raised when mutex acquization failed.
+            </summary>
+            <param name="dequeueBuffer">Buffer that store dequeued data. Cannot be null.</param>
+            <param name="dequeueCount">The number of data to dequeue. Default value is 0(dequeueCount set to the length of dequeueBuffer.</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Dequeue(System.Collections.Generic.IList{`0},System.Int32,System.Int32)">
+            <summary>
+            Dequeue specified count of data to IList collection. A TimtoutException will be raised when mutex acquization failed.
+            </summary>
+            <param name="dequeueBuffer">Buffer that store dequeued data. Cannot be null.</param>
+            <param name="dequeueCount">The number of data to dequeue. This value should be greater than 0.</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.TryDequeue(`0@,System.Int32)">
+            <summary>
+            Dequeue single data. This method will return false when mutex acquization failed.
+            </summary>
+            <param name="dequeueData">Buffer that store dequeued data.</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>True: Operation success. False: Mutex acquization failed.</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.TryDequeue(`0[],System.Int32,System.Int32)">
+            <summary>
+            Dequeue specified count of datas to array. This method will return false when mutex acquization failed.
+            </summary>
+            <param name="dequeueBuffer">Buffer that store dequeued data. Cannot be null.</param>
+            <param name="dequeueCount">The number of data to dequeue. Default value is 0(dequeueCount set to the length of dequeueBuffer.</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>True: Operation success. False: Mutex acquization failed.</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.TryDequeue(`0[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            Dequeue specified count of datas to 2-dimentional array. This method will return false when mutex acquization failed.
+            </summary>
+            <param name="dequeueBuffer">Buffer that store dequeued data. Cannot be null.</param>
+            <param name="dequeueCount">The number of data to dequeue. Default value is 0(dequeueCount set to the length of dequeueBuffer.</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>True: Operation success. False: Mutex acquization failed.</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.TryDequeue(System.Collections.Generic.IList{`0},System.Int32,System.Int32)">
+            <summary>
+            Dequeue specified count of data to IList Collection. This method will return false when mutex acquization failed.
+            </summary>
+            <param name="dequeueBuffer">Buffer that store dequeued data. Cannot be null.</param>
+            <param name="dequeueCount">The number of data to dequeue. This value should be greater than 0.</param>
+            <param name="timeout">Operation timeout in milliseconds. default value is -1(Infinity).</param>
+            <returns>True: Operation success. False: Mutex acquization failed.</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Enter(System.Int32)">
+            <summary>
+            Get queue operation lock. Available when 'AutoLock' is false. TimeoutException will be raised  when lock not acquired in specified timeout.
+            </summary>
+            <param name="timeout">Lock operation timeout in milliseconds. 0: no wait; -1: always wait until lock acquired.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.TryEnter(System.Int32)">
+            <summary>
+            Try get queue operation lock. Available when 'AutoLock' is false. Returns true when lock acquired during specified timeout, otherwise return false.
+            </summary>
+            <param name="timeout">Lock operation timeout in milliseconds. 0: no wait; -1: always wait until lock acquired.</param>
+            <returns>True: Lock acuqired during timeout; False: Otherwise</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Leave">
+            <summary>
+            Release queue Lock. Available when 'AutoLock' is false. Recommanded to be called in finally block.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.CircularQueue`1.Clear">
+            <summary>
+            清空缓冲区内的数据
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nEntity">
+            <summary>
+            国际化实体类，支持语言zh-CN和en_US
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nEntity.GetInstance(System.Object)">
+            <summary>
+            获取I18n处理类的实例。该方法的实现在I18nLocalWrapper类中。
+            </summary>
+            <param name="targetObj">国际化目标类的实例</param>
+            <returns>I18n处理类实例</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nEntity.GetInstance(System.String)">
+            <summary>
+            获取I18n处理类的实例
+            </summary>
+            <param name="targetName">国际化目标名称</param>
+            <returns>I18n处理类实例</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nEntity.RemoveInstance(System.Object)">
+            <summary>
+            释放目标名称的实例。该方法的实现在I18nLocalWrapper类中。
+            </summary>
+            <param name="targetObj">国际化目标类</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nEntity.RemoveInstance(System.String)">
+            <summary>
+            释放目标名称的实例
+            </summary>
+            <param name="targetName">国际化目标名称</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nEntity.GetErrCodeMsg(System.Int32)">
+            <summary>
+            根据异常码获取API的异常信息
+            </summary>
+            <param name="errorCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nEntity.GetFStr(System.String,System.Object[])">
+            <summary>
+            获取使用占位符的国际化信息
+            </summary>
+            <param name="labelKey">信息标签</param>
+            <param name="paramArray">占位符参数</param>
+            <returns>国际化后的信息</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nEntity.GetStr(System.String)">
+            <summary>
+            获取国际化信息
+            </summary>
+            <param name="labelKey">信息标签</param>
+            <returns>国际化后的信息</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nLocalWrapper">
+            <summary>
+            本地化i18n定制的实现类。实现使用object类型获取和释放目标国际化类实例的方法和自定义组件，保证I18nEntity类的通用性
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nLocalWrapper.GetInstance(System.Object)">
+            <summary>
+            获取本地化i18n定制的实现类
+            </summary>
+            <param name="targetObj"></param>
+            <returns>目标类型I18n实例</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nLocalWrapper.RemoveInstance(System.Object)">
+            <summary>
+            释放本地化i18n定制的实现类
+            </summary>
+            <param name="targetObj">国际化目标类</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nLocalWrapper.GetLanguageType">
+            <summary>
+            获取语言类型标签
+            </summary>
+            <returns>语言类型标签</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.Common.i18n.I18nLocalWrapper.GetFileEncoding">
+            <summary>
+            获取编码类型
+            </summary>
+            <returns>语言类型标签</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue">
+            <summary> 
+            <para>Thread Safe Queue is similar to Queue except Dequeue blocks when no elements are in queue until one is present or queue is destroyed..</para>
+            <para>Chinese Simplified: 安全线程队列是原始Queue的一种补充，当没有数据在队列中时，会在出队列中进行阻挡性操作，直到数据出现或者队列销毁。</para>
+            </summary>  
+        </member>
+        <member name="P:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.Destroyed">
+            <summary>  
+            <para>Gets flag indicating if queue has been destroyed.</para>
+            <para>Chinese Simplified: 判断当前队列是否已经被销毁。</para>
+            </summary>  
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.#ctor(System.Collections.ICollection)">
+            <summary>  
+            <para>Create a new TSQ.</para>
+            <para>Chinese Simplified:创建一个安全线程队列 。</para>
+            </summary>
+            <param name="col">
+            <para>The System.Collections.ICollection from which to copy elements.</para>  
+            <param>Chinese Simplified: 从该system.collections.icollection复制元素。</param>  
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.#ctor(System.Int32,System.Single)">
+            <summary>  
+            <para>Create a new TSQ.</para>
+            <para>Chinese Simplified:创建一个安全线程队列 。</para>
+            </summary>
+            <param name="capacity">
+            <para>The initial maximum number of elements.</para>  
+            <param>Chinese Simplified: 初始化最大的元素数值。</param>  
+            </param>
+            <param name="growFactor">
+            <para>The expansion factor for the capacity of the queue.</para>  
+            <param>Chinese Simplified: 队列容量的扩展因子 。</param>  
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.#ctor(System.Int32)">
+            <summary>  
+            <para>Create a new TSQ.</para>
+            <para>Chinese Simplified:创建一个安全线程队列 。</para>
+            </summary>
+            <param name="capacity">
+            <para>The initial maximum number of elements.</para>  
+            <param>Chinese Simplified: 初始化最大的元素数值。</param>  
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.#ctor">
+            <summary>  
+            <para>Create a new TSQ.</para>
+            <para>Chinese Simplified:创建一个安全线程队列 。</para>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.Finalize">
+            <summary>  
+            <para>Destroy queue, resume any waiting thread.</para>
+            <para>Chinese Simplified:销毁队列，析构函数 。</para>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.Clear">
+            <summary>
+            Remove all elements from Queue.
+            </summary>
+            <summary>  
+            <para>Remove all elements from Queue.</para>
+            <para>Chinese Simplified:清空队列元素。</para>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.Dequeue">
+            <summary>
+            <para>Removes and returns the element at the beginning of the Queue.</para>
+            <para>Chinese Simplified:获取队列中最前端的数据。</para>
+            </summary>
+            <returns>first element in queue.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown if the Queue is destroyed.</exception>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.Dequeue(System.TimeSpan)">
+            <summary>
+            <para>Removes and returns the element at the beginning of the Queue.</para>
+            <para>Chinese Simplified:获取队列中最前端的数据。</para>
+            </summary>
+            <param name="timeout">
+            <para>time to wait before returning if no element exists.</para>  
+            <param>Chinese Simplified: 如果没有元素存在等待的时间。</param>  
+            </param>
+            <returns>element in queue.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown if no element exists in queue 
+            longer than specified Timeout or if the Queue is destroyed.</exception>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.Dequeue(System.Int32)">
+            <summary>
+            <para>Removes and returns the element at the beginning of the Queue.</para>
+            <para>Chinese Simplified:获取队列中最前端的数据。</para>
+            </summary>
+            <param name="timeout">
+            <para>time to wait before returning (in milliseconds) if no element exists.</para>  
+            <param>Chinese Simplified: 如果没有元素存在等待的时间(ms)。</param>  
+            </param>
+            <returns>first element in queue.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown if no element exists in queue 
+            longer than specified Timeout or if the Queue is destroyed.</exception>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.Enqueue(System.Object)">
+            <summary>
+            <para>Adds an element to the end of Queue.</para>
+            <para>Chinese Simplified:添加元素到队列中。</para>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue.Destroy">
+            <summary>  
+            <para>Remove all elements from Queue, resume any blocked dequeue threads.</para>
+            <para>Chinese Simplified:销毁队列，同时恢复所有被阻挡的队列以及线程。</para>
+            </summary>
+        </member>
+    </members>
+</doc>

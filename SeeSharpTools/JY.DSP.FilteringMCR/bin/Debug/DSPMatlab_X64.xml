@@ -1,0 +1,1029 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DSPMatlab_X64</name>
+    </assembly>
+    <members>
+        <member name="T:DSPMatlab_X64.DSPClassX64">
+            <summary>
+            The DSPClassX64 class provides a CLS compliant, MWArray interface to the MATLAB
+            functions contained in the files:
+            <newpara></newpara>
+            C:\Users\tangc\Desktop\MatlabX86\MatlabFilter-StaticMethod-X64\Butter.m
+            <newpara></newpara>
+            C:\Users\tangc\Desktop\MatlabX86\MatlabFilter-StaticMethod-X64\Cheb2.m
+            <newpara></newpara>
+            C:\Users\tangc\Desktop\MatlabX86\MatlabFilter-StaticMethod-X64\Ellip.m
+            <newpara></newpara>
+            C:\Users\tangc\Desktop\MatlabX86\MatlabFilter-StaticMethod-X64\Kaiser.m
+            <newpara></newpara>
+            C:\Users\tangc\Desktop\MatlabX86\MatlabFilter-StaticMethod-X64\Spectrum.m
+            <newpara></newpara>
+            deployprint.m
+            <newpara></newpara>
+            printdlg.m
+            </summary>
+            <remarks>
+            @Version 0.0
+            </remarks>
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.#cctor">
+            <summary internal= "true">
+            The static constructor instantiates and initializes the MATLAB Compiler Runtime
+            instance.
+            </summary>
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.#ctor">
+            <summary>
+            Constructs a new instance of the DSPClassX64 class.
+            </summary>
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Finalize">
+            <summary internal= "true">
+            Class destructor called by the CLR garbage collector.
+            </summary>
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Dispose">
+            <summary>
+            Frees the native resources associated with this object
+            </summary>
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Dispose(System.Boolean)">
+            <summary internal= "true">
+            Internal dispose function
+            </summary>
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter">
+             <summary>
+             Provides a single output, 0-input MWArrayinterface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 1-input MWArrayinterface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 2-input MWArrayinterface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 3-input MWArrayinterface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 4-input MWArrayinterface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Rp">Input argument #4</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 5-input MWArrayinterface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Rp">Input argument #4</param>
+             <param name="Rs">Input argument #5</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 6-input MWArrayinterface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Rp">Input argument #4</param>
+             <param name="Rs">Input argument #5</param>
+             <param name="Type">Input argument #6</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(System.Int32)">
+             <summary>
+             Provides the standard 0-input MWArray interface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 1-input MWArray interface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 2-input MWArray interface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 3-input MWArray interface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 4-input MWArray interface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Rp">Input argument #4</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 5-input MWArray interface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Rp">Input argument #4</param>
+             <param name="Rs">Input argument #5</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 6-input MWArray interface to the Butter MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Rp">Input argument #4</param>
+             <param name="Rs">Input argument #5</param>
+             <param name="Type">Input argument #6</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Butter(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray[]@,MathWorks.MATLAB.NET.Arrays.MWArray[])">
+             <summary>
+             Provides an interface for the Butter function in which the input and output
+             arguments are specified as an array of MWArrays.
+             </summary>
+             <remarks>
+             This method will allocate and return by reference the output argument
+             array.<newpara></newpara>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return</param>
+             <param name= "argsOut">Array of MWArray output arguments</param>
+             <param name= "argsIn">Array of MWArray input arguments</param>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2">
+             <summary>
+             Provides a single output, 0-input MWArrayinterface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 1-input MWArrayinterface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 2-input MWArrayinterface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 3-input MWArrayinterface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 4-input MWArrayinterface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 5-input MWArrayinterface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 6-input MWArrayinterface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <param name="Rs">Input argument #6</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 7-input MWArrayinterface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <param name="Rs">Input argument #6</param>
+             <param name="Type">Input argument #7</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(System.Int32)">
+             <summary>
+             Provides the standard 0-input MWArray interface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 1-input MWArray interface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 2-input MWArray interface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 3-input MWArray interface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 4-input MWArray interface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 5-input MWArray interface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 6-input MWArray interface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <param name="Rs">Input argument #6</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 7-input MWArray interface to the Cheb2 MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <param name="Rs">Input argument #6</param>
+             <param name="Type">Input argument #7</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Cheb2(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray[]@,MathWorks.MATLAB.NET.Arrays.MWArray[])">
+             <summary>
+             Provides an interface for the Cheb2 function in which the input and output
+             arguments are specified as an array of MWArrays.
+             </summary>
+             <remarks>
+             This method will allocate and return by reference the output argument
+             array.<newpara></newpara>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return</param>
+             <param name= "argsOut">Array of MWArray output arguments</param>
+             <param name= "argsIn">Array of MWArray input arguments</param>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip">
+             <summary>
+             Provides a single output, 0-input MWArrayinterface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 1-input MWArrayinterface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 2-input MWArrayinterface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 3-input MWArrayinterface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 4-input MWArrayinterface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 5-input MWArrayinterface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 6-input MWArrayinterface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <param name="Rs">Input argument #6</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 7-input MWArrayinterface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <param name="Rs">Input argument #6</param>
+             <param name="Type">Input argument #7</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(System.Int32)">
+             <summary>
+             Provides the standard 0-input MWArray interface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 1-input MWArray interface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 2-input MWArray interface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 3-input MWArray interface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 4-input MWArray interface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 5-input MWArray interface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 6-input MWArray interface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <param name="Rs">Input argument #6</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 7-input MWArray interface to the Ellip MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="Wp">Input argument #2</param>
+             <param name="Ws">Input argument #3</param>
+             <param name="Wn">Input argument #4</param>
+             <param name="Rp">Input argument #5</param>
+             <param name="Rs">Input argument #6</param>
+             <param name="Type">Input argument #7</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Ellip(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray[]@,MathWorks.MATLAB.NET.Arrays.MWArray[])">
+             <summary>
+             Provides an interface for the Ellip function in which the input and output
+             arguments are specified as an array of MWArrays.
+             </summary>
+             <remarks>
+             This method will allocate and return by reference the output argument
+             array.<newpara></newpara>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return</param>
+             <param name= "argsOut">Array of MWArray output arguments</param>
+             <param name= "argsIn">Array of MWArray input arguments</param>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser">
+             <summary>
+             Provides a single output, 0-input MWArrayinterface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 1-input MWArrayinterface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 2-input MWArrayinterface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="f">Input argument #2</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 3-input MWArrayinterface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="f">Input argument #2</param>
+             <param name="a">Input argument #3</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 4-input MWArrayinterface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="f">Input argument #2</param>
+             <param name="a">Input argument #3</param>
+             <param name="dev">Input argument #4</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 5-input MWArrayinterface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="f">Input argument #2</param>
+             <param name="a">Input argument #3</param>
+             <param name="dev">Input argument #4</param>
+             <param name="fs">Input argument #5</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(System.Int32)">
+             <summary>
+             Provides the standard 0-input MWArray interface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 1-input MWArray interface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 2-input MWArray interface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="f">Input argument #2</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 3-input MWArray interface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="f">Input argument #2</param>
+             <param name="a">Input argument #3</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 4-input MWArray interface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="f">Input argument #2</param>
+             <param name="a">Input argument #3</param>
+             <param name="dev">Input argument #4</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 5-input MWArray interface to the Kaiser MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="f">Input argument #2</param>
+             <param name="a">Input argument #3</param>
+             <param name="dev">Input argument #4</param>
+             <param name="fs">Input argument #5</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Kaiser(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray[]@,MathWorks.MATLAB.NET.Arrays.MWArray[])">
+             <summary>
+             Provides an interface for the Kaiser function in which the input and output
+             arguments are specified as an array of MWArrays.
+             </summary>
+             <remarks>
+             This method will allocate and return by reference the output argument
+             array.<newpara></newpara>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return</param>
+             <param name= "argsOut">Array of MWArray output arguments</param>
+             <param name= "argsIn">Array of MWArray input arguments</param>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Spectrum">
+             <summary>
+             Provides a single output, 0-input MWArrayinterface to the Spectrum MATLAB
+             function.
+             </summary>
+             <remarks>
+             </remarks>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Spectrum(MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 1-input MWArrayinterface to the Spectrum MATLAB
+             function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Spectrum(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 2-input MWArrayinterface to the Spectrum MATLAB
+             function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="N">Input argument #2</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Spectrum(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 3-input MWArrayinterface to the Spectrum MATLAB
+             function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="N">Input argument #2</param>
+             <param name="Fs">Input argument #3</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Spectrum(MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides a single output, 4-input MWArrayinterface to the Spectrum MATLAB
+             function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="X">Input argument #1</param>
+             <param name="N">Input argument #2</param>
+             <param name="Fs">Input argument #3</param>
+             <param name="Unit">Input argument #4</param>
+             <returns>An MWArray containing the first output argument.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Spectrum(System.Int32)">
+             <summary>
+             Provides the standard 0-input MWArray interface to the Spectrum MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Spectrum(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 1-input MWArray interface to the Spectrum MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Spectrum(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 2-input MWArray interface to the Spectrum MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="N">Input argument #2</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Spectrum(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 3-input MWArray interface to the Spectrum MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="N">Input argument #2</param>
+             <param name="Fs">Input argument #3</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Spectrum(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray,MathWorks.MATLAB.NET.Arrays.MWArray)">
+             <summary>
+             Provides the standard 4-input MWArray interface to the Spectrum MATLAB function.
+             </summary>
+             <remarks>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return.</param>
+             <param name="X">Input argument #1</param>
+             <param name="N">Input argument #2</param>
+             <param name="Fs">Input argument #3</param>
+             <param name="Unit">Input argument #4</param>
+             <returns>An Array of length "numArgsOut" containing the output
+             arguments.</returns>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.Spectrum(System.Int32,MathWorks.MATLAB.NET.Arrays.MWArray[]@,MathWorks.MATLAB.NET.Arrays.MWArray[])">
+             <summary>
+             Provides an interface for the Spectrum function in which the input and output
+             arguments are specified as an array of MWArrays.
+             </summary>
+             <remarks>
+             This method will allocate and return by reference the output argument
+             array.<newpara></newpara>
+             </remarks>
+             <param name="numArgsOut">The number of output arguments to return</param>
+             <param name= "argsOut">Array of MWArray output arguments</param>
+             <param name= "argsIn">Array of MWArray input arguments</param>
+            
+        </member>
+        <member name="M:DSPMatlab_X64.DSPClassX64.WaitForFiguresToDie">
+             <summary>
+             This method will cause a MATLAB figure window to behave as a modal dialog box.
+             The method will not return until all the figure windows associated with this
+             component have been closed.
+             </summary>
+             <remarks>
+             An application should only call this method when required to keep the
+             MATLAB figure window from disappearing.  Other techniques, such as calling
+             Console.ReadLine() from the application should be considered where
+             possible.</remarks>
+            
+        </member>
+    </members>
+</doc>

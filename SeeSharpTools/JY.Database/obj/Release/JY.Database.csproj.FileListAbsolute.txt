@@ -1,0 +1,6 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Database\bin\Release\SeeSharpTools.JY.Database.XML
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Database\bin\Release\SeeSharpTools.JY.Database.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Database\bin\Release\SeeSharpTools.JY.Database.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Database\obj\Release\SeeSharpTools.JY.Database.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Database\obj\Release\SeeSharpTools.JY.Database.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Database\obj\Release\JY.Database.csprojResolveAssemblyReference.cache

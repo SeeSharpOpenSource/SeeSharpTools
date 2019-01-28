@@ -1,0 +1,1144 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.Audio</name>
+    </assembly>
+    <members>
+        <member name="T:SeeSharpTools.JY.Audio.Analyzer.AnalyzerBase">
+            <summary>
+            波形分析基类
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Analyzer.AnalyzerBase.RefWaveform">
+            <summary>
+            参考波形，如果没有则为null
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.AnalyzerBase.Analyze(System.Double[],System.UInt32,System.UInt32)">
+            <summary>
+            分析波形
+            </summary>
+            <param name="testData">测试波形</param>
+            <param name="sampleDelay">测试数据前面的无效数据长度</param>
+            <param name="dataSize">有效测试波形长度</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.AnalyzerBase.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer">
+            <summary>
+            双音色波形分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.#ctor">
+            <summary>
+            构造双音色波形分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.SetAnalyzeParam(System.Double,SeeSharpTools.JY.Audio.IMDType,System.Double,System.Double)">
+            <summary>
+            配置分析的参数
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="imdType">IMD类型</param>
+            <param name="frequency1">频率1</param>
+            <param name="frequency2">频率2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetFrequency1">
+            <summary>
+            获取频率1
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetFrequency2">
+            <summary>
+            获取频率2
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetAmplitudeRatio">
+            <summary>
+            获取频率1和频率2波形的波幅比
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetIMDInDb">
+            <summary>
+            获取IMD
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetACRms">
+            <summary>
+            获取AC的有效电平
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetDCRms">
+            <summary>
+            获取DC的有效电平
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetMax">
+            <summary>
+            获取测试波形最大点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetMin">
+            <summary>
+            获取测试波形最小点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetPeakToPeak">
+            <summary>
+            获取测试波形峰峰值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetPhaseSpectrum">
+            <summary>
+            获取测试波形的相位谱
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetPowerSpectrum">
+            <summary>
+            获取测试波形的功率谱
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.DualToneAnalyzer.GetRms">
+            <summary>
+            获取波形的有效电平
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Analyzer.LogChirpAnalyzer">
+            <summary>
+            啁啾波形分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.LogChirpAnalyzer.#ctor">
+            <summary>
+            构造啁啾波形分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.LogChirpAnalyzer.SetAnalyzeParam(SeeSharpTools.JY.Audio.Waveform.LogChirpWaveform,System.Double)">
+            <summary>
+            配置分析的参数
+            </summary>
+            <param name="refWaveform">参考波形</param>
+            <param name="sampleRate">采样率</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.LogChirpAnalyzer.Analyze(System.Double[],System.UInt32,System.UInt32)">
+            <summary>
+            分析波形
+            </summary>
+            <param name="testData">测试波形</param>
+            <param name="sampleDelay">测试数据前面的无效数据长度</param>
+            <param name="dataSize">有效测试波形长度</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.LogChirpAnalyzer.GetTHD">
+            <summary>
+            获取THD
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.LogChirpAnalyzer.GetResponse">
+            <summary>
+            获取频率响应
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Analyzer.MismatchAnalyzer">
+            <summary>
+            波形不匹配度分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MismatchAnalyzer.#ctor">
+            <summary>
+            构造波形不匹配度分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MismatchAnalyzer.SetAnalyzeParam(System.Double[],System.UInt32,System.UInt32,System.Double,System.Double)">
+            <summary>
+            配置分析的参数
+            </summary>
+            <param name="refData">参考信号</param>
+            <param name="sampleDelay">参考信号前的无效样点数</param>
+            <param name="dataSize">有效参考信号长度</param>
+            <param name="targetFrequency">目标频率</param>
+            <param name="sampleRate">采样率</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MismatchAnalyzer.GetGainMismatch">
+            <summary>
+            获取增益不匹配度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MismatchAnalyzer.GetPhaseMismatch">
+            <summary>
+            获取相位不匹配度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer">
+            <summary>
+            多音色波形分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.#ctor">
+            <summary>
+            构造多音色波形分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.SetAnalyzeParam(SeeSharpTools.JY.Audio.Waveform.MultiToneWaveform)">
+            <summary>
+            配置分析的参数
+            </summary>
+            <param name="refWaveform">参考波形</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.GetPeakToPeak">
+            <summary>
+            获取峰峰值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.GetRms">
+            <summary>
+            获取有效电平
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.GetACRms">
+            <summary>
+            获取AC的有效电平
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.GetDCRms">
+            <summary>
+            获取DC的有效电平
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.GetMax">
+            <summary>
+            获取测试波形最大值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.GetMin">
+            <summary>
+            获取测试波形最小值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.GetTDPlusN">
+            <summary>
+            获取测试波形的TD+N
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.GetACPart">
+            <summary>
+            获取每个频率波形的强度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.GetPowerSpectrum">
+            <summary>
+            获取测试波形功率谱
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.MultiToneAnalyzer.GetPhaseSpectrum">
+            <summary>
+            获取测试波形相位谱
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Analyzer.SingleToneAnalyzer">
+            <summary>
+            单音色波形分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SingleToneAnalyzer.#ctor">
+            <summary>
+            构造单音色波形分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SingleToneAnalyzer.SetAnalyzeParam(System.Double,System.Double)">
+            <summary>
+            配置分析参数
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="targetFrequency">目标频率</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SingleToneAnalyzer.GetPeakToPeak">
+            <summary>
+            获取测试波形峰峰值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SingleToneAnalyzer.GetTHDInDb">
+            <summary>
+            获取测试波形THD
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SingleToneAnalyzer.GetNoiseRatioInDb">
+            <summary>
+            获取噪声比
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SingleToneAnalyzer.GetTHDPlusNoiseRatioInDb">
+            <summary>
+            获取THD和噪声与信号的比
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SingleToneAnalyzer.GetHarmonicPower">
+            <summary>
+            获取各阶谐波的功率
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer">
+            <summary>
+            波幅递增波形分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.#ctor">
+            <summary>
+            构造波幅递增波形分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.SetAnalyzeParam(SeeSharpTools.JY.Audio.Waveform.SteppedLevelSineWaveform)">
+            <summary>
+            配置分析参数
+            </summary>
+            <param name="refWaveform">参考波形</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.GetPeakToPeak">
+            <summary>
+            获取测试波形峰峰值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.GetTHDInDb">
+            <summary>
+            获取测试波形THD
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.GetNoiseRatioInDb">
+            <summary>
+            获取测试波形噪声比
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.GetTHDPlusNoiseInDb">
+            <summary>
+            获取测试波形THD和噪声与信号的比
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.GetRms">
+            <summary>
+            获取测试波形有效电平
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.GetACPart">
+            <summary>
+            获取测试波形各阶AC的强度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.GetDCPart">
+            <summary>
+            获取测试波形各阶DC的强度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.GetMax">
+            <summary>
+            获取测试波形各阶的最大值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.GetMin">
+            <summary>
+            获取测试波形各阶的最小值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.GetPowerSpectrum">
+            <summary>
+            获取测试波形各阶的功率谱
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedLevelSineAnalyzer.GetPhaseSpectrum">
+            <summary>
+            获取测试波形各阶的相位谱
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Analyzer.SteppedSineCrosstalkAnalyzer">
+            <summary>
+            频率阶梯递增串扰分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedSineCrosstalkAnalyzer.#ctor">
+            <summary>
+            构造频率阶梯递增串扰分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedSineCrosstalkAnalyzer.SetAnalyzeParam(SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform,System.Double[],System.Double,System.UInt32,System.UInt32)">
+            <summary>
+            配置分析参数
+            </summary>
+            <param name="refWaveform">参考波形</param>
+            <param name="sampleRate">采样率</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.SteppedSineCrosstalkAnalyzer.GetCrossTalk">
+            <summary>
+            获取测试波形各阶频率的串扰
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Analyzer.TimeDomainEstimate">
+            <summary>
+            时间域分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.TimeDomainEstimate.#ctor">
+            <summary>
+            构造时间域分析
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.TimeDomainEstimate.SetAnalyzeParam">
+            <summary>
+            配置分析参数
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.TimeDomainEstimate.Analyze(System.Double[],System.UInt32,System.UInt32)">
+            <summary>
+            分析波形
+            </summary>
+            <param name="testData">测试波形</param>
+            <param name="sampleDelay">测试数据前面的无效数据长度</param>
+            <param name="dataSize">有效测试波形长度</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.TimeDomainEstimate.GetPeakToPeak">
+            <summary>
+            获取测试波形峰峰值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.TimeDomainEstimate.GetRms">
+            <summary>
+            获取测试波形有效电平
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.TimeDomainEstimate.GetDCRms">
+            <summary>
+            获取测试波形DC有效电平
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.TimeDomainEstimate.GetACRms">
+            <summary>
+            获取测试波形AC有效电平
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.TimeDomainEstimate.GetMax">
+            <summary>
+            获取测试波形最大值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Analyzer.TimeDomainEstimate.GetMin">
+            <summary>
+            获取测试波形最小值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioAnalyzer.AnalyzeSteppedSineCrosstalk(System.Double[],System.Double[],System.Double,System.Double,System.Double,System.UInt16,System.UInt16,System.Double,System.Double,System.Boolean)">
+            <summary>
+            分析SteppedSine波形的串扰
+            </summary>
+            <param name="refWaveForm">参考波形</param>
+            <param name="testWaveform">测试波形</param>
+            <param name="sampleRate">采样率</param>
+            <param name="maxFrequency">波形最大频率</param>
+            <param name="minFrequency">波形最低频率</param>
+            <param name="steps">阶数</param>
+            <param name="minCycles">最小周期</param>
+            <param name="minDuration">最小时间</param>
+            <param name="amplitude">振幅</param>
+            <param name="isLog">是否对数波形</param>
+            <returns>返回串扰值，X和Y分别为各自的频率和对应的串扰值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioAnalyzer.AnalyzeSteppedSineCrosstalk(System.Double[],SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform,System.Double,System.Double,System.Double,System.UInt16,System.UInt16,System.Double,System.Double,System.Boolean)">
+            <summary>
+            分析SteppedSineWave波形串扰
+            </summary>
+            <param name="testWaveform">测试波形</param>
+            <param name="refWaveform">参考波形</param>
+            <param name="sampleRate">采样率</param>
+            <param name="maxFrequency">波形最大频率</param>
+            <param name="minFrequency">波形最低频率</param>
+            <param name="steps">阶数</param>
+            <param name="minCycles">最小周期</param>
+            <param name="minDuration">最小时间</param>
+            <param name="amplitude">振幅</param>
+            <param name="isLog">是否对数波形</param>
+            <returns>返回串扰值，X和Y分别为各自的频率和对应的串扰值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioAnalyzer.AnalyzePathDelay(System.Double[],System.Double[],System.UInt32,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="waveForm">测试波形</param>
+            <param name="refData">参考波形</param>
+            <param name="waveFormLength">测试波形长度</param>
+            <param name="refDataLength">参考波形长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioAnalyzer.AnalyzeSingleToneWave(System.Double[],System.Double,System.Double,System.Double@,System.Double@,System.Double@,System.Double@,System.Double[]@)">
+            <summary>
+            分析单音色波形
+            </summary>
+            <param name="waveform">测试波形</param>
+            <param name="targetFreq">目标频率</param>
+            <param name="sampleRate">采样率</param>
+            <param name="amplitudeInVol">波幅</param>
+            <param name="thdInDb">谐波失真(dB)</param>
+            <param name="nrInDb">噪声比(dB)</param>
+            <param name="thdPlusNRatioInDb">噪声和谐波失真与信号的比(dB)</param>
+            <param name="harmonicPower">谐波分量功率</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioAnalyzer.AnalyzeMismatch(System.Double[],System.Double[],System.Double@,System.Double@)">
+            <summary>
+            分析波形不匹配度
+            </summary>
+            <param name="waveform">测试波形</param>
+            <param name="refData">参考波形</param>
+            <param name="gainMismatch">增益比</param>
+            <param name="phaseMismatch">相移</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioAnalyzer.AnalyzeDualToneWave(System.Double[],System.Double,SeeSharpTools.JY.Audio.IMDType,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            分析双音色波形
+            </summary>
+            <param name="testData">测试波形</param>
+            <param name="sampleRate">采样率</param>
+            <param name="imdType">IMD类型</param>
+            <param name="frequency1">第一频率</param>
+            <param name="frequency2">第二频率</param>
+            <param name="amplitudeRatio">幅度比</param>
+            <param name="IMDInDb">IMD数值(dB)</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioAnalyzer.AnalyzeLogChripWave(System.Double[],SeeSharpTools.JY.Audio.Waveform.LogChirpWaveform,System.Double,System.Double[]@,System.Double[]@,System.Double[]@,System.Double[]@)">
+            <summary>
+            分析LogChirp波形
+            </summary>
+            <param name="testData">测试波形</param>
+            <param name="refWaveform">参考波形</param>
+            <param name="sampleRate">采样率</param>
+            <param name="responseX">频响的频率值</param>
+            <param name="responseY">频响的功率值</param>
+            <param name="thdX">谐波失真的频率值</param>
+            <param name="thdY">谐波失真的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioAnalyzer.AnalyzeSteppedLevelSineWaveform(System.Double[],SeeSharpTools.JY.Audio.Waveform.SteppedLevelSineWaveform,System.Double[]@,System.Double[]@,System.Double[]@,System.Double[]@,System.Double[]@)">
+            <summary>
+            分析SteppedLevelSine波形
+            </summary>
+            <param name="testData">测试波形</param>
+            <param name="refWaveform">参考波形</param>
+            <param name="peakToPeak">峰峰值</param>
+            <param name="thdInDb">谐波失真(dB)</param>
+            <param name="nrInDb">噪声比(dB)</param>
+            <param name="thdPlusNInDb">谐波失真和噪声与信号的比(dB)</param>
+            <param name="rms">有效电平</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioAnalyzer.TimeDomainEstimate(System.Double[],System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            时域分析
+            </summary>
+            <param name="testData">测试波形</param>
+            <param name="peakToPeak">峰峰值</param>
+            <param name="rms">有效电平</param>
+            <param name="dc">直流信号</param>
+            <param name="rmsOfAc">AC的有效电平</param>
+            <param name="max">最大值</param>
+            <param name="min">最小值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioAnalyzer.AnalyzeMultiToneWaveform(System.Double[],SeeSharpTools.JY.Audio.Waveform.MultiToneWaveform,System.Double,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double[]@,System.Double[]@,System.Double[]@)">
+            <summary>
+            分析多音色波形
+            </summary>
+            <param name="testData">测试波形</param>
+            <param name="refWaveform">参考波形</param>
+            <param name="sampleRate">采样率</param>
+            <param name="peakToPeak">峰峰值</param>
+            <param name="acRms">交流有效电平</param>
+            <param name="dcRms">直流有效电平</param>
+            <param name="max">最大值</param>
+            <param name="min">最小值</param>
+            <param name="tdPlusN">失真和噪声与信号比</param>
+            <param name="acPart">AC部分</param>
+            <param name="powerSpectrum">功率谱值</param>
+            <param name="phaseSpectrum">相位谱</param>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.IMDType">
+            <summary>
+            IMD类型
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Audio.IMDType.CCIF">
+            <summary>
+            CCIF
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Audio.IMDType.SMPTE">
+            <summary>
+            SMPTE
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioGenerator.AribitraryWaveform(System.Double,System.UInt32)">
+            <summary>
+            任意波生成
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="waveLength">样点数</param>
+            <returns>波形数据</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioGenerator.LogChirpWaveform(System.Double,System.UInt32,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            LogChirp波形生成
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="waveLength">波形长度</param>
+            <param name="amplitude">波幅</param>
+            <param name="frequencyMin">最低频率</param>
+            <param name="frequencyMax">最高频率</param>
+            <param name="preSweepRatio">前向延伸比</param>
+            <param name="postSweepRatio">后向延伸比</param>
+            <returns>波形数据</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioGenerator.MultiToneWaveform(System.Double,System.UInt32,System.Double,System.Double,System.Double,System.UInt16,System.Boolean,System.Boolean)">
+            <summary>
+            多音色波形生成
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="waveLength">波形长度</param>
+            <param name="amplitude">波幅</param>
+            <param name="frequencyMin">最低频率</param>
+            <param name="frequencyMax">最高频率</param>
+            <param name="frequencyPoints">频率个数</param>
+            <param name="isLog">是否对数波形</param>
+            <param name="optimizeCrestFactor">是否优化参数</param>
+            <returns>波形数据</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioGenerator.SingleToneWaveform(System.Double,System.UInt32,System.Double,System.Double,System.Double)">
+            <summary>
+            单音色波形生成
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="waveLength">波形长度</param>
+            <param name="amplitude">波幅</param>
+            <param name="frequency">频率</param>
+            <param name="phase">初始相位</param>
+            <returns>波形数据</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioGenerator.SteppedLevelSineWaveform(System.Double,System.Double,System.Double,System.Double,System.UInt16,System.UInt16,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            SteppedLevelSine波形生成
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="amplitudeMin">最小频率</param>
+            <param name="amplitudeMax">最大频率</param>
+            <param name="frequency">频率</param>
+            <param name="steps">波幅阶数</param>
+            <param name="minCycle">最小周期</param>
+            <param name="minDuration">最小时间</param>
+            <param name="isLog">是否对数波形</param>
+            <param name="isInverse">是否反转</param>
+            <returns>波形数据</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioGenerator.SteppedSineWaveform(System.Double,System.Double,System.Double,System.Double,System.UInt16,System.UInt16,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            SteppedSine波形生成
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="amplitude">波幅</param>
+            <param name="frequencyMin">最低频率</param>
+            <param name="frequencyMax">最大频率</param>
+            <param name="steps">频率阶数</param>
+            <param name="minCycle">最小周期数</param>
+            <param name="minDuration">最小持续时间</param>
+            <param name="isLog">是否对数波形</param>
+            <param name="isInverse">是否反转</param>
+            <returns>波形数据</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioGenerator.FromWavFile(System.String,System.Int32@)">
+            <summary>
+            从Wav文件读取波形数据
+            </summary>
+            <param name="path">文件路径</param>
+            <param name="channelCount">通道个数</param>
+            <returns>波形数据</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.AudioGenerator.DualToneWaveform(System.Double,System.Double,System.Double,System.Double,System.Double,System.UInt32)">
+            <summary>
+            双音色波形生成
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="frequency1">频率1</param>
+            <param name="frequency2">频率2</param>
+            <param name="amplitude1">频率1的波幅</param>
+            <param name="amplitude2">频率2的波幅</param>
+            <param name="waveLength">波形长度</param>
+            <returns>波形数据</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Common.SeeSharpAudioErrorCode">
+            <summary>
+            Audio module error code class
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Audio.Common.SeeSharpAudioErrorCode.InvalidDataSize">
+            <summary>
+            Invalid data size
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Audio.Common.SeeSharpAudioErrorCode.RuntimeError">
+            <summary>
+            Runtime error
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Audio.Common.SeeSharpAudioErrorCode.AnalyzeParamNotSet">
+            <summary>
+            Analyze parameter not set
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Audio.Common.SeeSharpAudioErrorCode.AnalyzeNotPerformed">
+            <summary>
+            Analyze operation not performed
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Common.i18n.I18nEntity">
+            <summary>
+            国际化实体类，支持语言zh-CN和en_US
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Common.i18n.I18nEntity.GetInstance(System.Object)">
+            <summary>
+            获取I18n处理类的实例。该方法的实现在I18nLocalWrapper类中。
+            </summary>
+            <param name="targetObj">国际化目标类的实例</param>
+            <returns>I18n处理类实例</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Common.i18n.I18nEntity.GetInstance(System.String)">
+            <summary>
+            获取I18n处理类的实例
+            </summary>
+            <param name="targetName">国际化目标名称</param>
+            <returns>I18n处理类实例</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Common.i18n.I18nEntity.RemoveInstance(System.Object)">
+            <summary>
+            释放目标名称的实例。该方法的实现在I18nLocalWrapper类中。
+            </summary>
+            <param name="targetObj">国际化目标类</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Common.i18n.I18nEntity.RemoveInstance(System.String)">
+            <summary>
+            释放目标名称的实例
+            </summary>
+            <param name="targetName">国际化目标名称</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Common.i18n.I18nEntity.GetErrCodeMsg(System.Int32)">
+            <summary>
+            根据异常码获取API的异常信息
+            </summary>
+            <param name="errorCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Common.i18n.I18nEntity.GetFStr(System.String,System.Object[])">
+            <summary>
+            获取使用占位符的国际化信息
+            </summary>
+            <param name="labelKey">信息标签</param>
+            <param name="paramArray">占位符参数</param>
+            <returns>国际化后的信息</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Common.i18n.I18nEntity.GetStr(System.String)">
+            <summary>
+            获取国际化信息
+            </summary>
+            <param name="labelKey">信息标签</param>
+            <returns>国际化后的信息</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Common.i18n.I18nLocalWrapper">
+            <summary>
+            本地化i18n定制的实现类。实现使用object类型获取和释放目标国际化类实例的方法和自定义组件，保证I18nEntity类的通用性
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Common.i18n.I18nLocalWrapper.GetInstance(System.Object)">
+            <summary>
+            获取本地化i18n定制的实现类
+            </summary>
+            <param name="targetObj"></param>
+            <returns>目标类型I18n实例</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Common.i18n.I18nLocalWrapper.RemoveInstance(System.Object)">
+            <summary>
+            释放本地化i18n定制的实现类
+            </summary>
+            <param name="targetObj">国际化目标类</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Common.i18n.I18nLocalWrapper.GetLanguageType">
+            <summary>
+            获取语言类型标签
+            </summary>
+            <returns>语言类型标签</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Common.i18n.I18nLocalWrapper.GetFileEncoding">
+            <summary>
+            获取编码类型
+            </summary>
+            <returns>语言类型标签</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Equilizer.SteppedSineEqualizer.GetPointsOfEQ">
+            <summary>
+            获取均衡器总点数
+            </summary>
+            <returns>均衡器总点数</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Equilizer.SteppedSineEqualizer.GetEQ(System.UInt16)">
+            <summary>
+            获取对应索引值的均衡器值
+            </summary>
+            <param name="index">索引</param>
+            <returns>索引值对应均衡器值</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Waveform.DualToneWaveform">
+            <summary>
+            双音色波形类
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.DualToneWaveform.Frequency1">
+            <summary>
+            第一个频率
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.DualToneWaveform.Frequency2">
+            <summary>
+            第二个频率
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.DualToneWaveform.Amplitude1">
+            <summary>
+            第一频率波形的幅度
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.DualToneWaveform.Amplitude2">
+            <summary>
+            第二频率波形的幅度
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.DualToneWaveform.WaveLength">
+            <summary>
+            波形数据的长度
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.DualToneWaveform.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.UInt32)">
+            <summary>
+            构造双音色波形
+            </summary>
+            <param name="frequency1">第一波形频率</param>
+            <param name="frequency2">第二波形频率</param>
+            <param name="amplitude1">第一波形波幅</param>
+            <param name="amplitude2">第二波形波幅</param>
+            <param name="sampleRate">采样率</param>
+            <param name="waveLength">波形样点长度</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.LogChirpWaveform.FrequencyMin">
+            <summary>
+            最低频率
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.LogChirpWaveform.FrequencyMax">
+            <summary>
+            最大频率
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.LogChirpWaveform.PreSweepRatio">
+            <summary>
+            前向延伸比
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.LogChirpWaveform.PostSweepRatio">
+            <summary>
+            后向延伸比
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.LogChirpWaveform.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.UInt32)">
+            <summary>
+            构造LogChirp波形
+            </summary>
+            <param name="freqencyMin">最小频率</param>
+            <param name="freqencyMax">最大频率</param>
+            <param name="amplitude">波幅</param>
+            <param name="preSweepRatio">前向延伸比</param>
+            <param name="postSweepRatio">后向延伸比</param>
+            <param name="sampleRate">采样率</param>
+            <param name="waveLength">波形样点数</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.MultiToneWaveform.FrequencyMin">
+            <summary>
+            最小频率
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.MultiToneWaveform.FrequencyMax">
+            <summary>
+            最大频率
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.MultiToneWaveform.FrequencyPoints">
+            <summary>
+            频率总个数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.MultiToneWaveform.IsLog">
+            <summary>
+            是否为对数波形
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.MultiToneWaveform.OptimizeCrestFactor">
+            <summary>
+            是否优化参数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.MultiToneWaveform.WaveLength">
+            <summary>
+            波形长度
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.MultiToneWaveform.#ctor(System.Double,System.Double,System.Double,System.UInt16,System.Double,System.UInt32,System.Boolean,System.Boolean)">
+            <summary>
+            构造多音色波形
+            </summary>
+            <param name="frequencyMin">最低频率</param>
+            <param name="frequencyMax">最大频率</param>
+            <param name="amplitude">波幅</param>
+            <param name="frequencyPoints">频率个数</param>
+            <param name="sampleRate">采样率</param>
+            <param name="waveLength">样点个数</param>
+            <param name="isLog">是否为对数</param>
+            <param name="optimizeCrestFactor">是否优化参数</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SingleToneWaveform.Frequency">
+            <summary>
+            频率
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SingleToneWaveform.Phase">
+            <summary>
+            初始相位
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.SingleToneWaveform.#ctor(System.Double,System.Double,System.Double,System.Double,System.UInt32)">
+            <summary>
+            构造单音色波形
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="amplitude">波幅</param>
+            <param name="frequency">频率</param>
+            <param name="phase">初始相位</param>
+            <param name="waveLength">波形长度</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedLevelSineWaveform.AmplitudeMin">
+            <summary>
+            最小幅度
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedLevelSineWaveform.AmplitudeMax">
+            <summary>
+            最大幅度
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedLevelSineWaveform.Frequency">
+            <summary>
+            频率
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedLevelSineWaveform.Steps">
+            <summary>
+            波幅阶数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedLevelSineWaveform.MinCycle">
+            <summary>
+            最小周期数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedLevelSineWaveform.MinDuration">
+            <summary>
+            单阶最小时间
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedLevelSineWaveform.IsLog">
+            <summary>
+            是否对数波形
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedLevelSineWaveform.IsInverse">
+            <summary>
+            是否反转
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.SteppedLevelSineWaveform.#ctor(System.Double,System.Double,System.Double,System.Double,System.UInt16,System.UInt16,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            构造SteppedLevelSine波形
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="amplitudeMin">最小波幅</param>
+            <param name="amplitudeMax">最大波幅</param>
+            <param name="frequency">频率</param>
+            <param name="steps">频率阶数</param>
+            <param name="minCycle">最小周期</param>
+            <param name="minDuration">单阶最小时间</param>
+            <param name="isLog">是否对数波形</param>
+            <param name="isInverse">是否反转</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform.FrequencyMax">
+            <summary>
+            最大频率
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform.FrequencyMin">
+            <summary>
+            最小频率
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform.Steps">
+            <summary>
+            频率阶数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform.MinCycle">
+            <summary>
+            最小周期数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform.MinDuration">
+            <summary>
+            单阶最小持续时间
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform.IsLog">
+            <summary>
+            是否对数波形
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform.IsInverse">
+            <summary>
+            是否反转波形
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform.#ctor(System.Double,System.Double,System.Double,System.Double,System.UInt16,System.UInt16,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            构造SteppedSineWaveform
+            </summary>
+            <param name="sampleRate">采样率</param>
+            <param name="amplitude">波形幅度</param>
+            <param name="frequencyMin">最小频率</param>
+            <param name="frequencyMax">最大频率</param>
+            <param name="steps">频率阶数</param>
+            <param name="minCycle">最小周期数</param>
+            <param name="minDuration">单阶最小时间</param>
+            <param name="isLog">是否对数波形</param>
+            <param name="isInverse">是否反转</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform.#ctor(SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform,SeeSharpTools.JY.Audio.Equilizer.SteppedSineEqualizer)">
+            <summary>
+            构造SteppedSineWaveform
+            </summary>
+            <param name="sourceWaveform">源波形</param>
+            <param name="equalizer">均衡器</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.SteppedSineWaveform.GetFrequencyPoint(System.UInt16)">
+            <summary>
+            获取指定索引的频率值
+            </summary>
+            <param name="index">索引值</param>
+            <returns>索引值对应频率</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Audio.Waveform.WaveformBase">
+            <summary>
+            波形类的基类
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.WaveformBase.SampleRate">
+            <summary>
+            采样率
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Audio.Waveform.WaveformBase.Amplitude">
+            <summary>
+            最大波幅
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.WaveformBase.GetSampleRate">
+            <summary>
+            获取波形采样率
+            </summary>
+            <returns>波形采样率</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.WaveformBase.GetAmplitude">
+            <summary>
+            获取最大波幅
+            </summary>
+            <returns>最大波幅</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.WaveformBase.GetWaveData">
+            <summary>
+            获取double数组类型的波形数据
+            </summary>
+            <returns>double数组类型的波形数据</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.WaveformBase.GetChannelCount">
+            <summary>
+            获取通道总数
+            </summary>
+            <returns>通道总数</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.WaveformBase.GetSamplesPerChannel">
+            <summary>
+            获取各通道样点数
+            </summary>
+            <returns>各通道样点数</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Audio.Waveform.WaveformBase.GetTotalPoints">
+            <summary>
+            获取波形数据的总长度
+            </summary>
+            <returns>波形数据总长度</returns>
+        </member>
+    </members>
+</doc>

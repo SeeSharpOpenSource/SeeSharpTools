@@ -1,0 +1,6 @@
+C:\Users\Way-XPS\source\repos\SeeSharpTools.JY.TCP\JY.TCP\bin\Debug\SeeSharpTools.JY.TCP.xml
+C:\Users\Way-XPS\source\repos\SeeSharpTools.JY.TCP\JY.TCP\bin\Debug\SeeSharpTools.JY.TCP.dll
+C:\Users\Way-XPS\source\repos\SeeSharpTools.JY.TCP\JY.TCP\bin\Debug\SeeSharpTools.JY.TCP.pdb
+C:\Users\Way-XPS\source\repos\SeeSharpTools.JY.TCP\JY.TCP\obj\Debug\JY.TCP.csproj.CoreCompileInputs.cache
+C:\Users\Way-XPS\source\repos\SeeSharpTools.JY.TCP\JY.TCP\obj\Debug\SeeSharpTools.JY.TCP.dll
+C:\Users\Way-XPS\source\repos\SeeSharpTools.JY.TCP\JY.TCP\obj\Debug\SeeSharpTools.JY.TCP.pdb

@@ -1,0 +1,272 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.Database</name>
+    </assembly>
+    <members>
+        <member name="T:SeeSharpTools.JY.Database.DbOperation">
+            <summary> 
+            <para>Universal database access class library that encapsulates many operations on common databases.</para>
+            <para>Chinese Simplified: 通用数据库访问类，封装了对常见数据库的多种操作。</para>
+            </summary>  
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbOperation.ConnectionString">
+            <summary>
+            <para>Database connection string</para>
+            <para>Chinese Simplified: 数据库连接字符串</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbOperation.providerFactory">
+            <summary>
+            <para>Database factory class</para>
+            <para>Chinese Simplified: 数据库工厂类</para>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.DbOperation.#ctor(System.String,SeeSharpTools.JY.Database.DbProviderType)">
+            <summary>  
+            <para>Database operation class</para>
+            <para>Chinese Simplified: 数据库连接字符串</para>
+            </summary>  
+            <param name="connectionString">
+            <para>database connection string</para>  
+            <param>Chinese Simplified: 数据库连接字符串</param>  
+            </param>
+            <param name="providerType">
+            <para>Database type enum</para>  
+            <param>Chinese Simplified: 数据库类型枚举</param>  
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.DbOperation.ExecuteNonQuery(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>     
+            <para>UPDATE/INSTER/DELETE operations,if the return value which indicates number of affcted rows is not zero, operation is successful.</para>
+            <para>Chinese Simplified: 对数据库执行增删改操作，返回受影响的行数，如果返回值大于0表明操作成功。</para>     
+            </summary>     
+            <param name="sql">
+            <para>UPDATE/INSTER/DELETE SQL statements</para>
+            <para>Chinese Simplified: 要执行的增删改操作的SQL语句</para>
+            </param>  
+            <param name="parameters">
+            <para>parameters that SQL starments require</para>
+            <para>Chinese Simplified: 执行增删改操作的SQL语句所需要的参数</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.DbOperation.ExecuteNonQuery(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter},System.Data.CommandType)">
+            <summary>     
+            <para>Execute UPDATE/INSTER/DELETE operations,if the return value which indicates number of affcted rows is not zero, operation is successful.</para>
+            <para>Chinese Simplified: 对数据库执行增删改操作，返回受影响的行数，如果返回值大于0表明操作成功。</para>     
+            </summary>     
+            <param name="sql">
+            <para>UPDATE/INSTER/DELETE SQL statements</para>
+            <para>Chinese Simplified: 要执行的增删改操作的SQL语句</para>
+            </param>  
+            <param name="parameters">
+            <para>parameters that SQL starments require</para>
+            <para>Chinese Simplified: 执行增删改操作的SQL语句所需要的参数</para>
+            </param> 
+             <param name="commandType">
+            <para>CommandType enum that includes Text/StoredProcedure/TableDirect</para>
+            <para>Chinese Simplified: 执行的SQL语句的类型，包括SQL子句/存储过程/表语句</para>
+            </param>   
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.DbOperation.ExecuteReader(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>     
+            <para>Execute query operations and return a related DataReader object</para>
+            <para>Chinese Simplified: 执行一个查询语句，返回一个关联的DataReader实例。</para>     
+            </summary>     
+            <param name="sql">
+            <para>query SQL statements</para>
+            <para>Chinese Simplified: 要执行的查询语句</para>
+            </param>  
+            <param name="parameters">
+            <para>parameters that SQL starments require</para>
+            <para>Chinese Simplified: 执行SQL查询语句所需要的参数</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.DbOperation.ExecuteReader(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter},System.Data.CommandType)">
+            <summary>     
+            <para>Execute query operations and return a related DataReader object</para>
+            <para>Chinese Simplified: 执行一个查询语句，返回一个关联的DataReader实例。</para>     
+            </summary>     
+            <param name="sql">
+            <para>query SQL statements</para>
+            <para>Chinese Simplified: 要执行的查询语句</para>
+            </param>  
+            <param name="parameters">
+            <para>parameters that SQL starments require</para>
+            <para>Chinese Simplified: 执行SQL查询语句所需要的参数</para>
+            </param>  
+            <param name="commandType">
+            <para>CommandType enum that includes Text/StoredProcedure/TableDirect</para>
+            <para>Chinese Simplified: 执行的SQL语句的类型，包括SQL子句/存储过程/表语句</para>
+            </param> 
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.DbOperation.ExecuteDataTable(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>     
+            <para>Execute query operations and return a DataTable object</para>
+            <para>Chinese Simplified: 执行一个查询语句，返回一个数据表对象。</para>     
+            </summary>     
+            <param name="sql">
+            <para>query SQL statements</para>
+            <para>Chinese Simplified: 要执行的查询语句</para>
+            </param>  
+            <param name="parameters">
+            <para>parameters that SQL starments require</para>
+            <para>Chinese Simplified: 执行SQL查询语句所需要的参数</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.DbOperation.ExecuteDataTable(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter},System.Data.CommandType)">
+            <summary>     
+            <para>Execute query operations and return a DataTable object</para>
+            <para>Chinese Simplified: 执行一个查询语句，返回一个数据表对象。</para>     
+            </summary>     
+            <param name="sql">
+            <para>query SQL statements</para>
+            <para>Chinese Simplified: 要执行的查询语句</para>
+            </param>  
+            <param name="parameters">
+            <para>parameters that SQL starments require</para>
+            <para>Chinese Simplified: 执行SQL查询语句所需要的参数</para>
+            </param>
+            <param name="commandType">
+            <para>CommandType enum that includes Text/StoredProcedure/TableDirect</para>
+            <para>Chinese Simplified: 执行的SQL语句的类型，包括SQL子句/存储过程/表语句</para>
+            </param> 
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.DbOperation.ExecuteScalar(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>     
+            <para>Execute query operations and return a result or a column.</para>
+            <para>Chinese Simplified: 执行一个查询语句，返回一个结果或者一列数据。</para>     
+            </summary>     
+            <param name="sql">
+            <para>query SQL statements</para>
+            <para>Chinese Simplified: 要执行的查询语句</para>
+            </param>  
+            <param name="parameters">
+            <para>parameters that SQL starments require</para>
+            <para>Chinese Simplified: 执行SQL查询语句所需要的参数</para>
+            </param>    
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.DbOperation.ExecuteScalar(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter},System.Data.CommandType)">
+            <summary>     
+            <para>Execute query operations and return a result or a column.</para>
+            <para>Chinese Simplified: 执行一个查询语句，返回一个结果或者一列数据。</para>     
+            </summary>     
+            <param name="sql">
+            <para>query SQL statements</para>
+            <para>Chinese Simplified: 要执行的查询语句</para>
+            </param>  
+            <param name="parameters">
+            <para>parameters that SQL starments require</para>
+            <para>Chinese Simplified: 执行SQL查询语句所需要的参数</para>
+            </param> 
+            <param name="commandType">
+            <para>CommandType enum that includes Text/StoredProcedure/TableDirect</para>
+            <para>Chinese Simplified: 执行的SQL语句的类型，包括SQL子句/存储过程/表语句</para>
+            </param> 
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.DbOperation.CreateDbCommand(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter},System.Data.CommandType)">
+            <summary>     
+            <para>Create a DbCommand object.</para>
+            <para>Chinese Simplified: 创建一个DbCommand对象。</para>     
+            </summary>     
+            <param name="sql">
+            <para>query SQL statements</para>
+            <para>Chinese Simplified: 要执行的查询语句</para>
+            </param>  
+            <param name="parameters">
+            <para>parameters that SQL starments require</para>
+            <para>Chinese Simplified: 执行SQL查询语句所需要的参数</para>
+            </param> 
+            <param name="commandType">
+            <para>CommandType enum that includes Text/StoredProcedure/TableDirect</para>
+            <para>Chinese Simplified: 执行的SQL语句的类型，包括SQL子句/存储过程/表语句</para>
+            </param> 
+        </member>
+        <member name="T:SeeSharpTools.JY.Database.DbProviderType">
+            <summary>  
+            数据库类型枚举  
+            </summary>  
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbProviderType.SqlServer">
+            <summary>
+            Microsoft SQL Server
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbProviderType.MySQL">
+            <summary>
+            Oracle MySQL 
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbProviderType.SQLite">
+            <summary>
+            SQLite
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbProviderType.Oracle">
+            <summary>
+            Oracle Database
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbProviderType.ODBC">
+            <summary>
+            ODBC Database
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbProviderType.OleDb">
+            <summary>
+            OleDb Database
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbProviderType.Firebird">
+            <summary>
+            Firebird Database
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbProviderType.PostgreSql">
+            <summary>
+            PostgreSql Database
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbProviderType.DB2">
+            <summary>
+            DB2 Database
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbProviderType.Informix">
+            <summary>
+            Informix Database
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Database.DbProviderType.SqlServerCe">
+            <summary>
+            SQL Server CE Database
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Database.ProviderFactory">
+            <summary>  
+            DbProviderFactory工厂类  
+            </summary>  
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.ProviderFactory.GetProviderInvariantName(SeeSharpTools.JY.Database.DbProviderType)">
+            <summary>  
+            获取指定数据库类型对应的程序集名称  
+            </summary>  
+            <param name="providerType">数据库类型枚举</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.ProviderFactory.GetDbProviderFactory(SeeSharpTools.JY.Database.DbProviderType)">
+            <summary>  
+            获取指定类型的数据库对应的DbProviderFactory  
+            </summary>  
+            <param name="providerType">数据库类型枚举</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:SeeSharpTools.JY.Database.ProviderFactory.ImportDbProviderFactory(SeeSharpTools.JY.Database.DbProviderType)">
+            <summary>  
+            加载指定数据库类型的DbProviderFactory  
+            </summary>  
+            <param name="providerType">数据库类型枚举</param>  
+            <returns></returns>  
+        </member>
+    </members>
+</doc>

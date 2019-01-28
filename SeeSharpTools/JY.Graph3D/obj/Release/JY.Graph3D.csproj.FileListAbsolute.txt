@@ -1,0 +1,11 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Graph3D\bin\Release\SeeSharpTools.JY.Graph3D.XML
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Graph3D\bin\Release\SeeSharpTools.JY.Graph3D.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Graph3D\bin\Release\SeeSharpTools.JY.Graph3D.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Graph3D\bin\Release\ILNumerics.Drawing.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Graph3D\bin\Release\ILNumerics.Net.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Graph3D\bin\Release\OpenTK.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Graph3D\obj\Release\SeeSharpTools.JY.Graph3D.SurfaceGraph.resources
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Graph3D\obj\Release\JY.Graph3D.csproj.GenerateResource.Cache
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Graph3D\obj\Release\SeeSharpTools.JY.Graph3D.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Graph3D\obj\Release\SeeSharpTools.JY.Graph3D.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Graph3D\obj\Release\JY.Graph3D.csprojResolveAssemblyReference.cache

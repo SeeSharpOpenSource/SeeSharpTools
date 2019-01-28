@@ -1,0 +1,16 @@
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\bin\Debug\SeeSharpTools.JY.DSP.SoundVibration.dll
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\bin\Debug\SeeSharpTools.JY.DSP.SoundVibration.pdb
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.dll
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.pdb
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.xml
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\obj\Debug\JY.DSP.SoundVibration.csprojResolveAssemblyReference.cache
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\obj\Debug\SeeSharpTools.JY.DSP.SoundVibration.dll
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\obj\Debug\SeeSharpTools.JY.DSP.SoundVibration.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\bin\Debug\SeeSharpTools.JY.DSP.SoundVibration.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\bin\Debug\SeeSharpTools.JY.DSP.SoundVibration.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.xml
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\obj\Debug\SeeSharpTools.JY.DSP.SoundVibration.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\obj\Debug\SeeSharpTools.JY.DSP.SoundVibration.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.SoundVibration\obj\Debug\JY.DSP.SoundVibration.csprojResolveAssemblyReference.cache

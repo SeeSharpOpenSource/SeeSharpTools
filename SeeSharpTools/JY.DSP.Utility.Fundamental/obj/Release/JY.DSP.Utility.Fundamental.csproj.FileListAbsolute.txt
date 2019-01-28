@@ -1,0 +1,7 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility.Fundamental\bin\Release\SeeSharpTools.JY.DSP.Utility.Fundamental.xml
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility.Fundamental\bin\Release\SeeSharpTools.JY.DSP.Utility.Fundamental.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility.Fundamental\bin\Release\SeeSharpTools.JY.DSP.Utility.Fundamental.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility.Fundamental\bin\Release\MathNet.Numerics.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility.Fundamental\obj\Release\SeeSharpTools.JY.DSP.Utility.Fundamental.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility.Fundamental\obj\Release\SeeSharpTools.JY.DSP.Utility.Fundamental.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility.Fundamental\obj\Release\JY.DSP.Utility.Fundamental.csprojResolveAssemblyReference.cache

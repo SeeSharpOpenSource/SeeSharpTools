@@ -1,0 +1,402 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.DSP.Utility.Fundamental</name>
+    </assembly>
+    <members>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType">
+            <summary>
+            <para>window type</para>
+            <para>Chinese Simplified: 窗类型</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.Bartlett">
+            <summary>
+            Bartlett window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.BartlettHann">
+            <summary>
+            Bartlett-Hann window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.Blackman">
+            <summary>
+            Blackman window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.BlackmanHarris">
+            <summary>
+            Blackman-Harris window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.BlackmanNuttall">
+            <summary>
+            Blackman-Nuttall window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.Cosine">
+            <summary>
+            Cosine window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.Dirichlet">
+            <summary>
+            Uniform rectangular (Dirichlet) window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.FlatTop">
+            <summary>
+            Flat top window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.Hamming">
+            <summary>
+            Hamming window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.Hann">
+            <summary>
+            Hann window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.Lanczos">
+            <summary>
+            Lanczos window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.Nuttall">
+            <summary>
+            Nuttall window
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType.Triangular">
+            <summary>
+            Triangular window
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumUnits">
+            <summary>
+            <para>unit of power spectrum</para>
+            <para>Chinese Simplified: 频谱的单位</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumUnits.V">
+            <summary>
+            Voltage
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumUnits.V2">
+            <summary>
+            V^2
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumUnits.W">
+            <summary>
+            Watt
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumUnits.dBm">
+            <summary>
+            dBm
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumUnits.dBW">
+            <summary>
+            dBW
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumUnits.dBV">
+            <summary>
+            dBV
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumUnits.dBmV">
+            <summary>
+            dBmV
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumUnits.dBuV">
+            <summary>
+            dBuV
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumType">
+            <summary>
+            <para>spectrum type</para>
+            <para>Chinese Simplified: 频谱类型</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumType.Amplitude">
+            <summary>
+            <para>amplitude spectrum</para>
+            <para>Chinese Simplified: 幅度谱</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumType.Power">
+            <summary>
+            <para>power spectrum</para>
+            <para>Chinese Simplified: 功率谱</para>
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Fundamental.PeakScaling">
+            <summary>
+            Spectrum peak scaling
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.PeakScaling.Rms">
+            <summary>
+            Rms
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.PeakScaling.Peak">
+            <summary>
+            Peak
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Fundamental.UnitConvSetting">
+            <summary>
+            <para>spectrum unit convertion settings</para>
+            <para>Chinese Simplified: 单位转换定义结构体</para>
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Fundamental.SpectralInfo">
+            <summary>
+            <para>spectral information.</para>
+            <para>Chinese Simplified: 谱信息结构</para>
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Fundamental.JYDSPInnerException">
+            <summary>
+            JY DSP Inner Exception
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Fundamental.JYDSPUserBufferException">
+            <summary>
+            JY DSP User Buffer Exception
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Fundamental.JYDSPParamException">
+            <summary>
+            JY DSP Param Exception
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.WindowCGFactor">
+            <summary>
+            内部使用，以WindowType为索引的调整系数Coherent Gain
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.WindowENBWFactor">
+            <summary>
+            以WindowType为索引的ENBW值
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.Hamming(System.Int32,System.Double)">
+            <summary>
+            Hamming window. Named after Richard Hamming.
+            Symmetric version, useful e.g. for filter design purposes.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.HammingPeriodic(System.Int32,System.Double)">
+            <summary>
+            Hamming window. Named after Richard Hamming.
+            Periodic version, useful e.g. for FFT purposes.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.Hann(System.Int32,System.Double)">
+            <summary>
+            Hann window. Named after Julius von Hann.
+            Symmetric version, useful e.g. for filter design purposes.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.HannPeriodic(System.Int32,System.Double)">
+            <summary>
+            Hann window. Named after Julius von Hann.
+            Periodic version, useful e.g. for FFT purposes.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.Cosine(System.Int32,System.Double)">
+            <summary>
+            Cosine window.
+            Symmetric version, useful e.g. for filter design purposes.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.CosinePeriodic(System.Int32,System.Double)">
+            <summary>
+            Cosine window.
+            Periodic version, useful e.g. for FFT purposes.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.Lanczos(System.Int32,System.Double)">
+            <summary>
+            Lanczos window.
+            Symmetric version, useful e.g. for filter design purposes.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.LanczosPeriodic(System.Int32,System.Double)">
+            <summary>
+            Lanczos window.
+            Periodic version, useful e.g. for FFT purposes.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.Gauss(System.Int32,System.Double,System.Double)">
+            <summary>
+            Gauss window.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.Blackman(System.Int32,System.Double)">
+            <summary>
+            Blackman window.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.BlackmanHarris(System.Int32,System.Double)">
+            <summary>
+            Blackman-Harris window.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.BlackmanNuttall(System.Int32,System.Double)">
+            <summary>
+            Blackman-Nuttall window.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.Bartlett(System.Int32,System.Double)">
+            <summary>
+            Bartlett window.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.BartlettHann(System.Int32,System.Double)">
+            <summary>
+            Bartlett-Hann window.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.Nuttall(System.Int32,System.Double)">
+            <summary>
+            Nuttall window.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.FlatTop(System.Int32,System.Double)">
+            <summary>
+            Flat top window.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.Dirichlet(System.Int32,System.Double)">
+            <summary>
+            Uniform rectangular (Dirichlet) window.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Window.Triangular(System.Int32,System.Double)">
+            <summary>
+            Triangular window.
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.Fundamental.Spectrum">
+            <summary>
+            <para>Computes spectrum of a time-domain signal.</para>
+            <para>Chinese Simplified: 计算信号的频谱。</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.Spectrum.MaxSpectralLine">
+            <summary>
+            Maximiun Spectral Line Count
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.Fundamental.Spectrum.Sqrt2">
+            <summary>
+            Sqrt 2
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Spectrum.PowerSpectrum(System.Double[],System.Double,System.Double[]@,System.Double@,SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumUnits,SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType,System.Double,System.Boolean)">
+            <summary>
+            <para>Computes the power spectrum of input time-domain signal.</para>
+            <para>Chinese Simplified: 计算输入信号的功率频谱。</para>
+            </summary>
+            <param name="x">
+            <para>input time-domain signal.</para>
+            <para>Chinese Simplified: 输入的时域波形。</para>
+            </param>
+            <param name="samplingRate">
+            <para>sampling rate of the input time-domain signal, in samples per second.</para>
+            <para>Chinese Simplified: 输入信号的采样率，以S/s为单位。</para>
+            </param>
+            <param name="spectrum">
+            <para>output sequence containing the power spectrum.</para>
+            <para>Chinese Simplified: 输出功率谱。</para>
+            </param>
+            <param name="df">
+            <para>the frequency resolution of the spectrum,  in hertz.</para>
+            <para>Chinese Simplified: 功率谱的频谱间隔，以Hz为单位。</para>
+            </param>
+            <param name="unit">
+            <para>unit of the output power spectrum</para>
+            <para>Chinese Simplified: 设置功率谱的单位。</para>
+            </param>
+            <param name="windowType">
+            <para>the time-domain window to apply to the time signal.</para>
+            <para>Chinese Simplified: 窗类型。</para>
+            </param>
+            <param name="windowPara">
+            <para>parameter for a Kaiser/Gaussian/Dolph-Chebyshev window, If window is any other window, this parameter is ignored</para>
+            <para>Chinese Simplified: 窗调整系数，仅用于Kaiser/Gaussian/Dolph-Chebyshev窗。</para>
+            </param>
+            <param name="PSD">
+            <para>specifies whether the output power spectrum is converted to power spectral density.</para>
+            <para>Chinese Simplified: 输出的频谱是否为功率谱密度。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Spectrum.PowerSpectrum(System.Double[],System.Double,System.Double[]@,System.Double@,SeeSharpTools.JY.DSP.Utility.Fundamental.UnitConvSetting,SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType,System.Double)">
+            <summary>
+            <para>Computes the power spectrum of input time-domain signal.</para>
+            <para>Chinese Simplified: 计算输入信号的功率频谱。</para>
+            </summary>
+            <param name="x">
+            <para>input time-domain signal.</para>
+            <para>Chinese Simplified: 输入的时域波形。</para>
+            </param>
+            <param name="samplingRate">
+            <para>sampling rate of the input time-domain signal, in samples per second.</para>
+            <para>Chinese Simplified: 输入信号的采样率，以S/s为单位。</para>
+            </param>
+            <param name="spectrum">
+            <para>output sequence containing the power spectrum.</para>
+            <para>Chinese Simplified: 输出功率谱。</para>
+            </param>
+            <param name="df">
+            <para>the frequency resolution of the spectrum,  in hertz.</para>
+            <para>Chinese Simplified: 功率谱的频谱间隔，以Hz为单位。</para>
+            </param>
+            <param name="unitSettings">
+            <para>unit settings of the output power spectrum</para>
+            <para>Chinese Simplified: 设置功率谱的单位。</para>
+            </param>
+            <param name="windowType">
+            <para>the time-domain window to apply to the time signal.</para>
+            <para>Chinese Simplified: 窗类型。</para>
+            </param>
+            <param name="windowPara">
+            <para>parameter for a Kaiser/Gaussian/Dolph-Chebyshev window, If window is any other window, this parameter is ignored</para>
+            <para>Chinese Simplified: 窗调整系数，仅用于Kaiser/Gaussian/Dolph-Chebyshev窗。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Spectrum.UnitConversion(System.Double[],System.Double,SeeSharpTools.JY.DSP.Utility.Fundamental.SpectrumType,SeeSharpTools.JY.DSP.Utility.Fundamental.UnitConvSetting,System.Double)">
+            <summary>
+            频谱单位转换函数
+            </summary>
+            <param name="spectrum">输入频谱，单位转换后返回的序列也保存在里面</param>
+            <param name="spectrumType">输入频谱类型，功率谱或者幅度谱</param>
+            <param name="df">频谱间隔</param>
+            <param name="unitSetting">单位转换设置</param>
+            <param name="equivalentNoiseBw">计算频谱时，加窗所用窗函数的等效噪声带宽</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.Fundamental.Spectrum.AdvanceRealFFT(System.Double[],System.Int32,SeeSharpTools.JY.DSP.Utility.Fundamental.WindowType,System.Double[],SeeSharpTools.JY.DSP.Utility.Fundamental.SpectralInfo@)">
+            <summary>
+            Advance Real FFT
+            </summary>
+            <param name="xIn">time domain data</param>
+            <param name="spectralLines">spectralLines</param>
+            <param name="windowType">window type</param>
+            <param name="xOut">spectral out data</param>
+            <param name="spectralInfo">spectral info</param>
+        </member>
+    </members>
+</doc>

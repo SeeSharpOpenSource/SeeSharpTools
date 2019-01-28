@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.DSP.SoundVibration</name>
+    </assembly>
+    <members>
+        <member name="M:SeeSharpTools.JY.DSP.SoundVibration.HarmonicAnalyzer.ToneAnalysis(System.Double[],System.Double,System.Double@,System.Double@,System.Double[]@,System.Int32)">
+            <summary>
+            Calculates the THD and level of all components of the input signal.
+            THD in value, not %
+            component levels in voltage peak which is 1.414*rms
+            component[0]=DC level; [1]=fundamental frequency level; ...
+            if the specified highest harmonic is higher than nyquest freq, 
+            the exceeded frequency components will be 0; 
+            </summary>
+            <param name="timewaveform">the waveform of input signal assuming in voltage</param>
+            <param name="dt">sampling interval of timewaveform (s)</param>
+            <param name="detectedFundamentalFreq">the calculated peak tone frequency in the range of search</param>
+            <param name="THD">total harmonic distortion in scale = sqrt(sum(harmonics power) / fundamental power)</param>
+            <param name="componentsLevel">in voltage peak which is 1.414*rms, [0]for DC [1] for fundamental</param>
+            <param name="highestHarmonic">the highest order to analysis, if too high, the exceeded harmonics level will be 0</param>
+        </member>
+    </members>
+</doc>

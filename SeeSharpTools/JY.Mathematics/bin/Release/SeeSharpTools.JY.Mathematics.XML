@@ -1,0 +1,1625 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.Mathematics</name>
+    </assembly>
+    <members>
+        <member name="T:SeeSharpTools.JY.Mathematics.ArrayArithmetic">
+            <summary>
+            数组计算类库（对数组元素的值进行计算）
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Absolute(System.Double[],System.Double[]@)">
+            <summary>
+            对double数组内的元素取绝对值
+            </summary>
+            <param name="src">原数组</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Absolute(System.Single[],System.Single[]@)">
+            <summary>
+            对float数组内的元素取绝对值
+            </summary>
+            <param name="src">原数组</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ACos(System.Double,System.Double@)">
+            <summary>
+            取ACos值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ACos(System.Double[],System.Double[]@)">
+            <summary>
+            取ACos值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ACos(System.Single,System.Single@)">
+            <summary>
+            取ACos值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ACos(System.Single[],System.Single[]@)">
+            <summary>
+            取ACos值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Add(System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            将两个double数组相加
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Add(System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            将两个float数组相加
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Add(System.Int16[],System.Int16[],System.Int16[]@)">
+            <summary>
+            将两个short数组相加
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Add(System.Double[],System.Double[])">
+            <summary>
+            将两个double数组相加，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Add(System.Single[],System.Single[])">
+            <summary>
+            将两个float数组相加，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Add(System.Int16[],System.Int16[])">
+            <summary>
+            将两个short数组相加，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Add(System.Double[],System.Double,System.Double[]@)">
+            <summary>
+            将double数组内元素和double元素相加
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">double元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Add(System.Single[],System.Single,System.Single[]@)">
+            <summary>
+            将float数组内元素和float元素相加
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">float元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Add(System.Double[],System.Double)">
+            <summary>
+            将double数组内元素和double元素相加，返回原数组
+            </summary>
+            <param name="srcDest">数组</param>
+            <param name="scalar">double 元素</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Add(System.Single[],System.Single)">
+            <summary>
+            将float数组内元素和float元素相加，返回原数组
+            </summary>
+            <param name="srcDest">数组</param>
+            <param name="scalar">float 元素</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Add(System.Int16[],System.Int16)">
+            <summary>
+            将short数组内元素和short元素相加，返回原数组
+            </summary>
+            <param name="srcDest">数组</param>
+            <param name="scalar">short 元素</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ASin(System.Double,System.Double@)">
+            <summary>
+            取ASin值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ASin(System.Double[],System.Double[]@)">
+            <summary>
+            取ASin值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ASin(System.Single,System.Single@)">
+            <summary>
+            取ASin值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ASin(System.Single[],System.Single[]@)">
+            <summary>
+            取ASin值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ATan(System.Double,System.Double@)">
+            <summary>
+            取ATan值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ATan(System.Double[],System.Double[]@)">
+            <summary>
+            取ATan值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ATan(System.Single,System.Single@)">
+            <summary>
+            取ATan值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.ATan(System.Single[],System.Single[]@)">
+            <summary>
+            取ATan值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Cos(System.Double,System.Double@)">
+            <summary>
+            取Cos值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Cos(System.Double[],System.Double[]@)">
+            <summary>
+            取Cos值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Cos(System.Single,System.Single@)">
+            <summary>
+            取Cos值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Cos(System.Single[],System.Single[]@)">
+            <summary>
+            取Cos值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Divide(System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            将两个double数组相除
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Divide(System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            将两个float数组相除
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Divide(System.Int16[],System.Int16[],System.Int16[]@)">
+            <summary>
+            将两个short数组相除
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Divide(System.Double[],System.Double[])">
+            <summary>
+            将两个double数组相除，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Divide(System.Single[],System.Single[])">
+            <summary>
+            将两个float数组相除，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Divide(System.Int16[],System.Int16[])">
+            <summary>
+            将两个short数组相除，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Divide(System.Double[],System.Double,System.Double[]@)">
+            <summary>
+            将double数组内元素和double元素相除
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">double元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Divide(System.Single[],System.Single,System.Single[]@)">
+            <summary>
+            将float数组内元素和float元素相除
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">float元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Divide(System.Double[],System.Double)">
+            <summary>
+            将short数组内元素和short元素相除
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">short元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Divide(System.Single[],System.Single)">
+            <summary>
+            将double数组内元素和double元素相除，返回原数组
+            </summary>
+            <param name="srcDest">数组</param>
+            <param name="scalar">double 元素</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Divide(System.Int16[],System.Int16)">
+            <summary>
+            将double数组内元素和double元素相除，返回原数组
+            </summary>
+            <param name="srcDest">数组</param>
+            <param name="scalar">double 元素</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Exp(System.Double[],System.Double[]@)">
+            <summary>
+            将double数组内元素取Exp值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Exp(System.Single[],System.Single[]@)">
+            <summary>
+            将float数组内元素取Exp值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.FindMaxMin(System.Double[],System.Double@,System.Double@,System.Int32@,System.Int32@)">
+            <summary>
+            搜寻double数组的最大最小值和索引
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="maxValue">最大值</param>
+            <param name="minValue">最小值</param>
+            <param name="maxIdx">最大值索引</param>
+            <param name="minIdx">最小值索引</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.FindMaxMin(System.Single[],System.Single@,System.Single@,System.Int32@,System.Int32@)">
+            <summary>
+            搜寻float数组的最大最小值和索引
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="maxValue">最大值</param>
+            <param name="minValue">最小值</param>
+            <param name="maxIdx">最大值索引</param>
+            <param name="minIdx">最小值索引</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.FindMaxMin(System.Int16[],System.Int16@,System.Int16@,System.Int32@,System.Int32@)">
+            <summary>
+            搜寻short数组的最大最小值和索引
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="maxValue">最大值</param>
+            <param name="minValue">最小值</param>
+            <param name="maxIdx">最大值索引</param>
+            <param name="minIdx">最小值索引</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Initialize(System.Double[]@,System.Double)">
+            <summary>
+            初始化double数组并赋值
+            </summary>
+            <param name="dest">数组</param>
+            <param name="initValue">初始值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Initialize(System.Single[]@,System.Single)">
+            <summary>
+            初始化float数组并赋值
+            </summary>
+            <param name="dest">数组</param>
+            <param name="initValue">初始值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Ln(System.Double[],System.Double[]@)">
+            <summary>
+            将double数组内元素取Ln值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Ln(System.Single[],System.Single[]@)">
+            <summary>
+            将float数组内元素取Ln值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Log(System.Double[],System.Double[]@)">
+            <summary>
+            将double数组内元素取Log值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Log(System.Single[],System.Single[]@)">
+            <summary>
+            将float数组内元素取Log值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Multiply(System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            将两个double数组相乘
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Multiply(System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            将两个float数组相乘
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Multiply(System.Int16[],System.Int16[],System.Int16[]@)">
+            <summary>
+            将两个short数组相乘
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Multiply(System.Double[],System.Double[])">
+            <summary>
+            将两个double数组相乘，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Multiply(System.Single[],System.Single[])">
+            <summary>
+            将两个float数组相乘，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Multiply(System.Int16[],System.Int16[])">
+            <summary>
+            将两个short数组相乘，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Multiply(System.Double[],System.Double,System.Double[]@)">
+            <summary>
+            将double数组内元素和double元素相乘
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">double元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Multiply(System.Single[],System.Single,System.Single[]@)">
+            <summary>
+            将float数组内元素和float元素相乘
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">float元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Multiply(System.Double[],System.Double)">
+            <summary>
+            将short数组内元素和short元素相乘
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">short元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Multiply(System.Single[],System.Single)">
+            <summary>
+            将double数组内元素和double元素相乘，返回原数组
+            </summary>
+            <param name="srcDest">数组</param>
+            <param name="scalar">double 元素</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Multiply(System.Int16[],System.Int16)">
+            <summary>
+            将float数组内元素和float元素相乘，返回原数组
+            </summary>
+            <param name="srcDest">数组</param>
+            <param name="scalar">float 元素</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Pow(System.Double[],System.Double,System.Double[]@)">
+            <summary>
+            将double数组内元素取指数值(x的y次方)
+            </summary>
+            <param name="src1">来源数组(x）</param>
+            <param name="scalar">次方数(y)</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Pow(System.Single[],System.Single,System.Single[]@)">
+            <summary>
+            将float数组内元素取指数值(x的y次方)
+            </summary>
+            <param name="src1">来源数组(x）</param>
+            <param name="scalar">次方数(y)</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Product(System.Double[])">
+            <summary>
+            返回double数组内所有元素取乘积值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回乘积值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Product(System.Single[])">
+            <summary>
+            返回float数组内所有元素取乘积值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回乘积值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Sin(System.Double,System.Double@)">
+            <summary>
+            取Sin值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Sin(System.Double[],System.Double[]@)">
+            <summary>
+            取Sin值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Sin(System.Single,System.Single@)">
+            <summary>
+            取Sin值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Sin(System.Single[],System.Single[]@)">
+            <summary>
+            取Sin值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Sqrt(System.Double[],System.Double[]@)">
+            <summary>
+            将double数组内元素取平方根值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Sqrt(System.Single[],System.Single[]@)">
+            <summary>
+            将float数组内元素取平方根值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Substract(System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            将两个double数组相减
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Substract(System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            将两个float数组相减
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Substract(System.Int16[],System.Int16[],System.Int16[]@)">
+            <summary>
+            将两个short数组相减
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Substract(System.Double[],System.Double[])">
+            <summary>
+            将两个double数组相减，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Substract(System.Single[],System.Single[])">
+            <summary>
+            将两个float数组相减，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Substract(System.Int16[],System.Int16[])">
+            <summary>
+            将两个short数组相减，写入到原数组
+            </summary>
+            <param name="srcDest">数组1, 返回的数组写回数组1</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Substract(System.Double[],System.Double,System.Double[]@)">
+            <summary>
+            将double数组内元素和double元素相减
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">double元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Substract(System.Single[],System.Single,System.Single[]@)">
+            <summary>
+            将float数组内元素和float元素相减
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">float元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Substract(System.Double[],System.Double)">
+            <summary>
+            将short数组内元素和short元素相减
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">short元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Substract(System.Single[],System.Single)">
+            <summary>
+            将double数组内元素和double元素相减，返回原数组
+            </summary>
+            <param name="srcDest">数组</param>
+            <param name="scalar">double 元素</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Substract(System.Int16[],System.Int16)">
+            <summary>
+            将float数组内元素和float元素相减，返回原数组
+            </summary>
+            <param name="srcDest">数组</param>
+            <param name="scalar">float 元素</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Sum(System.Double[])">
+            <summary>
+            返回double数组内所有元素的总和值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回总和值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Sum(System.Single[])">
+            <summary>
+            返回float数组内所有元素的总和值
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="dest">返回总和值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Tan(System.Double,System.Double@)">
+            <summary>
+            取Tan值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Tan(System.Double[],System.Double[]@)">
+            <summary>
+            取Tan值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Tan(System.Single,System.Single@)">
+            <summary>
+            取Tan值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayArithmetic.Tan(System.Single[],System.Single[]@)">
+            <summary>
+            取Tan值
+            </summary>
+            <param name="value"></param>
+            <param name="returnValue"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Provider.CBLASNative.cblas_dcopy(System.Int32,System.Double[],System.Int32,System.Double[],System.Int32)">
+            CBLAS native LAPACKE_zgesv declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Provider.VMLNative.vdMul(System.Int32,System.Double[],System.Double[],System.Double[])">
+            CBLAS native LAPACKE_zgesv declaration 
+        </member>
+        <member name="T:SeeSharpTools.JY.Mathematics.ArrayOperation">
+            <summary>
+            数组操作类库（对数组元素进行操作）
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.Concatenate``1(``0[],``0[],``0[]@)">
+            <summary>
+            将两个一维数组拼接成一维数组（src1在前src2在后)
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src1">一维数组1</param>
+            <param name="src2">一维数组2</param>
+            <param name="dest">返回一维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.Concatenate``1(``0[],``0[],``0[0:,0:]@)">
+            <summary>
+            将两个一维数组拼接成二维数组（按列拼接）
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src1">一维数组1</param>
+            <param name="src2">一维数组2</param>
+            <param name="dest">返回二维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.Concatenate``1(``0[0:,0:],``0[],``0[0:,0:]@)">
+            <summary>
+            将一个一维数组拼接到另一个二维数组二维数组（按列拼接）
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src1">二维数组1</param>
+            <param name="src2">一维数组2</param>
+            <param name="dest">返回二维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.ConvertTo``2(``0[],``1[]@)">
+            <summary>
+            转换值类型
+            </summary>
+            <typeparam name="Tin">泛型</typeparam>
+            <typeparam name="Tout">泛型</typeparam>
+            <param name="input">输入一维数组</param>
+            <param name="output">输出一维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.ConvertTo``2(``0[0:,0:],``1[0:,0:]@)">
+            <summary>
+            转换值类型
+            </summary>
+            <typeparam name="Tin">泛型</typeparam>
+            <typeparam name="Tout">泛型</typeparam>
+            <param name="input">输入二维数组</param>
+            <param name="output">输出二维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.Copy``1(``0[],``0[]@)">
+            <summary>
+            拷贝数组
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src">输入一维数组</param>
+            <param name="dest">输出一维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.Copy``1(``0[0:,0:],``0[0:,0:]@)">
+            <summary>
+            拷贝数组
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src">输入二维数组</param>
+            <param name="dest">输出二维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.Delete``1(``0[],System.Int32,``0[]@)">
+            <summary>
+            从数组中删除元素
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src">来源数组</param>
+            <param name="index">索引</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.GetSubset``1(``0[],System.Int32,``0[]@)">
+            <summary>
+            从一维数组中获取局部资料
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src">来源数组</param>
+            <param name="index">索引</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.GetSubset``1(``0[0:,0:],System.Int32,``0[]@,System.Boolean)">
+            <summary>
+            从二维维数组中获取局部资料（根据行或列指定）
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src">来源数组</param>
+            <param name="index">索引</param>
+            <param name="dest">返回数组</param>
+            <param name="byRow">True:按行获取,False:按列获取</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.Insert``1(``0[],System.Int32,``0,``0[]@)">
+            <summary>
+            从一维数组中插入资料
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src">来源数组</param>
+            <param name="startIdx">开始的索引位置</param>
+            <param name="element">插入元素</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.Inverse``1(``0[]@)">
+            <summary>
+            反向排列数组
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src">数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.ReplaceSubset``1(``0[]@,System.Int32,``0)">
+            <summary>
+            取代数组中指定索引位置的值
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src">来源数组</param>
+            <param name="startIdx">索引位置</param>
+            <param name="element">替换元素</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.ReplaceSubset``1(``0[]@,System.Int32,``0[])">
+            <summary>
+            取代数组中指定索引位置之后的值，替换长度依据elements长度决定
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src">来源数组</param>
+            <param name="startIdx">索引位置</param>
+            <param name="elements">替换的一维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.ArrayOperation.Transpose``1(``0[0:,0:],``0[0:,0:]@)">
+            <summary>
+            转置二维数组
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="src">来源数组</param>
+            <param name="dest">返回数组</param>
+        </member>
+        <member name="T:SeeSharpTools.JY.Mathematics.Calculus">
+            <summary>
+            微分和积分类库
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Calculus.Derivative_2ndOrderCentral(System.Double[],System.Double,System.Double[]@,System.Double,System.Double)">
+            <summary>
+            一次微分，使用2nd order Central方法，数组长度需大于等于3
+            </summary>
+            <param name="x">原始数组</param>
+            <param name="dt">间隔</param>
+            <param name="y">一次微分数组</param>
+            <param name="initialCondition">初始条件</param>
+            <param name="finalCondition">结束条件</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Calculus.Derivative_4thOrderCentral(System.Double[],System.Double,System.Double[]@,System.Double[],System.Double[])">
+            <summary>
+            一次微分，使用4th order Central方法，数组长度需大于等于5。
+            </summary>
+            <param name="x">原始数组</param>
+            <param name="dt">间隔</param>
+            <param name="y">一次微分数组</param>
+            <param name="initialCondition">初始条件，长度为2，第一个元素代表x[i-2]，第二个元素代表x[i-1]</param>
+            <param name="finalCondition">结束条件，长度为2，第一个元素代表x[i+1]，第二个元素代表x[i+2]</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Calculus.Derivative_Backward(System.Double[],System.Double,System.Double[]@,System.Double)">
+            <summary>
+            一次微分，使用Backward方法，数组长度需大于等于2。
+            </summary>
+            <param name="x">原始数组</param>
+            <param name="dt">间隔</param>
+            <param name="y">一次微分数组</param>
+            <param name="initialCondition">初始条件</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Calculus.Derivative_Forward(System.Double[],System.Double,System.Double[]@,System.Double)">
+            <summary>
+            一次微分，使用Forward方法，数组长度需大于等于2。
+            </summary>
+            <param name="x">原始数组</param>
+            <param name="dt">间隔</param>
+            <param name="y">一次微分数组</param>
+            <param name="initialCondition">初始条件</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Calculus.Integral_Bode(System.Double[],System.Double,System.Double[]@,System.Double[],System.Double[])">
+            <summary>
+            一次积分，使用bode方法，数组长度需大于等于5。
+            </summary>
+            <param name="x">原始数组</param>
+            <param name="dt">间隔</param>
+            <param name="y">一次微分数组</param>
+            <param name="initialCondition">初始条件，长度为2，第一个元素代表x[i-2]，第二个元素代表x[i-1]</param>
+            <param name="finalCondition">结束条件，长度为2，第一个元素代表x[i+1]，第二个元素代表x[i+2]</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Calculus.Integral_Simpsons(System.Double[],System.Double,System.Double[]@,System.Double,System.Double)">
+            <summary>
+            一次积分，使用Sipson's方法，数组长度需大于等于3。
+            </summary>
+            <param name="x">原始数组</param>
+            <param name="dt">间隔</param>
+            <param name="y">一次微分数组</param>
+            <param name="initialCondition">初始条件</param>
+            <param name="finalCondition">结束条件</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Calculus.Integral_Simpsons38(System.Double[],System.Double,System.Double[]@,System.Double[],System.Double)">
+            <summary>
+            一次积分，使用Sipson's 3/8方法，数组长度需大于等于4。
+            </summary>
+            <param name="x">原始数组</param>
+            <param name="dt">间隔</param>
+            <param name="y">一次微分数组</param>
+            <param name="initialCondition">初始条件，长度为2，第一个元素代表x[i-2]，第二个元素代表x[i-1]</param>
+            <param name="finalCondition">结束条件</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Calculus.Integral_Trapezodial(System.Double[],System.Double,System.Double[]@,System.Double)">
+            <summary>
+            一次积分，使用Trapezodial方法，数组长度需大于等于2。
+            </summary>
+            <param name="x">原始数组</param>
+            <param name="dt">间隔</param>
+            <param name="y">一次微分数组</param>
+            <param name="initialCondition">初始条件</param>
+        </member>
+        <member name="T:SeeSharpTools.JY.Mathematics.Fitting">
+            <summary>
+            曲线拟合
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Fitting.ExponentialFittingFunc(System.Double[],System.Double[])">
+            <summary>
+            指数型拟合 (y=a*exp(b*x))
+            </summary>
+            <param name="x">x数组</param>
+            <param name="y">y数组</param>
+            <returns>返回拟合的函式</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Fitting.ExponentialFitting(System.Double[],System.Double[])">
+            <summary>
+            指数型拟合 (y=a*exp(b*x))
+            </summary>
+            <param name="x">x数组</param>
+            <param name="y">y数组</param>
+            <returns>返回拟合的系数tuple(a,b)</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Fitting.LinearFittingFunc(System.Double[],System.Double[])">
+            <summary>
+            线性拟合 (y=a+b*x)
+            </summary>
+            <param name="x">x数组</param>
+            <param name="y">y数组</param>
+            <returns>返回拟合的函式</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Fitting.LinearFitting(System.Double[],System.Double[])">
+            <summary>
+            线性拟合 (y=a+b*x)
+            </summary>
+            <param name="x">x数组</param>
+            <param name="y">y数组</param>
+            <returns>返回拟合的系数Tuple(a,b)</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Fitting.PolynomialFittingFunc(System.Double[],System.Double[],System.Int32)">
+            <summary>
+            多项式拟合 (y=a0+a1*x+a2*x^2+.....)
+            </summary>
+            <param name="x">x数组</param>
+            <param name="y">y数组</param>
+            <param name="order">多项式项次</param>
+            <returns>返回拟合的含式</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Fitting.PolynomialFitting(System.Double[],System.Double[],System.Int32)">
+            <summary>
+            多项式拟合 (y=a0+a1*x+a2*x^2+.....)
+            </summary>
+            <param name="x">x数组</param>
+            <param name="y">y数组</param>
+            <param name="order">多项式项次</param>
+            <returns>返回拟合的系数(a0,a1,a2,a3.....)</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Absolute(System.Double[],System.Double[]@)">
+            <summary>
+            对数组内double元素取绝对值
+            </summary>
+            <param name="src"></param>
+            <param name="dest"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Absolute(System.Single[],System.Single[]@)">
+            <summary>
+            对数组float元素取绝对值
+            </summary>
+            <param name="src"></param>
+            <param name="dest"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Add(System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            double数组相加
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1+数组2相加结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Add(System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            float数组相加
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1+数组2相加结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Add(System.Int16[],System.Int16[],System.Int16[]@)">
+            <summary>
+            short数组相加
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1+数组2相加结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Add(System.Double[]@,System.Double[])">
+            <summary>
+            double数组相加,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Add(System.Single[]@,System.Single[])">
+            <summary>
+            float数组相加,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Add(System.Int16[]@,System.Int16[])">
+            <summary>
+            short数组相加,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Add(System.Double[],System.Double,System.Double[]@)">
+            <summary>
+            double数组和单一double数值相加
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">值</param>
+            <param name="dest">目标数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Add(System.Single[],System.Single,System.Single[]@)">
+            <summary>
+            float数组和单一float数值相加
+            </summary>
+            <param name="src1"></param>
+            <param name="scalar"></param>
+            <param name="dest"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Add(System.Double[]@,System.Double)">
+            <summary>
+            double数组和单一double数值相加，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相加的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Add(System.Single[]@,System.Single)">
+            <summary>
+            float数组和单一float数值相加，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相加的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Add(System.Int16[]@,System.Int16)">
+            <summary>
+            short数组和单一short数值相加，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相加的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Divide(System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            double数组相除
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1/数组2相除结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Divide(System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            float数组相除
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1/数组2相除结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Divide(System.Int16[],System.Int16[],System.Int16[]@)">
+            <summary>
+            short数组相除
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1/数组2相除结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Divide(System.Double[]@,System.Double[])">
+            <summary>
+            double数组相除,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Divide(System.Single[]@,System.Single[])">
+            <summary>
+            float数组相除,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Divide(System.Int16[]@,System.Int16[])">
+            <summary>
+            short数组相除,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Divide(System.Double[],System.Double,System.Double[]@)">
+            <summary>
+            double数组和单一double数值相除
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">值</param>
+            <param name="dest">目标数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Divide(System.Single[],System.Single,System.Single[]@)">
+            <summary>
+            float数组和单一float数值相除
+            </summary>
+            <param name="src1"></param>
+            <param name="scalar"></param>
+            <param name="dest"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Divide(System.Double[]@,System.Double)">
+            <summary>
+            double数组和单一double数值相除，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相除的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Divide(System.Single[]@,System.Single)">
+            <summary>
+            float数组和单一float数值相除，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相除的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Divide(System.Int16[]@,System.Int16)">
+            <summary>
+            short数组和单一short数值相除，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相除的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Exp(System.Double[],System.Double[]@)">
+            <summary>
+            对double数组内元素取Exponential值
+            </summary>
+            <param name="src">原始数组</param>
+            <param name="dest">结果数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Exp(System.Single[],System.Single[]@)">
+            <summary>
+            对float数组内元素取Exponential值
+            </summary>
+            <param name="src">原始数组</param>
+            <param name="dest">结果数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.FindMaxMin(System.Double[],System.Double@,System.Double@,System.Int32@,System.Int32@)">
+            <summary>
+            搜寻double数组的最大最小值和索引
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="maxValue">最大值</param>
+            <param name="minValue">最小值</param>
+            <param name="maxIdx">最大值索引</param>
+            <param name="minIdx">最小值索引</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.FindMaxMin(System.Single[],System.Single@,System.Single@,System.Int32@,System.Int32@)">
+            <summary>
+            搜寻float数组的最大最小值和索引
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="maxValue">最大值</param>
+            <param name="minValue">最小值</param>
+            <param name="maxIdx">最大值索引</param>
+            <param name="minIdx">最小值索引</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.FindMaxMin(System.Int16[],System.Int16@,System.Int16@,System.Int32@,System.Int32@)">
+            <summary>
+            搜寻short数组的最大最小值和索引
+            </summary>
+            <param name="src">来源数组</param>
+            <param name="maxValue">最大值</param>
+            <param name="minValue">最小值</param>
+            <param name="maxIdx">最大值索引</param>
+            <param name="minIdx">最小值索引</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Initialize(System.Double[]@,System.Double)">
+            <summary>
+            初始化double数组并赋值
+            </summary>
+            <param name="dest">数组</param>
+            <param name="initValue">初始值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Initialize(System.Single[]@,System.Single)">
+            <summary>
+            初始化float数组并赋值
+            </summary>
+            <param name="dest">数组</param>
+            <param name="initValue">初始值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Ln(System.Double[],System.Double[]@)">
+            <summary>
+            对double数组内元素取Ln值
+            </summary>
+            <param name="src">原始数组</param>
+            <param name="dest">结果数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Ln(System.Single[],System.Single[]@)">
+            <summary>
+            对float数组内元素取Ln值
+            </summary>
+            <param name="src">原始数组</param>
+            <param name="dest">结果数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Log(System.Double[],System.Double[]@)">
+            <summary>
+            对double数组内元素取Log10值
+            </summary>
+            <param name="src">原始数组</param>
+            <param name="dest">结果数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Log(System.Single[],System.Single[]@)">
+            <summary>
+            对float数组内元素取Log10值
+            </summary>
+            <param name="src">原始数组</param>
+            <param name="dest">结果数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Multiply(System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            double数组相乘
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1*数组2相乘结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Multiply(System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            float数组相乘
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1*数组2相乘结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Multiply(System.Int16[],System.Int16[],System.Int16[]@)">
+            <summary>
+            short数组相乘
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1*数组2相乘结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Multiply(System.Double[]@,System.Double[])">
+            <summary>
+            double数组相乘,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Multiply(System.Single[]@,System.Single[])">
+            <summary>
+            float数组相乘,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Multiply(System.Int16[]@,System.Int16[])">
+            <summary>
+            short数组相乘,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Multiply(System.Double[],System.Double,System.Double[]@)">
+            <summary>
+            double数组和单一double数值相乘
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">值</param>
+            <param name="dest">目标数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Multiply(System.Single[],System.Single,System.Single[]@)">
+            <summary>
+            float数组和单一float数值相乘
+            </summary>
+            <param name="src1"></param>
+            <param name="scalar"></param>
+            <param name="dest"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Multiply(System.Double[]@,System.Double)">
+            <summary>
+            double数组和单一double数值相乘，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相乘的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Multiply(System.Single[]@,System.Single)">
+            <summary>
+            float数组和单一float数值相乘，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相乘的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Multiply(System.Int16[]@,System.Int16)">
+            <summary>
+            short数组和单一short数值相乘，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相乘的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Pow(System.Double[],System.Double,System.Double[]@)">
+            <summary>
+            对double数组内元素取取指数(x[i]的y次方)
+            </summary>
+            <param name="src1">x数组</param>
+            <param name="scalar">y数值</param>
+            <param name="dest">结果数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Pow(System.Single[],System.Single,System.Single[]@)">
+            <summary>
+            对float数组内元素取取指数(x[i]的y次方)
+            </summary>
+            <param name="src1">x数组</param>
+            <param name="scalar">y数值</param>
+            <param name="dest">结果数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Product(System.Double[])">
+            <summary>
+            将double数组内所有元素相乘
+            </summary>
+            <param name="src1">来源数组</param>
+            <returns>返回的乘积</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Product(System.Single[])">
+            <summary>
+            将float数组内所有元素相乘
+            </summary>
+            <param name="src1">来源数组</param>
+            <returns>返回的乘积</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Substract(System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            double数组相减
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1+数组2相减结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Substract(System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            float数组相减
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1-数组2相减结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Substract(System.Int16[],System.Int16[],System.Int16[]@)">
+            <summary>
+            short数组相减
+            </summary>
+            <param name="src1">数组1</param>
+            <param name="src2">数组2</param>
+            <param name="dest">数组1+数组2相减结果</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Substract(System.Double[]@,System.Double[])">
+            <summary>
+            double数组相减,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Substract(System.Single[]@,System.Single[])">
+            <summary>
+            float数组相减,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Substract(System.Int16[]@,System.Int16[])">
+            <summary>
+            short数组相减,将结果写回同个数组
+            </summary>
+            <param name="srcDest">数组1，结果会存放在数组1上</param>
+            <param name="src2">数组2</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Substract(System.Double[],System.Double,System.Double[]@)">
+            <summary>
+            double数组和单一double数值相减
+            </summary>
+            <param name="src1">数组</param>
+            <param name="scalar">值</param>
+            <param name="dest">目标数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Substract(System.Single[],System.Single,System.Single[]@)">
+            <summary>
+            float数组和单一float数值相减
+            </summary>
+            <param name="src1"></param>
+            <param name="scalar"></param>
+            <param name="dest"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Substract(System.Double[]@,System.Double)">
+            <summary>
+            double数组和单一double数值相减，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相减的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Substract(System.Single[]@,System.Single)">
+            <summary>
+            float数组和单一float数值相减，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相减的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Substract(System.Int16[]@,System.Int16)">
+            <summary>
+            short数组和单一short数值相减，结果写回同个数组
+            </summary>
+            <param name="srcDest">double数组</param>
+            <param name="scalar">相减的值</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Sum(System.Double[])">
+            <summary>
+            将double数组内所有元素相加
+            </summary>
+            <param name="src1">来源数组</param>
+            <returns>返回的相加值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Sum(System.Single[])">
+            <summary>
+            将float数组内所有元素相加
+            </summary>
+            <param name="src1">来源数组</param>
+            <returns>返回的相加值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Sqrt(System.Double[],System.Double[]@)">
+            <summary>
+            对double数组内元素取平方根值
+            </summary>
+            <param name="src">原始数组</param>
+            <param name="dest">结果数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interfaces.IArrayArithmetic.Sqrt(System.Single[],System.Single[]@)">
+            <summary>
+            对float数组内元素取平方根值
+            </summary>
+            <param name="src">原始数组</param>
+            <param name="dest">结果数组</param>
+        </member>
+        <member name="T:SeeSharpTools.JY.Mathematics.Interpolation">
+            <summary>
+            内插
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interpolation.Interpolate_CubicSpline(System.Double[],System.Double[],System.Double)">
+            <summary>
+            CubicSpline内插
+            </summary>
+            <param name="x">x数组</param>
+            <param name="y">y数组</param>
+            <param name="xValue">指定的x值</param>
+            <returns>返回对应的内插值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interpolation.Interpolate_Linear(System.Double[],System.Double[],System.Double)">
+            <summary>
+            Linear内插
+            </summary>
+            <param name="x">x数组</param>
+            <param name="y">y数组</param>
+            <param name="xValue">指定的x值</param>
+            <returns>返回对应的内插值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interpolation.Interpolate_LogLinear(System.Double[],System.Double[],System.Double)">
+            <summary>
+            LogLinear内插
+            </summary>
+            <param name="x">x数组</param>
+            <param name="y">y数组</param>
+            <param name="xValue">指定的x值</param>
+            <returns>返回对应的内插值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interpolation.Interpolate_Polynomial(System.Double[],System.Double[],System.Double)">
+            <summary>
+            Polynomia内插
+            </summary>
+            <param name="x">x数组</param>
+            <param name="y">y数组</param>
+            <param name="xValue">指定的x值</param>
+            <returns>返回对应的内插值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Interpolation.Interpolate_Step(System.Double[],System.Double[],System.Double)">
+            <summary>
+            Step内插
+            </summary>
+            <param name="x">x数组</param>
+            <param name="y">y数组</param>
+            <param name="xValue">指定的x值</param>
+            <returns>返回对应的内插值</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Mathematics.LinearAlgebra">
+            <summary>
+            线性代数
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.LinearAlgebra.Dot(System.Double[],System.Double[])">
+            <summary>
+            乘积
+            </summary>
+            <param name="a">矢量a</param>
+            <param name="b">矢量b</param>
+            <returns>乘积值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.LinearAlgebra.Dot(System.Single[],System.Single[])">
+            <summary>
+            乘积
+            </summary>
+            <param name="a">矢量a</param>
+            <param name="b">矢量b</param>
+            <returns>乘积值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.LinearAlgebra.Norm(System.Double[],System.Double)">
+            <summary>
+            范数
+            </summary>
+            <param name="a">矢量a</param>
+            <param name="b">矢量b</param>
+            <returns>范数值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.LinearAlgebra.Norm(System.Single[],System.Double)">
+            <summary>
+            范数
+            </summary>
+            <param name="a">矢量a</param>
+            <param name="b">矢量b</param>
+            <returns>范数值</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Mathematics.Statistics">
+            <summary>
+            统计分析类库
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Statistics.Histogram(System.Double[],System.Int32,System.Double,System.Double)">
+            <summary>
+            直方图
+            </summary>
+            <param name="data">数据</param>
+            <param name="binSize">直方条数目</param>
+            <param name="min">分类最小值（若min=max，自动适配范围)</param>
+            <param name="max">分类最大值（若min=max，自动适配范围)</param>
+            <returns>返回直方图数组</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Statistics.Kurtosis(System.Double[])">
+            <summary>
+            Kurtosis
+            </summary>
+            <param name="src">数组</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Statistics.Mean(System.Double[])">
+            <summary>
+            Mean
+            </summary>
+            <param name="src">数组</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Statistics.Median(System.Double[])">
+            <summary>
+            Median
+            </summary>
+            <param name="src">数组</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Statistics.Percentile(System.Double[],System.Int32)">
+            <summary>
+            Percentile
+            </summary>
+            <param name="data">数组</param>
+            <param name="place">百分比的位置，单位：%</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Statistics.RMS(System.Double[])">
+            <summary>
+            RMS
+            </summary>
+            <param name="src">数组</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Statistics.Skewness(System.Double[])">
+            <summary>
+            Skewness
+            </summary>
+            <param name="src">数组</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Statistics.StandardDeviation(System.Double[])">
+            <summary>
+            StandardDeviationn
+            </summary>
+            <param name="src">数组</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.Mathematics.Statistics.Variance(System.Double[])">
+            <summary>
+            Variance
+            </summary>
+            <param name="src">数组</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.Mathematics.Engine">
+            <summary>
+            运行引擎（全局变量）
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.Mathematics.Engine.Provider">
+            <summary>
+            选择运行引擎的类型
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.Mathematics.ProviderEngine">
+            <summary>
+            运行引擎选项
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Mathematics.ProviderEngine.CSharp">
+            <summary>
+            C# 类库（默认）
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Mathematics.ProviderEngine.IntelIPP">
+            <summary>
+            Intel IPP类库
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.Mathematics.ProviderEngine.IntelMKL">
+            <summary>
+            Intel MKL类库
+            </summary>
+        </member>
+    </members>
+</doc>

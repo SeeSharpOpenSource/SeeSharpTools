@@ -1,0 +1,9 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.SoundVibration\bin\Release\SeeSharpTools.JY.DSP.SoundVibration.XML
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.SoundVibration\bin\Release\SeeSharpTools.JY.DSP.SoundVibration.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.SoundVibration\bin\Release\SeeSharpTools.JY.DSP.SoundVibration.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.SoundVibration\bin\Release\SeeSharpTools.JY.DSP.Fundamental.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.SoundVibration\bin\Release\SeeSharpTools.JY.DSP.Fundamental.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.SoundVibration\bin\Release\SeeSharpTools.JY.DSP.Fundamental.xml
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.SoundVibration\obj\Release\JY.DSP.SoundVibration.csprojResolveAssemblyReference.cache
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.SoundVibration\obj\Release\SeeSharpTools.JY.DSP.SoundVibration.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.SoundVibration\obj\Release\SeeSharpTools.JY.DSP.SoundVibration.pdb

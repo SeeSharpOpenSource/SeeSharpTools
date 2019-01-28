@@ -1,0 +1,7 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Audio\bin\Release\SeeSharpTools.JY.Audio.XML
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Audio\bin\Release\SeeSharpTools.JY.Audio.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Audio\bin\Release\SeeSharpTools.JY.Audio.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Audio\bin\Release\ManagedAudioLibrary.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Audio\obj\Release\SeeSharpTools.JY.Audio.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Audio\obj\Release\SeeSharpTools.JY.Audio.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.Audio\obj\Release\JY.Audio.csprojResolveAssemblyReference.cache

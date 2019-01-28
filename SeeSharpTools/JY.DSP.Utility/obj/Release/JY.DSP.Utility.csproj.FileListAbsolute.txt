@@ -1,0 +1,17 @@
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\SeeSharpTools.JY.DSP.Utility.XML
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\SeeSharpTools.JY.DSP.Utility.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\SeeSharpTools.JY.DSP.Utility.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\FindPeaksAndValleysMatlab.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\MathNet.Numerics.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\MWArray.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\SeeSharpTools.JY.ArrayUtility.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\SeeSharpTools.JY.DSP.Fundamental.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\SeeSharpTools.JY.ArrayUtility.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\SeeSharpTools.JY.ArrayUtility.xml
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\SeeSharpTools.JY.DSP.Fundamental.pdb
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\bin\Release\SeeSharpTools.JY.DSP.Fundamental.xml
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\obj\Release\JY.DSP.Utility.csprojResolveAssemblyReference.cache
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\obj\Release\SeeSharpTools.JY.DSP.Utility.Properties.Resources.resources
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\obj\Release\JY.DSP.Utility.csproj.GenerateResource.Cache
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\obj\Release\SeeSharpTools.JY.DSP.Utility.dll
+E:\Code\jytek\SeeSharp\SeeSharpTools\JY.DSP.Utility\obj\Release\SeeSharpTools.JY.DSP.Utility.pdb

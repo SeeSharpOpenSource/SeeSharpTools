@@ -1,0 +1,798 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.DSP.Fundamental</name>
+    </assembly>
+    <members>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.JYDSPInnerException">
+            <summary>
+            JY DSP Inner Exception
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.JYDSPUserBufferException">
+            <summary>
+            JY DSP User Buffer Exception
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.JYDSPParamException">
+            <summary>
+            JY DSP Param Exception
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.Generation">
+            <summary>
+            <para>Generation of sine wave, square wave, ramp and uniform white noise.</para>
+            <para>提供正弦波、方波、白噪声和等差数列的生成。</para>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Generation.Ramp(System.Double[]@,System.Double,System.Double)">
+            <summary>
+            <para>Generates a sequence containing a ramp pattern specified by the first value and delta.</para>
+            <para>Chinese Simplified: 产生一个等差数列，数列的项数由数组x的长度给出，首项由start给出，公差由delta给出。</para>
+            </summary>
+            <param name="x">
+            <para>contains the ramp pattern sequence. </para>
+            <para>Chinese Simplified: 返回的等差数列</para>
+            </param>
+            <param name="start">
+            <para>the first value of ramp pattern. </para>
+            <para>Chinese Simplified: 等差数列的首项</para>
+            </param>
+            <param name="delta">
+            <para>the interval between two adjacent values in ramp pattern. </para>
+            <para>Chinese Simplified: 等差数列的公差</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Generation.SineWave(System.Double[]@,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            <para>Generates a sequence containing a sine wave with specified frequency and sampling rate.</para>
+            <para>Chinese Simplified: 生成一个正弦波形，可设定正弦波的幅度、初始相位、频率和采样率。</para>
+            </summary>
+            <param name="x">
+            <para>contains the sine wave sequence. </para>
+            <para>Chinese Simplified: 返回的正弦波形。</para>
+            </param>
+            <param name="amplitude">
+            <para>the amplitude of sine wave. </para>
+            <para>Chinese Simplified: 幅度。</para>
+            </param>
+            <param name="phase">
+            <para>the initial phase of the sine wave in degrees.</para>
+            <para>Chinese Simplified: 初始相位，以角度(Degree)为单位。</para>
+            </param>
+            <param name="frequency">
+            <para>the frequency of sine wave in Hz.  </para>
+            <para>Chinese Simplified: 正弦波的频率，以Hz为单位。</para>
+            </param>
+            <param name="samplingRate">
+            <para>the sampling rate of sine wave in samples/second. </para>
+            <para>Chinese Simplified: 采样率，以S/s为单位。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Generation.SineWave(System.Double[]@,System.Double,System.Double,System.Int32)">
+            <summary>
+            <para>Generates a sequence containing a sine wave with complete periods.</para>
+            <para>Chinese Simplified: 生成一个包含整数个周期的正弦波形，可设定正弦波的幅度、初始相位和周期数。</para>
+            </summary>
+            <param name="x">
+            <para>contains the sine wave sequence. </para>
+            <para>Chinese Simplified: 返回的正弦波形。</para>
+            </param>
+            <param name="amplitude">
+            <para>the amplitude of sine wave. </para>
+            <para>Chinese Simplified: 幅度。</para>
+            </param>
+            <param name="phase">
+            <para>the initial phase of the sine wave in degrees.</para>
+            <para>Chinese Simplified: 初始相位，以角度(Degree)为单位。</para>
+            </param>
+            <param name="numberOfCycles">
+            <para>the number of complete periods of the sine wave. </para>
+            <para>Chinese Simplified: 正弦波周期数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Generation.SquareWave(System.Double[]@,System.Double,System.Double,System.Int32)">
+            <summary>
+            <para>Generates a sequence containing a square wave with complete periods.</para>
+            <para>Chinese Simplified: 生成一个包含整数个周期的方波波形，可设定方波的幅度、占空比和周期数。</para>
+            </summary>
+            <param name="x">
+            <para>contains the square wave sequence.</para>
+            <para>Chinese Simplified: 返回的方波波形。</para>
+            </param>
+            <param name="amplitude">
+            <para>the amplitude of square wave.</para>
+            <para>Chinese Simplified: 幅度。</para>
+            </param>
+            <param name="dutyCycle">
+            <para>the percentage of time the square wave remains high in one period.</para>
+            <para>Chinese Simplified: 占空百分比，为0~100之间的数值。</para>
+            </param>
+            <param name="numberOfCycles">
+            <para>the number of complete periods of the square wave.</para>
+            <para>Chinese Simplified:方波周期数。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Generation.SquareWave(System.Double[]@,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            <para>Generates a sequence containing a square wave with specified frequency and sampling rate.</para>
+            <para>Chinese Simplified: 生成一个方波波形，可设定方波的幅度、占空比、频率和采样率。</para>
+            </summary>
+            <param name="x">
+            <para>contains the square wave sequence.</para>
+            <para>Chinese Simplified: 返回的方波波形。</para>
+            </param>
+            <param name="amplitude">
+            <para>the amplitude of square wave.</para>
+            <para>Chinese Simplified: 幅度。</para>
+            </param>
+            <param name="dutyCycle">
+            <para>the percentage of time the square wave remains high in one period.</para>
+            <para>Chinese Simplified: 占空百分比，为0~100之间的数值。</para>
+            </param>
+            <param name="frequency">
+            <para>the frequency of square wave in Hz. </para>
+            <para>Chinese Simplified: 方波的频率，以Hz为单位。</para>
+            </param>
+            <param name="samplingRate">
+            <para>the sampling rate of square wave in samples/second.</para>
+            <para>Chinese Simplified: 采样率，以S/s为单位。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Generation.UniformWhiteNoise(System.Double[]@,System.Double)">
+             <summary>
+             <para>Generates a uniformly distributed pseudorandom sequence in the range [–amplitude, amplitude].</para>
+             <para>Chinese Simplified: 生成一个幅度在[–amplitude, amplitude]之间的随机白噪声波形。</para>
+             </summary>
+             <param name="x">
+             <para>contains the uniformly distributed, pseudorandom sequence.</para>
+             <para>Chinese Simplified: 返回的白噪声波形。</para>
+             </param>
+             <param name="amplitude">
+            <para> the amplitude of uniform white noise.</para>
+             <para>Chinese Simplified: 噪声幅度。</para>
+             </param>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.CBLASNative">
+            CBLAS native declarations 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.CBLASNative.cblas_dcopy(System.Int32,System.Double[],System.Int32,System.Double[],System.Int32)">
+            CBLAS native LAPACKE_zgesv declaration 
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.DFTI.PRECISION">
+            Constants for DFTI, file "mkl_dfti.h" 
+            DFTI configuration parameters 
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.DFTI.SINGLE">
+            DFTI configuration values 
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.DFTI.NO_ERROR">
+            DFTI predefined error classes 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiCreateDescriptor(System.IntPtr@,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            DFTI DftiCreateDescriptor wrapper
+            </summary>
+            <param name="desc">return desc handle</param>
+            <param name="precision">precision</param>
+            <param name="domain">domain</param>
+            <param name="dimention">dimention</param>
+            <param name="length">length</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiFreeDescriptor(System.IntPtr@)">
+            <summary>
+            DFTI DftiFreeDescriptor wrapper
+            </summary>
+            <param name="desc">desc handle</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiSetValue(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            DFTI DftiSetValue wrapper
+            </summary>
+            <param name="desc">desc handle</param>
+            <param name="configParam">config_param</param>
+            <param name="configVal">config_val</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiSetValue(System.IntPtr,System.Int32,System.Double)">
+            <summary>
+            DFTI DftiSetValue wrapper
+            </summary>
+            <param name="desc">desc handle</param>
+            <param name="configParam">config_param</param>
+            <param name="configVal">config_val</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiGetValue(System.IntPtr,System.Int32,System.Double@)">
+            <summary>
+            DFTI DftiGetValue wrapper 
+            </summary>
+            <param name="desc">desc handle</param>
+            <param name="configParam">config_param</param>
+            <param name="configVal">config_val</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiCommitDescriptor(System.IntPtr)">
+            <summary>
+            DFTI DftiCommitDescriptor wrapper
+            </summary>
+            <param name="desc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiComputeForward(System.IntPtr,System.Double[],System.Double[])">
+            <summary>
+            DFTI DftiComputeForward wrapper
+            </summary>
+            <param name="desc"></param>
+            <param name="x_in"></param>
+            <param name="x_out"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiComputeForward(System.IntPtr,System.IntPtr,System.IntPtr)">
+            <summary>
+            DFTI DftiComputeForward wrapper
+            </summary>
+            <param name="desc"></param>
+            <param name="x_in"></param>
+            <param name="x_out"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiComputeForward(System.IntPtr,System.Double[],System.IntPtr)">
+            <summary>
+            DFTI DftiComputeForward wrapper
+            </summary>
+            <param name="desc"></param>
+            <param name="x_in"></param>
+            <param name="x_out"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiComputeForward(System.IntPtr,System.IntPtr,System.Double[])">
+            <summary>
+            DFTI DftiComputeForward wrapper
+            </summary>
+            <param name="desc"></param>
+            <param name="x_in"></param>
+            <param name="x_out"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiComputeBackward(System.IntPtr,System.Double[],System.Double[])">
+            <summary>
+            DFTI DftiComputeBackward wrapper
+            </summary>
+            <param name="desc"></param>
+            <param name="x_in"></param>
+            <param name="x_out"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiComputeBackward(System.IntPtr,System.IntPtr,System.IntPtr)">
+            <summary>
+            DFTI DftiComputeBackward wrapper
+            </summary>
+            <param name="desc"></param>
+            <param name="x_in"></param>
+            <param name="x_out"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiComputeBackward(System.IntPtr,System.Double[],System.IntPtr)">
+            <summary>
+            DFTI DftiComputeBackward wrapper
+            </summary>
+            <param name="desc"></param>
+            <param name="x_in"></param>
+            <param name="x_out"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiComputeBackward(System.IntPtr,System.IntPtr,System.Double[])">
+            <summary>
+            DFTI DftiComputeBackward wrapper
+            </summary>
+            <param name="desc"></param>
+            <param name="x_in"></param>
+            <param name="x_out"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.DFTINative">
+            <summary>
+            DFTI native declarations
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiCreateDescriptor(System.IntPtr@,System.Int32,System.Int32,System.Int32,System.Int32)">
+            DFTI native DftiCreateDescriptor declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiCommitDescriptor(System.IntPtr)">
+            DFTI native DftiCommitDescriptor declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiFreeDescriptor(System.IntPtr@)">
+            DFTI native DftiFreeDescriptor declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiSetValue(System.IntPtr,System.Int32,System.Int32)">
+            DFTI native DftiSetValue declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiSetValue(System.IntPtr,System.Int32,System.Double)">
+            DFTI native DftiSetValue declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiGetValue(System.IntPtr,System.Int32,System.Double@)">
+            DFTI native DftiGetValue declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiComputeForward(System.IntPtr,System.Double[],System.Double[])">
+            DFTI native DftiComputeForward declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiComputeForward(System.IntPtr,System.IntPtr,System.IntPtr)">
+            DFTI native DftiComputeForward declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiComputeForward(System.IntPtr,System.Double[],System.IntPtr)">
+            DFTI native DftiComputeForward declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiComputeForward(System.IntPtr,System.IntPtr,System.Double[])">
+            DFTI native DftiComputeForward declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiComputeBackward(System.IntPtr,System.Double[],System.Double[])">
+            DFTI native DftiComputeBackward declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiComputeBackward(System.IntPtr,System.IntPtr,System.IntPtr)">
+            DFTI native DftiComputeBackward declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiComputeBackward(System.IntPtr,System.Double[],System.IntPtr)">
+            DFTI native DftiComputeBackward declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiComputeBackward(System.IntPtr,System.IntPtr,System.Double[])">
+            DFTI native DftiComputeBackward declaration 
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.VMLNative.vdMul(System.Int32,System.Double[],System.Double[],System.Double[])">
+            CBLAS native LAPACKE_zgesv declaration 
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.Spectrum">
+            <summary>
+            <para>Computes spectrum of a time-domain signal.</para>
+            <para>Chinese Simplified: 计算信号的频谱。</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.Spectrum.MaxSpectralLine">
+            <summary>
+            Maximiun Spectral Line Count
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.Spectrum.Sqrt2">
+            <summary>
+            Sqrt 2
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Spectrum.PowerSpectrum(System.Double[],System.Double,System.Double[]@,System.Double@,SeeSharpTools.JY.DSP.Fundamental.SpectrumUnits,SeeSharpTools.JY.DSP.Fundamental.WindowType,System.Double,System.Boolean)">
+            <summary>
+            <para>Computes the power spectrum of input time-domain signal.</para>
+            <para>Chinese Simplified: 计算输入信号的功率频谱。</para>
+            </summary>
+            <param name="x">
+            <para>input time-domain signal.</para>
+            <para>Chinese Simplified: 输入的时域波形。</para>
+            </param>
+            <param name="samplingRate">
+            <para>sampling rate of the input time-domain signal, in samples per second.</para>
+            <para>Chinese Simplified: 输入信号的采样率，以S/s为单位。</para>
+            </param>
+            <param name="spectrum">
+            <para>output sequence containing the power spectrum.</para>
+            <para>Chinese Simplified: 输出功率谱。</para>
+            </param>
+            <param name="df">
+            <para>the frequency resolution of the spectrum,  in hertz.</para>
+            <para>Chinese Simplified: 功率谱的频谱间隔，以Hz为单位。</para>
+            </param>
+            <param name="unit">
+            <para>unit of the output power spectrum</para>
+            <para>Chinese Simplified: 设置功率谱的单位。</para>
+            </param>
+            <param name="windowType">
+            <para>the time-domain window to apply to the time signal.</para>
+            <para>Chinese Simplified: 窗类型。</para>
+            </param>
+            <param name="windowPara">
+            <para>parameter for a Kaiser/Gaussian/Dolph-Chebyshev window, If window is any other window, this parameter is ignored</para>
+            <para>Chinese Simplified: 窗调整系数，仅用于Kaiser/Gaussian/Dolph-Chebyshev窗。</para>
+            </param>
+            <param name="PSD">
+            <para>specifies whether the output power spectrum is converted to power spectral density.</para>
+            <para>Chinese Simplified: 输出的频谱是否为功率谱密度。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Spectrum.PowerSpectrum(System.Double[],System.Double,System.Double[]@,System.Double@,SeeSharpTools.JY.DSP.Fundamental.UnitConvSetting,SeeSharpTools.JY.DSP.Fundamental.WindowType,System.Double)">
+            <summary>
+            <para>Computes the power spectrum of input time-domain signal.</para>
+            <para>Chinese Simplified: 计算输入信号的功率频谱。</para>
+            </summary>
+            <param name="x">
+            <para>input time-domain signal.</para>
+            <para>Chinese Simplified: 输入的时域波形。</para>
+            </param>
+            <param name="samplingRate">
+            <para>sampling rate of the input time-domain signal, in samples per second.</para>
+            <para>Chinese Simplified: 输入信号的采样率，以S/s为单位。</para>
+            </param>
+            <param name="spectrum">
+            <para>output sequence containing the power spectrum.</para>
+            <para>Chinese Simplified: 输出功率谱。</para>
+            </param>
+            <param name="df">
+            <para>the frequency resolution of the spectrum,  in hertz.</para>
+            <para>Chinese Simplified: 功率谱的频谱间隔，以Hz为单位。</para>
+            </param>
+            <param name="unitSettings">
+            <para>unit settings of the output power spectrum</para>
+            <para>Chinese Simplified: 设置功率谱的单位。</para>
+            </param>
+            <param name="windowType">
+            <para>the time-domain window to apply to the time signal.</para>
+            <para>Chinese Simplified: 窗类型。</para>
+            </param>
+            <param name="windowPara">
+            <para>parameter for a Kaiser/Gaussian/Dolph-Chebyshev window, If window is any other window, this parameter is ignored</para>
+            <para>Chinese Simplified: 窗调整系数，仅用于Kaiser/Gaussian/Dolph-Chebyshev窗。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Spectrum.PeakSpectrumAnalysis(System.Double[],System.Double,System.Double@,System.Double@)">
+            <summary>
+            Get the fundamental frequency and array of harmonic power.
+            </summary>
+            <param name="timewaveform">the waveform of input signal assuming in voltage</param>
+            <param name="dt">sampling interval of timewaveform (s)</param>
+            <param name="peakFreq">the calculated peak tone frequency</param>
+            <param name="peakAmp">the calculated peak tone voltage peak amplitude, which is 1.414*RMS</param>
+            i.e. peakSignal=peakAmp*sin(2*pi*peakFreq*t)
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Spectrum.UnitConversion(System.Double[],System.Double,SeeSharpTools.JY.DSP.Fundamental.SpectrumType,SeeSharpTools.JY.DSP.Fundamental.UnitConvSetting,System.Double)">
+            <summary>
+            频谱单位转换函数
+            </summary>
+            <param name="spectrum">输入频谱，单位转换后返回的序列也保存在里面</param>
+            <param name="spectrumType">输入频谱类型，功率谱或者幅度谱</param>
+            <param name="df">频谱间隔</param>
+            <param name="unitSetting">单位转换设置</param>
+            <param name="equivalentNoiseBw">计算频谱时，加窗所用窗函数的等效噪声带宽</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Spectrum.AdvanceRealFFT(System.Double[],System.Int32,SeeSharpTools.JY.DSP.Fundamental.WindowType,System.Double[],SeeSharpTools.JY.DSP.Fundamental.SpectralInfo@)">
+            <summary>
+            Advance Real FFT
+            </summary>
+            <param name="xIn">time domain data</param>
+            <param name="spectralLines">spectralLines</param>
+            <param name="windowType">window type</param>
+            <param name="xOut">spectral out data</param>
+            <param name="spectralInfo">spectral info</param>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.DftiDescMgr">
+            <summary>
+            DFT的描述符管理器
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.RealFFT(System.Double[],System.Numerics.Complex[]@)">
+            <summary>
+            Real FFT
+            </summary>
+            <param name="xIn">time domain datas</param>
+            <param name="xOut">complex frequency datas as array of Complex64</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.RealFFT(System.Double[],System.Double[]@)">
+            <summary>
+            Real FFT
+            </summary>
+            <param name="xIn">time domain datas</param>
+            <param name="xOut">complex frequency datas as array of double, re0 im0 re1 im1...</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.RealIFFT(System.Double[],System.Double[]@)">
+            <summary>
+            Real FFT
+            </summary>
+            <param name="xIn">complex frequency domain datas as array of double, re0 im0 re1 im1...</param>
+            <param name="xOut">time domain datas</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.RealIFFT(System.Numerics.Complex[],System.Double[]@)">
+            <summary>
+            Real FFT
+            </summary>
+            <param name="xIn">complex frequency domain datas as array of double, re0 im0 re1 im1...</param>
+            <param name="xOut">time domain datas</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.ComplexFFT(System.Double[],System.Numerics.Complex[]@)">
+            <summary>
+            Complex FFT
+            </summary>
+            <param name="xIn">time domain complex datas, x0.re x0.im x1.re x1.im...</param>
+            <param name="xOut">complex frequency datas as array of Complex64</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.ComplexFFT(System.Double[],System.Double[]@)">
+            <summary>
+            Complex FFT
+            </summary>
+            <param name="xIn">time domain complex datas, x0.re x0.im x1.re x1.im...</param>
+            <param name="xOut">complex frequency datas, y[0].re y[0].im y[1].re y[1].im...</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.ComplexFFT(System.Numerics.Complex[],System.Numerics.Complex[]@)">
+            <summary>
+            Complex FFT
+            </summary>
+            <param name="xIn">time domain complex datas, x0.re x0.im x1.re x1.im...</param>
+            <param name="xOut">complex frequency datas, y[0].re y[0].im y[1].re y[1].im...</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.ComplexIFFT(System.Numerics.Complex[],System.Numerics.Complex[]@)">
+            <summary>
+            Complex IFFT
+            </summary>
+            <param name="xIn">frequency domain complex datas</param>
+            <param name="xOut">complex time domain datas</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.ComplexIFFT(System.Double[],System.Double[]@)">
+            <summary>
+            Complex IFFT
+            </summary>
+            <param name="xIn">frequency domain complex datas, x0.re x0.im x1.re x1.im...</param>
+            <param name="xOut">complex time domain datas, y0.re y0.im y1.re y1.im.../</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.ComplexIFFT(System.Numerics.Complex[],System.Double[]@)">
+            <summary>
+            Complex IFFT
+            </summary>
+            <param name="xIn">frequency domain complex datas...</param>
+            <param name="xOut">complex time domain datas, y0.re y0.im y1.re y1.im.../</param>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.WindowType">
+            <summary>
+            <para>window type</para>
+            <para>Chinese Simplified: 窗类型</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.WindowType.None">
+            <summary>
+            <para>Rectangle</para>
+            <para>Chinese Simplified: 矩形窗</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.WindowType.Hanning">
+            <summary>
+            <para>Hanning</para>
+            <para>Chinese Simplified: 汉宁窗</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.WindowType.Hamming">
+            <summary>
+            <para>Hamming</para>
+            <para>Chinese Simplified: 海明窗</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.WindowType.Blackman_Harris">
+            <summary>
+            <para>Blackman Harris</para>
+            <para>Chinese Simplified: 布莱克曼-哈里斯窗</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.WindowType.Exact_Blackman">
+            <summary>
+            <para>Exact Blackman</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.WindowType.Blackman">
+            <summary>
+            <para>Blackman</para>
+            <para>Chinese Simplified: 布莱克曼窗</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.WindowType.Flat_Top">
+            <summary>
+            <para>Flat Top</para>
+            <para>Chinese Simplified: 平顶窗</para>	
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.WindowType.Four_Term_B_Harris">
+            <summary>
+            <para>4 Term B-Harris</para>
+            </summary>																																						
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.WindowType.Seven_Term_B_Harris">
+            <summary>
+            <para>7 Term B-Harris</para>
+            </summary>	
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.SpectrumUnits">
+            <summary>
+            <para>unit of power spectrum</para>
+            <para>Chinese Simplified: 频谱的单位</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.SpectrumUnits.V">
+            <summary>
+            Voltage
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.SpectrumUnits.V2">
+            <summary>
+            V^2
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.SpectrumUnits.W">
+            <summary>
+            Watt
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.SpectrumUnits.dBm">
+            <summary>
+            dBm
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.SpectrumUnits.dBW">
+            <summary>
+            dBW
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.SpectrumUnits.dBV">
+            <summary>
+            dBV
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.SpectrumUnits.dBmV">
+            <summary>
+            dBmV
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.SpectrumUnits.dBuV">
+            <summary>
+            dBuV
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.SpectrumType">
+            <summary>
+            <para>spectrum type</para>
+            <para>Chinese Simplified: 频谱类型</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.SpectrumType.Amplitude">
+            <summary>
+            <para>amplitude spectrum</para>
+            <para>Chinese Simplified: 幅度谱</para>
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.SpectrumType.Power">
+            <summary>
+            <para>power spectrum</para>
+            <para>Chinese Simplified: 功率谱</para>
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.PeakScaling">
+            <summary>
+            Spectrum peak scaling
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.PeakScaling.Rms">
+            <summary>
+            Rms
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.PeakScaling.Peak">
+            <summary>
+            Peak
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.UnitConvSetting">
+            <summary>
+            <para>spectrum unit convertion settings</para>
+            <para>Chinese Simplified: 单位转换定义结构体</para>
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.SpectralInfo">
+            <summary>
+            <para>spectral information.</para>
+            <para>Chinese Simplified: 谱信息结构</para>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.GetInstance">
+            <summary>
+            获取DFTIDescMgr的实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr._dftDescDict">
+            <summary>
+            DFT desc Dictionary
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.GetDFTDesc(System.Int32,SeeSharpTools.JY.DSP.Fundamental.DFTType)">
+            <summary>
+            Get DFTKey
+            </summary>
+            <param name="fftSampleCount">fft运算的点数</param>
+            <param name="type">fft类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.Contains(System.UInt32,SeeSharpTools.JY.DSP.Fundamental.DFTType,System.UInt64@)">
+            <summary>
+            Contains DFTKey
+            </summary>
+            <param name="fftSampleCount">fft运算的点数</param>
+            <param name="type">fft类型</param>
+            <param name="keyId">返回的keyId</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.Contains(System.UInt32,SeeSharpTools.JY.DSP.Fundamental.DFTType)">
+            <summary>
+            Contains DFTKey
+            </summary>
+            <param name="fftSampleCount">fft运算的点数</param>
+            <param name="type">fft类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.AddDFTDesc(System.UInt32,SeeSharpTools.JY.DSP.Fundamental.DFTType,System.IntPtr)">
+            <summary>
+            添加DFT Desc
+            </summary>
+            <param name="fftSampleCount"></param>
+            <param name="type"></param>
+            <param name="desc"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.AddDFTDesc(System.UInt64,System.IntPtr)">
+            <summary>
+            添加DFT Desc
+            </summary>
+            <param name="keyId">keyId, 由Contains返回</param>
+            <param name="desc">描述符</param>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.DFTKey">
+            <summary>
+            DFT Desc's Key
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.DSP.Fundamental.DFTKey.FFTSampleCount">
+            <summary>
+            FFT点数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.DSP.Fundamental.DFTKey.Type">
+            <summary>
+            FFT类型
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTKey.GetKeyNum">
+            <summary>
+            获取Key的值
+            [7][6][5][4]  [3][2][1][0]
+            fftThreadID(4bytes) FFT SampleCount(28bit) FFT Type 4bit
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Fundamental.DFTType">
+            <summary>
+            DFT Type
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.DFTType.Double1DRealInComplexOut">
+            <summary>
+            双精度类型的实数输入复数输出的FFT,或IFFT
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.DFTType.Double1DComplexInComplexOut">
+            <summary>
+            //双精度类型的复数输入复数输出的FFT,或IFFT
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.DFTType.Single1DRealInComplexOut">
+            <summary>
+            双精度类型的实数输入复数输出的FFT,或IFFT
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.DFTType.Single1DComplexInComplexOut">
+            <summary>
+            //双精度类型的复数输入复数输出的FFT,或IFFT
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.Window.WindowCGFactor">
+            <summary>
+            内部使用，以WindowType为索引的调整系数Coherent Gain
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Fundamental.Window.WindowENBWFactor">
+            <summary>
+            以WindowType为索引的ENBW值
+            </summary>
+        </member>
+    </members>
+</doc>

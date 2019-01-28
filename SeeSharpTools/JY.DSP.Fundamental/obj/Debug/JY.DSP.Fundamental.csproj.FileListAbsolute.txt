@@ -1,0 +1,11 @@
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.Fundamental\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.xml
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.Fundamental\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.dll
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.Fundamental\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.pdb
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.Fundamental\obj\Debug\SeeSharpTools.JY.DSP.Fundamental.dll
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.Fundamental\obj\Debug\SeeSharpTools.JY.DSP.Fundamental.pdb
+E:\git\SeeSharpDevelop\SeeSharpTools\JY.DSP.Fundamental\obj\Debug\JY.DSP.Fundamental.csprojResolveAssemblyReference.cache
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.Fundamental\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.xml
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.Fundamental\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.Fundamental\bin\Debug\SeeSharpTools.JY.DSP.Fundamental.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.Fundamental\obj\Debug\SeeSharpTools.JY.DSP.Fundamental.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.DSP.Fundamental\obj\Debug\SeeSharpTools.JY.DSP.Fundamental.pdb

@@ -1,0 +1,14 @@
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\bin\Debug\NativeDLLs\ia32\ippcore.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\bin\Debug\NativeDLLs\ia32\ipps.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\bin\Debug\NativeDLLs\ia32\ippvm.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\bin\Debug\NativeDLLs\ia32\ippvmg9.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\bin\Debug\NativeDLLs\intel64\ippcore.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\bin\Debug\NativeDLLs\intel64\ipps.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\bin\Debug\NativeDLLs\intel64\ippvm.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\bin\Debug\SeeSharpTools.JY.Statistics.xml
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\bin\Debug\SeeSharpTools.JY.Statistics.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\bin\Debug\SeeSharpTools.JY.Statistics.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\bin\Debug\MathNet.Numerics.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\obj\Debug\SeeSharpTools.JY.Statistics.dll
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\obj\Debug\SeeSharpTools.JY.Statistics.pdb
+E:\coding\SeeSharpDevelop\SeeSharpTools\JY.Statistics\obj\Debug\JY.Statistics.csprojResolveAssemblyReference.cache

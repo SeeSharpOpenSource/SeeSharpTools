@@ -1,0 +1,3497 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SeeSharpTools.JY.File</name>
+    </assembly>
+    <members>
+        <member name="F:SeeSharpTools.JY.File.Common.Constants.VersionPosition">
+            <summary>
+            Version Position In File
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.Common.i18n.I18nEntity">
+            <summary>
+            国际化实体类，支持语言zh-CN和en_US
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.Common.i18n.I18nEntity.GetInstance(System.Object)">
+            <summary>
+            获取I18n处理类的实例。该方法的实现在I18nLocalWrapper类中。
+            </summary>
+            <param name="targetObj">国际化目标类的实例</param>
+            <returns>I18n处理类实例</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.Common.i18n.I18nEntity.GetInstance(System.String)">
+            <summary>
+            获取I18n处理类的实例
+            </summary>
+            <param name="targetName">国际化目标名称</param>
+            <returns>I18n处理类实例</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.Common.i18n.I18nEntity.RemoveInstance(System.Object)">
+            <summary>
+            释放目标名称的实例。该方法的实现在I18nLocalWrapper类中。
+            </summary>
+            <param name="targetObj">国际化目标类</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.Common.i18n.I18nEntity.RemoveInstance(System.String)">
+            <summary>
+            释放目标名称的实例
+            </summary>
+            <param name="targetName">国际化目标名称</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.Common.i18n.I18nEntity.GetErrCodeMsg(System.Int32)">
+            <summary>
+            根据异常码获取API的异常信息
+            </summary>
+            <param name="errorCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.Common.i18n.I18nEntity.GetFStr(System.String,System.Object[])">
+            <summary>
+            获取使用占位符的国际化信息
+            </summary>
+            <param name="labelKey">信息标签</param>
+            <param name="paramArray">占位符参数</param>
+            <returns>国际化后的信息</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.Common.i18n.I18nEntity.GetStr(System.String)">
+            <summary>
+            获取国际化信息
+            </summary>
+            <param name="labelKey">信息标签</param>
+            <returns>国际化后的信息</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.Common.i18n.I18nLocalWrapper">
+            <summary>
+            本地化i18n定制的实现类。实现使用object类型获取和释放目标国际化类实例的方法和自定义组件，保证I18nEntity类的通用性
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.Common.i18n.I18nLocalWrapper.GetInstance(System.Object)">
+            <summary>
+            获取本地化i18n定制的实现类
+            </summary>
+            <param name="targetObj"></param>
+            <returns>目标类型I18n实例</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.Common.i18n.I18nLocalWrapper.RemoveInstance(System.Object)">
+            <summary>
+            释放本地化i18n定制的实现类
+            </summary>
+            <param name="targetObj">国际化目标类</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.Common.i18n.I18nLocalWrapper.GetLanguageType">
+            <summary>
+            获取语言类型标签
+            </summary>
+            <returns>语言类型标签</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.Common.i18n.I18nLocalWrapper.GetFileEncoding">
+            <summary>
+            获取编码类型
+            </summary>
+            <returns>语言类型标签</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.Common.SeeSharpFileErrorCode">
+            <summary>
+            File operation module error code class
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.Common.SeeSharpFileErrorCode.ParamCheckError">
+            <summary>
+            Invalid row index
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.Common.SeeSharpFileErrorCode.RuntimeError">
+            <summary>
+            Run time exception
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.Common.SeeSharpFileErrorCode.FileFormatError">
+            <summary>
+            File format error
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.Common.SeeSharpFileErrorCode.FileDataError">
+            <summary>
+            File format error
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.Common.SeeSharpFileErrorCode.UnsupportedDataType">
+            <summary>
+            Unsupported data type
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.Common.SeeSharpFileErrorCode.DataLengthMismatch">
+            <summary>
+            Data length mismatch
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.SeeSharpFileException">
+            <summary>
+            File operation exception class
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SeeSharpFileException.ErrorCode">
+            <summary>
+            Error Code
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SeeSharpFileException.#ctor(System.Int32,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="errCode">Error code</param>
+            <param name="message">Error message</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SeeSharpFileException.#ctor(System.Int32,System.String,System.Exception)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="errCode">Error code</param>
+            <param name="message">Error message</param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.#ctor(System.String,SeeSharpTools.JY.File.FileOperation)">
+            <summary>
+            创建WaveformFile对象，指定文件路径
+            </summary>
+            <param name="filePath">文件路径</param>
+            <param name="mode">文件操作类型</param>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile.FORMATLENGH">
+            <summary>
+            格式信息长度
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile.FILEHEAD">
+            <summary>
+            文件头长度
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._fileOperation">
+            <summary>
+            文件操作模式
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._fileStream">
+            <summary>
+            FileStream对象，可操作字节或字节数组
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._sampleInformation">
+            <summary>
+            采样信息，作用是在将部分属性信息打包成类，方便后续写文件时的序列化操作
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._fileHeadLengh">
+            <summary>
+            记录已写入的文件头的长度
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._fileClosed">
+            <summary>
+            文件是否关闭
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._writeIndex">
+            <summary>
+            写数据指针，记录已写入的数据长度，单位为sample
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._readIndex">
+            <summary>
+            读数据指针，指定读取数据的起始位置，单位为sample
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._fileMenu">
+            <summary>
+            文件目录信息，记录各类信息的长度
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._readFileIndexInHead">
+            <summary>
+            读文件指针是否在文件头
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._writeFileIndexInHead">
+            <summary>
+            写文件指针是否在文件头
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._dataWrited">
+            <summary>
+            记录是否写入过数据
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._rawByteData">
+            <summary>
+            写文件时使用的byte数组
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._byteData">
+            <summary>
+            读文件时使用的byte数组
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.AnalogWaveformFile.FileFormat">
+            <summary>
+            文件格式，Stream/Multi-Record
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.AnalogWaveformFile._dataType">
+            <summary>
+            数据格式，Int16/Int32/Float/Double
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.AnalogWaveformFile.ByteOrder">
+            <summary>
+            字节序，Little Endian/Big Endian
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.AnalogWaveformFile.ArchiveInformation">
+            <summary>
+            归档信息
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.AnalogWaveformFile.NumberOfChannels">
+            <summary>
+            通道数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.AnalogWaveformFile.SampleRate">
+            <summary>
+            采样率，S/s
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.AnalogWaveformFile.DataLength">
+            <summary>
+            数据长度，以Sample为单位
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.AnalogWaveformFile.Channels">
+            <summary>
+            各通道采样信息，包括通道名称、采集量程、换算
+            因子、物理单位名称和备注
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.AnalogWaveformFile.DataStartTime">
+            <summary>
+            数据起始点的时间
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.AnalogWaveformFile.TimeLabels">
+            <summary>
+            时间戳标签序列，可定义一组标签来标识指定数据采
+            样点所在的时间，当文件格式为Stream时可用于对长
+            时间连续数据的时间修正，当文件格式为MultiRecord时用于标识各Record的起始点时间信息
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.AnalogWaveformFile.CustomLabels">
+            <summary>
+            自定义标签序列，可定义一组标签来保存备注信息
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Open(System.String,SeeSharpTools.JY.File.FileOperation)">
+            <summary>
+            创建新文件或打开文件
+            </summary>
+            <param name="filePath">文件路径</param>
+            <param name="mode">文件操作类型</param>
+            <remarks>如果构造函数中已指定路径，则打开操作只能在文件close之后进行</remarks>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Close">
+            <summary>
+            关闭文件,写入文件头和文件尾信息
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Write(System.Double[0:,0:])">
+            <summary>
+            将二维数组的double类型数据转换成原始字节数据写入文件中
+            </summary>
+            <param name="data">存放数据的二维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Write(System.Single[0:,0:])">
+            <summary>
+            将二维数组的float类型数据转换成原始字节数据写入文件中
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Write(System.Int16[0:,0:])">
+            <summary>
+            将二维数组的short类型数据转换成原始字节数据写入文件中
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Write(System.Int32[0:,0:])">
+            <summary>
+            将二维数组的int类型数据转换成原始字节数据写入文件中
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Write(System.Double[])">
+            <summary>
+            将一维数组的double类型数据转换成原始字节数据写入文件中
+            </summary>
+            <param name="data">存放数据的一维数组</param>
+            <remarks>如果是多通道数据，按通道交错排列</remarks>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Write(System.Single[])">
+            <summary>
+            将一维数组的float类型数据转换成原始字节数据写入文件中
+            </summary>
+            <param name="data"></param>
+            <remarks>如果是多通道数据，按通道交错排列</remarks>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Write(System.Int16[])">
+            <summary>
+            将一维数组的short类型数据转换成原始字节数据写入文件中
+            </summary>
+            <param name="data"></param>
+            <remarks>如果是多通道数据，按通道交错排列</remarks>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Write(System.Int32[])">
+            <summary>
+            将一维数组的int类型数据转换成原始字节数据写入文件中
+            </summary>
+            <param name="data"></param>
+            <remarks>如果是多通道数据，按通道交错排列</remarks>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Read(System.Double[0:,0:])">
+            <summary>
+            从文件中读取字节数据，转换成指定的double类型
+            如果写入文件的数据类型是short或者int，读取的是scale转换后的数据
+            </summary>
+            <param name="data">存放数据的二维数组</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Read(System.Single[0:,0:])">
+            <summary>
+            从文件中读取字节数据，转换成指定的float类型
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Read(System.Int16[0:,0:])">
+            <summary>
+            从文件中读取字节数据，转换成指定的short类型
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Read(System.Int32[0:,0:])">
+            <summary>
+            从文件中读取字节数据，转换成指定的int类型
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Read(System.Double[])">
+            <summary>
+            从文件中读取字节数据，转换成指定的double类型
+            如果写入文件的数据类型是short或者int，读取的是scale转换后的数据
+            </summary>
+            <param name="data">存放数据的一维数组</param>
+            <remarks>如果是多通道数据，按通道交错排列</remarks>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Read(System.Single[])">
+            <summary>
+            从文件中读取字节数据，转换成指定的float类型
+            </summary>
+            <param name="data"></param>
+            <remarks>如果是多通道数据，按通道交错排列</remarks>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Read(System.Int16[])">
+            <summary>
+            从文件中读取字节数据，转换成指定的short类型
+            </summary>
+            <param name="data"></param>
+            <remarks>如果是多通道数据，按通道交错排列</remarks>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.Read(System.Int32[])">
+            <summary>
+            从文件中读取字节数据，转换成指定的int类型
+            </summary>
+            <param name="data"></param>
+            <remarks>如果是多通道数据，按通道交错排列</remarks>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.SetFilePosition(System.Int64)">
+            <summary>
+            设置文件读取位置，以Sample为单位
+            </summary>
+            <param name="position"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.GetFilePosition">
+            <summary>
+            获取当前文件读取位置，或已写入的数据长度，以Sample为单位
+            </summary>
+            <returns>当前已写入数据区的数据总长度</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.AddTimeLabel(System.String,System.Int64,System.DateTime,System.String)">
+            <summary>
+            添加时间标签到时间标签列表
+            </summary>
+            <param name="name"></param>
+            <param name="position"></param>
+            <param name="time"></param>
+            <param name="description"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.AddTimeLabel(SeeSharpTools.JY.File.TimeLabel)">
+            <summary>
+             添加时间标签到时间标签列表
+            </summary>
+            <param name="label"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.GetTimeLabel(System.String)">
+            <summary>
+            获取指定时间标签信息
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.AddCustomLabel``1(System.String,SeeSharpTools.JY.File.CustomLabelDataType,``0)">
+            <summary>
+            添加自定义备注，支持Int/Double/String
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name"></param>
+            <param name="type"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.GetCustomLabel(System.String)">
+            <summary>
+            获取指定时间标签信息
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.InitPrivateFileds">
+            <summary>
+            初始化相关私有字段
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.InitFileContent(System.String,SeeSharpTools.JY.File.FileOperation)">
+            <summary>
+            创建FileStream对象，提取或初始化文件头信息
+            </summary>
+            <remarks>如果是只读操作，读取文件头和文件尾信息，
+            如果是读写操作，用65536个回车符将文件头填满</remarks>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.JsonSerializer``1(``0,System.Byte[]@)">
+            <summary>
+            将一个对象序列化为字符串，再转换成字节数组
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="rawByte"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.WriteHeadInfoToFile(System.IO.FileStream,System.Byte[],System.Int32)">
+            <summary>
+            将原始字节数组写入文件
+            </summary>
+            <param name="fs"></param>
+            <param name="rawByte"></param>
+            <param name="length"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.ReadHeadInfoFromFile(System.IO.FileStream,System.Byte[]@,System.Int32)">
+            <summary>
+            从文件中读取原始字节数据
+            </summary>
+            <param name="fs"></param>
+            <param name="rawByte"></param>
+            <param name="length"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.JsonDeSerializer``1(System.Byte[],``0@)">
+            <summary>
+            将字节数组反序列化为指定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="rawByte"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.WriteDataToFile``1(System.IO.FileStream,``0[])">
+            <summary>
+            写入采样数据到文件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="fs"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.ReadDataFromFile``1(System.IO.FileStream,``0[])">
+            <summary>
+            从文件中读取采样数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="fs"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.WriteDataToFile``1(System.IO.FileStream,``0[0:,0:])">
+            <summary>
+            写入采样数据到文件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="fs"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.AnalogWaveformFile.ReadDataFromFile``1(System.IO.FileStream,``0[0:,0:])">
+            <summary>
+            从文件中读取采样数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="fs"></param>
+            <param name="t"></param>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.FileMenu">
+            <summary>
+            文件目录信息
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileMenu._archiveInfoLength">
+            <summary>
+            归档信息长度
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileMenu._sampleInfoLength">
+            <summary>
+            采样信息长度
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileMenu._timeLabelsLength">
+            <summary>
+            时间标签信息长度
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileMenu._customLabelsLength">
+            <summary>
+            自定义标签信息长度
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileMenu._dataType">
+            <summary>
+            数据格式，Int16/Int32/Float/Double
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.ArchiveInformation">
+            <summary>
+            归档信息
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ArchiveInformation.FileVersion">
+            <summary>
+            只读，WaveformFile的版本
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ArchiveInformation.Author">
+            <summary>
+            可用于描述数据来源
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ArchiveInformation.DataLabel">
+            <summary>
+            可用于数据的归档标识
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ArchiveInformation.DataGroupID">
+            <summary>
+            可用于文件的关联标识
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ArchiveInformation.FileCreatedDate">
+            <summary>
+            只读，文件建立的时间
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ArchiveInformation.GeographicLocation">
+            <summary>
+            可用于描述地理位置信息
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ArchiveInformation.Description">
+            <summary>
+            可用于描述数据备注
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.ArchiveInformation.#ctor">
+            <summary>
+            归档信息，默认构造函数
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.ChannelInfo">
+            <summary>
+            通道信息
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ChannelInfo.ChannelGroupId">
+            <summary>
+            通道Group
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ChannelInfo.Name">
+            <summary>
+            通道名称
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ChannelInfo.RangeHigh">
+            <summary>
+            通道量程上限
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ChannelInfo.RangeLow">
+            <summary>
+            通道量程下限
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ChannelInfo.Offset">
+            <summary>
+            偏移
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ChannelInfo.Scale">
+            <summary>
+            增益
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ChannelInfo.Unit">
+            <summary>
+            样点数据单位
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.ChannelInfo.Description">
+            <summary>
+            通道信息备注
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.ChannelInfo.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+            <remarks>设置偏移为0，斜率为1</remarks>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.TimeLabel">
+            <summary>
+            时间标签
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.TimeLabel.Name">
+            <summary>
+            标签名
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.TimeLabel.Position">
+            <summary>
+            样点位置，in samples from start
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.TimeLabel.Time">
+            <summary>
+            样点时间
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.TimeLabel.Description">
+            <summary>
+            时间标签备注
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.TimeLabel.#ctor(System.String,System.Int64,System.DateTime,System.String)">
+            <summary>
+            构造函数，设置初始化值
+            </summary>
+            <param name="name"></param>
+            <param name="position"></param>
+            <param name="time"></param>
+            <param name="description"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.TimeLabel.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.CustomLabel">
+            <summary>
+            自定义标签
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CustomLabel.#ctor(System.String,SeeSharpTools.JY.File.CustomLabelDataType,System.Object)">
+            <summary>
+            构造函数，设置初始化值
+            </summary>
+            <param name="name"></param>
+            <param name="type"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CustomLabel.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.CustomLabel.Name">
+            <summary>
+            标签名
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.CustomLabel._dataType">
+            <summary>
+            自定义标签数据类型
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.CustomLabel._dataValue">
+            <summary>
+            自定义标签数据类型所对应数据的值
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.CustomLabel.DataType">
+            <summary>
+            自定义标签数据类型
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CustomLabel.SetValue``1(``0)">
+            <summary>
+            设置值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CustomLabel.GetValue``1">
+            <summary>
+            取值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.FileFormat">
+            <summary>
+            文件格式
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileFormat.Stream">
+            <summary>
+            Stream
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileFormat.MultiRecord">
+            <summary>
+            MultiRecord
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.DataType">
+            <summary>
+            数据格式
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.DataType.Int16">
+            <summary>
+            short
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.DataType.Int32">
+            <summary>
+            int
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.DataType.Float">
+            <summary>
+            float
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.DataType.Double">
+            <summary>
+            double
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.ByteOrder">
+            <summary>
+            字节序
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ByteOrder.LittleEndian">
+            <summary>
+            将低序字节存储在起始地址
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ByteOrder.BigEndian">
+            <summary>
+            将高序字节存储在起始地址
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.CustomLabelDataType">
+            <summary>
+            自定义标签数据类型
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.CustomLabelDataType.Int16">
+            <summary>
+            short
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.CustomLabelDataType.Int32">
+            <summary>
+            int
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.CustomLabelDataType.Double">
+            <summary>
+            double
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.CustomLabelDataType.String">
+            <summary>
+            string
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.FileOperation">
+            <summary>
+            文件操作类型
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileOperation.CreateNew">
+            <summary>
+            指定操作系统应创建新文件
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileOperation.Create">
+            <summary>
+            指定操作系统应创建新文件。如果文件已存在，它将被覆盖。
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileOperation.Open">
+            <summary>
+            指定操作系统应打开现有文件。
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileOperation.OpenOrCreate">
+            <summary>
+            指定操作系统应打开文件（如果文件存在）；否则，应创建新文件。
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileOperation.Truncate">
+            <summary>
+            指定操作系统应打开现有文件。
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileOperation.Append">
+            <summary>
+            若存在文件，则打开该文件并查找到文件尾，或者创建一个新文件。
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.FileOperation.OpenWithReadOnly">
+            <summary>
+            打开文件，只读模式
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.SampleInformation">
+            <summary>
+            采样信息
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SampleInformation.NumberOfChannels">
+            <summary>
+            通道数
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SampleInformation.SampleRate">
+            <summary>
+            采样率，S/s
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SampleInformation.DataLength">
+            <summary>
+            数据长度，以Sample为单位
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SampleInformation.Channels">
+            <summary>
+            各通道采样信息，包括通道名称、采集量程、换算
+            因子、物理单位名称和备注
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SampleInformation.FileFormat">
+            <summary>
+            文件格式，Stream/Multi-Record
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SampleInformation.ByteOrder">
+            <summary>
+            字节序，Little Endian/Big Endian
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SampleInformation.DataStartTime">
+            <summary>
+            数据起始点的时间
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.WaveformFileException">
+            <summary>
+            文件异常类
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.WaveformFileException.ErrorCode">
+            <summary>
+            异常错误代码
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.WaveformFileException.ErrorMessage">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.WaveformFileException.#ctor(SeeSharpTools.JY.File.ErrorCode)">
+            <summary>
+            构造函数，指定异常错误代码
+            </summary>
+            <param name="er"></param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.WaveformFileException.#ctor(SeeSharpTools.JY.File.ErrorCode,System.String)">
+            <summary>
+            构造函数，指定异常错误代码和错误信息
+            </summary>
+            <param name="er"></param>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.ErrorCode">
+            <summary>
+            错误代码
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ErrorCode.SameLabel">
+            <summary>
+            添加相同标签
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ErrorCode.LabelNotExit">
+            <summary>
+            标签不存在
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ErrorCode.CannotCall">
+            <summary>
+            不允许调用
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ErrorCode.FileAccessError">
+            <summary>
+            权限错误
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ErrorCode.OpenWrongFile">
+            <summary>
+            打开了错误文件
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ErrorCode.FileNotClosed">
+            <summary>
+            文件还未关闭
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ErrorCode.ReadDataTypeError">
+            <summary>
+            读取数据类型指定错误
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ErrorCode.DataTypeSetError">
+            <summary>
+            数据类型设置错误
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ErrorCode.WriteDifferentDataType">
+            <summary>
+            写入不同数据类型的数据
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.ErrorCode.ChannelCountNotEqualToNumberOfChannels">
+            <summary>
+            添加的通道数目与NumberOfChannels属性不一致
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.BinHandler">
+            <summary>
+            Bin文件读写类
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadData(System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维double数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional double array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional string array</para>
+                    <para>Chinese Simplified:读取后的二维string数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadData(System.String,System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维double数组。
+            Read data from binary file as two dimensional double array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <param name="colNum">
+                    <para>The column count of read data.</para>
+                    <para>Chinese Simplified:读出数组的列数。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional string array</para>
+                    <para>Chinese Simplified:读取后的二维string数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadDoubleData(System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维double数组文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional string array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadDoubleData(System.String,System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维string数组。
+            Read data from binary file as two dimensional string array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <param name="colNum">
+                    <para>The column count of read data.</para>
+                    <para>Chinese Simplified:读出数组的列数。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadIntData(System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维double数组文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional string array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadIntData(System.String,System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维string数组。
+            Read data from binary file as two dimensional string array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <param name="colNum">
+                    <para>The column count of read data.</para>
+                    <para>Chinese Simplified:读出数组的列数。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadUIntData(System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维double数组文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional string array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadUIntData(System.String,System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维string数组。
+            Read data from binary file as two dimensional string array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <param name="colNum">
+                    <para>The column count of read data.</para>
+                    <para>Chinese Simplified:读出数组的列数。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadShortData(System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维double数组文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional string array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadShortData(System.String,System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维string数组。
+            Read data from binary file as two dimensional string array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <param name="colNum">
+                    <para>The column count of read data.</para>
+                    <para>Chinese Simplified:读出数组的列数。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadUShortData(System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维double数组文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional string array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadUShortData(System.String,System.Int32)">
+            <summary>
+            在bin文件中读取数据为二维string数组。
+            Read data from binary file as two dimensional string array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <param name="colNum">
+                    <para>The column count of read data.</para>
+                    <para>Chinese Simplified:读出数组的列数。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadData">
+            <summary>
+            在bin文件中读取数据为二维double数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional double array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional string array</para>
+                    <para>Chinese Simplified:读取后的二维string数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadData(System.String)">
+            <summary>
+            在bin文件中读取数据为二维double数组。
+            Read data from binary file as two dimensional double array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional string array</para>
+                    <para>Chinese Simplified:读取后的二维string数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadDoubleData">
+            <summary>
+            在bin文件中读取数据为二维double数组文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional string array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadDoubleData(System.String)">
+            <summary>
+            在bin文件中读取数据为二维string数组。
+            Read data from binary file as two dimensional string array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadIntData">
+            <summary>
+            在bin文件中读取数据为二维double数组文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional string array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadIntData(System.String)">
+            <summary>
+            在bin文件中读取数据为二维string数组。
+            Read data from binary file as two dimensional string array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadUIntData">
+            <summary>
+            在bin文件中读取数据为二维double数组文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional string array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadUIntData(System.String)">
+            <summary>
+            在bin文件中读取数据为二维string数组。
+            Read data from binary file as two dimensional string array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadShortData">
+            <summary>
+            在bin文件中读取数据为二维double数组文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional string array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadShortData(System.String)">
+            <summary>
+            在bin文件中读取数据为二维string数组。
+            Read data from binary file as two dimensional string array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadUShortData">
+            <summary>
+            在bin文件中读取数据为二维double数组文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            Read data from binary file as two dimensional string array. File path can be choosen from the GUI.
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.ReadUShortData(System.String)">
+            <summary>
+            在bin文件中读取数据为二维string数组。
+            Read data from binary file as two dimensional string array.
+                <param name="filePath">
+                    <para>The full path of the file to read.</para>
+                    <para>Chinese Simplified:待读取文件的完整路径。</para>
+                </param>
+                <returns >
+                    <para>The read two dimensional double array</para>
+                    <para>Chinese Simplified:读取后的二维double数组</para>
+                </returns>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入string类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>One dimensional datas to write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.String[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入string类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入string类型二维数据，通过弹窗选择文件路径
+            Write two dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>Two dimensional datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.String[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入string类型二维数据
+            Write two dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.Double[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>One dimensional datas to write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.Double[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.Double[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型二维数据，通过弹窗选择文件路径
+            Write two dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>Two dimensional datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.Double[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型二维数据
+            Write two dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.Int32[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>One dimensional datas to write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.Int32[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.Int32[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型二维数据，通过弹窗选择文件路径
+            Write two dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>Two dimensional datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.Int32[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型二维数据
+            Write two dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.UInt32[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>One dimensional datas to write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.UInt32[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.UInt32[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型二维数据，通过弹窗选择文件路径
+            Write two dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>Two dimensional datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.UInt32[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型二维数据
+            Write two dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.Int16[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>One dimensional datas to write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.Int16[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.Int16[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型二维数据，通过弹窗选择文件路径
+            Write two dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>Two dimensional datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.Int16[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型二维数据
+            Write two dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.UInt16[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>One dimensional datas to write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.UInt16[],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型一维数据，通过弹窗选择文件路径
+            Write one dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.UInt16[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型二维数据，通过弹窗选择文件路径
+            Write two dimensional data to binary file, file path can be choosen from the pop up GUI.
+                <param name="data">
+                    <para>Two dimensional datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.WriteData(System.String,System.UInt16[0:,0:],SeeSharpTools.JY.File.WriteMode)">
+            <summary>
+            在bin文件中写入double类型二维数据
+            Write two dimensional data to binary file.
+                <param name="filePath">
+                    <para>The full path of the file to write.</para>
+                    <para>Chinese Simplified:待写入文件的完整路径。</para>
+                </param>
+                <param name="data">
+                    <para>One dimension datas to be write.</para>
+                    <para>Chinese Simplified:待写入文件的一维数组</para>
+                </param>
+                <param name="writeMode">
+                    <para>Write Mode when file exist.</para>
+                    <para>Chinese Simplified:文件已存在时的写入模式</para>
+                </param>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.#ctor(System.String,System.Int32)">
+            <summary>
+            流式读取的构造方法
+            </summary>
+            <param name="filePath">读取文件的路径</param>
+            <param name="colNum">读取文件的列数</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.#ctor(System.String)">
+            <summary>
+            流式读取的构造方法
+            </summary>
+            <param name="filePath">读取文件的路径</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.#ctor">
+            <summary>
+            流式读取的构造方法
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.BinHandler.ReadOver">
+            <summary>
+            流式读取结束
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.StopStreamRead">
+            <summary>
+            停止流式操作
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.StreamRead``1(System.Int32)">
+            <summary>
+            流式读取数据
+            </summary>
+            <param name="sampleCount">读取的样点数</param>
+            <returns>包含数据的数组</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.BinHandler.StreamRead``1(``0[0:,0:])">
+            <summary>
+            流式读取数据
+            </summary>
+            <param name="dataBuf">数据缓存</param>
+            <returns>读取到的数组行数</returns>
+            <exception cref="T:SeeSharpTools.JY.File.SeeSharpFileException">Exception</exception>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.CsvHandler">
+            <summary>
+            Csv文件数据读写
+            Csv file write and Read.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.Read``1(System.Int64,System.Int64,System.Int64,System.Int64,System.Text.Encoding)">
+            <summary>
+            在csv文件中设置起始索引值，读取二维数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">要读取的起始行索引</param>
+            <param name="startColumn">要读取的起始列索引</param>
+            <param name="rowSize">要读取的行数，若为-1则读取全部行</param>
+            <param name="columnSize">要读取的列数,若为-1读取全部列</param>
+            <param name="encoding">编码方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.Read``1(System.String,System.Int64,System.Int64,System.Int64,System.Int64,System.Text.Encoding)">
+            <summary>
+            在csv文件中设置起始索引值，读取二维数组，需配置文件路径。
+            </summary>
+            <param name="startRow">要读取的起始行索引</param>
+            <param name="filePath">csv文件路径和名称</param>
+            <param name="startColumn">要读取的起始列索引</param>
+            <param name="rowSize">要读取的行数，若为-1则读取全部行</param>
+            <param name="columnSize">要读取的列数,若为-1则读取全部列</param>
+            <param name="encoding">编码方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.Read``1(System.Int64,System.Int64[],System.Int64,System.Text.Encoding)">
+            <summary>
+            设置起始行和读取的列索引， 在csv文件中读取数据，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">要读取的起始行索引</param>
+            <param name="columns">要读取的起始列索引</param>
+            <param name="rowSize">要读取的行数，若为-1则读取全部行</param>
+            <param name="encoding">编码方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.Read``1(System.String,System.Int64,System.Int64[],System.Int64,System.Text.Encoding)">
+            <summary>
+            设置起始行和读取的列索引， 在csv文件中读取数据，需配置文件路径。
+            </summary>
+            <param name="startRow">要读取的起始行索引</param>
+            <param name="filePath">csv文件路径和名称</param>
+            <param name="columns">要读取的起始列索引集合</param>
+            <param name="rowSize">要读取的行数，若为-1则读取全部行</param>
+            <param name="encoding">编码方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.Read``1(System.Int64[],System.Int64[],System.Text.Encoding)">
+            <summary>
+            在csv文件中设置要读取的行列索引值数组，读取二维数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="rowCollection">要读取的行的索引集合</param>
+            <param name="columnCollection">要读取的列的索引集合</param>
+            <param name="encoding">编码方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.Read``1(System.String,System.Int64[],System.Int64[],System.Text.Encoding)">
+            <summary>
+             在csv文件中设置要读取的行列索引值数组，读取二维数组，需配置文件路径。
+            </summary>
+            <param name="filePath">csv文件路径和名称</param>
+            <param name="rowCollection">要读取的行的索引集合</param>
+            <param name="columnCollection">要读取的列的索引集合</param>
+            <param name="encoding">编码方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.Read``1(SeeSharpTools.JY.File.MajorOrder,System.Int64,System.Int64,System.Int64,System.Text.Encoding)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="majorOrder">读取数值的方向</param>
+            <param name="index">读取的行/列索引值</param>
+            <param name="startIndex">要读取的行/列的起始索引位置</param>
+            <param name="size">读取的数组长度，若为-1则读取全部</param>
+            <param name="encoding">编码方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.Read``1(System.String,SeeSharpTools.JY.File.MajorOrder,System.Int64,System.Int64,System.Int64,System.Text.Encoding)">
+            <summary>
+            在csv文件中设置要读取的行列索引值，读取一维数组，需配置文件路径。
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="filePath">csv文件路径和名称</param>
+            <param name="majorOrder">读取数值的方向</param>
+            <param name="index">读取的行/列索引值</param>
+            <param name="startPosition">要读取的行/列的起始索引位置</param>
+            <param name="size">读取的数组长度，若为-1则读取全部</param>
+            <param name="encoding">编码方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadData(System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadData(System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维string数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadData(System.String,System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维string数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadData(System.String,System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维string数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadDoubleData(System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维double数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadDoubleData(System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维double数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadDoubleData(System.String,System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维double数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadDoubleData(System.String,System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维double数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadFloatData(System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维int数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadFloatData(System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维float数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadFloatData(System.String,System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维float数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadFloatData(System.String,System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维float数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadIntData(System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维int数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadIntData(System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维int数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadIntData(System.String,System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维int数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadIntData(System.String,System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维int数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadUIntData(System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维uint数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadUIntData(System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维uint数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadUIntData(System.String,System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维uint数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadUIntData(System.String,System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维uint数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadShortData(System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维short数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadShortData(System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维short数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadShortData(System.String,System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维short数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadShortData(System.String,System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维short数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadUShortData(System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维ushort数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadUShortData(System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维ushort数组，通过弹窗选择文件路径。
+            </summary>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadUShortData(System.String,System.UInt32,System.UInt32,System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维ushort数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="startColumn">读取的起始列索引号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.ReadUShortData(System.String,System.UInt32,System.UInt32[],System.UInt32,System.Text.Encoding)">
+            <summary>
+            在 csv文件中读取数据为二维ushort数组
+            </summary>
+            <param name="filePath">待读取文件的完整路径</param>
+            <param name="startRow">读取的起始行索引号，从0开始</param>
+            <param name="columns">读取的列号，从0开始</param>
+            <param name="rowCount">读取的行数，等于0时读取所有行</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.WriteData``1(``0[],SeeSharpTools.JY.File.WriteMode,System.Text.Encoding)">
+            <summary>
+            在csv文件中写入数据，通过弹窗选择文件路径,需指定数据类型
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="data">待写入文件的一维数组</param>
+            <param name="writeMode">文件已存在时的写入模式</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.WriteData``1(System.String,``0[],SeeSharpTools.JY.File.WriteMode,System.Text.Encoding)">
+            <summary>
+            在csv文件中写入数据，通过弹窗选择文件路径,需指定数据类型
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="filePath">待写入文件的完整路径和名称</param>
+            <param name="data">待写入文件的一维数组</param>
+            <param name="writeMode">文件已存在时的写入模式</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.WriteData``1(``0[0:,0:],SeeSharpTools.JY.File.WriteMode,System.Text.Encoding)">
+            <summary>
+            在csv文件中写入数据，通过弹窗选择文件路径,需指定数据类型
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="data">待写入文件的二维数组</param>
+            <param name="writeMode">文件已存在时的写入模式</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.CsvHandler.WriteData``1(System.String,``0[0:,0:],SeeSharpTools.JY.File.WriteMode,System.Text.Encoding)">
+            <summary>
+            在csv文件中写入数据，通过弹窗选择文件路径,需指定数据类型
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="filePath">待写入文件的完整路径和名称</param>
+            <param name="data">待写入文件的二维数组</param>
+            <param name="writeMode">文件已存在时的写入模式</param>
+            <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.WriteMode">
+            <summary>
+            文件存在时的写入模式
+            Write mode when file exist
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.WriteMode.Append">
+            <summary>
+            文件存在时续写
+            Append to file
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.WriteMode.OverLap">
+            <summary>
+            文件存在时覆盖
+            Overlap file
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.FileUtil">
+            <summary>
+            文件操作工具类
+            File Read And Write Handler
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.IniData">
+            <summary>
+                Ini file data class
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.IniData._sections">
+            <summary>
+                Represents all sections from an INI file
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniData.#ctor">
+            <summary>
+                Initializes an empty IniData instance.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniData.#ctor(SeeSharpTools.JY.File.SectionDataCollection)">
+            <summary>
+                Initializes a new IniData instance using a previous
+                <see cref="T:SeeSharpTools.JY.File.SectionDataCollection"/>.
+            </summary>
+            <param name="sdc">
+                <see cref="T:SeeSharpTools.JY.File.SectionDataCollection"/> object containing the
+                data with the sections of the file
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniData.#ctor(SeeSharpTools.JY.File.IniData)">
+            <summary>
+            Initializes with an existing IniData
+            </summary>
+            <param name="ori"></param>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.IniData.Configuration">
+            <summary>
+                Configuration used to write an ini file with the proper
+                delimiter characters and data.
+            </summary>
+            <remarks>
+                If the <see cref="T:SeeSharpTools.JY.File.IniData"/> instance was created by a parser,
+                this instance is a copy of the <see cref="T:IniParser.Model.Configuration.IniParserConfiguration"/> used
+                by the parser (i.e. different objects instances)
+                If this instance is created programatically without using a parser, this
+                property returns an instance of <see cref="T:IniParser.Model.Configuration.IniParserConfiguration"/>
+            </remarks>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.IniData.Global">
+            <summary>
+            	Global sections. Contains key/value pairs which are not
+            	enclosed in any section (i.e. they are defined at the beginning 
+            	of the file, before any section.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.IniData.Item(System.String)">
+            <summary>
+            Gets the <see cref="T:SeeSharpTools.JY.File.KeyDataCollection"/> instance 
+            with the specified section name.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.IniData.Sections">
+            <summary>
+            Gets or sets all the <see cref="T:SeeSharpTools.JY.File.SectionData"/> 
+            for this IniData instance.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.IniData.SectionKeySeparator">
+            <summary>
+                Used to mark the separation between the section name and the key name 
+                when using <see cref="M:SeeSharpTools.JY.File.IniData.TryGetKey(System.String,System.String@)"/>. 
+            </summary>
+            <remarks>
+                Defaults to '.'.
+            </remarks>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniData.Clone">
+            <summary>
+                Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+                A new object that is a copy of this instance.
+            </returns>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.IniData._configuration">
+            <summary>
+                See property <see cref="P:SeeSharpTools.JY.File.IniData.Configuration"/> for more information. 
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniData.ClearAllComments">
+            <summary>
+                Deletes all comments in all sections and key values
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniData.Merge(SeeSharpTools.JY.File.IniData)">
+            <summary>
+                Merges the other iniData into this one by overwriting existing values.
+                Comments get appended.
+            </summary>
+            <param name="toMergeIniData">
+                IniData instance to merge into this. 
+                If it is null this operation does nothing.
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniData.TryGetKey(System.String,System.String@)">
+            <summary>
+                Attempts to retrieve a key, using a single string combining section and 
+                key name.
+            </summary>
+            <param name="key">
+                The section and key name to retrieve, separated by <see cref="!:IniParserConfiguration.SectionKeySeparator"/>.
+            
+                If key contains no separator, it is treated as a key in the <see cref="P:SeeSharpTools.JY.File.IniData.Global"/> section.
+            
+                Key may contain no more than one separator character.
+            </param>
+            <param name="value">
+                If true is returned, is set to the value retrieved.  Otherwise, is set
+                to an empty string.
+            </param>
+            <returns>
+                True if key was found, otherwise false.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                key contained multiple separators.
+            </exception>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniData.GetKey(System.String)">
+            <summary>
+                Retrieves a key using a single input string combining section and key name.
+            </summary>
+            <param name="key">
+                The section and key name to retrieve, separated by <see cref="!:IniParserConfiguration.SectionKeySeparator"/>.
+            
+                If key contains no separator, it is treated as a key in the <see cref="P:SeeSharpTools.JY.File.IniData.Global"/> section.
+            
+                Key may contain no more than one separator character.
+            </param>
+            <returns>
+                The key's value if it was found, otherwise null.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                key contained multiple separators.
+            </exception>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniData.MergeSection(SeeSharpTools.JY.File.SectionData)">
+            <summary>
+                Merge the sections into this by overwriting this sections.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniData.MergeGlobal(SeeSharpTools.JY.File.KeyDataCollection)">
+            <summary>
+                Merges the given global values into this globals by overwriting existing values.
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.IniDataCaseInsensitive">
+            <summary>
+                Represents all data from an INI file exactly as the <see cref="T:SeeSharpTools.JY.File.IniData"/>
+                class, but searching for sections and keys names is done with
+                a case insensitive search.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniDataCaseInsensitive.#ctor">
+            <summary>
+                Initializes an empty IniData instance.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniDataCaseInsensitive.#ctor(SeeSharpTools.JY.File.SectionDataCollection)">
+            <summary>
+                Initializes a new IniData instance using a previous
+                <see cref="T:SeeSharpTools.JY.File.SectionDataCollection"/>.
+            </summary>
+            <param name="sdc">
+                <see cref="T:SeeSharpTools.JY.File.SectionDataCollection"/> object containing the
+                data with the sections of the file
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniDataCaseInsensitive.#ctor(SeeSharpTools.JY.File.IniData)">
+            <summary>
+            Copies an instance of the <see cref="!:IniParser.Model.IniDataCaseInsensitive"/> class
+            </summary>
+            <param name="ori">Original </param>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.KeyData">
+            <summary>
+                Information associated to a key from an INI file.
+                Includes both the value and the comments associated to the key.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyData.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:SeeSharpTools.JY.File.KeyData"/> class.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyData.#ctor(SeeSharpTools.JY.File.KeyData)">
+            <summary>
+                Initializes a new instance of the <see cref="T:SeeSharpTools.JY.File.KeyData"/> class
+                from a previous instance of <see cref="T:SeeSharpTools.JY.File.KeyData"/>.
+            </summary>
+            <remarks>
+                Data is deeply copied
+            </remarks>
+            <param name="ori">
+                The instance of the <see cref="T:SeeSharpTools.JY.File.KeyData"/> class 
+                used to create the new instance.
+            </param>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.KeyData.Comments">
+            <summary>
+            Gets or sets the comment list associated to this key.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.KeyData.Value">
+            <summary>
+                Gets or sets the value associated to this key.
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.KeyData.KeyName">
+            <summary>
+                Gets or sets the name of the key.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyData.Clone">
+            <summary>
+                Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+                A new object that is a copy of this instance.
+            </returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.KeyDataCollection">
+            <summary>
+                Represents a collection of Keydata.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:SeeSharpTools.JY.File.KeyDataCollection"/> class.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.#ctor(System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+                Initializes a new instance of the <see cref="T:SeeSharpTools.JY.File.KeyDataCollection"/> class with a given
+                search comparer
+            </summary>
+            <param name="searchComparer">
+                Search comparer used to find the key by name in the collection
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.#ctor(SeeSharpTools.JY.File.KeyDataCollection,System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+                Initializes a new instance of the <see cref="T:SeeSharpTools.JY.File.KeyDataCollection"/> class
+                from a previous instance of <see cref="T:SeeSharpTools.JY.File.KeyDataCollection"/>.
+            </summary>
+            <remarks>
+                Data from the original KeyDataCollection instance is deeply copied
+            </remarks>
+            <param name="ori">
+                The instance of the <see cref="T:SeeSharpTools.JY.File.KeyDataCollection"/> class 
+                used to create the new instance.
+            </param>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.KeyDataCollection.Item(System.String)">
+            <summary>
+                Gets or sets the value of a concrete key.
+            </summary>
+            <remarks>
+                If we try to assign the value of a key which doesn't exists,
+                a new key is added with the name and the value is assigned to it.
+            </remarks>
+            <param name="keyName">
+                Name of the key
+            </param>
+            <returns>
+                The string with key's value or null if the key was not found.
+            </returns>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.KeyDataCollection.Count">
+            <summary>
+                Return the number of keys in the collection
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SeeSharpTools.JY.File.KeyDataCollection.AddKey(System.String)" -->
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.AddKey(SeeSharpTools.JY.File.KeyData)">
+            <summary>
+                Adds a new key to the collection
+            </summary>
+            <param name="keyData">
+                KeyData instance.
+            </param>
+            <returns>
+                <c>true</c> if the key was added  <c>false</c> if a key with the same name already exist 
+                in the collection
+            </returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.AddKey(System.String,System.String)">
+            <summary>
+                Adds a new key with the specified name and value to the collection
+            </summary>
+            <param name="keyName">
+                Name of the new key to be added.
+            </param>
+            <param name="keyValue">
+                Value associated to the key.
+            </param>
+            <returns>
+                <c>true</c> if the key was added  <c>false</c> if a key with the same name already exist 
+                in the collection.
+            </returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.ClearComments">
+            <summary>
+                Clears all comments of this section
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.ContainsKey(System.String)">
+            <summary>
+            Gets if a specifyed key name exists in the collection.
+            </summary>
+            <param name="keyName">Key name to search</param>
+            <returns><c>true</c> if a key with the specified name exists in the collectoin
+            <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.GetKeyData(System.String)">
+            <summary>
+            Retrieves the data for a specified key given its name
+            </summary>
+            <param name="keyName">Name of the key to retrieve.</param>
+            <returns>
+            A <see cref="T:SeeSharpTools.JY.File.KeyData"/> instance holding
+            the key information or <c>null</c> if the key wasn't found.
+            </returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.RemoveAllKeys">
+            <summary>
+            	Deletes all keys in this collection.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.RemoveKey(System.String)">
+            <summary>
+            Deletes a previously existing key, including its associated data.
+            </summary>
+            <param name="keyName">The key to be removed.</param>
+            <returns>
+            <c>true</c> if a key with the specified name was removed 
+            <c>false</c> otherwise.
+            </returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.SetKeyData(SeeSharpTools.JY.File.KeyData)">
+            <summary>
+            Sets the key data associated to a specified key.
+            </summary>
+            <param name="data">The new <see cref="T:SeeSharpTools.JY.File.KeyData"/> for the key.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.GetEnumerator">
+            <summary>
+            Allows iteration througt the collection.
+            </summary>
+            <returns>A strong-typed IEnumerator </returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Implementation needed
+            </summary>
+            <returns>A weak-typed IEnumerator.</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.KeyDataCollection.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+            A new object that is a copy of this instance.
+            </returns>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.KeyDataCollection._keyData">
+            <summary>
+            Collection of KeyData for a given section
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.SectionData">
+            <summary>
+                Information associated to a section in a INI File
+                Includes both the value and the comments associated to the key.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionData.#ctor(System.String,System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+                Initializes a new instance of the <see cref="T:SeeSharpTools.JY.File.SectionData"/> class.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionData.#ctor(SeeSharpTools.JY.File.SectionData,System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+                Initializes a new instance of the <see cref="T:SeeSharpTools.JY.File.SectionData"/> class
+                from a previous instance of <see cref="T:SeeSharpTools.JY.File.SectionData"/>.
+            </summary>
+            <remarks>
+                Data is deeply copied
+            </remarks>
+            <param name="ori">
+                The instance of the <see cref="T:SeeSharpTools.JY.File.SectionData"/> class 
+                used to create the new instance.
+            </param>
+            <param name="searchComparer">
+                Search comparer.
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionData.ClearComments">
+            <summary>
+                Deletes all comments in this section and key/value pairs
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionData.ClearKeyData">
+            <summary>
+            Deletes all the key-value pairs in this section.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionData.Merge(SeeSharpTools.JY.File.SectionData)">
+            <summary>
+                Merges otherSection into this, adding new keys if they don't exists
+                or overwriting values if the key already exists.
+            Comments get appended.
+            </summary>
+            <remarks>
+                Comments are also merged but they are always added, not overwritten.
+            </remarks>
+            <param name="toMergeSection"></param>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SectionData.SectionName">
+            <summary>
+                Gets or sets the name of the section.
+            </summary>
+            <value>
+                The name of the section
+            </value>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SectionData.Comments">
+            <summary>
+                Gets or sets the comment list associated to this section.
+            </summary>
+            <value>
+                A list of strings.
+            </value>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SectionData.Keys">
+            <summary>
+                Gets or sets the keys associated to this section.
+            </summary>
+            <value>
+                A collection of KeyData objects.
+            </value>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionData.Clone">
+            <summary>
+                Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+                A new object that is a copy of this instance.
+            </returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.SectionDataCollection">
+            <summary>
+            <para>Represents a collection of SectionData.</para>
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SeeSharpTools.JY.File.SectionDataCollection"/> class.
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.#ctor(System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="!:IniParser.Model.SectionDataCollection"/> class.
+            </summary>
+            <param name="searchComparer">
+                StringComparer used when accessing section names
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.#ctor(SeeSharpTools.JY.File.SectionDataCollection,System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SeeSharpTools.JY.File.SectionDataCollection"/> class
+            from a previous instance of <see cref="T:SeeSharpTools.JY.File.SectionDataCollection"/>.
+            </summary>
+            <remarks>
+            Data is deeply copied
+            </remarks>
+            <param name="ori">
+            The instance of the <see cref="T:SeeSharpTools.JY.File.SectionDataCollection"/> class 
+            used to create the new instance.</param>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SectionDataCollection.Count">
+            <summary>
+            Returns the number of SectionData elements in the collection
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.File.SectionDataCollection.Item(System.String)">
+            <summary>
+            Gets the key data associated to a specified section name.
+            </summary>
+            <value>An instance of as <see cref="T:SeeSharpTools.JY.File.KeyDataCollection"/> class 
+            holding the key data from the current parsed INI data, or a <c>null</c>
+            value if the section doesn't exist.</value>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.AddSection(System.String)">
+            <summary>
+            Creates a new section with empty data.
+            </summary>
+            <remarks>
+            <para>If a section with the same name exists, this operation has no effect.</para>
+            </remarks>
+            <param name="keyName">Name of the section to be created</param>
+            <return><c>true</c> if the a new section with the specified name was added,
+            <c>false</c> otherwise</return>
+            <exception cref="T:System.ArgumentException">If the section name is not valid.</exception>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.Add(SeeSharpTools.JY.File.SectionData)">
+            <summary>
+                Adds a new SectionData instance to the collection
+            </summary>
+            <param name="data">Data.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.Clear">
+            <summary>
+            Removes all entries from this collection
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.ContainsSection(System.String)">
+            <summary>
+            Gets if a section with a specified name exists in the collection.
+            </summary>
+            <param name="keyName">Name of the section to search</param>
+            <returns>
+            <c>true</c> if a section with the specified name exists in the
+             collection <c>false</c> otherwise
+            </returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.GetSectionData(System.String)">
+            <summary>
+            Returns the section data from a specify section given its name.
+            </summary>
+            <param name="sectionName">Name of the section.</param>
+            <returns>
+            An instance of a <see cref="T:SeeSharpTools.JY.File.SectionData"/> class 
+            holding the section data for the currently INI data
+            </returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.SetSectionData(System.String,SeeSharpTools.JY.File.SectionData)">
+            <summary>
+            Sets the section data for given a section name.
+            </summary>
+            <param name="sectionName"></param>
+            <param name="data">The new <see cref="T:SeeSharpTools.JY.File.SectionData"/>instance.</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.RemoveSection(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="keyName"></param>
+            <return><c>true</c> if the section with the specified name was removed, 
+            <c>false</c> otherwise</return>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.SectionDataCollection.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+            A new object that is a copy of this instance.
+            </returns>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.SectionDataCollection._sectionData">
+            <summary>
+            Data associated to this section
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.IniHandler">
+            <summary>
+            Ini文件读写改操作处理类
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.ReadIniFile(System.String,System.Text.Encoding)">
+            <summary>
+            读取Ini文件到IniData类中
+            </summary>
+            <param name="filePath">文件路径</param>
+            <param name="encoding">编码格式，默认为UTF8</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.WriteIniFile(System.String,SeeSharpTools.JY.File.IniData,System.Text.Encoding)">
+            <summary>
+            将Ini数据写入文件中
+            </summary>
+            <param name="filePath">文件路径</param>
+            <param name="iniData">待写入的Ini数据</param>
+            <param name="encoding">编码格式，默认为UTF8</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.MergeIniData(SeeSharpTools.JY.File.IniData,SeeSharpTools.JY.File.IniData)">
+            <summary>
+            将合并ini数据合并覆盖到源ini数据中
+            </summary>
+            <param name="srcIniData">源ini数据</param>
+            <param name="mergeIniData">待合并的ini数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.MergeToFile(System.String,SeeSharpTools.JY.File.IniData,System.Text.Encoding)">
+            <summary>
+            将ini数据合并覆盖到已有文件中
+            </summary>
+            <param name="filePath">文件路径</param>
+            <param name="mergeIniData">待合并的ini数据</param>
+            <param name="encoding">编码格式，默认为UTF8</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.Close">
+            <summary>
+            Free file parser resources
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.Read(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            读取指定ini档案内的section或key或value
+            </summary>
+            <param name="section">section名称，如果为null则返回所有section的名称</param>
+            <param name="key">键的名称，如果为null则返回section下所有的键名</param>
+            <param name="path">文件路径，不能为null</param>
+            <param name="length">缓存大小，如果数据较多请配置较长的buffer</param>
+            <returns>读取的结果，如果section/key/path都不为空，则只保存key对应的值</returns>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.Write(System.String,System.String,System.String,System.String)">
+            <summary>
+            在ini文件中新增或者修改一个键值对
+            </summary>
+            <param name="section">section的名称，不能为空</param>
+            <param name="key">key的名称，不能为空</param>
+            <param name="iValue">key对应的值，不能为空</param>
+            <param name="path">文件路径，不能为空</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.ReadValue(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            读取指定key的值
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.GetAllSectionNames(System.Int32,System.String)">
+            <summary>
+            读取指定ini档案内的所有section名称
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.GetAllItemKeys(System.String,System.Int32,System.String)">
+            <summary>
+            读取指定section的所有key名称
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.ByteToStr(System.Byte[],System.Text.Encoding)">
+            <summary>
+            将Byte[]转换成string
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.GetPrivateProfileString(System.String,System.String,System.String,System.Text.StringBuilder,System.Int32,System.String)">
+            <summary>
+            (kernel32函式引用)
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.GetPrivateProfileStringA(System.String,System.String,System.String,System.Byte[],System.Int32,System.String)">
+            <summary>
+            (kernel32函式引用)
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.GetPrivateProfileSection(System.String,System.Text.StringBuilder,System.Int32,System.String)">
+            <summary>
+            (kernel32函式引用)
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.WritePrivateProfileSection(System.String,System.String,System.String)">
+            <summary>
+            (kernel32函式引用)
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.WritePrivateProfileString(System.String,System.String,System.String,System.String)">
+            <summary>
+            (kernel32函式引用)
+            </summary>
+        </member>
+        <member name="M:SeeSharpTools.JY.File.IniHandler.GetPrivateProfileSectionNames(System.Byte[],System.Int32,System.String)">
+            <summary>
+            (kernel32函式引用)
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.File.MajorOrder">
+            <summary>
+            读取数据的方向，按行读取/按列读取
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.MajorOrder.Row">
+            <summary>
+            按行读取
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.File.MajorOrder.Column">
+            <summary>
+            按列读取
+            </summary>
+        </member>
+        <member name="T:IniParser.FileIniDataParser">
+            <summary>
+                Represents an INI data parser for files.
+            </summary>
+        </member>
+        <member name="M:IniParser.FileIniDataParser.#ctor">
+            <summary>
+                Ctor
+            </summary>
+        </member>
+        <member name="M:IniParser.FileIniDataParser.#ctor(IniParser.Parser.IniDataParser)">
+            <summary>
+                Ctor
+            </summary>
+            <param name="parser"></param>
+        </member>
+        <member name="M:IniParser.FileIniDataParser.ReadFile(System.String)">
+            <summary>
+                Implements reading ini data from a file.
+            </summary>
+            <remarks>
+                Uses <see cref="P:System.Text.Encoding.Default"/> codification for the file.
+            </remarks>
+            <param name="filePath">
+                Path to the file
+            </param>
+        </member>
+        <member name="M:IniParser.FileIniDataParser.ReadFile(System.String,System.Text.Encoding)">
+            <summary>
+                Implements reading ini data from a file.
+            </summary>
+            <param name="filePath">
+                Path to the file
+            </param>
+            <param name="fileEncoding">
+                File's encoding.
+            </param>
+        </member>
+        <member name="M:IniParser.FileIniDataParser.SaveFile(System.String,SeeSharpTools.JY.File.IniData)">
+            <summary>
+                Saves INI data to a file.
+            </summary>
+            <remarks>
+                Creats an ASCII encoded file by default.
+            </remarks>
+            <param name="filePath">
+                Path to the file.
+            </param>
+            <param name="parsedData">
+                IniData to be saved as an INI file.
+            </param>
+        </member>
+        <member name="M:IniParser.FileIniDataParser.WriteFile(System.String,SeeSharpTools.JY.File.IniData,System.Text.Encoding)">
+            <summary>
+                Writes INI data to a text file.
+            </summary>
+            <param name="filePath">
+                Path to the file.
+            </param>
+            <param name="parsedData">
+                IniData to be saved as an INI file.
+            </param>
+            <param name="fileEncoding">
+                Specifies the encoding used to create the file.
+            </param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:IniParser.Model.Configuration.ConcatenateDuplicatedKeysIniParserConfiguration.ConcatenateSeparator" -->
+        <member name="T:IniParser.Model.Configuration.IniParserConfiguration">
+            <summary>
+                Defines data for a Parser configuration object.
+            </summary>
+                With a configuration object you can redefine how the parser
+                will detect special items in the ini file by defining new regex
+                (e.g. you can redefine the comment regex so it just treat text as
+                a comment iff the comment caracter is the first in the line)
+                or changing the set of characters used to define elements in
+                the ini file (e.g. change the 'comment' caracter from ';' to '#')
+                You can also define how the parser should treat errors, or how liberal
+                or conservative should it be when parsing files with "strange" formats.
+        </member>
+        <member name="M:IniParser.Model.Configuration.IniParserConfiguration.#ctor">
+            <summary>
+                Default values used if an instance of <see cref="T:IniParser.Parser.IniDataParser"/>
+                is created without specifying a configuration.
+            </summary>
+            <remarks>
+                By default the various delimiters for the data are setted:
+                <para>';' for one-line comments</para>
+                <para>'[' ']' for delimiting a section</para>
+                <para>'=' for linking key / value pairs</para>
+                <example>
+                    An example of well formed data with the default values:
+                    <para>
+                    ;section comment<br/>
+                    [section] ; section comment<br/>
+                    <br/>
+                    ; key comment<br/>
+                    key = value ;key comment<br/>
+                    <br/>
+                    ;key2 comment<br/>
+                    key2 = value<br/>
+                    </para>
+                </example>
+            </remarks>
+        </member>
+        <member name="M:IniParser.Model.Configuration.IniParserConfiguration.#ctor(IniParser.Model.Configuration.IniParserConfiguration)">
+            <summary>
+                Copy ctor.
+            </summary>
+            <param name="ori">
+                Original instance to be copied.
+            </param>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.SectionStartChar">
+            <summary>
+                Sets the char that defines the start of a section name.
+            </summary>
+            <remarks>
+                Defaults to character '['
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.SectionEndChar">
+            <summary>
+                Sets the char that defines the end of a section name.
+            </summary>
+            <remarks>
+                Defaults to character ']'
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.CaseInsensitive">
+            <summary>
+                Retrieving section / keys by name is done with a case-insensitive
+                search.
+            </summary>
+            <remarks>
+                Defaults to false (case sensitive search)
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.CommentChar">
+            <summary>
+                Sets the char that defines the start of a comment.
+                A comment spans from the comment character to the end of the line.
+            </summary>
+            <remarks>
+                Defaults to character ';'
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.CommentString">
+            <summary>
+                Sets the string that defines the start of a comment.
+                A comment spans from the mirst matching comment string
+                to the end of the line.
+            </summary>
+            <remarks>
+                Defaults to string ";"
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.NewLineStr">
+            <summary>
+                Gets or sets the string to use as new line string when formating an IniData structure using a
+                IIniDataFormatter. Parsing an ini-file accepts any new line character (Unix/windows)
+            </summary>
+            <remarks>
+                This allows to write a file with unix new line characters on windows (and vice versa)
+            </remarks>
+            <value>Defaults to value Environment.NewLine</value>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.KeyValueAssigmentChar">
+            <summary>
+                Sets the char that defines a value assigned to a key
+            </summary>
+            <remarks>
+                Defaults to character '='
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.AssigmentSpacer">
+            <summary>
+                Sets the string around KeyValuesAssignmentChar
+            </summary>
+            <remarks>
+                Defaults to string ' '
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.AllowKeysWithoutSection">
+            <summary>
+                Allows having keys in the file that don't belong to any section.
+                i.e. allows defining keys before defining a section.
+                If set to <c>false</c> and keys without a section are defined,
+                the <see cref="T:IniParser.Parser.IniDataParser"/> will stop with an error.
+            </summary>
+            <remarks>
+                Defaults to <c>true</c>.
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.AllowDuplicateKeys">
+            <summary>
+                If set to <c>false</c> and the <see cref="T:IniParser.Parser.IniDataParser"/> finds duplicate keys in a
+                section the parser will stop with an error.
+                If set to <c>true</c>, duplicated keys are allowed in the file. The value
+                of the duplicate key will be the last value asigned to the key in the file.
+            </summary>
+            <remarks>
+                Defaults to <c>false</c>.
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.OverrideDuplicateKeys">
+            <summary>
+                Only used if <see cref="P:IniParser.Model.Configuration.IniParserConfiguration.AllowDuplicateKeys"/> is also <c>true</c>
+                If set to <c>true</c> when the parser finds a duplicate key, it overrites
+                the previous value, so the key will always contain the value of the
+                last key readed in the file
+                If set to <c>false</c> the first readed value is preserved, so the key will
+                always contain the value of the first key readed in the file
+            </summary>
+            <remarks>
+                Defaults to <c>false</c>.
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.ConcatenateDuplicateKeys">
+            <summary>
+                Gets or sets a value indicating whether duplicate keys are concatenate
+                together by <see cref="!:ConcatenateSeparator"/>.
+            </summary>
+            <value>
+                Defaults to <c>false</c>.
+            </value>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.ThrowExceptionsOnError">
+            <summary>
+                If <c>true</c> the <see cref="T:IniParser.Parser.IniDataParser"/> instance will thrown an exception
+                if an error is found.
+                If <c>false</c> the parser will just stop execution and return a null value.
+            </summary>
+            <remarks>
+                Defaults to <c>true</c>.
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.AllowDuplicateSections">
+            <summary>
+                If set to <c>false</c> and the <see cref="T:IniParser.Parser.IniDataParser"/> finds a duplicate section
+                the parser will stop with an error.
+                If set to <c>true</c>, duplicated sections are allowed in the file, but only a
+                <see cref="!:SectionData"/> element will be created in the <see cref="!:IniData.Sections"/>
+                collection.
+            </summary>
+            <remarks>
+                Defaults to <c>false</c>.
+            </remarks>
+        </member>
+        <member name="P:IniParser.Model.Configuration.IniParserConfiguration.AllowCreateSectionsOnFly">
+            <summary>
+                If set to <c>false</c>, the <see cref="T:IniParser.Parser.IniDataParser"/> stop with a error if you try
+                to access a section that was not created previously and the parser will stop with an error.
+                If set to <c>true</c>, inexistents sections are created, always returning a valid
+                <see cref="!:SectionData"/> element.
+            </summary>
+            <remarks>
+                Defaults to <c>false</c>.
+            </remarks>
+        </member>
+        <member name="M:IniParser.Model.Configuration.IniParserConfiguration.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+            A new object that is a copy of this instance.
+            </returns>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="P:IniParser.Model.Formatting.DefaultIniDataFormatter.Configuration">
+            <summary>
+                Configuration used to write an ini file with the proper
+                delimiter characters and data.
+            </summary>
+            <remarks>
+                If the <see cref="T:SeeSharpTools.JY.File.IniData"/> instance was created by a parser,
+                this instance is a copy of the <see cref="T:IniParser.Model.Configuration.IniParserConfiguration"/> used
+                by the parser (i.e. different objects instances)
+                If this instance is created programatically without using a parser, this
+                property returns an instance of <see cref="T:IniParser.Model.Configuration.IniParserConfiguration"/>
+            </remarks>
+        </member>
+        <member name="T:IniParser.Model.Formatting.IIniDataFormatter">
+            <summary>
+                Formats a IniData structure to an string
+            </summary>
+        </member>
+        <member name="M:IniParser.Model.Formatting.IIniDataFormatter.IniDataToString(SeeSharpTools.JY.File.IniData)">
+            <summary>
+                Produces an string given
+            </summary>
+            <returns>The data to string.</returns>
+            <param name="iniData">Ini data.</param>
+        </member>
+        <member name="P:IniParser.Model.Formatting.IIniDataFormatter.Configuration">
+            <summary>
+                Configuration used by this formatter when converting IniData
+                to an string
+            </summary>
+        </member>
+        <member name="T:IniParser.Parser.IniDataParser">
+            <summary>
+            	Responsible for parsing an string from an ini file, and creating
+            	an <see cref="T:SeeSharpTools.JY.File.IniData"/> structure.
+            </summary>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.#ctor">
+            <summary>
+                Ctor
+            </summary>
+            <remarks>
+                The parser uses a <see cref="T:IniParser.Model.Configuration.IniParserConfiguration"/> by default
+            </remarks>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.#ctor(IniParser.Model.Configuration.IniParserConfiguration)">
+            <summary>
+                Ctor
+            </summary>
+            <param name="parserConfiguration">
+                Parser's <see cref="T:IniParser.Model.Configuration.IniParserConfiguration"/> instance.
+            </param>
+        </member>
+        <member name="P:IniParser.Parser.IniDataParser.Configuration">
+            <summary>
+                Configuration that defines the behaviour and constraints
+                that the parser must follow.
+            </summary>
+        </member>
+        <member name="P:IniParser.Parser.IniDataParser.HasError">
+            <summary>
+            True is the parsing operation encounter any problem
+            </summary>
+        </member>
+        <member name="P:IniParser.Parser.IniDataParser.Errors">
+            <summary>
+            Returns the list of errors found while parsing the ini file.
+            </summary>
+            <remarks>
+            If the configuration option ThrowExceptionOnError is false it can contain one element
+            for each problem found while parsing; otherwise it will only contain the very same 
+            exception that was raised.
+            </remarks>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.Parse(System.String)">
+            <summary>
+                Parses a string containing valid ini data
+            </summary>
+            <param name="iniDataString">
+                String with data
+            </param>
+            <returns>
+                An <see cref="T:SeeSharpTools.JY.File.IniData"/> instance with the data contained in
+                the <paramref name="iniDataString"/> correctly parsed an structured.
+            </returns>
+            <exception cref="!:ParsingException">
+                Thrown if the data could not be parsed
+            </exception>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.LineContainsAComment(System.String)">
+            <summary>
+                Checks if a given string contains a comment.
+            </summary>
+            <param name="line">
+                String with a line to be checked.
+            </param>
+            <returns>
+                <c>true</c> if any substring from s is a comment, <c>false</c> otherwise.
+            </returns>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.LineMatchesASection(System.String)">
+            <summary>
+                Checks if a given string represents a section delimiter.
+            </summary>
+            <param name="line">
+                The string to be checked.
+            </param>
+            <returns>
+                <c>true</c> if the string represents a section, <c>false</c> otherwise.
+            </returns>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.LineMatchesAKeyValuePair(System.String)">
+            <summary>
+                Checks if a given string represents a key / value pair.
+            </summary>
+            <param name="line">
+                The string to be checked.
+            </param>
+            <returns>
+                <c>true</c> if the string represents a key / value pair, <c>false</c> otherwise.
+            </returns>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.ExtractComment(System.String)">
+            <summary>
+                Removes a comment from a string if exist, and returns the string without
+                the comment substring.
+            </summary>
+            <param name="line">
+                The string we want to remove the comments from.
+            </param>
+            <returns>
+                The string s without comments.
+            </returns>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.ProcessLine(System.String,SeeSharpTools.JY.File.IniData)">
+            <summary>
+                Processes one line and parses the data found in that line
+                (section or key/value pair who may or may not have comments)
+            </summary>
+            <param name="currentLine">The string with the line to process</param>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.ProcessSection(System.String,SeeSharpTools.JY.File.IniData)">
+            <summary>
+                Proccess a string which contains an ini section.
+            </summary>
+            <param name="line">
+                The string to be processed
+            </param>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.ProcessKeyValuePair(System.String,SeeSharpTools.JY.File.IniData)">
+            <summary>
+                Processes a string containing an ini key/value pair.
+            </summary>
+            <param name="line">
+                The string to be processed
+            </param>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.ExtractKey(System.String)">
+            <summary>
+                Extracts the key portion of a string containing a key/value pair..
+            </summary>
+            <param name="s">    
+                The string to be processed, which contains a key/value pair
+            </param>
+            <returns>
+                The name of the extracted key.
+            </returns>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.ExtractValue(System.String)">
+            <summary>
+                Extracts the value portion of a string containing a key/value pair..
+            </summary>
+            <param name="s">
+                The string to be processed, which contains a key/value pair
+            </param>
+            <returns>
+                The name of the extracted value.
+            </returns>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.HandleDuplicatedKeyInCollection(System.String,System.String,SeeSharpTools.JY.File.KeyDataCollection,System.String)">
+            <summary>
+                Abstract Method that decides what to do in case we are trying to add a duplicated key to a section
+            </summary>
+        </member>
+        <member name="M:IniParser.Parser.IniDataParser.AddKeyToKeyValueCollection(System.String,System.String,SeeSharpTools.JY.File.KeyDataCollection,System.String)">
+            <summary>
+                Adds a key to a concrete <see cref="T:SeeSharpTools.JY.File.KeyDataCollection"/> instance, checking
+                if duplicate keys are allowed in the configuration
+            </summary>
+            <param name="key">
+                Key name
+            </param>
+            <param name="value">
+                Key's value
+            </param>
+            <param name="keyDataCollection">
+                <see cref="T:SeeSharpTools.JY.File.KeyData"/> collection where the key should be inserted
+            </param>
+            <param name="sectionName">
+                Name of the section where the <see cref="T:SeeSharpTools.JY.File.KeyDataCollection"/> is contained. 
+                Used only for logging purposes.
+            </param>
+        </member>
+        <member name="F:IniParser.Parser.IniDataParser._currentCommentListTemp">
+            <summary>
+                Temp list of comments
+            </summary>
+        </member>
+        <member name="F:IniParser.Parser.IniDataParser._currentSectionNameTemp">
+            <summary>
+                Tmp var with the name of the seccion which is being process
+            </summary>
+        </member>
+        <member name="T:IniParser.StreamIniDataParser">
+            <summary>
+                Represents an INI data parser for streams.
+            </summary>
+        </member>
+        <member name="P:IniParser.StreamIniDataParser.Parser">
+            <summary>
+                This instance will handle ini data parsing and writing
+            </summary>
+        </member>
+        <member name="M:IniParser.StreamIniDataParser.#ctor">
+            <summary>
+                Ctor
+            </summary>
+        </member>
+        <member name="M:IniParser.StreamIniDataParser.#ctor(IniParser.Parser.IniDataParser)">
+            <summary>
+                Ctor
+            </summary>
+            <param name="parser"></param>
+        </member>
+        <member name="M:IniParser.StreamIniDataParser.ReadData(System.IO.StreamReader)">
+            <summary>
+                Reads data in INI format from a stream.
+            </summary>
+            <param name="reader">Reader stream.</param>
+            <returns>
+                And <see cref="T:SeeSharpTools.JY.File.IniData"/> instance with the readed ini data parsed.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+                Thrown if <paramref name="reader"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:IniParser.StreamIniDataParser.WriteData(System.IO.StreamWriter,SeeSharpTools.JY.File.IniData)">
+            <summary>
+                Writes the ini data to a stream.
+            </summary>
+            <param name="writer">A write stream where the ini data will be stored</param>
+            <param name="iniData">An <see cref="T:SeeSharpTools.JY.File.IniData"/> instance.</param>
+            <exception cref="T:System.ArgumentNullException">
+                Thrown if <paramref name="writer"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:IniParser.StreamIniDataParser.WriteData(System.IO.StreamWriter,SeeSharpTools.JY.File.IniData,IniParser.Model.Formatting.IIniDataFormatter)">
+            <summary>
+                Writes the ini data to a stream.
+            </summary>
+            <param name="writer">A write stream where the ini data will be stored</param>
+            <param name="iniData">An <see cref="T:SeeSharpTools.JY.File.IniData"/> instance.</param>
+            <param name="formatter">Formaterr instance that controls how the ini data is transformed to a string</param>
+            <exception cref="T:System.ArgumentNullException">
+                Thrown if <paramref name="writer"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="T:IniParser.StringIniParser">
+            <summary>
+                Represents an INI data parser for strings.
+                
+            </summary>
+            <remarks>
+                This class is deprecated and kept for backwards compatibility.
+                It's just a wrapper around <see cref="T:IniParser.Parser.IniDataParser"/> class.
+                Please, replace your code.
+            </remarks>
+        </member>
+        <member name="P:IniParser.StringIniParser.Parser">
+            <summary>
+                This instance will handle ini data parsing and writing
+            </summary>
+        </member>
+        <member name="M:IniParser.StringIniParser.#ctor">
+            <summary>
+                Ctor
+            </summary>
+        </member>
+        <member name="M:IniParser.StringIniParser.#ctor(IniParser.Parser.IniDataParser)">
+            <summary>
+                Ctor
+            </summary>
+            <param name="parser"></param>
+        </member>
+        <member name="M:IniParser.StringIniParser.ParseString(System.String)">
+            <summary>
+            Parses a string containing data formatted as an INI file.
+            </summary>
+            <param name="dataStr">The string containing the data.</param>
+            <returns>
+            A new <see cref="T:SeeSharpTools.JY.File.IniData"/> instance with the data parsed from the string.
+            </returns>
+        </member>
+        <member name="M:IniParser.StringIniParser.WriteString(SeeSharpTools.JY.File.IniData)">
+            <summary>
+            Creates a string from the INI data.
+            </summary>
+            <param name="iniData">An <see cref="T:SeeSharpTools.JY.File.IniData"/> instance.</param>
+            <returns>
+            A formatted string with the contents of the
+            <see cref="T:SeeSharpTools.JY.File.IniData"/> instance object.
+            </returns>
+        </member>
+    </members>
+</doc>
