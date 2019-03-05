@@ -225,11 +225,17 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             totalChartWidth -= Constants.XBoundRatio;
             float columnIntervalWidth = (colCount - 1)*_columnInterval*100/_parentChart.Width;
             float rowintervalWidth = ((rowCount - 1) * _rowInterval)*100 /_parentChart.Height;
-
+            
             // 总的高度减去边界的高度
             float totalChartHeight = 100 - Constants.YBoundRatio;
             float singlePlotAreaWidth = (totalChartWidth - columnIntervalWidth)/colCount;
             float singlePlotAreaHeight = (totalChartHeight - rowintervalWidth) / rowCount;
+
+            // 刚开始绘图时TotalChartWidth和TotalChartHeight为0，计算得出的值为负值。此时不应执行配置
+            if (0 >= singlePlotAreaWidth || 0 >= singlePlotAreaHeight)
+            {
+                return;
+            }
             switch (LayoutDirection)
             {
                 case LayoutDirection.LeftToRight:
