@@ -358,9 +358,8 @@ namespace SeeSharpTools.JY.GUI
         }
         /// <summary>
         /// Gets or sets the tracker's size. 
-        /// The tracker's width must be greater or equal to tracker's height.
+        /// The tracker's width cannot be greater than the tracker's height.
         /// </summary>
-        /// <value>The <see cref="Size"/> object that represents the height and width of the tracker in pixels.</value>
         [Category("Appearance")]
         [Description("Gets or sets the tracker's size.")]
         public Size TrackerSize
