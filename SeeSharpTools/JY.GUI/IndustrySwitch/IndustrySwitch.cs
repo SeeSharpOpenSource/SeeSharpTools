@@ -77,9 +77,24 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         public enum InteractionStyle
         {
+            /// <summary>
+            /// Change the switch state when pressed
+            /// </summary>
             SwitchWhenPressed,
+
+            /// <summary>
+            /// Change the switch state when pressed and return to original state when release
+            /// </summary>
             SwitchUntilReleased,
+
+            /// <summary>
+            /// Change the switch state when mouse down and released
+            /// </summary>
             SwitchWhenReleased,
+
+            /// <summary>
+            /// Do not react to user operation
+            /// </summary>
             Indicator
         }
         /// <summary>
@@ -115,6 +130,7 @@ namespace SeeSharpTools.JY.GUI
         /// 样式
         /// </summary>
         [Category("Appearance")]
+        [Description("Set the style of industry switch.")]
         public SwitchStyles Style
         {
             set { checkStyle = value;
@@ -125,6 +141,7 @@ namespace SeeSharpTools.JY.GUI
         /// Set the interaction of industryswitch
         /// </summary>
         [Category("Behavior")]
+        [Description("Set the behavior of industry switch.")]
         public InteractionStyle Interacton
         {
             get
@@ -145,6 +162,7 @@ namespace SeeSharpTools.JY.GUI
         /// 打开颜色
         /// </summary>
         [Category("Appearance")]
+        [Description("Set the switch color when industry switch in on state.")]
         public Color OnColor
         {
             get
@@ -161,6 +179,7 @@ namespace SeeSharpTools.JY.GUI
         /// 关闭颜色
         /// </summary>
         [Category("Appearance")]
+        [Description("Set the switch color when industry switch in off state.")]
         public Color OffColor
         {
             get
