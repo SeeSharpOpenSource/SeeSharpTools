@@ -37,14 +37,14 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">要读取的起始行索引</param>
         /// <param name="startColumn">要读取的起始列索引</param>
-        /// <param name="rowSize">要读取的行数，若为-1则读取全部行</param>
-        /// <param name="columnSize">要读取的列数,若为-1读取全部列</param>
+        /// <param name="rowCount">要读取的行数，若小于等于0则读取全部行</param>
+        /// <param name="columnCount">要读取的列数,若小于等于0读取全部列</param>
         /// <param name="encoding">编码方式</param>
         /// <returns></returns>
-        public static T[,] Read<T>(long startRow=0, long startColumn=0, long rowSize = -1, long columnSize = -1, Encoding encoding = null)
+        public static T[,] Read<T>(long startRow = 0, long startColumn = 0, long rowCount = 0, long columnCount = 0, Encoding encoding = null)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return Read<T>(filePath, startRow, startColumn, rowSize, columnSize, encoding);
+            return Read<T>(filePath, startRow, startColumn, rowCount, columnCount, encoding);
         }
 
         /// <summary>
@@ -53,14 +53,14 @@ namespace SeeSharpTools.JY.File
         /// <param name="startRow">要读取的起始行索引</param>
         /// <param name="filePath">csv文件路径和名称</param>
         /// <param name="startColumn">要读取的起始列索引</param>
-        /// <param name="rowSize">要读取的行数，若为-1则读取全部行</param>
-        /// <param name="columnSize">要读取的列数,若为-1则读取全部列</param>
+        /// <param name="rowCount">要读取的行数，若小于等于0则读取全部行</param>
+        /// <param name="columnCount">要读取的列数,若小于等于0则读取全部列</param>
         /// <param name="encoding">编码方式</param>
         /// <returns></returns>
-        public static T[,] Read<T>(string filePath, long startRow = 0, long startColumn = 0, long rowSize = -1, long columnSize = -1, Encoding encoding = null)
+        public static T[,] Read<T>(string filePath, long startRow = 0, long startColumn = 0, long rowCount = 0, long columnCount = 0, Encoding encoding = null)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<T>(filePath, startRow, startColumn, rowSize, columnSize, encoding);
+            return StreamReadData<T>(filePath, startRow, startColumn, rowCount, columnCount, encoding);
         }
 
         /// <summary>
@@ -68,13 +68,12 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">要读取的起始行索引</param>
         /// <param name="columns">要读取的起始列索引</param>
-        /// <param name="rowSize">要读取的行数，若为-1则读取全部行</param>
+        /// <param name="rowCount">要读取的行数，若小于等于0则读取全部行</param>
         /// <param name="encoding">编码方式</param>
-        /// <returns></returns>
-        public static T[,] Read<T>(long startRow, long[] columns, long rowSize = 0, Encoding encoding = null)
+        public static T[,] Read<T>(long startRow, long[] columns, long rowCount = 0, Encoding encoding = null)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return Read<T>(filePath, startRow, columns, rowSize, encoding);
+            return Read<T>(filePath, startRow, columns, rowCount, encoding);
         }
 
         /// <summary>
@@ -83,10 +82,9 @@ namespace SeeSharpTools.JY.File
         /// <param name="startRow">要读取的起始行索引</param>
         /// <param name="filePath">csv文件路径和名称</param>
         /// <param name="columns">要读取的起始列索引集合</param>
-        /// <param name="rowSize">要读取的行数，若为-1则读取全部行</param>
+        /// <param name="rowCount">要读取的行数，小于等于0则读取全部行</param>
         /// <param name="encoding">编码方式</param>
-        /// <returns></returns>
-        public static T[,] Read<T>(string filePath, long startRow, long[] columns, long rowSize = 0, Encoding encoding = null)
+        public static T[,] Read<T>(string filePath, long startRow, long[] columns, long rowCount = 0, Encoding encoding = null)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
             uint[] columnCollection = new uint[columns.Length];
@@ -94,51 +92,51 @@ namespace SeeSharpTools.JY.File
             {
                 columnCollection[i] = (uint) columns[i];
             }
-            return StreamReadData<T>(filePath, (uint)startRow, columnCollection, (uint)rowSize, encoding);
+            return StreamReadData<T>(filePath, (uint)startRow, columnCollection, (uint)rowCount, encoding);
         }
 
 
         /// <summary>
         /// 在csv文件中设置要读取的行列索引值数组，读取二维数组，通过弹窗选择文件路径。
         /// </summary>
-        /// <param name="rowCollection">要读取的行的索引集合</param>
-        /// <param name="columnCollection">要读取的列的索引集合</param>
+        /// <param name="rows">要读取的行的索引集合</param>
+        /// <param name="columns">要读取的列的索引集合</param>
         /// <param name="encoding">编码方式</param>
         /// <returns></returns>
-        public static T[,] Read<T>(long[] rowCollection, long[] columnCollection, Encoding encoding = null)
+        public static T[,] Read<T>(long[] rows, long[] columns, Encoding encoding = null)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return Read<T>(filePath, rowCollection, columnCollection, encoding);
+            return Read<T>(filePath, rows, columns, encoding);
         }
 
         /// <summary>
         ///  在csv文件中设置要读取的行列索引值数组，读取二维数组，需配置文件路径。
         /// </summary>
         /// <param name="filePath">csv文件路径和名称</param>
-        /// <param name="rowCollection">要读取的行的索引集合</param>
-        /// <param name="columnCollection">要读取的列的索引集合</param>
+        /// <param name="rows">要读取的行的索引集合</param>
+        /// <param name="columns">要读取的列的索引集合</param>
         /// <param name="encoding">编码方式</param>
         /// <returns></returns>
-        public static T[,] Read<T>(string filePath, long[] rowCollection, long[] columnCollection, Encoding encoding = null)
+        public static T[,] Read<T>(string filePath, long[] rows, long[] columns, Encoding encoding = null)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<T>(filePath, rowCollection, columnCollection, encoding);
+            return StreamReadData<T>(filePath, rows, columns, encoding);
         }
 
         /// <summary>
-        /// 
+        /// 在csv文件中设置要读取的行列索引值，读取一维数组，文件路径通过文件选择窗口配置
         /// </summary>
         /// <typeparam name="T">数据类型</typeparam>
         /// <param name="majorOrder">读取数值的方向</param>
         /// <param name="index">读取的行/列索引值</param>
         /// <param name="startIndex">要读取的行/列的起始索引位置</param>
-        /// <param name="size">读取的数组长度，若为-1则读取全部</param>
+        /// <param name="readCount">读取的数组长度，若小于等于0则读取全部</param>
         /// <param name="encoding">编码方式</param>
         /// <returns></returns>
-        public static T[] Read<T>(MajorOrder majorOrder ,long index, long startIndex=0, long size=-1,  Encoding encoding = null)
+        public static T[] Read<T>(MajorOrder majorOrder ,long index, long startIndex = 0, long readCount = 0,  Encoding encoding = null)
         {
             string filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
-            return Read<T>(filePath, majorOrder, index, startIndex, size,encoding);
+            return Read<T>(filePath, majorOrder, index, startIndex, readCount,encoding);
         }
         /// <summary>
         /// 在csv文件中设置要读取的行列索引值，读取一维数组，需配置文件路径。
@@ -147,14 +145,14 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">csv文件路径和名称</param>
         /// <param name="majorOrder">读取数值的方向</param>
         /// <param name="index">读取的行/列索引值</param>
-        /// <param name="startPosition">要读取的行/列的起始索引位置</param>
-        /// <param name="size">读取的数组长度，若为-1则读取全部</param>
+        /// <param name="startIndex">要读取的行/列的起始索引位置</param>
+        /// <param name="readCount">读取的数组长度，若小于等于0则读取全部</param>
         /// <param name="encoding">编码方式</param>
         /// <returns></returns>
-        public static T[] Read<T>(string filePath, MajorOrder majorOrder , long index,long startPosition=0, long size=-1,  Encoding encoding = null)
+        public static T[] Read<T>(string filePath, MajorOrder majorOrder , long index,long startIndex = 0, long readCount = 0,  Encoding encoding = null)
         {
             FileUtil.CheckFilePath(filePath, FileExtName);
-            return StreamReadData<T>(filePath, index, startPosition, size, MajorOrder.Column == majorOrder, encoding);
+            return StreamReadData<T>(filePath, index, startIndex, readCount, MajorOrder.Column == majorOrder, encoding);
         }
 
         #region Obsolete
@@ -163,7 +161,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -178,7 +176,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -194,7 +192,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -212,7 +210,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -230,7 +228,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -245,7 +243,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -261,7 +259,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -277,7 +275,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -292,7 +290,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -307,7 +305,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -323,7 +321,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -339,7 +337,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -354,7 +352,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -369,7 +367,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -385,7 +383,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -401,7 +399,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -416,7 +414,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -431,7 +429,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -447,7 +445,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -463,7 +461,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -478,7 +476,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -493,7 +491,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -510,7 +508,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -527,7 +525,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -542,7 +540,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -558,7 +556,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -574,7 +572,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="startColumn">读取的起始列索引号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0时读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -591,7 +589,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">待读取文件的完整路径</param>
         /// <param name="startRow">读取的起始行索引号，从0开始</param>
         /// <param name="columns">读取的列号，从0开始</param>
-        /// <param name="rowCount">读取的行数，等于0时读取所有行</param>
+        /// <param name="rowCount">读取的行数，小于等于0读取所有行</param>
         /// <param name="encoding">文件的编码格式。encoding为null时使用系统默认的编码格式</param>
         /// <returns></returns>
         [Obsolete]
@@ -608,8 +606,6 @@ namespace SeeSharpTools.JY.File
         
         #region 写入接口
 
-
-
         /// <summary>
         /// 在csv文件中写入数据，通过弹窗选择文件路径,需指定数据类型
         /// </summary>
@@ -624,7 +620,7 @@ namespace SeeSharpTools.JY.File
         }
 
         /// <summary>
-        /// 在csv文件中写入数据，通过弹窗选择文件路径,需指定数据类型
+        /// 在csv文件中写入数据，需指定数据类型，需配置文件路径
         /// </summary>
         /// <typeparam name="T">数据类型</typeparam>
         /// <param name="filePath">待写入文件的完整路径和名称</param>
@@ -653,7 +649,7 @@ namespace SeeSharpTools.JY.File
 
 
         /// <summary>
-        /// 在csv文件中写入数据，通过弹窗选择文件路径,需指定数据类型
+        /// 在csv文件中写入数据，通过弹窗选择文件路径，需配置文件路径
         /// </summary>
         /// <typeparam name="T">数据类型</typeparam>
         /// <param name="filePath">待写入文件的完整路径和名称</param>
@@ -690,7 +686,7 @@ namespace SeeSharpTools.JY.File
                 else
                 {
                     //如果行数为-1，则读取全部，即文件的总行数-起始行
-                    if (size == -1)
+                    if (size <= 0)
                     {
                         size = FileUtil.GetFileLineNum(filePath);
                     }
@@ -742,25 +738,25 @@ namespace SeeSharpTools.JY.File
             }
         }
 
-        private static TDataType[,] StreamReadData<TDataType>(string filePath, long[] rowCollection, long[] columnCollection, Encoding encoding)
+        private static TDataType[,] StreamReadData<TDataType>(string filePath, long[] rows, long[] columns, Encoding encoding)
         {
             StreamReader reader = null;
-            uint rowCount = (uint)rowCollection.Length;//行数
-            uint columnCount = (uint)rowCollection.Length;//列数
+            uint rowCount = (uint)rows.Length;//行数
+            uint columnCount = (uint)rows.Length;//列数
             try
             {
-                if (0 == rowCount)
+                if (0 >= rowCount)
                 {
                     //如果行数为0，则读取全部，即文件的总行数-起始行
                     rowCount = FileUtil.GetFileLineNum(filePath);
                     for (int i = 0; i < rowCount; i++)
                     {
-                        rowCollection[i] = i;
+                        rows[i] = i;
                     }
                 }
 
                 FileUtil.InitReadStream(ref reader, filePath, encoding);//获取文件中所有数据在reader里
-                return FileUtil.StreamReadFromStrFile<TDataType>(reader, rowCollection, columnCollection, Delims);
+                return FileUtil.StreamReadFromStrFile<TDataType>(reader, rows, columns, Delims);
             }
             catch (SeeSharpFileException)
             {
@@ -783,7 +779,7 @@ namespace SeeSharpTools.JY.File
             try
             {
 
-                if (-1== rowCount)
+                if (0 >= rowCount)
                 {
                     //如果行数为0，则读取全部，即文件的总行数-起始行
                     rowCount = FileUtil.GetFileLineNum(filePath) - startRow;
@@ -837,7 +833,7 @@ namespace SeeSharpTools.JY.File
             StreamReader reader = null;
             try
             {
-                if (0 == lineCount)
+                if (0 >= lineCount)
                 {
                     lineCount = FileUtil.GetFileLineNum(filePath) - startRow;
                 }
@@ -864,7 +860,7 @@ namespace SeeSharpTools.JY.File
             StreamReader reader = null;
             try
             {
-                if (0 == lineCount)
+                if (0 >= lineCount)
                 {
                     lineCount = FileUtil.GetFileLineNum(filePath) - startRow;
                 }
