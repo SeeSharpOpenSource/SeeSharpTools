@@ -54,26 +54,8 @@ namespace SeeSharpTools.JY.GUI
             button_BackColor.BackColor = _changedCtrl.BackColor;
             button_ChartAreaBackColor.BackColor = _changedCtrl.ChartAreaBackColor;
             button_ChartAreaBackColor.BackColor = _changedCtrl.LegendBackColor;
-            //调用驱动中AITerminal的枚举作为选单
-            comboBox_GradientStyle.Items.AddRange(Enum.GetNames(typeof(System.Windows.Forms.DataVisualization.Charting.GradientStyle)));
-            if (_changedCtrl.ChartAreaBackColor == Color.Transparent)
-            {
-                checkBox_AreaTransparent.Checked = true;
-            }
-            else
-                checkBox_AreaTransparent.Checked = false;
-            
-            if (_changedCtrl.LegendBackColor == Color.Transparent)
-            {
-                checkBox_LegendTransparent.Checked = true;
-            }
-            else
-                checkBox_LegendTransparent.Checked = false;
-
-            comboBox_GradientStyle.SelectedText =  _changedCtrl.GradientStyle.ToString();
-            //update X&Y Logarithmic
-//            checkBox_XAxisLogarithmic.Checked = _changedCtrl.XAxisLogarithmic;
-//            checkBox_YAxisLogarithmic.Checked = _changedCtrl.YAxisLogarithmic;
+            checkBox_XAxisLogarithmic.Checked = _changedCtrl.AxisX.IsLogarithmic;
+            checkBox_YAxisLogarithmic.Checked = _changedCtrl.AxisY.IsLogarithmic;
         }
 
         private void numericUpDown_Height_ValueChanged(object sender, EventArgs e)
@@ -126,7 +108,6 @@ namespace SeeSharpTools.JY.GUI
                 button_ChartAreaBackColor.BackColor = BorderColor.Color;
                 _changedCtrl.ChartAreaBackColor = BorderColor.Color;
             }
-            checkBox_AreaTransparent.Checked = false;
         }
 
         private void button_LegendBackColor_Click(object sender, EventArgs e)
@@ -137,38 +118,16 @@ namespace SeeSharpTools.JY.GUI
                 button_LegendBackColor.BackColor = BorderColor.Color;
                 _changedCtrl.ChartAreaBackColor = BorderColor.Color;
             }
-            checkBox_LegendTransparent.Checked = false;
-        }
-
-        private void checkBox_AreaTransparent_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox_AreaTransparent.Checked)
-                _changedCtrl.ChartAreaBackColor = Color.Transparent;
-            else
-                _changedCtrl.ChartAreaBackColor = button_ChartAreaBackColor.BackColor;
-        }
-
-        private void checkBox_LegendTransparent_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox_LegendTransparent.Checked)
-                _changedCtrl.LegendBackColor = Color.Transparent;
-            else
-                _changedCtrl.LegendBackColor = button_LegendBackColor.BackColor;
-        }
-
-        private void comboBox_GradientStyle_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _changedCtrl.GradientStyle =  (EasyChartX.ChartGradientStyle)Enum.Parse(typeof(EasyChartX.ChartGradientStyle), comboBox_GradientStyle.Text, true);
         }
 
         private void checkBox_XAxisLogarithmic_CheckedChanged(object sender, EventArgs e)
         {
-//            _changedCtrl.XAxisLogarithmic = checkBox_XAxisLogarithmic.Checked;
+            _changedCtrl.AxisX.IsLogarithmic = checkBox_XAxisLogarithmic.Checked;
         }
 
         private void checkBox_YAxisLogarithmic_CheckedChanged(object sender, EventArgs e)
         {
-            /*_changedCtrl.YAxisLogarithmic = checkBox_YAxisLogarithmic.Checked;*/
+            _changedCtrl.AxisY.IsLogarithmic = checkBox_YAxisLogarithmic.Checked;
         }
 
         private void button_Confirm_Click(object sender, EventArgs e)

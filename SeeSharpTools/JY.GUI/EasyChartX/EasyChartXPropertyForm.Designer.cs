@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.checkBox_LegendTransparent = new System.Windows.Forms.CheckBox();
-            this.checkBox_AreaTransparent = new System.Windows.Forms.CheckBox();
-            this.comboBox_GradientStyle = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.button_LegendBackColor = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -66,10 +62,6 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.label6);
-            this.groupBox5.Controls.Add(this.checkBox_LegendTransparent);
-            this.groupBox5.Controls.Add(this.checkBox_AreaTransparent);
-            this.groupBox5.Controls.Add(this.comboBox_GradientStyle);
             this.groupBox5.Controls.Add(this.label5);
             this.groupBox5.Controls.Add(this.button_LegendBackColor);
             this.groupBox5.Controls.Add(this.label4);
@@ -78,50 +70,10 @@
             this.groupBox5.Controls.Add(this.button_BackColor);
             this.groupBox5.Location = new System.Drawing.Point(3, 190);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(284, 111);
+            this.groupBox5.Size = new System.Drawing.Size(284, 73);
             this.groupBox5.TabIndex = 21;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Color";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 67);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 12);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "GradientStyle";
-            // 
-            // checkBox_LegendTransparent
-            // 
-            this.checkBox_LegendTransparent.AutoSize = true;
-            this.checkBox_LegendTransparent.Location = new System.Drawing.Point(190, 65);
-            this.checkBox_LegendTransparent.Name = "checkBox_LegendTransparent";
-            this.checkBox_LegendTransparent.Size = new System.Drawing.Size(90, 16);
-            this.checkBox_LegendTransparent.TabIndex = 27;
-            this.checkBox_LegendTransparent.Text = "Transparent";
-            this.checkBox_LegendTransparent.UseVisualStyleBackColor = true;
-            this.checkBox_LegendTransparent.CheckedChanged += new System.EventHandler(this.checkBox_LegendTransparent_CheckedChanged);
-            // 
-            // checkBox_AreaTransparent
-            // 
-            this.checkBox_AreaTransparent.AutoSize = true;
-            this.checkBox_AreaTransparent.Location = new System.Drawing.Point(99, 65);
-            this.checkBox_AreaTransparent.Name = "checkBox_AreaTransparent";
-            this.checkBox_AreaTransparent.Size = new System.Drawing.Size(90, 16);
-            this.checkBox_AreaTransparent.TabIndex = 1;
-            this.checkBox_AreaTransparent.Text = "Transparent";
-            this.checkBox_AreaTransparent.UseVisualStyleBackColor = true;
-            this.checkBox_AreaTransparent.CheckedChanged += new System.EventHandler(this.checkBox_AreaTransparent_CheckedChanged);
-            // 
-            // comboBox_GradientStyle
-            // 
-            this.comboBox_GradientStyle.FormattingEnabled = true;
-            this.comboBox_GradientStyle.Location = new System.Drawing.Point(4, 85);
-            this.comboBox_GradientStyle.Name = "comboBox_GradientStyle";
-            this.comboBox_GradientStyle.Size = new System.Drawing.Size(88, 20);
-            this.comboBox_GradientStyle.TabIndex = 26;
-            this.comboBox_GradientStyle.SelectedIndexChanged += new System.EventHandler(this.comboBox_GradientStyle_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -251,9 +203,9 @@
             this.checkBox_LegendVisible.AutoSize = true;
             this.checkBox_LegendVisible.Location = new System.Drawing.Point(13, 45);
             this.checkBox_LegendVisible.Name = "checkBox_LegendVisible";
-            this.checkBox_LegendVisible.Size = new System.Drawing.Size(84, 16);
+            this.checkBox_LegendVisible.Size = new System.Drawing.Size(78, 16);
             this.checkBox_LegendVisible.TabIndex = 23;
-            this.checkBox_LegendVisible.Text = "IsViisible";
+            this.checkBox_LegendVisible.Text = "IsVisible";
             this.checkBox_LegendVisible.UseVisualStyleBackColor = true;
             this.checkBox_LegendVisible.CheckedChanged += new System.EventHandler(this.checkBox_LegendVisible_CheckedChanged);
             // 
@@ -319,7 +271,7 @@
             // checkBox_XAxisLogarithmic
             // 
             this.checkBox_XAxisLogarithmic.AutoSize = true;
-            this.checkBox_XAxisLogarithmic.Location = new System.Drawing.Point(14, 307);
+            this.checkBox_XAxisLogarithmic.Location = new System.Drawing.Point(14, 275);
             this.checkBox_XAxisLogarithmic.Name = "checkBox_XAxisLogarithmic";
             this.checkBox_XAxisLogarithmic.Size = new System.Drawing.Size(120, 16);
             this.checkBox_XAxisLogarithmic.TabIndex = 26;
@@ -330,7 +282,7 @@
             // checkBox_YAxisLogarithmic
             // 
             this.checkBox_YAxisLogarithmic.AutoSize = true;
-            this.checkBox_YAxisLogarithmic.Location = new System.Drawing.Point(167, 307);
+            this.checkBox_YAxisLogarithmic.Location = new System.Drawing.Point(167, 275);
             this.checkBox_YAxisLogarithmic.Name = "checkBox_YAxisLogarithmic";
             this.checkBox_YAxisLogarithmic.Size = new System.Drawing.Size(120, 16);
             this.checkBox_YAxisLogarithmic.TabIndex = 27;
@@ -340,7 +292,7 @@
             // 
             // button_Cancel
             // 
-            this.button_Cancel.Location = new System.Drawing.Point(165, 344);
+            this.button_Cancel.Location = new System.Drawing.Point(165, 312);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.button_Cancel.TabIndex = 36;
@@ -350,7 +302,7 @@
             // 
             // button_Confirm
             // 
-            this.button_Confirm.Location = new System.Drawing.Point(39, 344);
+            this.button_Confirm.Location = new System.Drawing.Point(39, 312);
             this.button_Confirm.Name = "button_Confirm";
             this.button_Confirm.Size = new System.Drawing.Size(75, 23);
             this.button_Confirm.TabIndex = 35;
@@ -362,7 +314,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 391);
+            this.ClientSize = new System.Drawing.Size(291, 345);
             this.Controls.Add(this.button_Cancel);
             this.Controls.Add(this.button_Confirm);
             this.Controls.Add(this.checkBox_YAxisLogarithmic);
@@ -407,7 +359,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown_Width;
         private System.Windows.Forms.NumericUpDown numericUpDown_Height;
-        private System.Windows.Forms.ComboBox comboBox_GradientStyle;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox_LegendVisible;
         private System.Windows.Forms.CheckBox checkBox_AutoYaxis;
@@ -416,9 +367,6 @@
         private System.Windows.Forms.CheckBox checkBox_YAxisLogarithmic;
         private System.Windows.Forms.Button button_Cancel;
         private System.Windows.Forms.Button button_Confirm;
-        private System.Windows.Forms.CheckBox checkBox_LegendTransparent;
-        private System.Windows.Forms.CheckBox checkBox_AreaTransparent;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox_primaryYMin;
