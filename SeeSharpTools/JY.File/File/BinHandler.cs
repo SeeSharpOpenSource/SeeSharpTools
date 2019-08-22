@@ -10,7 +10,7 @@ namespace SeeSharpTools.JY.File
     /// <summary>
     /// Bin文件读写类
     /// </summary>
-    public class BinHandler
+    public class BinHandler : IDisposable
     {
         private static I18nEntity i18n = I18nEntity.GetInstance(I18nLocalWrapper.Name);
 
@@ -1081,11 +1081,11 @@ namespace SeeSharpTools.JY.File
 
         #region 可实例化模块
 
-        private FileStream stream = null;
-        private BinaryReader reader = null;
-        private readonly string filePath;
-        private Type dataType;
-        private readonly int typeSize;
+        private FileStream _stream = null;
+        private BinaryReader _reader = null;
+        private readonly string _filePath;
+        private Type _dataType;
+        private readonly int _typeSize;
 
         /// <summary>
         /// 流式读取的构造方法
@@ -1094,7 +1094,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="colNum">读取文件的列数</param>
         public BinHandler(string filePath, int colNum)
         {
-            this.filePath = filePath;
+            this._filePath = filePath;
             this._colNum = colNum;
             InitStreamAndReader();
         }
@@ -1105,7 +1105,7 @@ namespace SeeSharpTools.JY.File
         /// <param name="filePath">读取文件的路径</param>
         public BinHandler(string filePath)
         {
-            this.filePath = filePath;
+            this._filePath = filePath;
             this._colNum = 1;
             InitStreamAndReader();
         }
@@ -1115,7 +1115,7 @@ namespace SeeSharpTools.JY.File
         /// </summary>
         public BinHandler()
         {
-            this.filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
+            this._filePath = FileUtil.GetOpenFilePathFromDialog(FileExtName);
             this._readOver = false;
             InitStreamAndReader();
         }
@@ -1124,12 +1124,12 @@ namespace SeeSharpTools.JY.File
         {
             try
             {
-                FileUtil.InitBinReadStream(ref stream, ref reader, filePath);
+                FileUtil.InitBinReadStream(ref _stream, ref _reader, _filePath);
             }
             catch (ApplicationException ex)
             {
-                FileUtil.ReleaseResource(reader);
-                FileUtil.ReleaseResource(stream);
+                FileUtil.ReleaseResource(_reader);
+                FileUtil.ReleaseResource(_stream);
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError, 
                     i18n.GetFStr("Runtime.OpenfileFail", ex.Message), ex);
             }
@@ -1148,8 +1148,10 @@ namespace SeeSharpTools.JY.File
         public void StopStreamRead()
         {
             _readOver = true;
-            FileUtil.ReleaseResource(reader);
-            FileUtil.ReleaseResource(stream);
+            FileUtil.ReleaseResource(_reader);
+            _reader = null;
+            FileUtil.ReleaseResource(_stream);
+            _stream = null;
         }
 
         private int byteOffset = 0;
@@ -1167,13 +1169,13 @@ namespace SeeSharpTools.JY.File
 
         private void InitDataType(Type inputType)
         {
-            if (null == dataType)
+            if (null == _dataType)
             {
-                dataType = inputType;
+                _dataType = inputType;
             }
-            else if (!ReferenceEquals(dataType, inputType))
+            else if (!ReferenceEquals(_dataType, inputType))
             {
-                throw new SeeSharpFileException(SeeSharpFileErrorCode.ParamCheckError, i18n.GetFStr("ParamCheck.DataTypeDiff", dataType.Name));
+                throw new SeeSharpFileException(SeeSharpFileErrorCode.ParamCheckError, i18n.GetFStr("ParamCheck.DataTypeDiff", _dataType.Name));
             }
         }
 
@@ -1203,11 +1205,11 @@ namespace SeeSharpTools.JY.File
             }
             try
             {
-                int readBytes = readSize * _colNum * Marshal.SizeOf(dataType);
+                int readBytes = readSize * _colNum * Marshal.SizeOf(_dataType);
                 //如果文件中剩余数据小于readSize，则更新readSize的值为文件剩余的样点数
-                if (readBytes + byteOffset > stream.Length)
+                if (readBytes + byteOffset > _stream.Length)
                 {
-                    readBytes = (int)(stream.Length - byteOffset);
+                    readBytes = (int)(_stream.Length - byteOffset);
                     readSize = readBytes / (_colNum * sizeof(double));
                 }
                 if (readBytes <= 0)
@@ -1222,10 +1224,10 @@ namespace SeeSharpTools.JY.File
                     dataBuf = new double[readSize, _colNum];
                 }
                 //                reader.BaseStream.Position = byteOffset;
-                byte[] tmpBuf = reader.ReadBytes(readBytes);
+                byte[] tmpBuf = _reader.ReadBytes(readBytes);
                 Buffer.BlockCopy(tmpBuf, 0, dataBuf, 0, readBytes);
                 //如果读取结束后文件已经读取完成，则自动停止流式读取。
-                if (byteOffset >= stream.Length - 1)
+                if (byteOffset >= _stream.Length - 1)
                 {
                     StopStreamRead();
                 }
@@ -1238,6 +1240,16 @@ namespace SeeSharpTools.JY.File
                     i18n.GetFStr("Runtime.ReadFail", ex.Message), ex);
             }
         }
+
+        /// <summary>
+        /// 执行与释放或重置非托管资源相关的应用程序定义的任务。
+        /// </summary>
+        /// <filterpriority>2</filterpriority>
+        public void Dispose()
+        {
+            StopStreamRead();
+        }
+
         #endregion
     }
 }
