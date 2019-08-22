@@ -24,10 +24,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
         // 保存每次写入的样点个数
         private List<int> _blockCounts;
 
-        public TimeStampDataEntity(PlotManager plotManager, DataEntityInfo dataInfo, int sampleCount) : base(plotManager, dataInfo)
+        public TimeStampDataEntity(PlotManager plotManager, DataEntityInfo dataInfo, int sampleCount, bool singleSampleMode) : base(plotManager, dataInfo)
         {
             _samplesInChart = 0;
-            _singleSamplePlotMode = (sampleCount == 1);
+            _singleSamplePlotMode = singleSampleMode;
             if (_singleSamplePlotMode)
             {
                 _timeStamps = new List<DateTime>(dataInfo.Capacity);

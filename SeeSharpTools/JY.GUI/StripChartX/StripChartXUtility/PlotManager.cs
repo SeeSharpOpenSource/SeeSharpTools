@@ -131,7 +131,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             this.MaxSeriesCount = Constants.DefaultMaxSeriesCount;
         }
 
-        public void InitializeDataEntity<TDataType>(int lineCount, int sampleCount)
+        public void InitializeDataEntity<TDataType>(int lineCount, int sampleCount, bool singleSampleMode)
         {
             DataEntityInfo dataEntityInfo = new DataEntityInfo()
             {
@@ -151,7 +151,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                         DataEntity = new StringDataEntity<TDataType>(this, dataEntityInfo);
                         break;
                     case StripChartX.XAxisDataType.TimeStamp:
-                        DataEntity = new TimeStampDataEntity<TDataType>(this, dataEntityInfo, sampleCount);
+                        DataEntity = new TimeStampDataEntity<TDataType>(this, dataEntityInfo, sampleCount, singleSampleMode);
                         break;
                 }
             }

@@ -800,7 +800,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = lineData.GetLength(0);
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length, true);
             }
             CheckYData(seriesCount, typeof (TDataType));
             _plotManager.DataEntity.AddPlotData(xLabels, lineData);
@@ -819,7 +819,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = 1;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length, true);
             }
             CheckYData(seriesCount, typeof (TDataType));
             _plotManager.DataEntity.AddPlotData(xLabels, lineData);
@@ -838,7 +838,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = lineData.GetLength(0);
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length, true);
             }
             CheckYData(seriesCount, typeof (TDataType));
             _plotManager.DataEntity.AddPlotData(xLabels, lineData);
@@ -857,7 +857,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = lineData.Length/xLabels.Length;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length, true);
             }
             CheckYData(seriesCount, typeof (TDataType));
             _plotManager.DataEntity.AddPlotData(xLabels, lineData);
@@ -875,7 +875,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = lineData.GetLength(0);
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, lineData.GetLength(1));
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, lineData.GetLength(1), false);
             }
             CheckYData(seriesCount, typeof (TDataType));
             _plotManager.DataEntity.AddPlotData(lineData, lineData.GetLength(1));
@@ -893,7 +893,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = 1;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, lineData.Length);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, lineData.Length, false);
             }
             CheckYData(seriesCount, typeof (TDataType));
             _plotManager.DataEntity.AddPlotData(lineData, lineData.Length);
@@ -916,7 +916,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = lineData.Length;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1, true);
             }
             CheckYData(seriesCount, typeof (TDataType));
             _plotManager.DataEntity.AddPlotData(new string[] {xLabel}, lineData);
@@ -935,7 +935,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = lineData.Length;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1, true);
             }
             CheckYData(seriesCount, typeof (TDataType));
             _plotManager.DataEntity.AddPlotData(new DateTime[] {xLabel}, lineData);
@@ -953,7 +953,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = lineData.Length;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1, true);
             }
             CheckYData(seriesCount, typeof (TDataType));
             _plotManager.DataEntity.AddPlotData(lineData, 1);
@@ -972,7 +972,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = 1;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1, true);
             }
             CheckYData(seriesCount, typeof(TDataType));
             _plotManager.DataEntity.AddPlotData(new string[] { xLabel }, new TDataType[] { lineData });
@@ -991,7 +991,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = 1;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1, true);
             }
             CheckYData(seriesCount, typeof(TDataType));
             _plotManager.DataEntity.AddPlotData(new DateTime[] { xLabel }, new TDataType[] { lineData });
@@ -1009,7 +1009,7 @@ namespace SeeSharpTools.JY.GUI
             int seriesCount = 1;
             if (!_plotManager.IsPlotting)
             {
-                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1);
+                InitPlotManagerAndViewManager<TDataType>(seriesCount, 1, true);
             }
             CheckYData(seriesCount, typeof(TDataType));
             _plotManager.DataEntity.AddPlotData(new TDataType[] { lineData }, 1);
@@ -1040,7 +1040,7 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
-        private void InitPlotManagerAndViewManager<TDataType>(int newSeriesCount, int sampleCount)
+        private void InitPlotManagerAndViewManager<TDataType>(int newSeriesCount, int sampleCount, bool singleSampleMode)
         {
             Type dataType = typeof (TDataType);
             if (!Constants.ValidDataType.Contains(dataType))
@@ -1049,7 +1049,7 @@ namespace SeeSharpTools.JY.GUI
             }
             int lastSeriesCount = _plotManager.SeriesCount;
             AdaptPlotSeriesAndChartView(newSeriesCount != lastSeriesCount);
-            _plotManager.InitializeDataEntity<TDataType>(newSeriesCount, sampleCount);
+            _plotManager.InitializeDataEntity<TDataType>(newSeriesCount, sampleCount, singleSampleMode);
         }
 
         #endregion
