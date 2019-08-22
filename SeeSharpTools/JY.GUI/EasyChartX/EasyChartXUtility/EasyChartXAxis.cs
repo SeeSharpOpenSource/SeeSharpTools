@@ -332,7 +332,6 @@ namespace SeeSharpTools.JY.GUI
             get { return _baseAxis?.IsLogarithmic ?? false; }
             set
             {
-                // TODO 暂时修改该接口，只支持Y轴的对数显示
                 if (null == _baseAxis || value == _baseAxis.IsLogarithmic)
                 {
                     return;
@@ -343,7 +342,8 @@ namespace SeeSharpTools.JY.GUI
                     {
                         Maximum = IsXAxis() ? Constants.DefaultXMax : Constants.DefaultYMax;
                     }
-                    Minimum = Constants.DefaultMinLogarithmic;
+                    this._minData = value ? Constants.DefaultMinLogarithmic : Constants.DefaultXMin;
+                    Minimum = _minData;
                 }
                 if (value && !_parentChart.ExistLogAxis())
                 {
