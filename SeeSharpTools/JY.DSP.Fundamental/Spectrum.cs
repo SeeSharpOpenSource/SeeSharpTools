@@ -421,6 +421,51 @@ namespace SeeSharpTools.JY.DSP.Fundamental
             spectralInfo.windowType = windowType;
 			gch.Free();
         }
+
+        /// <summary>
+        /// Advance Real FFT
+        /// </summary>
+        /// <param name="xIn">time domain data</param>
+        /// <param name="windowType">window type</param>
+        /// <param name="xOut">complex out data</param>
+        public static void AdvanceRealFFT(double[] xIn, WindowType windowType, ref Complex[] xOut)
+        {
+            if(xIn == null || xOut == null || xOut.Length < (xIn.Length / 2 + 1))
+            {
+                throw new JYDSPUserBufferException();
+            }
+
+            int n = xIn.Length, windowsize = xIn.Length; //做FFT的次数
+            int fftsize = windowsize; //做FFT点数
+            double cg = 0, enbw = 0;
+            double[] xInTmp = null;
+            double[] windowData = null;
+
+            xInTmp = new double[fftsize];
+
+            GCHandle gchXIn = GCHandle.Alloc(xIn, GCHandleType.Pinned);
+            var xInPtr = gchXIn.AddrOfPinnedObject();
+            GCHandle gchXout = GCHandle.Alloc(xOut, GCHandleType.Pinned);
+            var xOutPtr = gchXout.AddrOfPinnedObject();
+
+            try
+            {
+                //生成窗函数的数据
+                windowData = new double[windowsize];
+                Window.GetWindow(windowType, ref windowData, out cg, out enbw);
+                CBLASNative.cblas_dscal(windowsize, 1 / cg, windowData, 1); //窗系数归一化
+                CBLASNative.cblas_dscal(xOut.Length, 0, xOutPtr, 1); //将xOut清零
+                /*TIME_DOMAIN_WINDOWS(windowType, x_in, &CG, &ENBW, windowsize);*//*(double*)(xIn + i * windowsize)*/
+                VMLNative.vdMul(windowsize, windowData, xInPtr, xInTmp);
+                BasicFFT.RealFFT(xInTmp, ref xOut);
+            }
+            finally
+            {
+                gchXIn.Free();
+                gchXout.Free();
+            }
+           
+        }
         #endregion
     }
 }

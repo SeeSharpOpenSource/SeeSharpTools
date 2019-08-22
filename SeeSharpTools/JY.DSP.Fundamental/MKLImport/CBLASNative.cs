@@ -19,5 +19,8 @@ namespace SeeSharpTools.JY.DSP.Fundamental
 
         [DllImport(@"mkl_rt.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, SetLastError = false)]
         public static extern int cblas_dscal(int n, double alpha, double[] X, int incX);
+
+        [DllImport(@"mkl_rt.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, SetLastError = false)]
+        public static extern int cblas_dscal(int n, double alpha, IntPtr X, int incX);
     }
 }

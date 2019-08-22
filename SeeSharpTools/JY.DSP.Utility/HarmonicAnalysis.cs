@@ -94,14 +94,15 @@ namespace SeeSharpTools.JY.DSP.Utility
             return taResult;
         }
         /// <summary>
-        /// Caculate RMS Noise In Target Band
+        /// Caculate System Noise In Target Band ( Frequency Domain Method ).
+        /// No DC.
         /// </summary>
         /// <param name="timewaveform">Waveform in time space</param>
         /// <param name="dt"> Interval time of waveform </param>
-        /// <param name="startFrequency">Start frequency</param>
+        /// <param name="startFrequency">Start frequency( FFT result bin0 and bin1 removed )</param>
         /// <param name="stopFrequency">Stop frequency</param>
         /// <returns></returns>
-        public static double CaculateRMSNoiseInTargetBand(double[] timewaveform, double dt, double startFrequency, double stopFrequency)
+        public static double CaculateSystemNoise(double[] timewaveform, double dt, double startFrequency, double stopFrequency)
         {
             if (stopFrequency < 0 || startFrequency < 0 || startFrequency > stopFrequency || stopFrequency > 1 / dt / 2)
             {
@@ -118,8 +119,12 @@ namespace SeeSharpTools.JY.DSP.Utility
             double correctionFactor = 0.8165;
             Spectrum.PowerSpectrum(timewaveform, (double)1 / dt, ref spectrumForRMS, out df, SpectrumUnits.V2, winTypeForRMS);
             startIndex = (int)(startFrequency / df);
+            if(startIndex < 2)
+            {
+                startIndex = 2;
+            }
             stopIndex = (int)(stopFrequency / df);
-            for(int i = startIndex; i <= stopIndex; i++)
+            for(int i = startIndex; i <= stopIndex-1; i++)
             {
                 sumPower += spectrumForRMS[i];
             }
@@ -127,14 +132,28 @@ namespace SeeSharpTools.JY.DSP.Utility
             return rMSNoise;
         }
         /// <summary>
-        /// Caculate RMS Noise In Target Band
+        /// Caculate System Noise ( Time Domain Method ).
+        /// No DC.
         /// </summary>
         /// <param name="timewaveform">Waveform in time space</param>
-        /// <param name="dt">Interval time of waveform</param>
         /// <returns></returns>
-        public static double CaculateRMSNoiseInTargetBand(double[] timewaveform, double dt)
+        public static double CaculateSystemNoise(double[] timewaveform)
         {
-            return CaculateRMSNoiseInTargetBand(timewaveform, dt, 0, 1 / dt / 2);
+            double sum = 0;
+            double avg;
+            double Vrms;
+            for(int i = 0; i < timewaveform.Length; i++)
+            {
+                sum += timewaveform[i];
+            }
+            avg = sum / timewaveform.Length;
+            sum = 0;
+            for (int i = 0; i < timewaveform.Length; i++)
+            {
+                sum += (timewaveform[i]-avg)* (timewaveform[i] - avg);
+            }
+            Vrms = Math.Sqrt(sum / timewaveform.Length);
+            return Vrms;
         }
         /// <summary>
         /// Calculates the THD and level of all components of the input signal.
