@@ -58,7 +58,7 @@ namespace SeeSharpTools.JY.GUI
             set
             {
                 if (string.IsNullOrWhiteSpace(value) || _name.Equals(value) || value.Length > MaxNameLength || 
-                    null == _collection || _collection.Any(cursor => cursor.Name.Equals(value)))
+                    (null != _collection && _collection.Any(cursor => cursor.Name.Equals(value))))
                 {
                     return;
                 }

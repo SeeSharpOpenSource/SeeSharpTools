@@ -61,7 +61,7 @@ namespace SeeSharpTools.JY.GUI
 
         public void Add(StripTabCursor item)
         {
-            if (_cursors.Any(cursor => cursor.Name.Equals(item.Name)) || _cursors.Count >= MaxCursorCount)
+            if (_cursors.Count >= MaxCursorCount)
             {
                 return;
             }
@@ -70,7 +70,7 @@ namespace SeeSharpTools.JY.GUI
                 _adapter.RefreshPosition();
             }
             item.Initialize(this);
-            if (string.IsNullOrWhiteSpace(item.Name))
+            if (string.IsNullOrWhiteSpace(item.Name) || _cursors.Any(cursor => cursor.Name.Equals(item.Name)))
             {
                 for (int i = 1; i < MaxCursorCount + 1; i++)
                 {
