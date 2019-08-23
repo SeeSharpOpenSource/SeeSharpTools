@@ -1,5 +1,24 @@
+--------------------版本  1.4.5---2019/8/23
+1.新增功能
+	---SeeSharpTools.JY.DSP.Fundamental.Spectrum类新增AdvancedRealFFT方法用于计算时域波形的复数频谱
+	---SeeSharpTools.JY.DSP.Utility.HarmonicAnalysis类新增CaculateSystemNoise的重载方法，用于计算时域系统噪声
+		
+2.修复bug
+	---SeeSharpTools.JY.DSP.Utility.HarmonicAnalysis类修复CalculateSystemNoise没有返回值的bug
+	---修复StripChartX在时间戳模式下，连续绘制多个样点且X轴时间手动传入时时间戳更新错误的bug
+	---修复StripChartX和EasyChartX的TabCursor在属性窗体中配置颜色属性未生效的bug
+	---修复StripChartX和EasyChartX在属性窗体配置SplitView为True时运行会抛出异常的错误
+	---修复EasyChartX在X轴配置为自动范围，修改坐标轴为对数显示时控件崩溃的bug
+	---修复EasyChartX的小三角属性配置窗体部分属性配置后未生效的bug
+
+3.其他变更
+	---BinHandler新增实例方法Dispose
+	---修正CsvHandler部分接口中Count/Size、Collectoin/xxxs的混用
+	---修正CsvHandler部分接口中count表示所有行/列时-1和0的混用，优化部分注释信息
+	---修正Slide控件、IndustrySwitch中部分属性的注释和描述信息
+
 --------------------版本  1.4.4---2019/1/18
-1.增加功能
+1.新增功能
 	---ExcelReport新增RowCount和ColumnCount属性，获取当前工作表的行数列数
 	---ArrayManipulation增加Concatenate方法，用以实现数组的拼接
 	---ArrayManipulation多个方法新增MajorOrder入参，用以配置数组操作的方向(按行或按列)
@@ -20,7 +39,7 @@
 	---新增小型记录仪控件StripChartX，该控件是StripChart的更新版本，功能和EasyChartX对齐
 	---新增ButtonSwitchArray控件
 	
-2.更新bug
+2.修复bug
 	---修复EasyChartX的Y轴在非自动范围模式下，某些场景配置的范围未生效的bug
 	---修复EasyChartX在部分场景下Y轴AutoScale为true时计算的范围小于Y轴数据范围的bug
 	---修复BinHandler在Append模式下报错的bug
@@ -28,12 +47,12 @@
 	---优化Phase类的CalcPhaseShift的算法
 	---修正AquaGauge控件在频繁修改Value时导致大量GC的bug
 
-3.其他修改
+3.其他变更
 	---EasyChartX修改未绘图时配置坐标轴范围的策略：用户配置的数据合法时无论是否开启AutoScale，该配置都会生效
 	---EasyChartX在未绘图时右键可以显示功能菜单(部分和数据相关的菜单项不使能)
 
 --------------------版本  1.4.3---2018/7/25
-1.增加功能
+1.新增功能
 	---EasyChartX新增X轴游标，用户可以选择定位到X轴上的点
 	---新增日志模块Logger，可以指定日志路径或日志目录
 	---新增ViewController控件，方便界面联动的开发
@@ -44,17 +63,17 @@
 	---发布JYUtility新增SignalProcessing类，支持过零点分析、上下限分析、峰值分析
 	---StripChart右键菜单新增Clear功能、新增XLabelEnabled属性
 	---StripChart新增NextTimeStamp和TimeInterval属性，在使用时间戳显示时可以配置起始时间戳和时间间隔
-2.更新bug
+2.修复bug
 	---修复EasyChartX在点数小于4000且起始点不是0时出现起始位置偏移的bug。
 	---优化KnobControl和Slide的ValueChanged事件：鼠标操作结束后才触发。新增ValueChanging事件：鼠标操作过程中触发。
 	---修改StripChart在点数较多的情况下会偶尔会出现丢点的bug。
-3.其他修改
+3.其他变更
 	---将LEDBright控件标记为已废弃，后续不再维护。
 	---修改EasyChartX坐标轴AutoScale属性从true修改为false的处理策略：从“坐标轴范围修改为用户在Maximum和Minimum配置的值”修改为“坐标轴保持上次的范围不变”。
 
 
 --------------------版本  1.4.2(内测版本)---2018/6/29
-1.增加功能
+1.新增功能
 	---(内测发布)EasyChartX新增X轴游标，用户可以选择定位到X轴上的点
 	---(内测发布)新增日志模块Logger，可以指定日志路径或日志目录
 	---(内测发布)新增ViewController控件，方便界面联动的开发
@@ -64,17 +83,17 @@
 	---(内测发布)新增JY.TCP模块，支持server/client透过网路TCP传递资料
 	---(内测发布)发布JYUtility新增SignalProcessing类，支持过零点分析、上下限分析、峰值分析
 	---(内测发布)StripChart右键菜单新增Clear功能、新增XLabelEnabled属性
-2.更新bug
+2.修复bug
 	---(内测发布)修复EasyChartX在点数小于4000且起始点不是0时出现起始位置偏移的bug。
 	---(内测发布)优化KnobControl和Slide的ValueChanged事件：鼠标操作结束后才触发。新增ValueChanging事件：鼠标操作过程中触发。
 	---(内测发布)修改StripChart在点数较多的情况下会偶尔会出现丢点的bug。
-3.其他修改
+3.其他变更
 	---(内测发布)将LEDBright控件标记为已废弃，后续不再维护。
 	---(内测发布)修改EasyChartX坐标轴AutoScale属性从true修改为false的处理策略：从“坐标轴范围修改为用户在Maximum和Minimum配置的值”修改为“坐标轴保持上次的范围不变”。
 
 	
 --------------------版本  1.4.1---2018/2/24
-1.增加功能
+1.新增功能
 	---发布GUI模块新增EasyChartX控件
 	---发布File模块新增IniHandler功能，实现ini文件的读写改操作
 	---发布Utility模块新增ToneAnalyze功能
@@ -84,7 +103,7 @@
 	---发布CsvHandler里增加的起始行读取和起始列/读取列索引的重载
 	---发布功能重做的WordReport和ExcelReport功能
 
-2.更新bug
+2.修复bug
 
 	---EasyChart修复了缩放后再绘图缩放会取消的bug
 	---修复了EasyChart拖入窗体后缺少依赖导致编译错误的bug
@@ -94,12 +113,12 @@
 	---修复了StripChartY轴绘图情况下缩放不生效的问题
 	---修复了GaugeLinear图形控件的功能
 
-3.其他修改
+3.其他变更
 	---将MathNet.Filtering.dll和MathNet.Filtering.xml添加到SeeSharpTools/bin/目录下。
 	---优化和修复了测试版本中EasyChartX的部分功能。
 
 --------------------版本  1.4.0(内测版本)---2018/2/6
-1.增加功能
+1.新增功能
 	---(内测发布)GUI模块新增EasyChartX控件
 	---(内测发布)File模块新增IniHandler功能，实现ini文件的读写改操作
 	---(内测发布)Utility模块新增ToneAnalyze功能
@@ -109,7 +128,7 @@
 	---(内测发布)CsvHandler里增加的起始行读取和起始列/读取列索引的重载
 	---(内测发布)更新版本的WordReport和ExcelReport功能
 
-2.更新bug
+2.修复bug
 
 	---(内测发布)EasyChart修复了缩放后再绘图缩放会取消的bug
 	---(内测发布)修复了EasyChart拖入窗体后缺少依赖导致编译错误的bug
@@ -120,7 +139,7 @@
 
 
 --------------------版本  1.3.1(内测版本)---2018/1/5
-1.增加功能
+1.新增功能
 	---(内测发布)GUI模块新增EasyChartX控件，比EasyChart更丰富的自定义配置，支持分区视图和双Y轴绘图
 	---(内测发布)File模块新增IniHandler功能，实现ini文件的读写改操作
 	---(内测发布)Utility模块新增ToneAnalyze功能
@@ -129,10 +148,10 @@
 	---(内测发布)EasyChart增加坐标轴缩放、起始绘图自动缩放、手动配置X轴范围的命令
 	---(内测发布)CsvHandler里增加了起始行读取和起始列/读取列索引的重载
 
-3.其他修改
+3.其他变更
 
 --------------------版本  1.3.0---20170808
-1.增加功能
+1.新增功能
 
 	---增加了JYArray控件
    	---增加了LEDArray控件
@@ -143,43 +162,43 @@
 	---在EasyChart中添加了保存数据为Csv和保存图表到Png的命令
 	---CsvHandler和BinHandler里增加了保存文件时如果文件已存在复写还是覆盖的选项
 
-2.更新bug
+2.修复bug
 
    	---EasyChart增加Cursor对齐到线条和部分bug修复
    	---修复了Easychart在plot之后点击reset无效的问题。
    	---EasyChart的YaxisMax,YaxisMin设定时数据类型由int变为double。
 	---修复了，重复PowerSpectrum导致内存增长的问题
 
-3.其他修改
+3.其他变更
 
 	---重写了StripChart控件
 
 --------------------版本  1.2.2---20170418
-1.增加功能
+1.新增功能
 
-2.更新bug
+2.修复bug
 
    	---EasyChart缩放滑块变为透明的bug。
    	---EasyChart在特定情况下缩放数据不对的bug。
    	---EasyChart小三角在修改Y轴范围时的bug。
 
-3.其他修改
+3.其他变更
 
 
 --------------------版本  1.2.1---201704011
-1.增加功能
+1.新增功能
 
-2.更新bug
+2.修复bug
 
 	---修改EasyChart快速配置页面点击取消时报错的bug
 	---修改Graph3D初始化不成功的bug
 
-3.其他修改
+3.其他变更
 
 
 
 --------------------版本  1.2.0---20170406
-1.增加功能
+1.新增功能
 
 	---部分图形控件新增快速配置功能
 	---新增温度计控件
@@ -187,9 +206,9 @@
 	---SurfaceGraph功能整合IntensityGraph
 	---新增JYArray功能GUI显示控件
 
-2.更新bug
+2.修复bug
 
-3.其他修改
+3.其他变更
 
 	---原温度计控件重命名为压力表
 	---文件读写功能修改读double数组的接口
@@ -197,7 +216,7 @@
 
 
 --------------------版本  1.1.0---20170219-----------------------
-1.增加功能
+1.新增功能
       
 	---在DSP.Utility中增加SquarewaveMeasurements功能
 	---Graph3D中增加IntensityGraph
@@ -209,13 +228,13 @@
 		保存CSV PNG等等
 	---更新MCRFilter，兼容x64和x86两种版本
 
-2.更新bug
+2.修复bug
         
         ---修复当Min不为0时，Knob的数字标注位置会进行跑动
 	---修复了AxisYMin.Set的bug
 	---修正EasyChart在Plot不同长度的数据时出现的错误。
 
-3.其他修改
+3.其他变更
 
         ---BinHandler和CsvHandler修改为重载方式
 	---把SoundVibration, PhaseAnalizer和Localization类都修改为静态类；
@@ -226,7 +245,7 @@
 
 
 --------------------版本  1.0.5---20170125-----------------------
-1.增加功能
+1.新增功能
       
 	---增加声音震动分析功能
 	---增加相位算法和信号同步器功能
@@ -239,9 +258,9 @@
 	---Excel支持double类型数据的直接输入
 	---Excel支持Excel文档自动打开
 	---Excel支持画图功能，目前只支持line性格式.
-2.更新bug
+2.修复bug
         
         ---修复EasyChart最后点数显示有误的bug
 	---修复了EasyChart在PlotInternal和Plot([]y)的时候可能引发的错误
 
-3.其他修改
+3.其他变更
