@@ -71,6 +71,7 @@ This library provides some useful DSP algorithms. Some of these algorithms are b
 - **SquarewaveMeasurements:** *[static class]* Provides common sqaure wave measurement algorithms.
 - **Synchronizer:** *[static class]* Provides function to synchronize the data for asynchronized data acquisition.
 - **PeakValleyAnalysis** *[static class]* Provides peak and valley detection algorithms. This function is based on matlab runtime engine and a **MCR** should be installed when using this class.
+- **MedianFilter:** *[static class]* A non-linear digital filtering technique, often used to remove noise from a signal.
 
 ---
 ### SeeSharpTools.JY.DSP.Utility.Fundamental
