@@ -106,6 +106,7 @@ The classes in this library is listed below:
 - **GaugeLinear:** Slide control with adaptive scale and better appearance.
 - **KnobControl:** Knob control for analog value input.
 - **LED:** LED light control for boolean value output. This control support multiple display style.
+- **LEDArray:** LED light array control for boolean array value output. This control support multiple display style.
 - **LedArrow:** LED light control with arrow style. This control support multiple display style.
 - **LedMatrixControl:** Control for text display with dot array style.
 - **JYArray:** Control array for array data display.
