@@ -330,9 +330,9 @@ namespace SeeSharpTools.JY.GUI
             }
         }
         /// <summary>
-        /// Gets or sets the height of tick.
+        /// Gets or sets the width of tick.
         /// </summary>
-        /// <value>The height of tick in pixels. The default value is 2.</value>
+        /// <value>The width of tick in pixels. The default value is 6.</value>
         [Category("Appearance")]
         [Description("Gets or sets the height of tick.")]
         [DefaultValue(6)]
@@ -1042,6 +1042,8 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
+        [Category("Appearance")]
+        [Description("Get or set the count of tick interval in the slide bar.")]
         public int Valuedecimals
         {
             get

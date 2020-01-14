@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HarmonicAnalysis.cs" />
+    <Compile Include="MedianFilter.cs" />
     <Compile Include="PeakValleyAnalysis.cs" />
     <Compile Include="PhaseAnalizer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

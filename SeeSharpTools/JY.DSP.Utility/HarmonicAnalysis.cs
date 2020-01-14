@@ -6,95 +6,12 @@ using SeeSharpTools.JY.DSP.Fundamental;
 namespace SeeSharpTools.JY.DSP.Utility
 {
     /// <summary>
-    /// HarmonicAnalysis Class
+    /// 谐波分析类
     /// </summary>
     public static class HarmonicAnalysis
     {
         /// <summary>
-        /// Tone Analysis
-        /// </summary>
-        /// <param name="timewaveform">Waveform in time space</param>
-        /// <param name="dt"> Interval time of waveform </param>
-        /// <param name="highestHarmonic">HighestHamonic level</param>
-        /// <param name="resultInDB">If return result in DB</param>
-        /// <returns></returns>
-        public static ToneAnalysisResult ToneAnalysis(double[] timewaveform, double dt=1,int highestHarmonic = 10,bool resultInDB = true)
-        {
-            ToneAnalysisResult taResult = new ToneAnalysisResult();
-            double[] harmonicsLevel = new double[highestHarmonic+1];
-            double THD;
-            double peakFrequency;
-            ComponentsLevelCaculation(timewaveform, dt, out peakFrequency, out THD, ref harmonicsLevel, highestHarmonic);
-
-            double sumPower = 0;
-            double totalRMS = 0;
-            double NoiseDistortionRMS = 0;
-            double NoiseV2RMS = 0;
-            double THDplusN = 0;
-            double df = 0;
-            //bug fix: this RMS calculation is wrong, as it has no window, so to have chances
-            //for RMS<component[1], ths signal only
-            //for (int i = 0; i < loadedSignal.Length; i++)
-            //{
-            //    sumPower += Math.Pow(loadedSignal[i],2);
-            //}
-            //totalRMS = Math.Sqrt(sumPower/ loadedSignal.Length); //RMS of siangl = S+N+D
-
-            //RMS can be calculated by spectrum which will be the same as that in Tone Analysis
-            double[] spectrumForRMS = new double[timewaveform.Length / 2];
-            //var winTypeForRMS = WindowType.Hanning;  //relates to ENBW, must change in pair
-            //double ENBWforwinType = 1.5000; //ENBW for winType Hanning.ENBW = 1.500
-            //var winTypeForRMS = WindowType.Hamming;  //relates to ENBW, must change in pair
-            //double ENBWforwinType = 1.36283; //ENBW for winType Hanning.ENBW = 1.500
-            var winTypeForRMS = WindowType.Seven_Term_B_Harris;  //relates to ENBW, must change in pair
-            double ENBWforwinType = 2.63191; //ENBW for winType Hanning.ENBW = 1.500
-
-            Spectrum.PowerSpectrum(timewaveform, (double)1/dt, ref spectrumForRMS, out df, SpectrumUnits.V2, winTypeForRMS);
-            for (int i = 1; i < spectrumForRMS.Length; i++)
-            {
-                sumPower += spectrumForRMS[i];
-            }
-            totalRMS = Math.Sqrt(sumPower / ENBWforwinType);
-            //end of total power calculation  -20170505 by JXISH
-
-            //SINAD = (S+N+D)/(N+D), all in power, but we calculate it in dB
-            //THD+N=(N+D)/(S+N+D), all in power
-            //THD = D / S
-            NoiseDistortionRMS = Math.Sqrt(totalRMS * totalRMS - harmonicsLevel[1] * harmonicsLevel[1] / 2);
-            THDplusN = NoiseDistortionRMS / totalRMS;
-            taResult.THD = THD;
-            taResult.THDplusN = THDplusN;
-            //taResult.SINAD = (double)1 / THDplusN;
-            taResult.SINAD = totalRMS / NoiseDistortionRMS;
-            //taResult.SNR = ((double)1 - THDplusN) / (THDplusN + THDplusN * THD - THD);
-            //Noise = total - signal - distortion
-            NoiseV2RMS = totalRMS * totalRMS - harmonicsLevel[1] * harmonicsLevel[1] / 2;
-            for(int i =2; i < harmonicsLevel.Length; i++)
-            {
-                NoiseV2RMS -= harmonicsLevel[i] * harmonicsLevel[i] / 2;
-            }
-            taResult.SNR = Math.Sqrt(harmonicsLevel[1] * harmonicsLevel[1] / 2 / NoiseV2RMS);
-            //NoiseFloor = SNR + 10*log(M/2)
-            taResult.NoiseFloor = taResult.SNR * Math.Sqrt(timewaveform.Length / 2);
-            taResult.ENOB = 1;
-            if (resultInDB)
-            {
-                Type t = typeof(ToneAnalysisResult);
-                FieldInfo[] taInfo= t.GetFields();
-                foreach(FieldInfo item in taInfo)
-                {
-                    item.SetValue(taResult, 20 * Math.Log10((double)item.GetValue(taResult)));
-                }
-                taResult.ENOB = (taResult.SINAD - 1.76) / 6.02;
-            }
-            else
-            {
-                taResult.ENOB = (20 * Math.Log10(taResult.SINAD) - 1.76) / 6.02;
-            }
-            return taResult;
-        }
-        /// <summary>
-        /// Caculate System Noise In Target Band ( Frequency Domain Method ).
+        /// Calculate System Noise In Target Band ( Frequency Domain Method ).
         /// No DC.
         /// </summary>
         /// <param name="timewaveform">Waveform in time space</param>
@@ -102,7 +19,7 @@ namespace SeeSharpTools.JY.DSP.Utility
         /// <param name="startFrequency">Start frequency( FFT result bin0 and bin1 removed )</param>
         /// <param name="stopFrequency">Stop frequency</param>
         /// <returns></returns>
-        public static double CaculateSystemNoise(double[] timewaveform, double dt, double startFrequency, double stopFrequency)
+        public static double CalculateSystemNoise(double[] timewaveform, double dt, double startFrequency, double stopFrequency)
         {
             if (stopFrequency < 0 || startFrequency < 0 || startFrequency > stopFrequency || stopFrequency > 1 / dt / 2)
             {
@@ -132,12 +49,12 @@ namespace SeeSharpTools.JY.DSP.Utility
             return rMSNoise;
         }
         /// <summary>
-        /// Caculate System Noise ( Time Domain Method ).
+        /// Calculate System Noise ( Time Domain Method ).
         /// No DC.
         /// </summary>
         /// <param name="timewaveform">Waveform in time space</param>
         /// <returns></returns>
-        public static double CaculateSystemNoise(double[] timewaveform)
+        public static double CalculateSystemNoise(double[] timewaveform)
         {
             double sum = 0;
             double avg;
@@ -255,37 +172,4 @@ namespace SeeSharpTools.JY.DSP.Utility
             //****************************************
         }
     }  
-
-
-
-    /// <summary>
-    /// Tone Analysis Result
-    /// </summary>
-    public class ToneAnalysisResult
-    {
-        /// <summary>
-        /// THD
-        /// </summary>
-        public double THD;
-        /// <summary>
-        /// THD + Noise
-        /// </summary>
-        public double THDplusN;
-        /// <summary>
-        /// SINAD
-        /// </summary>
-        public double SINAD;
-        /// <summary>
-        /// SNR
-        /// </summary>
-        public double SNR;
-        /// <summary>
-        /// Noise Floor
-        /// </summary>
-        public double NoiseFloor;
-        /// <summary>
-        /// Effictive number of bits
-        /// </summary>
-        public double ENOB;
-    }
 }

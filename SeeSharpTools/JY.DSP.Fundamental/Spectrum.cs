@@ -33,7 +33,7 @@ namespace SeeSharpTools.JY.DSP.Fundamental
         /// <para>Computes the power spectrum of input time-domain signal.</para>
         /// <para>Chinese Simplified: 计算输入信号的功率频谱。</para>
         /// </summary>
-        /// <param name="x">
+        /// <param name="waveform">
         /// <para>input time-domain signal.</para>
         /// <para>Chinese Simplified: 输入的时域波形。</para>
         /// </param>
@@ -65,13 +65,13 @@ namespace SeeSharpTools.JY.DSP.Fundamental
         /// <para>specifies whether the output power spectrum is converted to power spectral density.</para>
         /// <para>Chinese Simplified: 输出的频谱是否为功率谱密度。</para>
         /// </param>
-        public static void PowerSpectrum(double[] x, double samplingRate, ref double[] spectrum, out double df,
+        public static void PowerSpectrum(double[] waveform, double samplingRate, ref double[] spectrum, out double df,
             SpectrumUnits unit = SpectrumUnits.V2, WindowType windowType = WindowType.Hanning,
             double windowPara = double.NaN, bool PSD = false)
         {
             int spectralLines = spectrum.Length; //谱线数是输出数组的大小
             SpectralInfo spectralInfo = new SpectralInfo();
-            AdvanceRealFFT(x, spectralLines, windowType, spectrum, ref spectralInfo);
+            AdvanceComplexFFT(waveform, spectralLines, windowType, spectrum, ref spectralInfo);
             double scale = 1.0 / spectralInfo.FFTSize;
             CBLASNative.cblas_dscal(spectralLines, scale, spectrum, 1);
             df = 0.5 * samplingRate / spectralInfo.spectralLines; //计算频率间隔
@@ -85,7 +85,7 @@ namespace SeeSharpTools.JY.DSP.Fundamental
         /// <para>Computes the power spectrum of input time-domain signal.</para>
         /// <para>Chinese Simplified: 计算输入信号的功率频谱。</para>
         /// </summary>
-        /// <param name="x">
+        /// <param name="waveform">
         /// <para>input time-domain signal.</para>
         /// <para>Chinese Simplified: 输入的时域波形。</para>
         /// </param>
@@ -113,12 +113,12 @@ namespace SeeSharpTools.JY.DSP.Fundamental
         /// <para>parameter for a Kaiser/Gaussian/Dolph-Chebyshev window, If window is any other window, this parameter is ignored</para>
         /// <para>Chinese Simplified: 窗调整系数，仅用于Kaiser/Gaussian/Dolph-Chebyshev窗。</para>
         /// </param>
-        public static void PowerSpectrum(double[] x, double samplingRate, ref double[] spectrum, out double df,
+        public static void PowerSpectrum(double[] waveform, double samplingRate, ref double[] spectrum, out double df,
             UnitConvSetting unitSettings, WindowType windowType, double windowPara)
         {
             int spectralLines = spectrum.Length; //谱线数是输出数组的大小
             SpectralInfo spectralInfo = new SpectralInfo();
-            AdvanceRealFFT(x, spectralLines, windowType, spectrum, ref spectralInfo);
+            AdvanceComplexFFT(waveform, spectralLines, windowType, spectrum, ref spectralInfo);
 
             double scale = 1.0 / spectralInfo.FFTSize;
             CBLASNative.cblas_dscal(spectralLines, scale, spectrum, 1);
@@ -132,16 +132,16 @@ namespace SeeSharpTools.JY.DSP.Fundamental
 
         #region ------------Public: PeakSpectrumAnalysis------------
         /// <summary>
-        /// Get the fundamental frequency and array of harmonic power.
+        /// Get the fundamental frequency and amplitude.
         /// </summary>
-        /// <param name="timewaveform">the waveform of input signal assuming in voltage</param>
+        /// <param name="waveform">the waveform of input signal assuming in voltage</param>
         /// <param name="dt">sampling interval of timewaveform (s)</param>
         /// <param name="peakFreq">the calculated peak tone frequency</param>
         /// <param name="peakAmp">the calculated peak tone voltage peak amplitude, which is 1.414*RMS</param>
         /// i.e. peakSignal=peakAmp*sin(2*pi*peakFreq*t)
-        public static void PeakSpectrumAnalysis(double[] timewaveform, double dt, out double peakFreq, out double peakAmp)
+        public static void PeakSpectrumAnalysis(double[] waveform, double dt, out double peakFreq, out double peakAmp)
         {
-            double[] spectrum = new double[timewaveform.Length / 2];
+            double[] spectrum = new double[waveform.Length / 2];
             double df;
             var spectUnit = SpectrumUnits.V2; //this V^2 unit relates to power in band calculation, don't change
             var winType = WindowType.Hanning;  //relates to ENBW, must change in pair
@@ -156,7 +156,7 @@ namespace SeeSharpTools.JY.DSP.Fundamental
             double powerInBand = 0;
             double powerMltIndex = 0;
 
-            Spectrum.PowerSpectrum(timewaveform, 1 / dt, ref spectrum, out df, spectUnit, winType);
+            Spectrum.PowerSpectrum(waveform, 1 / dt, ref spectrum, out df, spectUnit, winType);
             if (approxFreq < 0)
             {
                 startIndex = 0;
@@ -337,17 +337,17 @@ namespace SeeSharpTools.JY.DSP.Fundamental
 
         #region  ---------------Private: Adance FFT----------------
         /// <summary>
-        /// Advance Real FFT
+        /// 计算时域信号的复数频谱，包含幅度谱和相位谱信息
         /// </summary>
-        /// <param name="xIn">time domain data</param>
-        /// <param name="spectralLines">spectralLines</param>
-        /// <param name="windowType">window type</param>
-        /// <param name="xOut">spectral out data</param>
-        /// <param name="spectralInfo">spectral info</param>
-        public static void AdvanceRealFFT(double[] xIn, int spectralLines, WindowType windowType,
-                                     double[] xOut, ref SpectralInfo spectralInfo)
+        /// <param name="waveform">时域波形数据</param>
+        /// <param name="spectralLines">频谱线的条数</param>
+        /// <param name="windowType">窗类型</param>
+        /// <param name="spectrum">计算后的复数频谱数据</param>
+        /// <param name="spectralInfo">返回的频谱数据的参数信息</param>
+        public static void AdvanceComplexFFT(double[] waveform, int spectralLines, WindowType windowType,
+                                     double[] spectrum, ref SpectralInfo spectralInfo)
         {
-            int n = xIn.Length, windowsize = 0, fftcnt = 0; //做FFT的次数
+            int n = waveform.Length, windowsize = 0, fftcnt = 0; //做FFT的次数
             int fftsize = 0; //做FFT点数
             double cg = 0, enbw = 0, scale = 0.0;
             double[] xInTmp = null;
@@ -390,8 +390,8 @@ namespace SeeSharpTools.JY.DSP.Fundamental
             windowData = new double[windowsize];
             Window.GetWindow(windowType, ref windowData, out cg, out enbw);
             CBLASNative.cblas_dscal(windowsize, 1 / cg, windowData, 1); //窗系数归一化
-            CBLASNative.cblas_dscal(xOut.Length, 0, xOut, 1); //将xOut清零
-            GCHandle gch = GCHandle.Alloc(xIn, GCHandleType.Pinned);
+            CBLASNative.cblas_dscal(spectrum.Length, 0, spectrum, 1); //将xOut清零
+            GCHandle gch = GCHandle.Alloc(waveform, GCHandleType.Pinned);
             var xInPtr = gch.AddrOfPinnedObject();
             for (int i = 0; i < fftcnt; i++)
             {
@@ -405,15 +405,15 @@ namespace SeeSharpTools.JY.DSP.Fundamental
                 VMLNative.vzAbs(fftsize / 2 + 1, xOutCTmp, xInTmp);
 
                 //每次计算结果累加起来
-                VMLNative.vdAdd(spectralLines, xInTmp, xOut, xOut);
+                VMLNative.vdAdd(spectralLines, xInTmp, spectrum, spectrum);
             }
 
             scale = 2 * (1.0 / fftcnt) / Sqrt2; //双边到单边有一个二倍关系,输出为Vrms要除以根号2
 
             //fftcnt次的频谱做平均
-            CBLASNative.cblas_dscal(spectralLines, scale, xOut, 1);
+            CBLASNative.cblas_dscal(spectralLines, scale, spectrum, 1);
 
-            xOut[0] = xOut[0] / Sqrt2; //上一步零频上多除了根号2，这里乘回来（Rms在零频上不用除根号2，单双边到单边还是要乘2 ?）
+            spectrum[0] = spectrum[0] / Sqrt2; //上一步零频上多除了根号2，这里乘回来（Rms在零频上不用除根号2，单双边到单边还是要乘2 ?）
 
             spectralInfo.spectralLines = spectralLines;
             spectralInfo.FFTSize = fftsize;
@@ -423,19 +423,19 @@ namespace SeeSharpTools.JY.DSP.Fundamental
         }
 
         /// <summary>
-        /// Advance Real FFT
+        /// 计算时域信号的复数频谱，包含幅度谱和相位谱信息
         /// </summary>
-        /// <param name="xIn">time domain data</param>
-        /// <param name="windowType">window type</param>
-        /// <param name="xOut">complex out data</param>
-        public static void AdvanceRealFFT(double[] xIn, WindowType windowType, ref Complex[] xOut)
+        /// <param name="waveform">时域波形数据</param>
+        /// <param name="windowType">窗类型</param>
+        /// <param name="spectrum">计算后的复数频谱数据</param>
+        public static void AdvanceComplexFFT(double[] waveform, WindowType windowType, ref Complex[] spectrum)
         {
-            if(xIn == null || xOut == null || xOut.Length < (xIn.Length / 2 + 1))
+            if(waveform == null || spectrum == null || spectrum.Length < (waveform.Length / 2 + 1))
             {
                 throw new JYDSPUserBufferException();
             }
 
-            int n = xIn.Length, windowsize = xIn.Length; //做FFT的次数
+            int n = waveform.Length, windowsize = waveform.Length; //做FFT的次数
             int fftsize = windowsize; //做FFT点数
             double cg = 0, enbw = 0;
             double[] xInTmp = null;
@@ -443,9 +443,9 @@ namespace SeeSharpTools.JY.DSP.Fundamental
 
             xInTmp = new double[fftsize];
 
-            GCHandle gchXIn = GCHandle.Alloc(xIn, GCHandleType.Pinned);
+            GCHandle gchXIn = GCHandle.Alloc(waveform, GCHandleType.Pinned);
             var xInPtr = gchXIn.AddrOfPinnedObject();
-            GCHandle gchXout = GCHandle.Alloc(xOut, GCHandleType.Pinned);
+            GCHandle gchXout = GCHandle.Alloc(spectrum, GCHandleType.Pinned);
             var xOutPtr = gchXout.AddrOfPinnedObject();
 
             try
@@ -454,10 +454,10 @@ namespace SeeSharpTools.JY.DSP.Fundamental
                 windowData = new double[windowsize];
                 Window.GetWindow(windowType, ref windowData, out cg, out enbw);
                 CBLASNative.cblas_dscal(windowsize, 1 / cg, windowData, 1); //窗系数归一化
-                CBLASNative.cblas_dscal(xOut.Length, 0, xOutPtr, 1); //将xOut清零
+                CBLASNative.cblas_dscal(spectrum.Length, 0, xOutPtr, 1); //将xOut清零
                 /*TIME_DOMAIN_WINDOWS(windowType, x_in, &CG, &ENBW, windowsize);*//*(double*)(xIn + i * windowsize)*/
                 VMLNative.vdMul(windowsize, windowData, xInPtr, xInTmp);
-                BasicFFT.RealFFT(xInTmp, ref xOut);
+                BasicFFT.RealFFT(xInTmp, ref spectrum);
             }
             finally
             {
