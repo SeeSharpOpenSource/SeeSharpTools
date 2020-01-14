@@ -65,7 +65,6 @@ This library provides some audio analyzing algorithms. Some of these algorithms 
 This library provides some useful DSP algorithms. Some of these algorithms are based on 'SeeSharpTools.JY.DSP.Fundamental'. The classes in this library is listed below:
 
 - **HarmonicAnalysis:** *[static calss]* Provides harmonic related parameters calculation including THD, THD+N, SNR, SNRAD, NoiseFloor, ENOB and etc.
-- **PeakSpectrum:** *[static class]* Provides waveform peak Frequency and peak amplitude calculation algorithms.
 - **Phase:** *[static class]* Provides Phase shift calculation algorithm between two related waveform.
 - **SignlaProcessing:** *[static class]* Provides common data-validating functions and interpolation algorithms.
 - **SquarewaveMeasurements:** *[static class]* Provides common sqaure wave measurement algorithms.
