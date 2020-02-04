@@ -1576,14 +1576,15 @@ namespace SeeSharpTools.JY.Report
             if (style.FirstColumnAsXAxis)
             {
                 int startRowIdx = StringToRC(dataRangeStart)[0];
-                int startColIdx = StringToRC(dataRangeStart)[1];
+                int xColumnIndex = StringToRC(dataRangeStart)[1];
+                int startColIdx = xColumnIndex + 1;
                 int endRowIdx = StringToRC(dataRangeEnd)[0];
                 int endColIdx = StringToRC(dataRangeEnd)[1];
                 chartRange = GetRange(startRowIdx, startColIdx , endRowIdx, endColIdx);
                 chartPage.SetSourceData(chartRange, Excel.XlRowCol.xlColumns);
                 for (int i = 0; i < chartPage.SeriesCollection().Count; i++)
                 {
-                    chartPage.SeriesCollection(i + 1).XValues = GetRange(startRowIdx, startColIdx, endRowIdx, startColIdx);
+                    chartPage.SeriesCollection(i + 1).XValues = GetRange(startRowIdx, xColumnIndex, endRowIdx, xColumnIndex);
                 }
             }
             else
