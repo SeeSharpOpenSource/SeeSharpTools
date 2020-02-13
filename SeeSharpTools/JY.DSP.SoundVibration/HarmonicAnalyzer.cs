@@ -13,20 +13,19 @@ namespace SeeSharpTools.JY.DSP.SoundVibration
     public static class HarmonicAnalyzer
     {
         /// <summary>
-        /// Tone Analysis
+        /// Over view Tone Analysis
         /// </summary>
         /// <param name="timewaveform">Waveform in time space</param>
-        /// <param name="dt"> Interval time of waveform </param>
+        /// <param name="dt">Time interval of waveform</param>
         /// <param name="highestHarmonic">HighestHamonic level</param>
         /// <param name="resultInDB">If return result in DB</param>
-        /// <returns></returns>
         public static ToneAnalysisResult ToneAnalysis(double[] timewaveform, double dt = 1, int highestHarmonic = 10, bool resultInDB = true)
         {
             ToneAnalysisResult taResult = new ToneAnalysisResult();
             double[] harmonicsLevel = new double[highestHarmonic + 1];
             double THD;
             double peakFrequency;
-            ComponentsLevelCaculation(timewaveform, dt, out peakFrequency, out THD, ref harmonicsLevel, highestHarmonic);
+            ToneAnalysis(timewaveform, dt, out peakFrequency, out THD, ref harmonicsLevel, highestHarmonic);
 
             double sumPower = 0;
             double totalRMS = 0;
@@ -96,7 +95,16 @@ namespace SeeSharpTools.JY.DSP.SoundVibration
             return taResult;
         }
 
-        private static void ComponentsLevelCaculation(double[] timewaveform, double dt, out double detectedFundamentalFreq, out double THD, ref double[] componentsLevel, int highestHarmonic = 10)
+        /// <summary>
+        /// Tone analysis
+        /// </summary>
+        /// <param name="timewaveform">Waveform in time space</param>
+        /// <param name="dt">Time interval of waveform</param>
+        /// <param name="detectedFundamentalFreq">Fundamental frequency of waveform</param>
+        /// <param name="THD">THD value of waveform</param>
+        /// <param name="componentsLevel">The power of each harmonic wave.</param>
+        /// <param name="highestHarmonic">The highest level of harmonic level that will be calculated.</param>
+        public static void ToneAnalysis(double[] timewaveform, double dt, out double detectedFundamentalFreq, out double THD, ref double[] componentsLevel, int highestHarmonic = 10)
         {
             double[] spectrum = new double[timewaveform.Length / 2];
             double df;
@@ -182,8 +190,6 @@ namespace SeeSharpTools.JY.DSP.SoundVibration
             //****************************************
         }
     }
-
-
 
     /// <summary>
     /// Tone Analysis Result
