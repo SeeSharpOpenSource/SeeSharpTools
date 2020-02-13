@@ -368,7 +368,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             }
 
             // 如果超出数据边界则清空绘图区
-            if (PlotBuf.CurrentXStart >= MaxXValue || PlotBuf.CurrentXEnd <= MinXValue)
+            if (PlotBuf.CurrentXStart > MaxXValue || PlotBuf.CurrentXEnd < MinXValue)
             {
                 PlotBuf.FillEmptyDataToBuffer(DataInfo.LineNum);
                 return forceRefresh;

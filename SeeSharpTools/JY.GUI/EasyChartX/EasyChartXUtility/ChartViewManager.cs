@@ -349,6 +349,12 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         {
             double maxXRange = _plotManager.GetMaxXData();
             double minXRange = _plotManager.GetMinXData();
+            // 如果X轴上下范围相同，则向前向后加1个间隔
+            if (Math.Abs(maxXRange - minXRange) < Constants.MinDoubleValue)
+            {
+                maxXRange += 1;
+                minXRange -= 1;
+            }
             double minXInterval = _plotManager.GetMinXInterval();
             double minYInterval;
             if (!_isSplitView)

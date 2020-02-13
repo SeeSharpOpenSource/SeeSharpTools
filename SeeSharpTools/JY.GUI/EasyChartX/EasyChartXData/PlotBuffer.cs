@@ -483,6 +483,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             _plotSize = 0;
             PlotXStart = double.NaN;
             PlotXEnd = double.NaN;
+            XPlotBuffer = _emptyData;
             _yShallowBuffer.Clear();
             for (int i = 0; i < lineNum; i++)
             {
