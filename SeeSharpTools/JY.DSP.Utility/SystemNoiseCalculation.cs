@@ -6,9 +6,9 @@ using SeeSharpTools.JY.DSP.Fundamental;
 namespace SeeSharpTools.JY.DSP.Utility
 {
     /// <summary>
-    /// 谐波分析类
+    /// 系统噪声计算
     /// </summary>
-    public static class HarmonicAnalysis
+    public static class SystemNoiseCalculation
     {
         /// <summary>
         /// Calculate System Noise In Target Band ( Frequency Domain Method ).
@@ -171,5 +171,37 @@ namespace SeeSharpTools.JY.DSP.Utility
             //transfer ends
             //****************************************
         }
-    }  
+    }
+
+    /// <summary>
+    /// 谐波分析类
+    /// </summary>
+    [Obsolete]
+    public static class HarmonicAnalysis
+    {
+        /// <summary>
+        /// Calculate System Noise In Target Band ( Frequency Domain Method ).
+        /// No DC.
+        /// </summary>
+        /// <param name="timewaveform">Waveform in time space</param>
+        /// <param name="dt"> Interval time of waveform </param>
+        /// <param name="startFrequency">Start frequency( FFT result bin0 and bin1 removed )</param>
+        /// <param name="stopFrequency">Stop frequency</param>
+        /// <returns></returns>
+        public static double CalculateSystemNoise(double[] timewaveform, double dt, double startFrequency, double stopFrequency)
+        {
+            return SystemNoiseCalculation.CalculateSystemNoise(timewaveform, dt, startFrequency, stopFrequency);
+        }
+
+        /// <summary>
+        /// Calculate System Noise ( Time Domain Method ).
+        /// No DC.
+        /// </summary>
+        /// <param name="timewaveform">Waveform in time space</param>
+        /// <returns></returns>
+        public static double CalculateSystemNoise(double[] timewaveform)
+        {
+            return SystemNoiseCalculation.CalculateSystemNoise(timewaveform);
+        }
+    }
 }

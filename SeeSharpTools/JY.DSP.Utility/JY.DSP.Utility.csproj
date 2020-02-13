@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HarmonicAnalysis.cs" />
+    <Compile Include="SystemNoiseCalculation.cs" />
     <Compile Include="MedianFilter.cs" />
     <Compile Include="PeakValleyAnalysis.cs" />
     <Compile Include="PhaseAnalizer.cs" />
