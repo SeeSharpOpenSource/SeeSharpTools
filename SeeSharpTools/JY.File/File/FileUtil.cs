@@ -169,9 +169,9 @@ namespace SeeSharpTools.JY.File
             return strData;
         }
 
-        internal static void CheckColumnCount(int colNum, int rowColNum, int rowIndex)
+        internal static void CheckColumnCount(int columnCount, int readColumnCount, int rowIndex)
         {
-            if (colNum != rowColNum)
+            if (columnCount != readColumnCount)
             {
                 throw new SeeSharpFileException(SeeSharpFileErrorCode.ParamCheckError,
                     i18n.GetFStr("ParamCheck.ColCountNotFit", rowIndex + 1));

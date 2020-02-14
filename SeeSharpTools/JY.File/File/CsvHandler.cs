@@ -712,32 +712,6 @@ namespace SeeSharpTools.JY.File
             }
         }
 
-        private static TDataType[,] StreamReadData<TDataType>(string filePath, long startRow, long startColumn, Encoding encoding)
-        {
-            StreamReader reader = null;
-            try
-            {
-
-                //如果行数为0，则读取全部，即文件的总行数-起始行
-                long lineCount = FileUtil.GetFileLineNum(filePath) - startRow;
-                FileUtil.InitReadStream(ref reader, filePath, encoding);//获取文件中所有数据在reader里
-                return FileUtil.StreamReadFromStrFile<TDataType>(reader, startRow, startColumn, lineCount, 0, Delims);
-            }
-            catch (SeeSharpFileException)
-            {
-                throw;
-            }
-            catch (ApplicationException ex)
-            {
-                throw new SeeSharpFileException(SeeSharpFileErrorCode.RuntimeError,
-                    i18n.GetFStr("Runtime.ReadFail", ex.Message), ex);
-            }
-            finally
-            {
-                FileUtil.ReleaseResource(reader);
-            }
-        }
-
         private static TDataType[,] StreamReadData<TDataType>(string filePath, long[] rows, long[] columns, Encoding encoding)
         {
             StreamReader reader = null;
