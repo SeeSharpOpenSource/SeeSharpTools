@@ -94,25 +94,29 @@ namespace SeeSharpTools.JY.GUI
                 _chartViewManager.IsSplitView = value;
             }
         }
-        
+
         /// <summary>
         /// Get or specify whether enable cumulative.
         /// </summary>
-        [
-            Browsable(false),
-            Category("Behavior"),
-            Description("Get or specify whether use cumulative plot.")
-        ]
+        [Obsolete]
+        [Browsable(false)]
+        [Category("Behavior")]
+        [Description("Get or specify whether use cumulative plot.")]
         public bool Cumulitive
         {
-            get
-            {
-                return _plotManager.CumulativePlot;
-            }
-            set
-            {
-                _plotManager.CumulativePlot = value;
-            }
+            get { return _plotManager.CumulativePlot; }
+            set { _plotManager.CumulativePlot = value; }
+        }
+
+        /// <summary>
+        /// Whether clear old datas before plot."
+        /// </summary>
+        [Category("Behavior")]
+        [Description("Get or specify whether clear old datas before plot.")]
+        public bool AutoClear
+        {
+            get { return !_plotManager.CumulativePlot; }
+            set { _plotManager.CumulativePlot = !value; }
         }
 
         /// <summary>
