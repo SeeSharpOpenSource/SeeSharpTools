@@ -293,7 +293,7 @@ namespace SeeSharpTools.JY.File
                 IConvertor convertor = GetConvertor<TDataType>();
                 char[] delimArray = delims.ToCharArray();//把一个“，”复制在字符数组
                 string[] lineElems = lineData.Split(delimArray);//读到的当前行数据使用“，”分隔后，放在字符串数组中lineElems
-                if (size == -1)
+                if (size <= 0)
                 {
                     readDatas = new TDataType[(int)lineElems.Length - startIndex];//定义长度为总列数的数组
                 }
@@ -416,7 +416,7 @@ namespace SeeSharpTools.JY.File
             IConvertor convertor = GetConvertor<TDataType>();
             char[] delimArray = delims.ToCharArray();//把一个“，”复制在字符数组
             string[] lineElems = lineData.Split(delimArray);//读到的当前行数据使用“，”分隔后，放在字符串数组中lineElems
-            if(columnCount==-1)
+            if(columnCount <= 0)
             {
                  columnCount = (uint)lineElems.Length; //将每一行数据的长度定义为列数
             }
