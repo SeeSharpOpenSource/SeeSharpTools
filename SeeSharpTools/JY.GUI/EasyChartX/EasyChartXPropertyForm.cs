@@ -116,7 +116,7 @@ namespace SeeSharpTools.JY.GUI
             if (BorderColor.ShowDialog() == DialogResult.OK)
             {
                 button_LegendBackColor.BackColor = BorderColor.Color;
-                _changedCtrl.ChartAreaBackColor = BorderColor.Color;
+                _changedCtrl.LegendBackColor = BorderColor.Color;
             }
         }
 
