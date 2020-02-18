@@ -188,6 +188,7 @@ namespace SeeSharpTools.JY.DSP.Utility
         /// <param name="startFrequency">Start frequency( FFT result bin0 and bin1 removed )</param>
         /// <param name="stopFrequency">Stop frequency</param>
         /// <returns></returns>
+        [Obsolete]
         public static double CalculateSystemNoise(double[] timewaveform, double dt, double startFrequency, double stopFrequency)
         {
             return SystemNoiseCalculation.CalculateSystemNoise(timewaveform, dt, startFrequency, stopFrequency);
@@ -199,6 +200,7 @@ namespace SeeSharpTools.JY.DSP.Utility
         /// </summary>
         /// <param name="timewaveform">Waveform in time space</param>
         /// <returns></returns>
+        [Obsolete]
         public static double CalculateSystemNoise(double[] timewaveform)
         {
             return SystemNoiseCalculation.CalculateSystemNoise(timewaveform);
