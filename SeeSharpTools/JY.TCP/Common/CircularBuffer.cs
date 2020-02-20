@@ -311,17 +311,58 @@ namespace SeeSharpTools.JY.TCP
         /// </summary>
         /// <param name="reqBuffer">请求读取缓冲区</param>
         /// <returns>返回实际取到的数据长度</returns>
-        public int Dequeue(ref T[] reqBuffer, int len)
+        public int Dequeue(ref T[] reqBuffer, int size)
         {
             lock (this)
             {
-                int getCnt = len;
+                int getCnt = size;
 
-                if (len > _numOfElement || _numOfElement <= 0)
+                if (size > _numOfElement || _numOfElement <= 0)
                 {
                     return -1;
                 }
-                else if (len <= 0)
+                else if (size <= 0)
+                {
+                    getCnt = _numOfElement;
+                }
+
+                if (_RDIdx + getCnt > _bufferSize)   //取数据的总大小超过了应该分两次拷贝，先拷贝尾部，剩余的从头开始拷贝
+                {
+                    Buffer.BlockCopy(_buffer, _RDIdx * _sizeOfT, reqBuffer, 0, (_bufferSize - _RDIdx) * _sizeOfT);
+                    int fetchedCnt = (_bufferSize - _RDIdx);
+                    int remainCnt = getCnt - fetchedCnt;
+                    _RDIdx = 0;
+                    Buffer.BlockCopy(_buffer, _RDIdx * _sizeOfT, reqBuffer, fetchedCnt * _sizeOfT, remainCnt * _sizeOfT);
+                    _RDIdx = remainCnt;
+                }
+                else
+                {
+                    Buffer.BlockCopy(_buffer, _RDIdx * _sizeOfT, reqBuffer, 0, getCnt * _sizeOfT);
+                    if (_RDIdx + getCnt == _bufferSize)
+                    {
+                        _RDIdx = 0;
+                    }
+                    else
+                    {
+                        _RDIdx += getCnt;
+                    }
+                }
+                _numOfElement -= getCnt;
+                return getCnt;
+            }
+        }
+
+        public int Dequeue(ref Array reqBuffer, int size)
+        {
+            lock (this)
+            {
+                int getCnt = size/_sizeOfT;
+
+                if (size > _numOfElement * _sizeOfT || _numOfElement <= 0)
+                {
+                    return -1;
+                }
+                else if (size <= 0)
                 {
                     getCnt = _numOfElement;
                 }
@@ -357,17 +398,17 @@ namespace SeeSharpTools.JY.TCP
         /// </summary>
         /// <param name="reqBuffer">请求读取缓冲区</param>
         /// <returns>返回实际取到的数据长度</returns>
-        public int Dequeue(ref T[,] reqBuffer, int len)
+        public int Dequeue(ref T[,] reqBuffer, int size)
         {
             lock (this)
             {
-                int getCnt = len;
+                int getCnt = size;
 
-                if (len > _numOfElement || _numOfElement <= 0)
+                if (size > _numOfElement || _numOfElement <= 0)
                 {
                     return -1;
                 }
-                else if (len <= 0)
+                else if (size <= 0)
                 {
                     getCnt = _numOfElement;
                 }

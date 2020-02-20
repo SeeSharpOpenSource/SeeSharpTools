@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
 namespace SeeSharpTools.JY.TCP
 {
@@ -63,10 +64,16 @@ namespace SeeSharpTools.JY.TCP
 
         #region Properties
 
+        private int _runningFlag;
+
         /// <summary>
         /// 服务器是否正在运行
         /// </summary>
-        public bool IsRunning { get; private set; }
+        public bool IsRunning
+        {
+            get { return _runningFlag == 1; }
+            private set { Thread.VolatileWrite(ref _runningFlag, value ? 1 : 0); }
+        }
 
         /// <summary>
         /// 监听的IP地址
@@ -164,24 +171,26 @@ namespace SeeSharpTools.JY.TCP
                 tcpClient.ReceiveBufferSize = (int)ReceiveBufferSize;
                 byte[] buffer = new byte[tcpClient.ReceiveBufferSize];
 
-                TcpClientState internalClient
-                  = new TcpClientState(tcpClient, buffer);
+                TcpClientState internalClient = new TcpClientState(tcpClient, buffer);
                 lock (this.clients)
                 {
                     this.clients.Add(internalClient);
                     RaiseClientConnected(tcpClient);
                 }
 
-                NetworkStream networkStream = internalClient.NetworkStream;
-                networkStream.BeginRead(
-                  internalClient.Buffer,
-                  0,
-                  internalClient.Buffer.Length,
-                  HandleDatagramReceived,
-                  internalClient);
+                if (IsRunning)
+                {
+                    NetworkStream networkStream = internalClient.NetworkStream;
+                    networkStream.BeginRead(
+                      internalClient.Buffer,
+                      0,
+                      internalClient.Buffer.Length,
+                      HandleDatagramReceived,
+                      internalClient);
 
-                tcpListener.BeginAcceptTcpClient(
-                  new AsyncCallback(HandleTcpClientAccepted), ar.AsyncState);
+                    tcpListener.BeginAcceptTcpClient(
+                      new AsyncCallback(HandleTcpClientAccepted), ar.AsyncState);
+                }
             }
         }
 
@@ -226,12 +235,15 @@ namespace SeeSharpTools.JY.TCP
                 RaisePlaintextReceived(internalClient.TcpClient, receivedBytes);
 
                 // continue listening for tcp datagram packets
-                networkStream.BeginRead(
-                  internalClient.Buffer,
-                  0,
-                  internalClient.Buffer.Length,
-                  HandleDatagramReceived,
-                  internalClient);
+                if (IsRunning)
+                {
+                    networkStream.BeginRead(
+                        internalClient.Buffer,
+                        0,
+                        internalClient.Buffer.Length,
+                        HandleDatagramReceived,
+                        internalClient);
+                }
             }
         }
 
@@ -290,8 +302,11 @@ namespace SeeSharpTools.JY.TCP
             {
                 ClientDisconnected(this, new TcpClientDisconnectedEventArgs(tcpClient));
             }
-            listener.BeginAcceptTcpClient(
+            if (IsRunning)
+            {
+                listener.BeginAcceptTcpClient(
                  new AsyncCallback(HandleTcpClientAccepted), listener);
+            }
         }
 
         #endregion Events
