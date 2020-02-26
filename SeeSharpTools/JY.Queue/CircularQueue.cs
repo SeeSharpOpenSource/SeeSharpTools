@@ -68,6 +68,9 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
 //        private WaitBlockEvent _enqueueEvent; 
         private SemaphoreSlim _dequeueWaitHandle;
 
+        // 当前队列是否可用的标志位
+        private int _availableFlag;
+
         #endregion
 
         #region Public property
@@ -272,7 +275,13 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         private void CheckCapacityAndGetMutex(int enqueueCount, int timeout)
         {
             GetMutex(timeout);
-            if (EnqueueCheckCondition(_dataCount, enqueueCount))
+            Thread.MemoryBarrier();
+            if (_availableFlag == 0)
+            {
+                ReleaseMutex();
+                throw new ObjectDisposedException("The target queue has already been disposed.");
+            }
+            if (CheckEnqueueCondition(_dataCount, enqueueCount))
             {
                 return;
             }
@@ -421,11 +430,18 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
 
         private bool TryCheckCapacityAndGetMutex(int enqueueCount, int timeout)
         {
-            if (!TryGetMutex(timeout))
+            if (_availableFlag == 0 || !TryGetMutex(timeout))
             {
                 return false;
             }
-            if (EnqueueCheckCondition(_dataCount, enqueueCount))
+            Thread.MemoryBarrier();
+            if (_availableFlag == 0)
+            {
+                ReleaseMutex();
+                return false;
+            }
+            Thread.MemoryBarrier();
+            if (CheckEnqueueCondition(_dataCount, enqueueCount))
             {
                 return true;
             }
@@ -569,10 +585,60 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
             ReleaseEnqueueEventsAndMutex();
         }
 
+        /// <summary>
+        /// Dequeue the left datas after the queue disposed.
+        /// </summary>
+        public TDataType[] DequeueLeftElements()
+        {
+            GetMutex(1000);
+            if (_availableFlag != 0)
+            {
+                ReleaseMutex();
+                throw new InvalidOperationException("Invalid operation. The queue has not been disposed.");
+            }
+            TDataType[] leftDatas = new TDataType[_dataCount];
+            if (_dataCount > 0)
+            {
+                DequeueArrayData(leftDatas, _dataCount);
+            }
+            ReleaseMutex();
+            return leftDatas;
+        }
+
+        /// <summary>
+        /// Dequeue the left datas after the queue disposed.
+        /// </summary>
+        public bool TryDequeueLeftElements(out TDataType[] leftDatas)
+        {
+            leftDatas = null;
+            if (!TryGetMutex(1000))
+            {
+                return false;
+            }
+            if (_availableFlag != 0)
+            {
+                ReleaseMutex();
+                return false;
+            }
+            leftDatas = new TDataType[_dataCount];
+            if (_dataCount > 0)
+            {
+                DequeueArrayData(leftDatas, _dataCount);
+            }
+            ReleaseMutex();
+            return true;
+        }
+
         // 校验当前数据长度是否足够出列，并获取锁
         private void CheckDataCountAndGetMutex(int dequeueCount, int timeout)
         {
             GetMutex(timeout);
+            Thread.MemoryBarrier();
+            if (_availableFlag == 0)
+            {
+                ReleaseMutex();
+                throw new ObjectDisposedException("The target queue has already been disposed.");
+            }
             if (DequeueCheckCondition(_dataCount, dequeueCount))
             {
                 return;
@@ -589,6 +655,12 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
                         throw new TimeoutException(i18n.GetStr("RunTime.Timeout"));
                     }
                     GetMutex(timeout);
+                    Thread.MemoryBarrier();
+                    if (_availableFlag == 0)
+                    {
+                        ReleaseMutex();
+                        throw new ObjectDisposedException("The target queue has already been disposed.");
+                    }
                 } while (!DequeueCheckCondition(_dataCount, dequeueCount));
                 // 如果有等待的线程则Release其线程，由该线程自行检查是否有足够的数据出列
                 _dequeueWaitHandle.Release();
@@ -629,6 +701,10 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         /// <returns>True: Operation success. False: Mutex acquization failed.</returns>
         public bool TryDequeue(TDataType[] dequeueBuffer, int dequeueCount = 0, int timeout = -1)
         {
+            if (_availableFlag == 0)
+            {
+                return false;
+            }
             if (0 >= dequeueCount && null != dequeueBuffer)
             {
                 dequeueCount = dequeueBuffer.Length;
@@ -656,6 +732,10 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         /// <returns>True: Operation success. False: Mutex acquization failed.</returns>
         public bool TryDequeue(TDataType[,] dequeueBuffer, int dequeueCount = 0, int timeout = -1)
         {
+            if (_availableFlag == 0)
+            {
+                return false;
+            }
             if (0 >= dequeueCount && null != dequeueBuffer)
             {
                 dequeueCount = dequeueBuffer.Length;
@@ -683,6 +763,10 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         /// <returns>True: Operation success. False: Mutex acquization failed.</returns>
         public bool TryDequeue(IList<TDataType> dequeueBuffer, int dequeueCount, int timeout = -1)
         {
+            if (_availableFlag == 0)
+            {
+                return false;
+            }
             if (null == dequeueBuffer)
             {
                 throw new ArgumentNullException(nameof(dequeueBuffer), i18n.GetFStr("ParamCheck.NullParameter",
@@ -697,11 +781,12 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
             return true;
         }
 
+        // 尝试校验数据并获取互斥权限，如果失败返回false
         private bool TryCheckDataCountAndGetMutex(int dequeueCount, int timeout)
         {
-            if (DequeueCheckCondition(_dataCount, dequeueCount))
+            if (_availableFlag == 0 || !DequeueCheckCondition(_dataCount, dequeueCount))
             {
-                return true;
+                return false;
             }
             if (_blockWaiting)
             {
@@ -715,6 +800,11 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
                     }
                     bool getLock = TryGetMutex(timeout);
                     if (!getLock)
+                    {
+                        return false;
+                    }
+                    Thread.MemoryBarrier();
+                    if (!getLock || _availableFlag == 0)
                     {
                         return false;
                     }
@@ -898,7 +988,7 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
 
         #endregion
 
-        private bool EnqueueCheckCondition(int dataCount, int operationCount)
+        private bool CheckEnqueueCondition(int dataCount, int operationCount)
         {
             return (_capacity - dataCount) >= operationCount;
         }
@@ -910,8 +1000,25 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
 
         public void Dispose()
         {
-//            _queueLock.Dispose();
-            _dequeueWaitHandle?.Dispose();
+            bool getLock = false;
+            try
+            {
+                _queueLock.TryEnter(ref getLock);
+                Thread.VolatileWrite(ref _availableFlag, 0);
+                if (null != _dequeueWaitHandle)
+                {
+                    _dequeueWaitHandle.Release(_dequeueWaitHandle.CurrentCount);
+                }
+                Thread.MemoryBarrier();
+                _dequeueWaitHandle?.Dispose();
+            }
+            finally
+            {
+                if (getLock)
+                {
+                    _queueLock.Exit();
+                }
+            }
         }
 
         #region IList interface

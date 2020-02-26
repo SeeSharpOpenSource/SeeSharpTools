@@ -13,7 +13,8 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         #region Private Properties
 
         //判断是否退出TSQ的Flag
-        private bool exists = false;
+        private int _existFlag;
+        private bool Exists => _existFlag == 1;
 
         #endregion
 
@@ -22,11 +23,7 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         /// <para>Gets flag indicating if queue has been destroyed.</para>
         /// <para>Chinese Simplified: 判断当前队列是否已经被销毁。</para>
         /// </summary>  
-        public bool Destroyed
-        {
-            get
-            { return !exists; }
-        }
+        public bool Destroyed => _existFlag != 1;
 
         #endregion
 
@@ -42,7 +39,7 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         /// </param>
         public ThreadSafeQueue(ICollection col) : base(col)
         {
-            exists = true;
+            _existFlag = 1;
         }
 
         /// <summary>  
@@ -59,7 +56,7 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         /// </param>
         public ThreadSafeQueue(int capacity, float growFactor) : base(capacity, growFactor)
         {
-            exists = true;
+            _existFlag = 1;
         }
 
         /// <summary>  
@@ -72,7 +69,7 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         /// </param>
         public ThreadSafeQueue(int capacity) : base(capacity)
         {
-            exists = true;
+            _existFlag = 1;
         }
 
         /// <summary>  
@@ -81,7 +78,7 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         /// </summary>
         public ThreadSafeQueue() : base()
         {
-            exists = true;
+            _existFlag = 1;
         }
 
         /// <summary>  
@@ -153,22 +150,66 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         {
             lock (base.SyncRoot)
             {
-                while (exists && (base.Count == 0))
+                while (Exists && (base.Count == 0))
                 {
                     if (!Monitor.Wait(base.SyncRoot, timeout))
-                        throw new InvalidOperationException("TSQ Timeout");
+                        throw new TimeoutException("TSQ Timeout");
                 }
-                if (exists)
+                if (Exists)
                 {                    
                     Monitor.Pulse(base.SyncRoot);
                     return base.Dequeue();
                 }
-                
-                else
-                    throw new InvalidOperationException("TSQ No Longer Exists");
+                throw new ObjectDisposedException("The queue has already been disposed.");
             }
         }
 
+        /// <summary>
+        /// Dequeue the left datas after the queue destroyed.
+        /// </summary>
+        public object[] DequeueLeftElements()
+        {
+            lock (base.SyncRoot)
+            {
+                if (_existFlag != 0)
+                {
+                    throw new InvalidOperationException("Invalid operation. The queue has not been disposed.");
+                }
+                object[] leftDatas = new object[this.Count];
+                if (this.Count > 0)
+                {
+                    for (int i = 0; i < this.Count; i++)
+                    {
+                        leftDatas[i] = base.Dequeue();
+                    }
+                }
+                return leftDatas;
+            }
+        }
+
+        /// <summary>
+        /// Dequeue the left datas after the queue destroyed.
+        /// </summary>
+        public bool TryDequeueLeftElements(out object[] leftDatas)
+        {
+            leftDatas = null;
+            lock (base.SyncRoot)
+            {
+                if (_existFlag != 0)
+                {
+                    return false;
+                }
+                leftDatas = new object[this.Count];
+                if (this.Count > 0)
+                {
+                    for (int i = 0; i < this.Count; i++)
+                    {
+                        leftDatas[i] = base.Dequeue();
+                    }
+                }
+            }
+            return true;
+        }
 
         /// <summary>
         /// <para>Adds an element to the end of Queue.</para>
@@ -178,14 +219,11 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         {
             lock (base.SyncRoot)
             {
-                if (!exists)
+                if (!Exists)
                 {
-                    //throw new InvalidOperationException("TSQ No Longer Exists");
+                    throw new ObjectDisposedException("The queue has already been disposed.");
                 }
-                else
-                {
-                    base.Enqueue(obj);
-                }                
+                base.Enqueue(obj);
                 Monitor.Pulse(base.SyncRoot);
             }
         }
@@ -201,7 +239,8 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         {
             lock (base.SyncRoot)
             {
-                exists = false;
+                // 配置存在状态标志为0
+                Thread.VolatileWrite(ref _existFlag, 0);
                 base.Clear();
                 Monitor.PulseAll(base.SyncRoot);    // resume any waiting deque loops
             }
