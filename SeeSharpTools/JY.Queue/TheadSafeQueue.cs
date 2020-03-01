@@ -8,7 +8,7 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
     /// <para>Thread Safe Queue is similar to Queue except Dequeue blocks when no elements are in queue until one is present or queue is destroyed..</para>
     /// <para>Chinese Simplified: 安全线程队列是原始Queue的一种补充，当没有数据在队列中时，会在出队列中进行阻挡性操作，直到数据出现或者队列销毁。</para>
     /// </summary>  
-    public class ThreadSafeQueue : Queue
+    public class ThreadSafeQueue : Queue, IDisposable
     {
         #region Private Properties
 
@@ -81,6 +81,22 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
             _existFlag = 1;
         }
 
+        /// <summary>
+        /// Release all blocked function.
+        /// </summary>
+        public void Release()
+        {
+            lock (SyncRoot)
+            {
+                Monitor.PulseAll(base.SyncRoot);
+            }
+        }
+
+        public void Dispose()
+        {
+            Destroy();
+        }
+
         /// <summary>  
         /// <para>Destroy queue, resume any waiting thread.</para>
         /// <para>Chinese Simplified:销毁队列，析构函数 。</para>
@@ -89,6 +105,7 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         {
             Destroy();
         }
+
         #endregion
 
         #region Public Methods

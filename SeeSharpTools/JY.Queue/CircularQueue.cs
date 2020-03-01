@@ -35,6 +35,7 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
             _queueLock = new SpinLock();
             _propertyReadTimeout = -1;
             _autoLock = AutoLockValue;
+            _availableFlag = 1;
             BlockWait = true;
             _parallel = new ParallelHandler<TDataType>(_dataBuffer);
             
@@ -998,6 +999,27 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
             return dataCount >= operationCount;
         }
 
+        /// <summary>
+        /// Release all blocked operation
+        /// </summary>
+        public void Release()
+        {
+            bool getLock = false;
+            try
+            {
+                _queueLock.TryEnter(ref getLock);
+                _dequeueWaitHandle?.Release(_dequeueWaitHandle.CurrentCount);
+                Thread.MemoryBarrier();
+            }
+            finally
+            {
+                if (getLock)
+                {
+                    _queueLock.Exit();
+                }
+            }
+        }
+
         public void Dispose()
         {
             bool getLock = false;
@@ -1005,10 +1027,7 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
             {
                 _queueLock.TryEnter(ref getLock);
                 Thread.VolatileWrite(ref _availableFlag, 0);
-                if (null != _dequeueWaitHandle)
-                {
-                    _dequeueWaitHandle.Release(_dequeueWaitHandle.CurrentCount);
-                }
+                _dequeueWaitHandle?.Release(_dequeueWaitHandle.CurrentCount);
                 Thread.MemoryBarrier();
                 _dequeueWaitHandle?.Dispose();
             }
@@ -1089,7 +1108,6 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         }
 
         #endregion
-
        
     }
 }
