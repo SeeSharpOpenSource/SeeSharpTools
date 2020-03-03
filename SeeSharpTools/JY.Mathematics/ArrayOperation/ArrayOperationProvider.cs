@@ -70,7 +70,7 @@ namespace SeeSharpTools.JY.Mathematics.Provider
 
         public virtual void GetSubset<T>(T[,] src, int index, ref T[] dest, bool byRow = false)
         {
-            ArrayManipulation.GetArraySubset(src, index, ref dest, byRow ? ArrayManipulation.IndexType.row : ArrayManipulation.IndexType.column);
+            ArrayManipulation.GetArraySubset(src, index, ref dest, byRow ? MajorOrder.Row : MajorOrder.Column);
         }
 
         public virtual void Insert<T>(T[] src, int startIdx, T element, ref T[] dest)

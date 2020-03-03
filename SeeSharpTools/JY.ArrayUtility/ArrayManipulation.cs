@@ -19,15 +19,16 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// Index type for accessing a 2D array, could be by row or by column.
         /// Chinese Simplified: 二维数组的索引方式，row为按行索引，column为按列索引。
         /// </summary>
+        [Obsolete]
         public enum IndexType {
             /// <summary>
             /// accesing one row of a 2D array.
             /// </summary>
-            row,
+            row = 0,
             /// <summary>
             /// accessing one column of a 2D array.
             /// </summary>
-            column
+            column = 1
         };
 
 
@@ -35,93 +36,93 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// Insert 1 element in a 1_D Array
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="_src"></param>
-        /// <param name="_insertElement"></param>
+        /// <param name="src"></param>
+        /// <param name="insertElement"></param>
         /// <param name="index"></param>
-        /// <param name="_dst"></param>
-        public static void Insert_1D_Array<T>(T[] _src, T _insertElement, int index, ref T[] _dst)
+        /// <param name="dst"></param>
+        public static void Insert_1D_Array<T>(T[] src, T insertElement, int index, ref T[] dst)
         {
-            Array.Copy(_src, 0, _dst, 0, index);
-            Array.Copy(_src, index, _dst, index + 1, _src.Length - index);
-            _dst[index] = _insertElement;
+            Array.Copy(src, 0, dst, 0, index);
+            Array.Copy(src, index, dst, index + 1, src.Length - index);
+            dst[index] = insertElement;
         }
         /// <summary>
         /// Insert 1 Array in a 2D_Array
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="_src"></param>
-        /// <param name="_insertArray"></param>
-        /// <param name="_columnIndex"></param>
-        /// <param name="_dst"></param>
-        public static void Insert_2D_Array<T>(T[,] _src, T[] _insertArray, int _columnIndex, ref T[,] _dst)
+        /// <param name="insertArray"></param>
+        /// <param name="columnIndex"></param>
+        /// <param name="dst"></param>
+        public static void Insert_2D_Array<T>(T[,] _src, T[] insertArray, int columnIndex, ref T[,] dst)
         {
-            for (int j = 0; j < _columnIndex; j++)
+            for (int j = 0; j < columnIndex; j++)
             {
-                for (int i = 0; i < _dst.GetLength(0); i++)
+                for (int i = 0; i < dst.GetLength(0); i++)
                 {
-                    _dst[i, j] = _src[i, j];
+                    dst[i, j] = _src[i, j];
                 }
             };
 
             for (int i = 0; i < _src.GetLength(0); i++)
             {
-                _dst[i, _columnIndex] = _insertArray[i];
+                dst[i, columnIndex] = insertArray[i];
             }
 
-            for (int j = _columnIndex + 1; j < _src.GetLength(1) + 1; j++)
+            for (int j = columnIndex + 1; j < _src.GetLength(1) + 1; j++)
             {
                 for (int i = 0; i < _src.GetLength(0); i++)
                 {
-                    _dst[i, j] = _src[i, j - 1];
+                    dst[i, j] = _src[i, j - 1];
                 }
             };
         }
         /// <summary>
         /// 将一维数组_src1和一维数组_src2连接为长度为_src1和_src2长度之和的一维数组
         /// </summary>
-        /// <param name="_src1"></param>
-        /// <param name="_src2"></param>
-        /// <param name="_dst"></param>
+        /// <param name="src1"></param>
+        /// <param name="src2"></param>
+        /// <param name="dst"></param>
         /// <returns></returns>
-        public static void Connect_1D_Array<T>(T[] _src1, T[] _src2, ref T[] _dst)
+        public static void Connect_1D_Array<T>(T[] src1, T[] src2, ref T[] dst)
         {
-            if (_dst.Length != _src1.Length + _src2.Length) throw new InvalidOperationException("输入参数不匹配");
-            Array.Copy(_src1, 0, _dst, 0, _src1.Length);
-            Array.Copy(_src2, 0, _dst, _src1.Length, _src2.Length);
+            if (dst.Length != src1.Length + src2.Length) throw new InvalidOperationException("输入参数不匹配");
+            Array.Copy(src1, 0, dst, 0, src1.Length);
+            Array.Copy(src2, 0, dst, src1.Length, src2.Length);
         }
 
         /// <summary>
         /// 将一维数组_src1和一维数组_src2连接为列数为2，行数为_src1和_src2最小长度的二维数组
         /// </summary>
-        /// <param name="_src1"></param>
-        /// <param name="_src2"></param>
-        /// <param name="_dst"></param>
+        /// <param name="src1"></param>
+        /// <param name="src2"></param>
+        /// <param name="dst"></param>
         /// <returns></returns>
-        public static void Connected_2D_Array<T>(T[] _src1, T[] _src2, ref T[,] _dst)
+        public static void Connected_2D_Array<T>(T[] src1, T[] src2, ref T[,] dst)
         {
-            if (_dst.GetLength(0) != _src1.Length || _dst.GetLength(0) != _src2.Length) throw new InvalidOperationException("输入参数不匹配");
-            for (int i = 0; i < _dst.GetLength(1); i++)
+            if (dst.GetLength(0) != src1.Length || dst.GetLength(0) != src2.Length) throw new InvalidOperationException("输入参数不匹配");
+            for (int i = 0; i < dst.GetLength(1); i++)
             {
-                if (i == 0) { for (int j = 0; j < _dst.GetLength(0); j++) { _dst[j, i] = _src1[j]; } }
-                else { for (int j = 0; j < _dst.GetLength(0); j++) { _dst[j, i] = _src2[j]; } }
+                if (i == 0) { for (int j = 0; j < dst.GetLength(0); j++) { dst[j, i] = src1[j]; } }
+                else { for (int j = 0; j < dst.GetLength(0); j++) { dst[j, i] = src2[j]; } }
             }
         }
         
         /// <summary>
         /// 将二维数组_src1和一维数组_src2连接为列数为_src1列数+1，行数为_src1长度和_src2行数最小值的二维数组
         /// </summary>
-        /// <param name="_src1"></param>
-        /// <param name="_src2"></param>
-        /// <param name="_dst"></param>
+        /// <param name="src1"></param>
+        /// <param name="src2"></param>
+        /// <param name="dst"></param>
         /// <returns></returns>
-        public static void ArrayConnect2<T>(T[,] _src1, T[] _src2, ref T[,] _dst)
+        public static void ArrayConnect2<T>(T[,] src1, T[] src2, ref T[,] dst)
         {
-            for (int j = 0; j < _dst.GetLength(0); j++) { _dst[j, _src1.GetLength(1)] = _src2[j]; }
-            for (int j = 0; j < _dst.GetLength(1) - 1; j++)
+            for (int j = 0; j < dst.GetLength(0); j++) { dst[j, src1.GetLength(1)] = src2[j]; }
+            for (int j = 0; j < dst.GetLength(1) - 1; j++)
             {
-                for (int i = 0; i < _dst.GetLength(0); i++)
+                for (int i = 0; i < dst.GetLength(0); i++)
                 {
-                    _dst[i, j] = _src1[i, j];
+                    dst[i, j] = src1[i, j];
                 }
             }
         }
@@ -129,53 +130,53 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <summary>
         /// 将一维数组_src1和一维数组_src2连接为列数(行数)为2，行数(列数)为_src1和_src2最小长度的二维数组
         /// </summary>
-        /// <param name="_src1"></param>
-        /// <param name="_src2"></param>
-        /// <param name="_dst"></param>
+        /// <param name="src1"></param>
+        /// <param name="src2"></param>
+        /// <param name="dst"></param>
         /// <param name="majorOrder"></param>
         /// <returns></returns>
-        public static void Concatenate<T>(T[] _src1, T[] _src2, ref T[,] _dst, MajorOrder majorOrder )
+        public static void Concatenate<T>(T[] src1, T[] src2, ref T[,] dst, MajorOrder majorOrder )
         {
             if (majorOrder == MajorOrder.Column)
             {
-                if (_dst.GetLength(0) != _src1.Length || _dst.GetLength(0) != _src2.Length) throw new InvalidOperationException("输入参数不匹配");
+                if (dst.GetLength(0) != src1.Length || dst.GetLength(0) != src2.Length) throw new InvalidOperationException("输入参数不匹配");
 
-                for (int i = 0; i < _dst.GetLength(1); i++)
+                for (int i = 0; i < dst.GetLength(1); i++)
                 {
                     if (i == 0)
                     {
-                        for (int j = 0; j < _dst.GetLength(0); j++)
+                        for (int j = 0; j < dst.GetLength(0); j++)
                         {
-                            _dst[j, i] = _src1[j];
+                            dst[j, i] = src1[j];
                         }
                     }
                     else
                     {
-                        for (int j = 0; j < _dst.GetLength(0); j++)
+                        for (int j = 0; j < dst.GetLength(0); j++)
                         {
-                            _dst[j, i] = _src2[j];
+                            dst[j, i] = src2[j];
                         }
                     }
                 }
             }
             else
             {
-                if (_dst.GetLength(1) != _src1.Length || _dst.GetLength(1) != _src2.Length) throw new InvalidOperationException("输入参数不匹配");
+                if (dst.GetLength(1) != src1.Length || dst.GetLength(1) != src2.Length) throw new InvalidOperationException("输入参数不匹配");
 
-                for (int i = 0; i < _dst.GetLength(0); i++)
+                for (int i = 0; i < dst.GetLength(0); i++)
                 {
                     if (i == 0)
                     {
-                        for (int j = 0; j < _dst.GetLength(1); j++)
+                        for (int j = 0; j < dst.GetLength(1); j++)
                         {
-                            _dst[i, j] = _src1[j];
+                            dst[i, j] = src1[j];
                         }
                     }
                     else
                     {
-                        for (int j = 0; j < _dst.GetLength(1); j++)
+                        for (int j = 0; j < dst.GetLength(1); j++)
                         {
-                            _dst[i, j] = _src2[j];
+                            dst[i, j] = src2[j];
                         }
                     }
                 }
@@ -185,35 +186,35 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <summary>
         /// 将二维数组_src1和一维数组_src2连接为列(行)数为_src1列(行)数+1，行(列)数为_src1长度和_src2行(列)数最小值的二维数组
         /// </summary>
-        /// <param name="_src1"></param>
-        /// <param name="_src2"></param>
-        /// <param name="_dst"></param>
+        /// <param name="src1"></param>
+        /// <param name="src2"></param>
+        /// <param name="dst"></param>
         /// <param name="majorOrder"></param>
         /// <returns></returns>
-        public static void Concatenate<T>(T[,] _src1, T[] _src2, ref T[,] _dst, MajorOrder majorOrder)
+        public static void Concatenate<T>(T[,] src1, T[] src2, ref T[,] dst, MajorOrder majorOrder)
         {
             if(majorOrder == MajorOrder.Column)
             {
-                if (_dst.GetLength(0) != _src1.GetLength(0)|| _dst.GetLength(0) != _src2.Length||_dst.GetLength(1)!=_src1.GetLength(1)+1) throw new InvalidOperationException("输入参数不匹配");
+                if (dst.GetLength(0) != src1.GetLength(0)|| dst.GetLength(0) != src2.Length||dst.GetLength(1)!=src1.GetLength(1)+1) throw new InvalidOperationException("输入参数不匹配");
 
-                for (int j = 0; j < _dst.GetLength(0); j++){ _dst[j, _src1.GetLength(1)] = _src2[j]; }  //一维数组贴在最后一列
-                for (int j = 0; j < _dst.GetLength(1) - 1; j++)
+                for (int j = 0; j < dst.GetLength(0); j++){ dst[j, src1.GetLength(1)] = src2[j]; }  //一维数组贴在最后一列
+                for (int j = 0; j < dst.GetLength(1) - 1; j++)
                 {
-                    for (int i = 0; i < _dst.GetLength(0); i++)
+                    for (int i = 0; i < dst.GetLength(0); i++)
                     {
-                        _dst[i, j] = _src1[i,j];
+                        dst[i, j] = src1[i,j];
                     }
                 }
             }
             else
             {
-                if (_dst.GetLength(1) != _src1.GetLength(1) || _dst.GetLength(1) != _src2.Length||_dst.GetLength(0) != _src1.GetLength(0) + 1) throw new InvalidOperationException("输入参数不匹配");
-                for (int j = 0; j < _dst.GetLength(1); j++) { _dst[_src1.GetLength(0),j] = _src2[j]; } //一维数组贴在最后一行
-                for (int j = 0; j < _dst.GetLength(0) - 1; j++)
+                if (dst.GetLength(1) != src1.GetLength(1) || dst.GetLength(1) != src2.Length||dst.GetLength(0) != src1.GetLength(0) + 1) throw new InvalidOperationException("输入参数不匹配");
+                for (int j = 0; j < dst.GetLength(1); j++) { dst[src1.GetLength(0),j] = src2[j]; } //一维数组贴在最后一行
+                for (int j = 0; j < dst.GetLength(0) - 1; j++)
                 {
-                    for (int i = 0; i < _dst.GetLength(1); i++)
+                    for (int i = 0; i < dst.GetLength(1); i++)
                     {
-                        _dst[j, i] = _src1[j, i];
+                        dst[j, i] = src1[j, i];
                     }
                 }
             }
@@ -221,35 +222,35 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <summary>
         /// 将二维数组_src1和一维数组_src2连接为列(行)数为_src1列(行)数+1，行(列)数为_src1长度和_src2行(列)数最小值的二维数组
         /// </summary>
-        /// <param name="_src1"></param>
-        /// <param name="_src2"></param>
-        /// <param name="_dst"></param>
+        /// <param name="src1"></param>
+        /// <param name="src2"></param>
+        /// <param name="dst"></param>
         /// <param name="majorOrder"></param>
         /// <returns></returns>
-        public static void Concatenate<T>(T[] _src1, T[,] _src2, ref T[,] _dst, MajorOrder majorOrder)
+        public static void Concatenate<T>(T[] src1, T[,] src2, ref T[,] dst, MajorOrder majorOrder)
         {
             if (majorOrder == MajorOrder.Column)
             {
-                if (_dst.GetLength(0) != _src1.Length || _dst.GetLength(0) != _src2.GetLength(0) || _dst.GetLength(1) != _src2.GetLength(1) + 1) throw new InvalidOperationException("输入参数不匹配");
+                if (dst.GetLength(0) != src1.Length || dst.GetLength(0) != src2.GetLength(0) || dst.GetLength(1) != src2.GetLength(1) + 1) throw new InvalidOperationException("输入参数不匹配");
 
-                for (int j = 0; j < _dst.GetLength(0); j++) { _dst[j,0] = _src1[j]; }  //一维数组贴在第一列
-                for (int j = 1; j < _dst.GetLength(1); j++)
+                for (int j = 0; j < dst.GetLength(0); j++) { dst[j,0] = src1[j]; }  //一维数组贴在第一列
+                for (int j = 1; j < dst.GetLength(1); j++)
                 {
-                    for (int i = 0; i < _dst.GetLength(0); i++)
+                    for (int i = 0; i < dst.GetLength(0); i++)
                     {
-                        _dst[i, j] = _src2[i, j-1];
+                        dst[i, j] = src2[i, j-1];
                     }
                 }
             }
             else
             {
-                if (_dst.GetLength(1) != _src1.Length || _dst.GetLength(1) != _src2.GetLength(1) || _dst.GetLength(0) != _src2.GetLength(0) + 1) throw new InvalidOperationException("输入参数不匹配");
-                for (int j = 0; j < _dst.GetLength(1); j++) {_dst[ 0,j] = _src1[j]; } //一维数组贴在第一行
-                for (int j = 1; j < _dst.GetLength(0); j++)
+                if (dst.GetLength(1) != src1.Length || dst.GetLength(1) != src2.GetLength(1) || dst.GetLength(0) != src2.GetLength(0) + 1) throw new InvalidOperationException("输入参数不匹配");
+                for (int j = 0; j < dst.GetLength(1); j++) {dst[ 0,j] = src1[j]; } //一维数组贴在第一行
+                for (int j = 1; j < dst.GetLength(0); j++)
                 {
-                    for (int i = 0; i < _dst.GetLength(1); i++)
+                    for (int i = 0; i < dst.GetLength(1); i++)
                     {
-                        _dst[j, i] = _src2[j-1, i];
+                        dst[j, i] = src2[j-1, i];
                     }
                 }
             }
@@ -257,46 +258,46 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <summary>
         /// 将二维数组_src1和二维数组_src2连接为列(行)数为_src1列(行)数+1，行(列)数为_src1长度和_src2行(列)数最小值的二维数组
         /// </summary>
-        /// <param name="_src1"></param>
-        /// <param name="_src2"></param>
-        /// <param name="_dst"></param>
+        /// <param name="src1"></param>
+        /// <param name="src2"></param>
+        /// <param name="dst"></param>
         /// <param name="majorOrder"></param>
         /// <returns></returns>
-        public static void Concatenate<T>(T[,] _src1, T[,] _src2, ref T[,] _dst, MajorOrder majorOrder)
+        public static void Concatenate<T>(T[,] src1, T[,] src2, ref T[,] dst, MajorOrder majorOrder)
         {
             if (majorOrder == MajorOrder.Column)
             {
-                if (_dst.GetLength(0) != _src1.GetLength(0) || _dst.GetLength(0) != _src2.GetLength(0)||_dst.GetLength(1)!=_src1.GetLength(1)+_src2.GetLength(1)) throw new InvalidOperationException("输入参数不匹配");
-                for (int j = 0; j <_src1.GetLength(1); j++)
+                if (dst.GetLength(0) != src1.GetLength(0) || dst.GetLength(0) != src2.GetLength(0)||dst.GetLength(1)!=src1.GetLength(1)+src2.GetLength(1)) throw new InvalidOperationException("输入参数不匹配");
+                for (int j = 0; j <src1.GetLength(1); j++)
                 {
-                    for (int i = 0; i < _dst.GetLength(0); i++)
+                    for (int i = 0; i < dst.GetLength(0); i++)
                     {
-                        _dst[i, j] = _src1[i, j];
+                        dst[i, j] = src1[i, j];
                     }
                 }
-                for (int j = _src1.GetLength(1); j < _dst.GetLength(1); j++)
+                for (int j = src1.GetLength(1); j < dst.GetLength(1); j++)
                 {
-                    for (int i = 0; i < _dst.GetLength(0); i++)
+                    for (int i = 0; i < dst.GetLength(0); i++)
                     {
-                        _dst[i, j] = _src2[i, j-_src1.GetLength(1)];
+                        dst[i, j] = src2[i, j-src1.GetLength(1)];
                     }
                 }
             }
             else
             {
-                if (_dst.GetLength(1) != _src1.GetLength(1) || _dst.GetLength(1) != _src2.GetLength(1) || _dst.GetLength(0) != _src1.GetLength(0) + _src2.GetLength(0)) throw new InvalidOperationException("输入参数不匹配");
-                for (int j = 0; j < _src1.GetLength(0); j++)
+                if (dst.GetLength(1) != src1.GetLength(1) || dst.GetLength(1) != src2.GetLength(1) || dst.GetLength(0) != src1.GetLength(0) + src2.GetLength(0)) throw new InvalidOperationException("输入参数不匹配");
+                for (int j = 0; j < src1.GetLength(0); j++)
                 {
-                    for (int i = 0; i < _src1.GetLength(1); i++)
+                    for (int i = 0; i < src1.GetLength(1); i++)
                     {
-                        _dst[j, i] = _src1[j, i];
+                        dst[j, i] = src1[j, i];
                     }
                 }
-                for (int j = _src1.GetLength(0); j < _dst.GetLength(0); j++)
+                for (int j = src1.GetLength(0); j < dst.GetLength(0); j++)
                 {
-                    for (int i = 0; i < _dst.GetLength(1); i++)
+                    for (int i = 0; i < dst.GetLength(1); i++)
                     {
-                        _dst[j, i] = _src2[j-_src1.GetLength(0), i];
+                        dst[j, i] = src2[j-src1.GetLength(0), i];
                     }
                 }
             }
@@ -305,28 +306,28 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// Convert 1_D array 2 StringArray
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="_src"></param>
-        /// <param name="_dst"></param>
-        public static void Convert2StringArray<T>(T[] _src, ref string[] _dst)
+        /// <param name="src"></param>
+        /// <param name="dst"></param>
+        public static void Convert2StringArray<T>(T[] src, ref string[] dst)
         {
-            for (int i = 0; i < _src.Length; i++)
+            for (int i = 0; i < src.Length; i++)
             {
-                _dst[i] = _src[i].ToString();
+                dst[i] = src[i].ToString();
             }
         }
         /// <summary>
         /// Convert 2_D array 2 StringArray
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="_src"></param>
-        /// <param name="_dst"></param>
-        public static void Convert2StringArray<T>(T[,] _src, ref string[,] _dst)
+        /// <param name="src"></param>
+        /// <param name="dst"></param>
+        public static void Convert2StringArray<T>(T[,] src, ref string[,] dst)
         {
-            for (int i = 0; i < _src.GetLength(0); i++)
+            for (int i = 0; i < src.GetLength(0); i++)
             {
-                for (int j = 0; j < _src.GetLength(1); j++)
+                for (int j = 0; j < src.GetLength(1); j++)
                 {
-                    _dst[i, j] = _src[i, j].ToString();
+                    dst[i, j] = src[i, j].ToString();
                 }
             }
         }
@@ -815,18 +816,43 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <para>specifies whether to copy row or column, the default is by row.</para>
         /// <para>Chinese Simplified: 设定获取行还是列。</para>
         /// </param>
-
+        [Obsolete]
         public static void GetArraySubset<T>(T[,] a, int index, ref T[] b, IndexType indexType = IndexType.row)
+        {
+            GetArraySubset(a, index, ref b, (MajorOrder)indexType);
+        }
+
+        /// <summary>
+        /// <para>Copying one row or column of array a[,] to b[], the row/column to copy is specified by index of row/column.</para>
+        /// <para>Chinese Simplified: 将二维数组a[,]的指定行或列拷贝至一维数组b[]，行(或列)索引值由index给出，按行索引或按列索引由indexType给出。</para>
+        /// </summary>
+        /// <param name="a">
+        /// <para>input 2D array.</para>
+        /// <para>Chinese Simplified: 原始二维数组。</para>
+        /// </param>
+        /// <param name="index">
+        /// <para>index of the row or column to copy.</para>
+        /// <para>Chinese Simplified: 行或列索引值，从0开始。</para>
+        /// <param name="b">
+        /// <para>output sequence containing copied row or column.</para>
+        /// <para>Chinese Simplified: 返回的指定行或列一维数组。</para>
+        /// </param>
+        /// </param>
+        /// <param name="indexType">
+        /// <para>specifies whether to copy row or column, the default is by row.</para>
+        /// <para>Chinese Simplified: 设定获取行还是列。</para>
+        /// </param>
+        public static void GetArraySubset<T>(T[,] a, int index, ref T[] b, MajorOrder indexType = MajorOrder.Row)
         {
             int actualLength;
 
-            if (indexType == IndexType.row)
+            if (indexType == MajorOrder.Row)
             {
                 // if index is out of range, return immediately
                 if (index >= a.GetLength(0)) { return; }
                 // calculate actual length and copy data
                 actualLength = Math.Min(b.Length, a.GetLength(1));
-                for (int i = 0; i < actualLength; i++) { b[i] = a[index,i]; }
+                for (int i = 0; i < actualLength; i++) { b[i] = a[index, i]; }
             }
             else
             {
@@ -834,7 +860,7 @@ namespace SeeSharpTools.JY.ArrayUtility
                 if (index >= a.GetLength(1)) { return; }
                 // calculate actual length and copy data
                 actualLength = Math.Min(b.Length, a.GetLength(0));
-                for (int i = 0; i < actualLength; i++) { b[i] = a[i,index]; }
+                for (int i = 0; i < actualLength; i++) { b[i] = a[i, index]; }
             }
         }
 
@@ -882,11 +908,37 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <para>specifies whether to replace row or column, the default is by row.</para>
         /// <para>Chinese Simplified: 设定替换行还是列。</para>
         /// </param>
+        [Obsolete]
         public static void ReplaceArraySubset<T>(T[] a, ref T[,] b, int index, IndexType indexType = IndexType.row)
+        {
+            ReplaceArraySubset(a, ref b, index, (MajorOrder) indexType);
+        }
+
+        /// <summary>
+        /// <para>Replace one row or column of b[,] with all elements of array a[], the row/column to be replaced is specified by index of row/column.</para>
+        /// <para>Chinese Simplified: 将一维数组a[]的所有元素拷贝至二维数组b[,]中的指定行或列，替换该行或列的元素，行数(列数)由index给出，按行索引或按列索引由indexType给出。</para>
+        /// </summary>
+        /// <param name="a">
+        /// <para>input sequence.</para>
+        /// <para>Chinese Simplified: 输入一维数组。</para>
+        /// </param>
+        /// <param name="b">
+        /// <para>input and output 2D array, one row or column of it will be replaced with elements in a[].</para>
+        /// <para>Chinese Simplified: 更新后的二维数组。</para>
+        /// </param>
+        /// <param name="index">
+        /// <para>index of the row or column to copy.</para>
+        /// <para>Chinese Simplified: 行或列索引值，从0开始。</para>
+        /// </param>
+        /// <param name="indexType">
+        /// <para>specifies whether to replace row or column, the default is by row.</para>
+        /// <para>Chinese Simplified: 设定替换行还是列。</para>
+        /// </param>
+        public static void ReplaceArraySubset<T>(T[] a, ref T[,] b, int index, MajorOrder indexType = MajorOrder.Row)
         {
             int actualLength;
 
-            if (indexType == IndexType.row)
+            if (indexType == MajorOrder.Row)
             {
                 // if index is out of range, return immediately
                 if (index >= b.GetLength(0)) { return; }
