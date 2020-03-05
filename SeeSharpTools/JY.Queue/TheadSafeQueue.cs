@@ -82,13 +82,15 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         }
 
         /// <summary>
-        /// Release all blocked function.
+        /// Reset the available status of queue.
         /// </summary>
-        public void Release()
+        public void Reset()
         {
-            lock (SyncRoot)
+            lock (base.SyncRoot)
             {
-                Monitor.PulseAll(base.SyncRoot);
+                // 配置存在状态标志为0
+                Thread.VolatileWrite(ref _existFlag, 1);
+                base.Clear();
             }
         }
 

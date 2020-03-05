@@ -95,6 +95,11 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         /// </summary>
         public int Count => _dataCount;
 
+        /// <summary>
+        /// Get the available state of the queue.
+        /// </summary>
+        public bool Disposed => _availableFlag == 0;
+
         public bool IsReadOnly => false;
 
         /// <summary>
@@ -1000,16 +1005,21 @@ namespace SeeSharpTools.JY.ThreadSafeQueue
         }
 
         /// <summary>
-        /// Release all blocked operation
+        /// Reset the available status of queue.
         /// </summary>
-        public void Release()
+        public void Reset()
         {
             bool getLock = false;
             try
             {
                 _queueLock.TryEnter(ref getLock);
-                _dequeueWaitHandle?.Release(_dequeueWaitHandle.CurrentCount);
-                Thread.MemoryBarrier();
+                Thread.VolatileWrite(ref _availableFlag, 1);
+                _startIndex = 0;
+                _endIndex = 0;
+                if (_blockWaiting)
+                {
+                    _dequeueWaitHandle = new SemaphoreSlim(1);
+                }
             }
             finally
             {
