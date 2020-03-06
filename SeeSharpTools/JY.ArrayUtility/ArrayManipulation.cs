@@ -817,7 +817,7 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <para>Chinese Simplified: 设定获取行还是列。</para>
         /// </param>
         [Obsolete]
-        public static void GetArraySubset<T>(T[,] a, int index, ref T[] b, IndexType indexType = IndexType.row)
+        public static void GetArraySubset<T>(T[,] a, int index, ref T[] b, IndexType indexType)
         {
             GetArraySubset(a, index, ref b, (MajorOrder)indexType);
         }
@@ -909,7 +909,7 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <para>Chinese Simplified: 设定替换行还是列。</para>
         /// </param>
         [Obsolete]
-        public static void ReplaceArraySubset<T>(T[] a, ref T[,] b, int index, IndexType indexType = IndexType.row)
+        public static void ReplaceArraySubset<T>(T[] a, ref T[,] b, int index, IndexType indexType)
         {
             ReplaceArraySubset(a, ref b, index, (MajorOrder) indexType);
         }
