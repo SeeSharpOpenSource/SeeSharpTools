@@ -2,17 +2,17 @@
 1.新增功能
 	---SeeSharpTools.JY.DSP.SoundVibration.HarmonicAnalyzer类新增ToneAnalysis方法，可以计算各阶谐波的强度
 	---SeeSharpTools.JY.DSP.Utility.HarmonicAnalysis类更名SystemNoiseCalculation
-	---EasyChartX新增AutoClear属性，用于配置Plot前是否清除已显示的线条
+	---EasyChartX
 		
 2.修复bug
 	---修复EasyChartX执行plot的数据中如果存在只有一个点的线条时会抛出空指针的错误
-	---修复SeeSharpTools.JY.ThreadSafeQueue.ThreadSafeQueue类在执行Destroy后，Dequeue阻塞的线程不会被释放的问题
 	---修复ExcelReport在InsertChart中，配置FirstColumnAsX未生效的问题
 	---修复CsvHandler中ReadData方法输入行数和列数的值如果使用默认值0会出现下标越界的错误
 	---修复ThreadSafeQueue和CircularQueue在执行Destroy后再次执行Enqueue/Dequeue会阻塞线程且无法释放的问题
 
 3.其他变更
 	---修正EasyChartX的快速配置窗口的拼写错误
+	---替换SeeSharpTools.JY.ArrayUtility.ArrayManipulation类中所有IndexType类型的形参为MajorOrder类型
 
 --------------------版本  1.4.5---2019/8/23
 1.新增功能
