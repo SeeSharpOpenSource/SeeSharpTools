@@ -221,6 +221,7 @@ namespace SeeSharpTools.JY.GUI
             this._baseSeries = baseSeries;
             baseSeries.Name = this._name;
             baseSeries.Color = this._color;
+            baseSeries.Enabled = this.Visible;
             baseSeries.BorderWidth = (int) this._lineWidth;
             baseSeries.ChartType = (SeriesChartType) this._type;
             baseSeries.MarkerStyle = (MarkerStyle) this._marker;
