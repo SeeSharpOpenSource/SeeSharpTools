@@ -1,14 +1,29 @@
---------------------版本  1.4.6---2020/2/28
+--------------------版本  1.4.7---2020/7/29
+1.新增功能
+	---EasyChartX控件新增X轴数据使用一维数组，Y轴数据使用二维数组的Plot方法
+	---新增SeeSharpTools.JY.DSP.Utility.ToneAnalyzer类，用于单频信号参数的计算。
+		
+2.修复bug
+	---修复SeeSharpTools.JY.DSP.Utility.Fundamental.Spectrum类中PeakSpectrumAnalysis方法中对DC附近的峰值计算不准确的bug。
+	---修复EasyChartX和StripChartX控件在线条个数变更时，Visible属性未正确匹配到对应线条的bug。
+	---修复EasyChartX.Plot方法在MajorOrder为Column，绘图线数超过最大绘图个数时抛出下标越界异常的bug。
+	
+3.其他变更
+
+
+--------------------版本  1.4.6---2020/3/24
 1.新增功能
 	---SeeSharpTools.JY.DSP.SoundVibration.HarmonicAnalyzer类新增ToneAnalysis方法，可以计算各阶谐波的强度
 	---SeeSharpTools.JY.DSP.Utility.HarmonicAnalysis类更名SystemNoiseCalculation
-	---EasyChartX
+	---EasyChartX新增AutoClear属性，用以配置每次绘图前是否清除上次绘图的数据
+	---将Ribbon控件和DockPanel的库打包到SeeSharpTools安装包中
 		
 2.修复bug
 	---修复EasyChartX执行plot的数据中如果存在只有一个点的线条时会抛出空指针的错误
 	---修复ExcelReport在InsertChart中，配置FirstColumnAsX未生效的问题
 	---修复CsvHandler中ReadData方法输入行数和列数的值如果使用默认值0会出现下标越界的错误
 	---修复ThreadSafeQueue和CircularQueue在执行Destroy后再次执行Enqueue/Dequeue会阻塞线程且无法释放的问题
+	---修复BinHandler流式读取时使用二维数组读取，只能读取到部分数据的bug
 
 3.其他变更
 	---修正EasyChartX的快速配置窗口的拼写错误

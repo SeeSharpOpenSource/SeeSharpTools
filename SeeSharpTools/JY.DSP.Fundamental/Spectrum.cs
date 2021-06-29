@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -297,7 +297,6 @@ namespace SeeSharpTools.JY.DSP.Fundamental
                             VMLNative.vdSqr(N, spectrum, spectrum);
                         }
                         scale = 1.0 / unitSetting.Impedance;            //1/R
-                        VMLNative.vdSqr(N, spectrum, spectrum);         //V^2
                         CBLASNative.cblas_dscal(N, scale, spectrum, 1); //W = V^2/R
 
                         if (unitSetting.Unit == SpectrumUnits.dBW)   //dBW = 20lgW

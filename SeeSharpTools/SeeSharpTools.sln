@@ -39,6 +39,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JY.TCP", "JY.TCP\JY.TCP.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JY.Mathematics", "JY.Mathematics\JY.Mathematics.csproj", "{872E01FA-95CD-41C8-9B9C-C09FE142F324}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JY.DSP.UtilityTests", "JY.DSP.UtilityTests\JY.DSP.UtilityTests.csproj", "{7436E368-18CD-4E34-8F72-42B17F7DC337}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4375996D-DC62-46DD-8BB0-B82879BAA7E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -191,12 +195,20 @@ Global
 		{872E01FA-95CD-41C8-9B9C-C09FE142F324}.Release|Any CPU.Build.0 = Release|Any CPU
 		{872E01FA-95CD-41C8-9B9C-C09FE142F324}.Release|x86.ActiveCfg = Release|Any CPU
 		{872E01FA-95CD-41C8-9B9C-C09FE142F324}.Release|x86.Build.0 = Release|Any CPU
+		{7436E368-18CD-4E34-8F72-42B17F7DC337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7436E368-18CD-4E34-8F72-42B17F7DC337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7436E368-18CD-4E34-8F72-42B17F7DC337}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7436E368-18CD-4E34-8F72-42B17F7DC337}.Debug|x86.Build.0 = Debug|Any CPU
+		{7436E368-18CD-4E34-8F72-42B17F7DC337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7436E368-18CD-4E34-8F72-42B17F7DC337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7436E368-18CD-4E34-8F72-42B17F7DC337}.Release|x86.ActiveCfg = Release|Any CPU
+		{7436E368-18CD-4E34-8F72-42B17F7DC337}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4205770D-BB89-4A57-B5B7-AD0D40C75DDD}
+	GlobalSection(NestedProjects) = preSolution
+		{7436E368-18CD-4E34-8F72-42B17F7DC337} = {4375996D-DC62-46DD-8BB0-B82879BAA7E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4205770D-BB89-4A57-B5B7-AD0D40C75DDD}

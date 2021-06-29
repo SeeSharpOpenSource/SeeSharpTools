@@ -101,16 +101,11 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 return;
             }
             int lineNum = ySize / xSize;
-            _plotSeriesCount = ((!CumulativePlot) || (!IsPlotting)) ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > MaxSeriesCount)
-            {
-                ySize -= (_plotSeriesCount - MaxSeriesCount) *xSize;
-                _plotSeriesCount = MaxSeriesCount;
-            }
+            lineNum = UpdatePlotSeriesCount(lineNum);
             AdaptPlotDatasCount(1);
             IsPlotting = true;
             AdaptSeriesCount();
-            PlotDatas[PlotDatas.Count - 1].SaveData(xStart, xstep, yData, xSize, ySize);
+            PlotDatas[PlotDatas.Count - 1].SaveData(xStart, xstep, yData, xSize, ySize, lineNum);
         }
 
         /// <summary>
@@ -128,16 +123,29 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 return;
             }
             int lineNum = rowDirection ? yData.GetLength(0) : yData.GetLength(1);
-            _plotSeriesCount = ((!CumulativePlot) || (!IsPlotting)) ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > MaxSeriesCount)
-            {
-                lineNum -= _plotSeriesCount - MaxSeriesCount;
-                _plotSeriesCount = MaxSeriesCount;
-            }
+            lineNum = UpdatePlotSeriesCount(lineNum);
             AdaptPlotDatasCount(1);
             IsPlotting = true;
             AdaptSeriesCount();
             PlotDatas[PlotDatas.Count - 1].SaveData(xStart, xstep, yData, lineNum, rowDirection);
+        }
+
+        /// <summary>
+        /// 添加绘图数据到缓存中
+        /// </summary>
+        public void AddPlotData(double[] xData, double[,] yData, bool rowDirection)
+        {
+            // 如果是连续绘图且已经达到线数上限则直接返回
+            if (CumulativePlot && _plotSeriesCount >= MaxSeriesCount)
+            {
+                return;
+            }
+            int lineNum = rowDirection ? yData.GetLength(0) : yData.GetLength(1);
+            lineNum = UpdatePlotSeriesCount(lineNum);
+            AdaptPlotDatasCount(1);
+            IsPlotting = true;
+            AdaptSeriesCount();
+            PlotDatas[PlotDatas.Count - 1].SaveData(xData, yData, lineNum, rowDirection);
         }
 
         /*
@@ -172,16 +180,17 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 return;
             }
             int lineNum = ySize / xSize;
-            _plotSeriesCount = ((!CumulativePlot) || (!IsPlotting)) ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > MaxSeriesCount)
+            if (lineNum <= 0)
             {
-                ySize -= (_plotSeriesCount - MaxSeriesCount) *xSize;
-                _plotSeriesCount = MaxSeriesCount;
+                lineNum = 1;
+                xSize = ySize;
             }
+            lineNum = UpdatePlotSeriesCount(lineNum);
+            ySize = lineNum * xSize;
             AdaptPlotDatasCount(1);
             IsPlotting = true;
             AdaptSeriesCount();
-            PlotDatas[PlotDatas.Count - 1].SaveData(xData, yData, xSize, ySize);
+            PlotDatas[PlotDatas.Count - 1].SaveData(xData, yData, xSize, ySize, lineNum);
         }
 
         /// <summary>
@@ -197,26 +206,38 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 return;
             }
             int lineNum = xData.Count;
-            _plotSeriesCount = ((!CumulativePlot) || (!IsPlotting)) ? lineNum : _plotSeriesCount + lineNum;
-            if (_plotSeriesCount > MaxSeriesCount)
-            {
-                lineNum -= _plotSeriesCount - MaxSeriesCount;
-                _plotSeriesCount = MaxSeriesCount;
-            }
+            lineNum = UpdatePlotSeriesCount(lineNum);
             AdaptPlotDatasCount(lineNum);
             IsPlotting = true;
             AdaptSeriesCount();
             int plotDataIndex = PlotDatas.Count - lineNum;
             for (int i = 0; i < lineNum; i++)
             {
-                PlotDatas[plotDataIndex++].SaveData(xData[i], yData[i], xData[i].Count, yData[i].Count);
+                PlotDatas[plotDataIndex++].SaveData(xData[i], yData[i], xData[i].Count, yData[i].Count, 1);
             }
         }
 
+        // 更新PlotSeriesCount属性并返回当前需要添加到缓存中的线条个数
+        private int UpdatePlotSeriesCount(int lineNum)
+        {
+            int lastSeriesCount = _plotSeriesCount;
+            _plotSeriesCount = CumulativePlot ? lastSeriesCount + lineNum : lineNum;
+            if (_plotSeriesCount > MaxSeriesCount)
+            {
+                _plotSeriesCount = MaxSeriesCount;
+                lineNum = CumulativePlot ? _plotSeriesCount - lastSeriesCount : MaxSeriesCount;
+            }
+            return lineNum;
+        }
+
         // TODO 后期优化，记录当前Series的Plot范围，然后再判断是否需要重新Plot
+
         // 在begin和end区间内绘制单条曲线，分区视图使用。如果forceRefresh为true时(调用Plot方法时)始终更新绘图。
+
         // 如果forceRefresh为false时(用户进行缩放等操作时)如果判断数据区间和原来的兼容(稀疏比相同且是上次绘图范围的子集则无需更新)
+
         // 使用forceRefresh是为了避免在数据量过大，用户缩放后拖动滚动条会比较卡顿的问题
+
         internal void PlotDataInRange(double beginXValue, double endXValue, int seriesIndex, bool forceRefresh, bool isLogView)
         {
             int lineIndex;

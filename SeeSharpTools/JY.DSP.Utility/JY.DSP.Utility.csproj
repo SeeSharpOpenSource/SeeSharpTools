@@ -64,6 +64,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SignalProcessing.cs" />
+    <Compile Include="ToneAnalyzer.cs" />
     <Compile Include="SquarewaveMeasurements.cs" />
     <Compile Include="Synchronizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

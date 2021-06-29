@@ -20,7 +20,8 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// Chinese Simplified: 二维数组的索引方式，row为按行索引，column为按列索引。
         /// </summary>
         [Obsolete]
-        public enum IndexType {
+        public enum IndexType
+        {
             /// <summary>
             /// accesing one row of a 2D array.
             /// </summary>
@@ -107,7 +108,7 @@ namespace SeeSharpTools.JY.ArrayUtility
                 else { for (int j = 0; j < dst.GetLength(0); j++) { dst[j, i] = src2[j]; } }
             }
         }
-        
+
         /// <summary>
         /// 将二维数组_src1和一维数组_src2连接为列数为_src1列数+1，行数为_src1长度和_src2行数最小值的二维数组
         /// </summary>
@@ -135,7 +136,7 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <param name="dst"></param>
         /// <param name="majorOrder"></param>
         /// <returns></returns>
-        public static void Concatenate<T>(T[] src1, T[] src2, ref T[,] dst, MajorOrder majorOrder )
+        public static void Concatenate<T>(T[] src1, T[] src2, ref T[,] dst, MajorOrder majorOrder)
         {
             if (majorOrder == MajorOrder.Column)
             {
@@ -193,23 +194,23 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <returns></returns>
         public static void Concatenate<T>(T[,] src1, T[] src2, ref T[,] dst, MajorOrder majorOrder)
         {
-            if(majorOrder == MajorOrder.Column)
+            if (majorOrder == MajorOrder.Column)
             {
-                if (dst.GetLength(0) != src1.GetLength(0)|| dst.GetLength(0) != src2.Length||dst.GetLength(1)!=src1.GetLength(1)+1) throw new InvalidOperationException("输入参数不匹配");
+                if (dst.GetLength(0) != src1.GetLength(0) || dst.GetLength(0) != src2.Length || dst.GetLength(1) != src1.GetLength(1) + 1) throw new InvalidOperationException("输入参数不匹配");
 
-                for (int j = 0; j < dst.GetLength(0); j++){ dst[j, src1.GetLength(1)] = src2[j]; }  //一维数组贴在最后一列
+                for (int j = 0; j < dst.GetLength(0); j++) { dst[j, src1.GetLength(1)] = src2[j]; }  //一维数组贴在最后一列
                 for (int j = 0; j < dst.GetLength(1) - 1; j++)
                 {
                     for (int i = 0; i < dst.GetLength(0); i++)
                     {
-                        dst[i, j] = src1[i,j];
+                        dst[i, j] = src1[i, j];
                     }
                 }
             }
             else
             {
-                if (dst.GetLength(1) != src1.GetLength(1) || dst.GetLength(1) != src2.Length||dst.GetLength(0) != src1.GetLength(0) + 1) throw new InvalidOperationException("输入参数不匹配");
-                for (int j = 0; j < dst.GetLength(1); j++) { dst[src1.GetLength(0),j] = src2[j]; } //一维数组贴在最后一行
+                if (dst.GetLength(1) != src1.GetLength(1) || dst.GetLength(1) != src2.Length || dst.GetLength(0) != src1.GetLength(0) + 1) throw new InvalidOperationException("输入参数不匹配");
+                for (int j = 0; j < dst.GetLength(1); j++) { dst[src1.GetLength(0), j] = src2[j]; } //一维数组贴在最后一行
                 for (int j = 0; j < dst.GetLength(0) - 1; j++)
                 {
                     for (int i = 0; i < dst.GetLength(1); i++)
@@ -233,24 +234,24 @@ namespace SeeSharpTools.JY.ArrayUtility
             {
                 if (dst.GetLength(0) != src1.Length || dst.GetLength(0) != src2.GetLength(0) || dst.GetLength(1) != src2.GetLength(1) + 1) throw new InvalidOperationException("输入参数不匹配");
 
-                for (int j = 0; j < dst.GetLength(0); j++) { dst[j,0] = src1[j]; }  //一维数组贴在第一列
+                for (int j = 0; j < dst.GetLength(0); j++) { dst[j, 0] = src1[j]; }  //一维数组贴在第一列
                 for (int j = 1; j < dst.GetLength(1); j++)
                 {
                     for (int i = 0; i < dst.GetLength(0); i++)
                     {
-                        dst[i, j] = src2[i, j-1];
+                        dst[i, j] = src2[i, j - 1];
                     }
                 }
             }
             else
             {
                 if (dst.GetLength(1) != src1.Length || dst.GetLength(1) != src2.GetLength(1) || dst.GetLength(0) != src2.GetLength(0) + 1) throw new InvalidOperationException("输入参数不匹配");
-                for (int j = 0; j < dst.GetLength(1); j++) {dst[ 0,j] = src1[j]; } //一维数组贴在第一行
+                for (int j = 0; j < dst.GetLength(1); j++) { dst[0, j] = src1[j]; } //一维数组贴在第一行
                 for (int j = 1; j < dst.GetLength(0); j++)
                 {
                     for (int i = 0; i < dst.GetLength(1); i++)
                     {
-                        dst[j, i] = src2[j-1, i];
+                        dst[j, i] = src2[j - 1, i];
                     }
                 }
             }
@@ -267,8 +268,8 @@ namespace SeeSharpTools.JY.ArrayUtility
         {
             if (majorOrder == MajorOrder.Column)
             {
-                if (dst.GetLength(0) != src1.GetLength(0) || dst.GetLength(0) != src2.GetLength(0)||dst.GetLength(1)!=src1.GetLength(1)+src2.GetLength(1)) throw new InvalidOperationException("输入参数不匹配");
-                for (int j = 0; j <src1.GetLength(1); j++)
+                if (dst.GetLength(0) != src1.GetLength(0) || dst.GetLength(0) != src2.GetLength(0) || dst.GetLength(1) != src1.GetLength(1) + src2.GetLength(1)) throw new InvalidOperationException("输入参数不匹配");
+                for (int j = 0; j < src1.GetLength(1); j++)
                 {
                     for (int i = 0; i < dst.GetLength(0); i++)
                     {
@@ -279,7 +280,7 @@ namespace SeeSharpTools.JY.ArrayUtility
                 {
                     for (int i = 0; i < dst.GetLength(0); i++)
                     {
-                        dst[i, j] = src2[i, j-src1.GetLength(1)];
+                        dst[i, j] = src2[i, j - src1.GetLength(1)];
                     }
                 }
             }
@@ -297,7 +298,7 @@ namespace SeeSharpTools.JY.ArrayUtility
                 {
                     for (int i = 0; i < dst.GetLength(1); i++)
                     {
-                        dst[j, i] = src2[j-src1.GetLength(0), i];
+                        dst[j, i] = src2[j - src1.GetLength(0), i];
                     }
                 }
             }
@@ -331,7 +332,7 @@ namespace SeeSharpTools.JY.ArrayUtility
                 }
             }
         }
-        
+
         ///// <summary>
         ///// <para>Copying a portion of array a[] to array b[], starting at specified startIndex, number of elements equals to length of b[].</para>
         ///// <para>Chinese Simplified: 将一维数组a[]中从指定起始位置起的后续元素拷贝至一维数组b[]，起始索引值由startIndex给出，元素个数由数组b的长度给出。</para>
@@ -793,7 +794,7 @@ namespace SeeSharpTools.JY.ArrayUtility
             int actualLength;
 
             actualLength = Math.Min(b.Length, a.Length - startIndex);
-            for (int i=0; i<actualLength; i++) { b[i] = a[i + startIndex]; }
+            for (int i = 0; i < actualLength; i++) { b[i] = a[i + startIndex]; }
         }
 
         /// <summary>
@@ -880,7 +881,7 @@ namespace SeeSharpTools.JY.ArrayUtility
         /// <para>index of the first element in b[] to be replaced.</para>
         /// <para>Chinese Simplified: 起始索引值。</para>
         /// </param>
-        public static void ReplaceArraySubset<T>(T[] a, ref T[]b, int startIndex)
+        public static void ReplaceArraySubset<T>(T[] a, ref T[] b, int startIndex)
         {
             int actualLength;
 
@@ -911,7 +912,7 @@ namespace SeeSharpTools.JY.ArrayUtility
         [Obsolete]
         public static void ReplaceArraySubset<T>(T[] a, ref T[,] b, int index, IndexType indexType)
         {
-            ReplaceArraySubset(a, ref b, index, (MajorOrder) indexType);
+            ReplaceArraySubset(a, ref b, index, (MajorOrder)indexType);
         }
 
         /// <summary>

@@ -53,12 +53,12 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             Parallel = new ParallelHandler(this, dataCheckParams);
         }
 
-        public void SaveData(IList<double> xData, IList<double> yData, int xSize, int ySize)
+        public void SaveData(IList<double> xData, IList<double> yData, int xSize, int ySize, int lineCount)
         {
             DataInfo.XDataInputType = XDataInputType.Array;
 //            DataInfo.XDataType = XDataType.Number;
             DataInfo.Size = xSize <= ySize ? xSize : ySize;
-            DataInfo.LineNum = ySize / DataInfo.Size;
+            DataInfo.LineNum = lineCount;
 
             XData = SaveDataToBuf(XData, xData);
             YData = SaveDataToBuf(YData, yData);
@@ -79,7 +79,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             InitViewRange();
         }
 
-        public void SaveData(double xStart, double xIncrement, IList<double> yData, int xSize, int ySize)
+        public void SaveData(double xStart, double xIncrement, IList<double> yData, int xSize, int ySize, int lineCount)
         {
             DataInfo.XDataInputType = XDataInputType.Increment;
 //            DataInfo.XDataType = XDataType.Number;
@@ -92,7 +92,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
             XMinInterval = xIncrement > Constants.MinLegalInterval ? xIncrement : Constants.MinLegalInterval;
             
-            DataInfo.LineNum = ySize / DataInfo.Size;
+            DataInfo.LineNum = lineCount;
 
             XData?.Clear();
             YData = SaveDataToBuf(YData, yData);
@@ -123,6 +123,41 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             DataInfo.LineNum = lineCount;
 
             XData?.Clear();
+            int ySize = lineCount*DataInfo.Size;
+            if (null == _transBuf || _transBuf.Length != ySize)
+            {
+                _transBuf = new double[yData.Length];
+            }
+            if (rowDirection || 1 == lineCount)
+            {
+                Buffer.BlockCopy(yData, 0, _transBuf, 0, ySize * sizeof(double));
+            }
+            else
+            {
+                Parallel.Transpose(yData, _transBuf);
+            }
+            YData = SaveDataToBuf(YData, _transBuf);
+
+            CheckInvalidData();
+
+            //            YStrData = null;
+
+            PlotBuf.AdaptPlotBuffer();
+
+            InitViewRange();
+        }
+
+        public void SaveData(double[] xData, double[,] yData, int lineCount, bool rowDirection)
+        {
+            DataInfo.XDataInputType = XDataInputType.Array;
+            //            DataInfo.XDataType = XDataType.Number;
+            int xSize = xData.Length;
+            int ySize = rowDirection ? yData.GetLength(1) : yData.GetLength(0);
+            DataInfo.Size = xSize <= ySize ? xSize : ySize;
+            DataInfo.LineNum = lineCount;
+
+            XData = SaveDataToBuf(XData, xData);
+
             if (null == _transBuf || _transBuf.Length != yData.Length)
             {
                 _transBuf = new double[yData.Length];
@@ -135,11 +170,19 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             {
                 Parallel.Transpose(yData, _transBuf);
             }
+
             YData = SaveDataToBuf(YData, _transBuf);
 
             CheckInvalidData();
 
-            //            YStrData = null;
+            _transBuf = null;
+
+            XMinInterval = GetArrayXMinInternval();
+
+            double maxX, minX;
+            Parallel.GetMaxAndMin(XData, out maxX, out minX);
+            MaxXValue = maxX;
+            MinXValue = minX;
 
             PlotBuf.AdaptPlotBuffer();
 
@@ -198,7 +241,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             for (int i = 0; i < seriesCount; i++)
             {
 //                dataEntities[i].SaveData(xData[i], yData[i], isShallowCopy);
-                dataEntities[i].SaveData(xData[i], yData[i], xData.Count, yData.Count);
+                dataEntities[i].SaveData(xData[i], yData[i], xData.Count, yData.Count, 1);
             }
         }
 

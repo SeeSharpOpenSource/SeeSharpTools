@@ -825,6 +825,27 @@ namespace SeeSharpTools.JY.GUI
         }
 
         /// <summary>
+        /// Plot x[] and y[] pair on chart.
+        /// </summary>
+        /// <param name="xData"> x sequence to plot</param>
+        /// <param name="yData"> y sequence to plot</param>
+        /// <param name="majorOrder">Specify the plot direction.</param>
+        public void Plot(double[] xData, double[,] yData, MajorOrder majorOrder = MajorOrder.Row)
+        {
+            // Plot的流程
+            // 1. 将绘图数据保存到plotmanager的PlotDatas的DataEntity结构中
+            // 2. 根据绘图数据的线数匹配视图
+            // 3. 根据待绘制的数据更新坐标轴和游标部分与数据相关的配置
+            // 4. 根据坐标轴当前的缩放范围进行绘图
+            int lastSeriesCount = _plotManager.SeriesCount;
+            _plotManager.AddPlotData(xData, yData, MajorOrder.Row == majorOrder);
+
+            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
+            _chartViewManager.RefreshAxesAndCursors();
+            PlotDataInRange();
+        }
+
+        /// <summary>
         /// Plot MutiDimension x and y data on chart.
         /// </summary>
         /// <param name="xData"> x sequences to plot</param>

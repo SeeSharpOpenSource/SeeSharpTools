@@ -223,6 +223,7 @@ namespace SeeSharpTools.JY.GUI
             baseSeries.Color = this._color;
             baseSeries.BorderWidth = (int) this._lineWidth;
             baseSeries.ChartType = (SeriesChartType) this._type;
+            baseSeries.Enabled = this.Visible;
             baseSeries.MarkerStyle = (MarkerStyle) this._marker;
             _seriesCollection.RefreshPlotAxis(this);
         }

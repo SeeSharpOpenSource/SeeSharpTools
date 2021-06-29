@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AudioAnalyze Algorithm Class Library")]
-[assembly: AssemblyDescription("Audio module")]
+[assembly: AssemblyTitle("JY.DSP.UtilityTests")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("JYTEk")]
-[assembly: AssemblyProduct("SeeSharpTools.JY.Audio")]
-[assembly: AssemblyCopyright("Copyright © JYTEK 2016")]
-[assembly: AssemblyTrademark("SeeSharp")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("JY.DSP.UtilityTests")]
+[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f0842ca7-9bf0-426f-96fa-387d718491ca")]
+[assembly: Guid("7436e368-18cd-4e34-8f72-42b17f7dc337")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.4.7.1")]
-[assembly: AssemblyFileVersion("1.4.7.1")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
